@@ -27,27 +27,45 @@ out3 = False
 """
 
 class Solution(object):
-    def containsDuplicate(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
+	def containsDuplicate(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: bool
+		"""
 
-        mapper = {}
+		mapper = {}
 
-        if len(nums) == 1 or len(nums) == 0:
-        	return False
+		if len(nums) == 1 or len(nums) == 0:
+			return False
 
-        for i in nums:
+		for i in nums:
 
-        	if i not in mapper:
-        		mapper[i] = True
+			if i not in mapper:
+				mapper[i] = True
 
-        	else:
+			else:
 
-        		return True
+				return True
 
-        return False
+		return False
+
+
+	def containsDuplicate2(self,nums):
+		"""
+		set approch to the question
+		"""
+		if len(nums) == 1 or len(nums) == 0:
+			
+			return False
+
+		if len(set(nums)) == len(nums):
+
+			return False
+
+		else:
+
+			return True   	
+
 
 
 
@@ -55,5 +73,5 @@ class Solution(object):
 if __name__== "__main__":
 	sol = Solution()
 
-	res1 = sol.containsDuplicate(arr2)
+	res1 = sol.containsDuplicate2(arr2)
 	print(res1)
