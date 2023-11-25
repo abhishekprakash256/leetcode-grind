@@ -35,6 +35,9 @@ test_lst5 ,k5 = [-1,-100,3,99], 2
 out5 = [3,99,-1,-100]
 
 
+
+#brute force soln 
+
 class Solution(object):
 	def rotate(self, nums, k):
 		"""
@@ -43,19 +46,62 @@ class Solution(object):
 		:rtype: None Do not return anything, modify nums in-place instead.
 		"""
 
-		count = 0 
+		for i in range(0,k):
+
+			ele = nums.pop()
+
+			nums.insert(0,ele)
+
+		return nums
+
+	def rotate_optimal(self,nums,k):
+		"""
+		Rotate the array using optimnal soln 
+		"""
+
+		#rotate the arrray 
+
+		k = k%len(nums)
+
+		left,right = 0, len(nums) - 1
+
+		while left < right:
+
+			nums[left], nums[right] = nums[right], nums[left]
+			left +=1
+			right -=1
+
+		
+
 		left = 0
+		right = k-1
+
+		while left < right:
+			nums[left], nums[right] = nums[right], nums[left]
+			left +=1
+			right -=1
+
+
+		left = k
 		right = len(nums) - 1
 
-		while count <= k:
-
+		while left < right:
 			
+			nums[left],nums[right] = nums[right] , nums[left]
+			left +=1
+			right -=1
+
+
+		return nums 
+
+
+
 
 
 
 
 if __name__ == "__main__":
 	sol = Solution()
-	res = sol.rotate(test_lst4,k4)
+	res = sol.rotate_optimal(test_lst5,k5)
 
 	print(res)
