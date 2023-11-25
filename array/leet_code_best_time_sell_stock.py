@@ -15,7 +15,7 @@ stock_lst = [1,2,3,4,5]
 out = 4
 
 stock_lst2 = [1,2,5,2,1,23,4,6] 
-out2 = 25
+out2 = 28
 
 
 stock_lst3 = [1,2,4,2,1]
@@ -28,6 +28,12 @@ out4 = 4
 #the soln 
 
 
+"""
+1,2,3,4,5,6
+
+
+"""
+
 class Solution(object):
 	def maxProfit(self, prices):
 		"""
@@ -35,4 +41,31 @@ class Solution(object):
 		:rtype: int
 		"""
 
-		
+		left = 0 
+		right = left + 1
+
+		if len(prices) == 1 or len(prices) == 0:
+			return 0 
+
+		#strat the loop 
+
+		profit = 0 
+
+		for i in range(1,len(prices)):
+
+			if prices[i] > prices[i-1]:
+
+				profit += (prices[i] - prices[i-1])
+
+		return profit
+
+
+
+
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	res = sol.maxProfit(stock_lst2)
+
+	print(res)
