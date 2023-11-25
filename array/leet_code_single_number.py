@@ -19,10 +19,28 @@ out3 = 3
 
 
 class Solution(object):
-    def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        
-        
+	def singleNumber(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		mapper = {}
+
+		for i in nums:
+
+			if i not in mapper:
+
+				mapper[i] = 1
+
+			else:
+				mapper[i] = mapper[i] + 1
+
+
+		return mapper
+
+
+if __name__ == "__main__":
+
+	sol = Solution()
+	res = sol.singleNumber(arr3)
+	print(res)
