@@ -13,7 +13,7 @@ arr2 = [1]
 out2 = 1
 
 
-arr3 = [2,2,2,3]
+arr3 = [2,2,3]
 out3 = 3
 
 
@@ -30,17 +30,27 @@ class Solution(object):
 
 			if i not in mapper:
 
-				mapper[i] = 1
+				mapper[i] = True
 
 			else:
-				mapper[i] = mapper[i] + 1
+				mapper.pop(i)
+				
+		val = list(mapper.keys())
 
+		return val[0]
 
-		return mapper
+	def singleNumber_set(self,nums):
+		"""
+		using the set approach 
+		"""
 
+		return 2*sum(set(nums)) - sum(nums) 
 
 if __name__ == "__main__":
 
 	sol = Solution()
 	res = sol.singleNumber(arr3)
 	print(res)
+
+	res2 = sol.singleNumber_set(arr3)
+	print(res2)
