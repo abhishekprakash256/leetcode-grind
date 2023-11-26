@@ -46,7 +46,6 @@ class Solution(object):
 			add = sum % 10 
 			carry = sum //10
 
-
 			sum_lst.append(add)
 
 
