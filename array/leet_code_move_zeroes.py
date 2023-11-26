@@ -25,17 +25,30 @@ out4 = [2,2,2]
 nums5 = [0,0,0]
 out5 = [0,0,0]
 
+nums6 = [1,0,0,0,1]
+out6 = [1,1,0,0,0]
+
 
 
 class Solution(object):
 	def moveZeroes(self, nums):
-		"""
-		:type nums: List[int]
-		:rtype: None Do not return anything, modify nums in-place instead.
-		"""
 
 
-		
+		return nums
+
+
+
+
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	res = print(sol.moveZeroes(nums))
+
+
+
+
+
 
 
 
