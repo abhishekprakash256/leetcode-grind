@@ -5,6 +5,11 @@ Each element in the result must appear as many times as it shows in both arrays 
 
 #test cases 
 
+"""
+the question is not solved 
+
+"""
+
 arr1,arr2 = [1,2,3,4], [1,2,3,3]
 out1 = [1,2,3]
 
@@ -64,16 +69,41 @@ class Solution(object):
 
 		return intersect_lst
 
-	def intersect(self,nums1,nums2):
+	def intersect_incorrect2(self,nums1,nums2):
 		"""
 		:type nums1: List[int]
 		:type nums2: List[int]
 		:rtype: List[int]
 		"""
-		pass
+		
+		left, right = 0,0
+		intersect_lst = []
 
 
+		#make the smaller 
+		if len(nums1) <= len(nums2):
+			small = nums1
+			large = nums2
+		else:
+			small = nums2
+			large = nums1
 
+
+		while left <= len(small) - 1:
+
+			if small[left] == large[right]:
+				intersect_lst.append(small[left])
+				left+=1
+				right +=1
+
+			elif small[left] < large[right]:
+				left +=1
+
+			else:
+				right +=1
+
+
+		return intersect_lst
 
 
 
@@ -85,7 +115,7 @@ class Solution(object):
 if __name__ == "__main__":
 
 	sol = Solution()
-	res = sol.intersect_incorrect(arr9,arr10)
+	res = sol.intersect_incorrect2(arr9,arr10)
 
 	print(res)
 
