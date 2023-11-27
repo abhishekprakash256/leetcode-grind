@@ -28,13 +28,49 @@ out5 = [0,0,0]
 nums6 = [1,0,0,0,1]
 out6 = [1,1,0,0,0]
 
+nums7 = [1,1,1,0,1]
+out = [1,1,1,0]
 
 
 class Solution(object):
-	def moveZeroes(self, nums):
+	def moveZeroes_incorrect(self, nums):
+
+		l,r = 0,0
+		i = 0
+
+
+		while True or l <= len(nums) -1 :
+
+			if nums[i] == 0:
+				l = i
+				break
+			i+=1
+
+
+		for a in range(l,len(nums)):
+
+			if nums[a] != 0:
+				print(a)
+				r = a
+				break
+
+
+		#do the swapping logic
+
+		while r <= len(nums) - 1:
+
+			nums[r] , nums[l] = nums[l] , nums[r]
+
+			while nums[r] !=0 or r <= len(nums) -1:
+
+				r+=1
+
+			r +=1
+			l +=1
 
 
 		return nums
+
 
 
 
@@ -43,7 +79,9 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	res = print(sol.moveZeroes(nums))
+	res = sol.moveZeroes(nums7)
+
+	print(res)
 
 
 
