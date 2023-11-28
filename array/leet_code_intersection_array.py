@@ -23,10 +23,18 @@ arr7,arr8 = [1,2,3,4] , [5,6,7]
 out4 = []
 
 arr9, arr10 = [1,2,2,1] , [2,2]
-out5 = [2,2]
+out5 = [2,2,1]
 
 
 
+"""
+
+logic 
+
+[1,1,2,2]
+[2,2]
+
+"""
 
 
 class Solution(object):
@@ -106,6 +114,44 @@ class Solution(object):
 		return intersect_lst
 
 
+	def intersect(self,nums1,nums2):
+		"""
+		The function to find the intersection of the two lists
+		"""
+
+		#sorting the array 
+		nums1.sort()
+		nums2.sort()
+
+
+		l,r = 0,0 
+		intersect_lst = []
+
+		while l < len(nums1) and r < len(nums2):
+
+			if nums1[r] < nums2[l]:
+				
+				r +=1
+
+			elif nums1[r] > nums2[l]:
+
+				l +=1
+
+			else:
+
+				intersect_lst.append(nums1[i])
+
+				r +=1
+				l +=1
+
+
+			print(l,r)
+
+
+		return intersect_lst
+
+
+
 
 
 
@@ -115,7 +161,7 @@ class Solution(object):
 if __name__ == "__main__":
 
 	sol = Solution()
-	res = sol.intersect_incorrect2(arr9,arr10)
+	res = sol.intersect(arr9,arr10)
 
 	print(res)
 
