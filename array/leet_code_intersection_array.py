@@ -114,6 +114,9 @@ class Solution(object):
 		return intersect_lst
 
 
+
+	#this code is not working debug this code
+	
 	def intersect(self,nums1,nums2):
 		"""
 		The function to find the intersection of the two lists
@@ -130,7 +133,7 @@ class Solution(object):
 		while l < len(nums1) and r < len(nums2):
 
 			if nums1[r] < nums2[l]:
-				
+
 				r +=1
 
 			elif nums1[r] > nums2[l]:
