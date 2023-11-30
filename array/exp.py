@@ -1,10 +1,13 @@
 lst = [1,2,3,4,5,6,7,8]
 
-i = 0
-
-while i <= len(lst):
-
-	print(i)
-	i+=1 
+lst2 =['a','b','c']
 
 
+for i in range(len(lst2)):
+
+	print(i,lst2[i])
+
+
+for i,a in enumerate(lst2):
+
+	print(i,a)
