@@ -12,10 +12,12 @@ out = [[-1,-1,2],[-1,0,1]]
 
 class Solution:
 
-	def threeSum(self,nums):
+	def threeSum_incorrect(self,nums):
 		"""
 		find the sum that equals to zero
 		"""
+
+		res_lst = []
 
 		nums.sort()
 
@@ -23,7 +25,7 @@ class Solution:
 
 			return False
 
-		for v,i in enumerate(nums):
+		for i in range(len(nums)):
 
 			l,r = i+1, len(nums) - 1
 
@@ -32,10 +34,11 @@ class Solution:
 				sum = nums[i] + nums[l] + nums[r]
 
 				if sum == 0 :
+		
+					res_lst.append([nums[i],nums[l],nums[r]])
+					l +=1
 
-					return [nums[l],nums[r],nums[i]]
-
-				elif sum < 0:
+				elif sum > 0:
 
 					r -=1
 
@@ -43,7 +46,7 @@ class Solution:
 
 					l +=1
 
-		return False
+		return res_lst
 
 
 
