@@ -44,7 +44,7 @@ class Solution(object):
 
 
 		mul_arr = []
-		mul_arr.append(prefix[0])
+		mul_arr.append(postfix[1])
 
 
 		l,r = 0,2
