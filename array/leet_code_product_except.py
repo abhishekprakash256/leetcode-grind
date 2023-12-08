@@ -10,7 +10,7 @@ You must write an algorithm that runs in O(n) time and without using the divisio
 #test
 
 arr = [1,2,3,6]
-out = [36,18,12,3]
+out = [36,18,12,6]
 
 
 arr2 = [1,0,0,2]
@@ -44,20 +44,19 @@ class Solution(object):
 
 
 		mul_arr = []
-		mul_arr.append(postfix[0])
+		mul_arr.append(prefix[0])
 
 
-		l,m,r = 0,1,2
+		l,r = 0,2
 
 		while r < len(nums):
 
 			val = prefix[l]*postfix[r]
 			mul_arr.append(val)
 			l +=1
-			m +=1
 			r +=1
 
-		mul_arr.append(postfix[len(postfix)-1])
+		mul_arr.append(prefix[l])
 
 		return mul_arr
 
@@ -66,7 +65,7 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	res = sol.productExceptSelf1(arr3)
+	res = sol.productExceptSelf1(arr)
 
 	print(res)
 		
