@@ -16,23 +16,26 @@ s3 = "aabb"
 out3 = -1
 
 
+#wrong solution 
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-
-        #the double loop solution
-        
-        for i in range(0,len(s)-1):
+        for i in range(len(s)):
             count = 0
+            print(s[i])
 
-            for j in range(i+1,len(s)-1):
+            # The inner loop should start from i + 1 to compare the current character (s[i]) 
+            # with the rest of the characters in the string.
+            for j in range(i + 1, len(s)):
 
+                print(s[j])
                 if s[i] == s[j]:
-                    count +=1
+                    count += 1
                 
-            if count == 0 :
+            if count == 0:
                 return i 
         
-        return -1 
+        return -1
+
 
 
 if __name__ == "__main__":
