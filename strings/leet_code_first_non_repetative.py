@@ -19,19 +19,23 @@ out3 = -1
 #wrong solution 
 class Solution:
     def firstUniqChar(self, s: str) -> int:
+
+        #make hash map 
+        mapper = {}
+        
         for i in range(len(s)):
             count = 0
-            print(s[i])
 
             # The inner loop should start from i + 1 to compare the current character (s[i]) 
             # with the rest of the characters in the string.
             for j in range(i + 1, len(s)):
 
-                print(s[j])
+                mapper[s[i]] = True
+
                 if s[i] == s[j]:
                     count += 1
                 
-            if count == 0:
+            if count == 0 and s[j] not in mapper:
                 return i 
         
         return -1
@@ -40,7 +44,7 @@ class Solution:
 
 if __name__ == "__main__":
     sol = Solution()
-    res = sol.firstUniqChar(s3)
+    res = sol.firstUniqChar(s)
 
     print(res)
         
