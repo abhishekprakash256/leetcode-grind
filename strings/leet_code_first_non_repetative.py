@@ -16,36 +16,54 @@ s3 = "aabb"
 out3 = -1
 
 
-#wrong solution 
 class Solution:
     def firstUniqChar(self, s: str) -> int:
+        char_count = {}
 
-        #make hash map 
+        print("in")
+
+        # Count occurrences of each character
+        for char in s:
+            char_count[char] = char_count.get(char, 0) + 1
+
+        print(char_count)
+
+        # Find the first non-repeating character
+        for i, char in enumerate(s):
+            if char_count[char] == 1:
+                return i
+
+        return -1
+
+    def firstUniqChar2(self,s):
+
         mapper = {}
-        
-        for i in range(len(s)):
-            count = 0
+        count = 1
 
-            # The inner loop should start from i + 1 to compare the current character (s[i]) 
-            # with the rest of the characters in the string.
-            for j in range(i + 1, len(s)):
+        for char in s:
 
-                mapper[s[i]] = True
+            if char not in mapper:
+                mapper[char] = count
 
-                if s[i] == s[j]:
-                    count += 1
-                
-            if count == 0 and s[j] not in mapper:
-                return i 
-        
+            else:
+                mapper[char] = mapper[char] + 1
+
+        for i, char in enumerate(s):
+            if mapper[char] == 1:
+                return i
+
         return -1
 
 
 
 if __name__ == "__main__":
     sol = Solution()
-    res = sol.firstUniqChar(s)
 
-    print(res)
+
+    sol.firstUniqChar(s)
+    sol.firstUniqChar2(s)
+
+    #print(res)
+    #print(res2)
         
         
