@@ -21,6 +21,8 @@ class Solution:
 		res_lst = []
 		nums.sort()
 
+		print(nums)
+
 		if len(nums) <3 :
 
 			return False
@@ -34,10 +36,16 @@ class Solution:
 
 				sum = nums[i] + nums[l] + nums[r]
 
-				print(l)
 
 				if sum == 0 and i!=l and i!=r and l!=r:
+					
 					res_lst.append([nums[i],nums[l],nums[r]])
+					
+					while l < r and nums[l] == nums[l + 1]:
+						l += 1
+					while l < r and nums[r] == nums[r - 1]:
+						r -= 1
+						
 					l +=1
 					r -=1
 
