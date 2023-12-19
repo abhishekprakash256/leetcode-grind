@@ -3,42 +3,77 @@
 
 
 
-print(21%10)
-print(21//10)
-x = 452
+#print(21%10) #1
+#print(21//10) #2
 
-#print(x%10) 2
-#print(x//10) 45
+
 
 lst = [1,2,3]
 lst2 = [4,5,6]
 
+lst3 = [9,9]
+lst4 = [9,9,9,9,9,9]
 
-def sum_two_num(arr,arr2):
-	"""
-	make the program to add two list and have the carry feature as well
-	"""
+lst5 = [0]
+lst6 = [0]
 
-	#make the arr as always than arr2
-	#arr will be my shorter array
+class Solution():
 
-	if len(arr) > len(arr2):
+	def sum_two_num(self,arr,arr2):
+		"""
+		make the program to add two list and have the carry feature as well
+		"""
 
-		arr, arr2 = arr2, arr
+		#make the arr as always than arr2
+		#arr will be shorter array always
 
+		if len(arr) > len(arr2):
 
-	i,j = len(arr) , len(arr2)
-	sum_arr = []
-	carry, sum = 0, 0
-
-	while i != 0 :
-
-		val = carry + arr[i] + arr2[j]
-
-		if val 
+			arr, arr2 = arr2, arr
 
 
+		for x in range(len(arr2) - len(arr)):
 
+			#make the array equal
+			arr.insert(0,0)
+
+
+		sum_arr = []
+		carry, i,j =  0 ,len(arr) - 1, len(arr) - 1
+
+		while i >= 0 :
+
+			print(i)
+
+			val = carry + arr[i] + arr2[j]
+			
+			# the carry computation	
+			lst_val = val % 10
+			carry = val // 10 
+			sum_arr.insert(0,lst_val)
+			
+			#decrease pointer
+			i -=1
+			j -=1
+
+
+		if carry:
+
+			sum_arr.insert(0,carry)
+
+
+		return sum_arr
+
+
+
+
+if __name__== "__main__":
+
+	sol = Solution()
+	res = sol.sum_two_num(lst3,lst4)
+
+
+	print(res)
 
 
 
