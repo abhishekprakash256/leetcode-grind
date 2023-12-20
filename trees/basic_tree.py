@@ -74,12 +74,22 @@ class Solution:
 			else:
 				return rDepth+1
 
+	def maxDepth3(self,node):
+
+		if node is None:
+			return 0
+		
+		left_depth = self.maxDepth3(node.left)
+		right_depth = self.maxDepth3(node.right)
+
+		return max(left_depth,right_depth) + 1
+
 
 
 if __name__ == '__main__':
 	sol = Solution()
 
-	res = sol.maxDepth2(root)
+	res = sol.maxDepth3(root)
 
 	print(res)
 
