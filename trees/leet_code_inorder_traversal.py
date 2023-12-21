@@ -38,4 +38,16 @@ class Solution:
         node -> left -> right
         """
 
-        
+        if root:
+
+            self.levelOrder(root.left)
+            print(root.val)
+            self.levelOrder(root.right)
+
+
+
+if __name__ == "__main__":
+    sol = Solution()
+    res = sol.levelOrder(root)
+
+    print(res)
