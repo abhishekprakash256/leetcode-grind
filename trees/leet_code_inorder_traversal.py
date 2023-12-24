@@ -32,7 +32,7 @@ node2.right = node6
 
 
 class Solution:
-    def levelOrder(self, root):
+    def levelOrder_printing(self, root):
         """
         The function to level order traversing
         node -> left -> right
@@ -45,6 +45,29 @@ class Solution:
             self.levelOrder(root.right)
 
 
+
+
+    def levelOrder(self,root):
+
+        """
+        The function to print the value of the nodes
+        inorder traversal 
+        """
+
+        res = []
+
+        def inorder(root):
+
+            if not root:
+                return
+
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+
+        inorder(root)
+
+        return res
 
 if __name__ == "__main__":
     sol = Solution()
