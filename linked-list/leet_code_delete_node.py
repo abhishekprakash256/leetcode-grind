@@ -47,7 +47,7 @@ class Solution:
             temp = temp.next
 
 
-    #this code doesn't work 
+    #without the passing of the head node 
     def deleteNode2(self, node):
         # Since we know input node is not last node, so nextNode will not be null
         nextNode = node.next
@@ -73,12 +73,11 @@ if __name__ == "__main__":
 
     sol.printTree(linked_list.head)
 
-    sol.deleteNode2(4)
+    sol.deleteNode2(linked_list.node3)
 
     sol.printTree(linked_list.head)
 
-    
-    print(res) 
+
 
 
 
