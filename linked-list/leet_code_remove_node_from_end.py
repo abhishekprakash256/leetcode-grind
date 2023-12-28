@@ -17,7 +17,7 @@ class Solution():
 		first, last = head,head
 		count = 0
 
-		while count <=n:
+		while count !=n:
 			
 			count +=1
 			last = last.next
@@ -26,10 +26,15 @@ class Solution():
 		while True:
 
 			if last.next is None:
-
+				
+				print(first.val)
 				#node delete logic
-				temp_node = first.next 
+				temp_node = first.next
+
+				print(temp_node.val) 
 				first.val = temp_node.val
+
+				print(first.val)
 				first.next = temp_node.next
 				temp_node.next = None
 				del(temp_node)
