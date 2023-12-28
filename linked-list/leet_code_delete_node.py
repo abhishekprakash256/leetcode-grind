@@ -45,6 +45,18 @@ class Solution:
                 break
         
             temp = temp.next
+
+
+    #this code doesn't work 
+    def deleteNode2(self, node):
+        # Since we know input node is not last node, so nextNode will not be null
+        nextNode = node.next
+        # Step 2
+        node.val = nextNode.val
+        # Step 3
+        node.next = nextNode.next
+        nextNode.next = None
+        del(nextNode)
         
             
 
@@ -55,13 +67,17 @@ if __name__ == "__main__":
 
     sol = Solution()
 
-    tree_print = sol.printTree(linked_list.head)
+    sol.printTree(linked_list.head)
 
-    res = sol.deleteNode(2)
+    sol.deleteNode(2)
 
-    tree_print2 = sol.printTree(linked_list.head)
+    sol.printTree(linked_list.head)
 
+    sol.deleteNode2(4)
 
+    sol.printTree(linked_list.head)
+
+    
     print(res) 
 
 
