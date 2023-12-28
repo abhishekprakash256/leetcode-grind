@@ -1,7 +1,7 @@
 class Node():
-    def __init__(self,val):
-        self.val = val
-        self.next = None
+	def __init__(self,val):
+		self.val = val
+		self.next = None
 
 
 #make the list 
@@ -19,4 +19,21 @@ node2.next = node3
 node3.next = node4
 node4.next = node5
 
+
+class Helper():
+	
+	def printTree(self,head):
+		"""
+		The function to print the tree 
+		"""
+		temp = head
+
+		while True:
+
+			print(temp.val)
+
+			if temp.next is None:
+				break
+		
+			temp = temp.next
 
