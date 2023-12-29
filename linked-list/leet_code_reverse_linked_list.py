@@ -7,7 +7,7 @@ import linked_list
 
 
 class Solution:
-	def reverseList(self, head):
+	def reverseList_brute_force(self, head):
 		"""
 		Reverese the linked list 
 		using the brute force approach
@@ -53,6 +53,23 @@ class Solution:
 				break
 
 		return head
+	
+
+	def reverseList(self, head):
+		"""
+		The function reverese the linked list 
+		"""
+		prev = None
+		curr = head
+
+		while curr:
+			#reverse logic 
+			next_temp = curr.next
+			curr.next = prev
+			prev = curr
+			curr = next_temp
+			
+		return prev
 
 
 
@@ -63,7 +80,7 @@ if __name__ == "__main__":
 	help_fun = linked_list.Helper()
 
 
-	sol.reverseList(linked_list.head)
+	sol.reverseList_brute_force(linked_list.head)
 	help_fun.printTree(linked_list.head)
 
 
