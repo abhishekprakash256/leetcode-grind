@@ -20,6 +20,13 @@ node3.next = node4
 node4.next = node5
 
 
+#make a single list 
+head2 = Node(5)
+
+
+
+
+
 class Helper():
 	
 	def printTree(self,head):
