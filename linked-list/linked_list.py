@@ -24,7 +24,12 @@ node4.next = node5
 head2 = Node(5)
 
 
+#make the list 
+head3 = Node(1)
+node6 = Node(2)
 
+#connect the list 
+head3.next = node6
 
 
 class Helper():
