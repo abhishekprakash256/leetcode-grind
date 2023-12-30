@@ -13,54 +13,38 @@ class Solution:
 		The function to merge the two linked list that are sorted
 		"""
 
-		temp, temp2 = head, head2
+		#make the dummy node 
+		dummy = linked_list.Node(0)
+		curr = dummy
 
-		while temp or temp2:
+		while head and head2:
 
-			#make the swap 
+			if head.val < head2.val:
 
-			#if the value if less 
-			if temp.val < temp2.val :
+				curr.next = head
+				head = head.next 
 
-				temp.next = temp
-				temp2 = temp2.next
-
-
-			# if the value is equal 
-			elif temp.val == temp2.val :
-
-				temp.next = temp2
-				temp2.next = temp
-
-				temp = temp.next
-				temp2 = temp2.next
-
-			# if the value is greater
 			else:
 
-				temp2.next = temp 
-				temp = temp.next
+				curr.next = head2
+				head2 = head2.next
+
+			curr = curr.next
 
 
-				
+		if head:
+
+			curr.next = head
+
+		else:
+
+			curr.next = head2
+
+
+		return dummy.next
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-		
-
-	
 
 
 
@@ -69,6 +53,6 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	sol.mergeTwoLists(linked_list.head,2)
+	sol.mergeTwoLists(linked_list.head,linked_list.head2)
 
 
