@@ -32,6 +32,16 @@ node6 = Node(2)
 head3.next = node6
 
 
+#make the pallindrome list 
+head4 = Node(1)
+node7 = Node(2)
+node8 = Node(1)
+
+#vconnect the node
+head4.next = node7
+node7.next = node8
+
+
 class Helper():
 	
 	def printTree(self,head):
