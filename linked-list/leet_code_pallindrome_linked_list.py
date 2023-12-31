@@ -50,6 +50,56 @@ class Solution(object):
 		return True
 
 
+	def isPalindrome(self,head):
+		"""
+		the function to reverse the linked list 
+
+		"""
+
+		
+
+
+
+		slow, fast = head, head
+
+		#move the slow and fast pointer
+		while fast and fast.next:
+
+			slow = slow.next
+			fast = fast.next.next
+
+		
+		#make the reverse logic 
+
+		prev = None 
+
+		while slow:
+
+			tmp = slow.next 
+			slow.next = prev 
+			prev = slow 
+			slow = temp 
+
+		#check the pallindrome 
+		left, right = head, prev
+
+		while right :
+
+			if left.val !=right.val :
+				return False
+
+			left = left.next 
+			right = right.next 
+
+		return True 
+
+
+
+
+
+
+
+
 
 
 
@@ -58,6 +108,6 @@ if __name__ == "__main__":
 	sol = Solution()
 	help_fun = linked_list.Helper()
 
-	res = sol.isPalindrome_brute_force(linked_list.head4)
+	res = sol.isPalindrome(linked_list.head4)
 
 	print(res)
