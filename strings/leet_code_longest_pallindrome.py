@@ -87,7 +87,23 @@ class Solution(object):
 		using sliding window 
 
 		"""
-		
+
+		#initilaize the res and resLen 
+		res = ""
+		resLen = 0 
+
+
+		#start the outer loop 
+
+		for i in range(len(s)):
+
+			#odd length 
+
+			#initilaize the pointers 
+			l,r = i,i 
+
+
+
 
 
 
