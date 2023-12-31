@@ -43,6 +43,7 @@ class Solution(object):
 
 
 	#this is brute force approach 
+	#take the o(n^2) time to run 
 	def longestPalindrome_brute_force(self, s):
 		"""
 		:type s: str
@@ -54,7 +55,10 @@ class Solution(object):
 			return s
 
 		#initilaize the variables 
-		curr,max_str = 0,1
+		curr = 0
+
+		#cover the edge case of no pallindrome string 
+		max_str = s[0]
 
 		#start the loop to check 
 		for left in range(len(s)):
@@ -65,6 +69,8 @@ class Solution(object):
 
 					temp_len = ((right - left) +1)
 
+					print(temp_len)
+
 					if temp_len > curr: 
 
 						curr = temp_len
@@ -74,6 +80,18 @@ class Solution(object):
 
 
 
+
+	def longestPalindrome(self,s):
+		"""
+		The function to find the longest pallindrome
+		using sliding window 
+
+		"""
+		
+
+
+
+		pass
 
 if __name__ == "__main__":
 	
