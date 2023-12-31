@@ -78,7 +78,7 @@ class Solution(object):
 			tmp = slow.next 
 			slow.next = prev 
 			prev = slow 
-			slow = temp 
+			slow = tmp 
 
 		#check the pallindrome 
 		left, right = head, prev
@@ -92,10 +92,6 @@ class Solution(object):
 			right = right.next 
 
 		return True 
-
-
-
-
 
 
 
