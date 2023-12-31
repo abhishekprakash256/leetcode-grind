@@ -102,17 +102,34 @@ class Solution(object):
 			#initilaize the pointers 
 			l,r = i,i 
 
+			while l >=0 and r < len(s) and s[l] == s[r]:
+
+				if resLen < (r-l +1):
+					res = s[l:r+1]
+					resLen = r - l +1
+
+				l -=1
+				r +=1
 
 
+			#even length 
+			l,r = i , i+1
 
+			while l >= 0 and r < len(s) and s[l] == s[r]: 
 
+				if resLen < (r-l+1):
+					res = s[l:r + 1]
+					resLen = r - l +1
 
-		pass
+				l -=1
+				r +=1
+
+		return res 
 
 if __name__ == "__main__":
 	
 	sol = Solution()
 
-	res = sol.longestPalindrome_brute_force(string6) 
+	res = sol.longestPalindrome(string) 
 
 	print(res)
