@@ -20,7 +20,8 @@ out4 = "tttt"
 string5 = "tatttt"
 out5 = "tttt"
 
-
+string6= "ac"
+out6 = ""
 
 
 class Solution(object):
@@ -41,7 +42,7 @@ class Solution(object):
 		return True 
 
 
-
+	#this is brute force approach 
 	def longestPalindrome_brute_force(self, s):
 		"""
 		:type s: str
@@ -53,7 +54,7 @@ class Solution(object):
 			return s
 
 		#initilaize the variables 
-		curr = 0
+		curr,max_str = 0,1
 
 		#start the loop to check 
 		for left in range(len(s)):
@@ -62,9 +63,14 @@ class Solution(object):
 
 				if self.checkPallindrome(left,right,s) == True:
 
-					curr = max(curr, right - left+1)
+					temp_len = ((right - left) +1)
 
-		return curr
+					if temp_len > curr: 
+
+						curr = temp_len
+						max_str = s[left:right+1]
+
+		return max_str
 
 
 
@@ -73,6 +79,6 @@ if __name__ == "__main__":
 	
 	sol = Solution()
 
-	res = sol.longestPalindrome_brute_force(string5) 
+	res = sol.longestPalindrome_brute_force(string6) 
 
 	print(res)
