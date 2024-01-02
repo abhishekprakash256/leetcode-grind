@@ -44,7 +44,7 @@ node7.next = node8
 
 class Helper():
 	
-	def printTree(self,head):
+	def printList(self,head):
 		"""
 		The function to print the tree 
 		"""
