@@ -6,7 +6,7 @@ import linked_list
 
 class Solution():
 
-    def oddEvenList(self,head):
+    def oddEvenList_incorrect(self,head):
         """
         The function to make the odd and even linked list 
         """
@@ -48,6 +48,24 @@ class Solution():
             count +=1
 
         return dummy_head
+
+    #correct code 
+    def oddEvenList(self, head):
+        if not head or not head.next:
+            return head
+        
+        odd_head = odd = head
+        even_head = even = head.next
+        
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        
+        odd.next = even_head
+        
+        return odd_head
 
 
 if __name__ == "__main__":
