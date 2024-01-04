@@ -9,3 +9,18 @@ the steps with same number but different order are consider differnt
 #using the recursion and depth first search 
 #we can use the DP for the storage of the steps so the steps are not repeacted 
 
+class Solution():
+	def climbStairs(self,n):
+		"""
+		find the minimum number of stairs 
+		"""
+		#initilaize the variables 
+		one, two = 1,1
+
+		for i in range(n-1):
+
+			temp = one 
+			one = one + two
+			two = temp 
+
+		return one
