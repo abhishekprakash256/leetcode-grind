@@ -13,6 +13,9 @@ class Node:
 		self.right = None
 		self.val = val
 
+
+#------------------- test casese -------------------
+
 #balanced tree
 #make the nodes 
 
@@ -45,8 +48,30 @@ node6.left = node7
 
 
 
+class Solution():
+
+	def balancedTree(self,node):
+
+		"""
+		the function to find if the tree is balanced or not 
+		the max diff in left and right subtree should be 1
+		"""
+		
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
 
 	helper = Helper()
 
 	helper.printTree(root)
+	helper.printTree(root2)
+
+
+
+
