@@ -9,9 +9,9 @@ class Helper():
 
 		if node:
 
-			self.printTree(node.left)
-
 			print(node.val)
+
+			self.printTree(node.left)
 
 			self.printTree(node.right)
 

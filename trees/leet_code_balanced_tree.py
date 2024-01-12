@@ -3,7 +3,7 @@ find if the binary tree is balanced , the left or the right tree not differ by 1
 
 """
 
-import tree_helper
+from tree_helper import Helper
 
 class Node:
 
@@ -43,3 +43,10 @@ root2.left = node5
 node5.left = node6
 node6.left = node7
 
+
+
+if __name__ == "__main__":
+
+	helper = Helper()
+
+	helper.printTree(root)
