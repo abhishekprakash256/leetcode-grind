@@ -56,6 +56,12 @@ class Solution():
 		the function to find if the tree is balanced or not 
 		the max diff in left and right subtree should be 1
 		"""
+
+		if node:
+
+			
+
+
 		
 
 
