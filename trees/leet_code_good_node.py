@@ -59,20 +59,65 @@ node6.right = node8
 		/ \
 	   3   4
 	  / \
-     6   2
+	 6   2
 
 out = 4
+
+keep track of max value 
+and iter down in the tree dfs with max tracking 
+if the valus is greater than max increase the count 
+keep a counter of the good nodes 
+
+base case - 
+
+if node.left is None and node.right is None:
+	return [1,(node.val)]
+
 
 """
 
 
 
- class Solution():
+class Solution():
 
- 	def goodNodes(self,node):
+	def trackNode(self, node, max_val):
+		"""
+		Find the track of the node
+		"""
 
- 		"""
+		# base case 
+		if not node:  # Corrected the case of 'Node' to 'node'
+			return 0
+
+		if node.left is None and node.right is None:
+			return 1 if node.val >= max_val else 0  # Adjusted the return value
+
+		res = 0 
+
+		if node.val >= max_val:
+			res = 1 
+
+		max_val = max(max_val, node.val)
+
+		# track the left and right node
+		res += self.trackNode(node.left, max_val)
+		res += self.trackNode(node.right, max_val)
+
+		return res
+
+	def goodNodes(self, node):
+		"""
 		The function to find the good node in the tree
- 		"""
+		"""
+		return self.trackNode(node, node.val)
 
- 		pass
+
+
+
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	res = sol.goodNodes(root)
+
+	print(res)
