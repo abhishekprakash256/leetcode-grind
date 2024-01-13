@@ -22,8 +22,9 @@ class Solution():
 		if n == 0:
 
 			return 0
+		else:
 
-		return n + self.make_sum_iter(n-1)
+			return n + self.make_sum_iter(n-1)
 
 
 
