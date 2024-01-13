@@ -82,7 +82,39 @@ class Solution():
 
 		return False 
 
-			
+
+	def dfs(self,node):
+		"""
+		The function to find the max iter 
+		"""
+
+		if node is None:
+
+			return [True,0]
+
+		left = self.dfs(node.left)
+		right = self.dfs(node.right)
+
+		balanced = left[0] and right[0] and abs((left[1] - right[1]) <=1)
+
+		return [balanced, max(left[1] + right[1])]
+
+
+
+
+
+	def balancedTreeOptim(self,node):
+		"""
+		The function to find the balanced tree 
+		optimization 
+		"""
+
+		self.dfs(node)[0]
+
+
+
+
+		
 
 
 if __name__ == "__main__":
@@ -97,8 +129,14 @@ if __name__ == "__main__":
 	height = sol.find_height(root)
 	bal = sol.balancedTree(root)
 
+	bal_optim = sol.balancedTreeOptim(root)
+
 	print(height)
 	print(bal)
+
+	print(bal_optim)
+
+
 
 
 
