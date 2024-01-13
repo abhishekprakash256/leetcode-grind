@@ -50,6 +50,18 @@ node6.left = node7
 
 class Solution():
 
+	def find_height(self,node):
+		"""
+		The function to find the height of the tree
+		"""
+		if node is None:
+			return 0 
+
+		else:
+
+			return max(self.find_height(node.left),self.find_height(node.right)) +1
+
+
 	def balancedTree(self,node):
 
 		"""
@@ -57,9 +69,10 @@ class Solution():
 		the max diff in left and right subtree should be 1
 		"""
 
-		if node:
-
+		pass
 			
+
+
 
 
 		
@@ -75,8 +88,14 @@ if __name__ == "__main__":
 
 	helper = Helper()
 
-	helper.printTree(root)
-	helper.printTree(root2)
+	#helper.printTree(root)
+	#helper.printTree(root2)
+
+
+	sol = Solution()
+	height = sol.find_height(root)
+
+	print(height)
 
 
 
