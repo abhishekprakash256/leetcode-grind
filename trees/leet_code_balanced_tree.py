@@ -69,18 +69,19 @@ class Solution():
 		the max diff in left and right subtree should be 1
 		"""
 
-		pass
+		if root is None:
+			return True
+
+		lh = self.balancedTree(node.left)
+		rh = self.balancedTree(node.right)
+
+		if abs((lh - rh) <=1) and self.balancedTree(node.left) is True and self.balancedTree(self.node.right) is True:
+
+			return True
+
+		return False 
+
 			
-
-
-
-
-		
-
-
-
-
-
 
 
 
