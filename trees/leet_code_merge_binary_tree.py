@@ -32,23 +32,17 @@ class Solution():
 
 		if not node1 and not node2:
 
-			return 0
+			return None
+
+		v1 = node1.val if node1 else 0 
+		v2 = node2.val if node2 else 0 
+
+		node = Node(v1 + v2)
+
+		node.left = self.mergeTrees(node1.left is node1 else None, node2.left if node2 else None)
+		node,right = self.mergeTrees(node1.right is node1 else None, node2.right if node2 else None)
+
+		return node
 
 
-		if not node1:
-
-			return node2.val
-
-
-		if not node2:
-
-			return node1.val
-
-
-		else:
-
-			node.val = self.treeTraversal(node.left) + self.treeTraversal(node.right)
-
-
-		
 
