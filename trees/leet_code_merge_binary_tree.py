@@ -5,7 +5,7 @@ merge the two binary tree, the merger is the sum of the tree in the place if not
 """
 ideas to do it --- 
 
-take 
+take start the traveral on both trees any order 
 
 
 """
