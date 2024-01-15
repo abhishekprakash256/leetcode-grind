@@ -43,6 +43,4 @@ class Solution():
 		node,right = self.mergeTrees(node1.right is node1 else None, node2.right if node2 else None)
 
 		return node
-
-
-
+		
