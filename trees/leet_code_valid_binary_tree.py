@@ -41,40 +41,32 @@ else:
 
 """
 
-
 class Solution():
 
-	def helper(self,node):
-
+	def helper(self, node):
 		"""
 		the function to get the node val
 		"""
+		return node.val #if node else None  # Return None for None nodes
 
-		return node.val
-
-
-
-	def isValidBST(self,node):
+	def isValidBST(self, node):
 		"""
-		The funciton to find the tree is valid 
+		The function to find if the tree is valid
 		"""
 
-		#base case 
+		# base case
 		if not node:
-			return True 
+			return True
 
-		#make the left and right tree
+		# make the left and right trees
 		left_val = self.helper(node.left)
 		right_val = self.helper(node.right)
 
-		#check the tree
-
-		if left_val <= node.val <= right_val:
-
+		# check the tree
+		if left_val<= node.val <= right_val:
+			# Recursively check left and right subtrees
 			return True
-
 		else:
-
 			return False
 
 
