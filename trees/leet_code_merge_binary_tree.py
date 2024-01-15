@@ -13,15 +13,7 @@ then traverse up
 """
 
 
-class Solution():
-
-
-	def treeTraversal(self,node):
-		"""
-		tree traverse system
-		"""
-
-		return tree.val
+class Solution(object):
 
 
 	def mergeTrees(self,node1,node2):
@@ -37,10 +29,9 @@ class Solution():
 		v1 = node1.val if node1 else 0 
 		v2 = node2.val if node2 else 0 
 
-		node = Node(v1 + v2)
+		node = TreeNode(v1 + v2)
 
-		node.left = self.mergeTrees(node1.left is node1 else None, node2.left if node2 else None)
-		node,right = self.mergeTrees(node1.right is node1 else None, node2.right if node2 else None)
+		node.left = self.mergeTrees(node1.left if node1 else None, node2.left if node2 else None)
+		node.right = self.mergeTrees(node1.right if node1 else None, node2.right if node2 else None)
 
 		return node
-		
