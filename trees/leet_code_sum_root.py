@@ -112,17 +112,26 @@ class Solution():
 
 
 	
+	def traverse_node_lst(self,node,lst = []):
+		"""
+		Traverse the node and store in list 
+		"""
+
+		if not node:
+
+			return None
+
+		else:
+
+			lst.append(node.val)
+			self.traverse_node_lst(node.left,lst)
+			self.traverse_node_lst(node.right,lst)
 
 
+		return lst
 
 
-
-
-
-
-
-
-
+	
 
 
 if __name__ == "__main__":
@@ -134,8 +143,10 @@ if __name__ == "__main__":
 	sol = Solution()
 
 	res = sol.traverse_node(root)
+	res2 = sol.traverse_node_lst(root)
 
 	print(res)
+	print(res2)
 
 
 
