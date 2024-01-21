@@ -10,6 +10,17 @@ Example
 	  7   4
 
 87 + 84 = 171
+
+		4
+	   / \
+	  9   0
+	 / \
+	5   1
+
+
+495 + 491 = 1026
+
+
 """
 
 
@@ -30,6 +41,17 @@ right_val = node.val*10 + node.right.val
 full sum 
 
 node_sum = left_val + right_val
+
+
+two function , using recursion --- 
+
+
+def helper()
+
+
+
+
+def sumNumbers(self,root)
 
 
 
