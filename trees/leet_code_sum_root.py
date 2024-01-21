@@ -23,7 +23,7 @@ Example
 		
 			7
 		   / \
-          4   6
+		  4   6
 		 / \ / \
 		1   1 1  1
 
@@ -95,6 +95,24 @@ node2.right = node3
 
 
 
+class Solution():
+
+	def traverse_node(self,node):
+		"""
+		Helper function to append the list
+		"""
+
+		if node:
+
+			print(node.val)
+
+			self.traverse_node(node.left)
+
+			self.traverse_node(node.right)
+
+
+	
+
 
 
 
@@ -109,9 +127,15 @@ node2.right = node3
 
 if __name__ == "__main__":
 
-	helper = Helper()
+	#helper = Helper()
 
-	helper.printTree(root)
+	#helper.printTree(root)
+
+	sol = Solution()
+
+	res = sol.traverse_node(root)
+
+	print(res)
 
 
 
