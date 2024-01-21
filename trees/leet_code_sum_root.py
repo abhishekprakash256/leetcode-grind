@@ -22,6 +22,17 @@ if not node:
 	return 0 
 
 
+#make the digit 
+
+left_val = node.val* 10 + node.left.val 
+right_val = node.val*10 + node.right.val
+
+full sum 
+
+node_sum = left_val + right_val
+
+
+
 
 
 """
