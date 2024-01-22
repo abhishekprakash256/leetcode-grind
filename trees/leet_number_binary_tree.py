@@ -2,6 +2,10 @@
 FInd the number of the binary tree that can be formed from the number of given node
 """
 
+
+#incorreect solution 
+
+
 class Solution():
 
 	def numTrees(self,nums):
@@ -22,4 +26,13 @@ class Solution():
 
 
 		#make the recuesive calls 
-		return n*(self.numTrees(nums-1)) + self.numTrees(nums)
+		return nums*(self.numTrees(nums-2)) + self.numTrees(nums-1)
+
+
+
+if __name__ == "__main__":
+	sol = Solution()
+
+	res = sol.numTrees(4)
+
+	print(res)
