@@ -18,14 +18,14 @@ Example
 	5   1
 
 
-495 + 491 = 1026
+495 + 491 + 40 = 1026
 
 		
 			7
 		   / \
 		  4   6
-		 / \ / \
-		1   1 1  1
+		 / | / \
+		1  1 1  1
 
 
 741 + 741 + 761 + 761 = 
@@ -131,7 +131,37 @@ class Solution():
 		return lst
 
 
-	
+	#correct code
+
+	def helper_sum(self,node,sum):
+		"""
+		The function to assume the sum is zero
+		the function to traverse the tree
+		"""
+		if not node:
+			return 0 
+
+		#make the value 
+		sum = sum*10 + node.val
+
+		if not node.left and not node.right:
+
+			return sum 
+
+		return self.helper_sum(node.left,sum)  + self.helper_sum(node.right,sum)
+
+
+	def sumNumbers(self,node):
+		"""
+		the function to find the sum of the tree node
+
+		"""
+
+		return self.helper_sum(node,0)
+
+
+
+
 
 
 if __name__ == "__main__":
