@@ -22,6 +22,4 @@ class Solution():
 
 
 		#make the recuesive calls 
-		return n*(self.numTrees(nums)) + self.numTrees(nums-1)
-
-
+		return n*(self.numTrees(nums-1)) + self.numTrees(nums)
