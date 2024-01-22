@@ -8,3 +8,20 @@ class Solution():
 		"""
 		The function to find the number of trees that can be formed 
 		"""
+
+		#base cases
+
+		if nums == 0 : 
+			return 0 
+
+		if nums == 1: 
+			return 1 
+
+		if nums == 2:
+			return 2 
+
+
+		#make the recuesive calls 
+		return n*(self.numTrees(nums)) + self.numTrees(nums-1)
+
+
