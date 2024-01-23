@@ -34,7 +34,7 @@ class Solution():
 
     def binarySearch(self,nums,n):
         """
-        funciton to find the elelemnt in the sorted array 
+        function to find the elelemnt in the sorted array 
         """
 
         #initilaize the pointers 
