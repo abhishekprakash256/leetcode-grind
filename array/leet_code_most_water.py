@@ -59,11 +59,10 @@ initilization
 
 #test cases ----- 
 nums = [1,8,6,2,5,4,8,3,7]
-out = 49 
+out = 49
 
 nums2 = [1,1,1,1,1]
 out2 = 4 
-
 
 nums3 = [1,1,100,100, 3]
 out3 = 100
@@ -96,11 +95,23 @@ class Solution():
 
 		while right < len(nums):
 
-			temp_area = (nums[right] - nums[left])* (right - left)
+			print(left,right)
+			print(nums[left], nums[right])
+
+			#area calculation
+			if nums[right] > nums[left]:
+				temp_area = nums[left] * (right - left)
+
+			elif nums[left] <= nums[right]:
+				temp_area = nums[left] * (right - left)
+
+			print(temp_area)
 			area = max(temp_area,area)
 
 			if nums[right] > nums[left]:
-				left, right = right, right + 1
+				temp = right
+				left = temp
+				right +=1
 
 			elif nums[right] <= nums[left] : 
 				right +=1
@@ -109,6 +120,13 @@ class Solution():
 
 
 
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	res = sol.maxArea(nums)
+
+	print(res)
 
 
 
