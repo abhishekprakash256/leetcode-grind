@@ -77,7 +77,8 @@ out5 = 0
 
 class Solution():
 
-	def maxArea(self,nums) : 
+	#incorrect 
+	def maxArea_incorrect(self,nums) : 
 		"""
 		Find the max area that can hold water inside the lists 
 		"""
@@ -95,7 +96,6 @@ class Solution():
 
 		while right < len(nums):
 
-			print(left,right)
 			print(nums[left], nums[right])
 
 			#area calculation
@@ -116,7 +116,46 @@ class Solution():
 			elif nums[right] <= nums[left] : 
 				right +=1
 
-		return area 
+		return area
+
+
+	#incorect
+	def maxArea_incorrect2(self,nums):
+		"""
+		Find the max water that can be hold in the area
+		"""
+
+		#the edge case 
+		if len(nums) <= 1 :
+			return 
+
+
+		#initilaize the variable 
+		left = 0
+		right = left + 1
+		area = 0 
+
+		#start the sliding window 
+
+		while right < len(nums):
+
+			#calculate the temp area 
+			height = min(nums[left],nums[right])
+			temp_area = height * (right - left)
+			area = max(temp_area,area)
+
+			#slide the pointers 
+			if nums[left] < nums[right]:
+
+				temp = right
+				left = temp
+				right +=1
+
+			else:
+				right +=1
+
+		return area
+
 
 
 
@@ -127,10 +166,6 @@ if __name__ == "__main__":
 	res = sol.maxArea(nums)
 
 	print(res)
-
-
-
-
 
 
 
