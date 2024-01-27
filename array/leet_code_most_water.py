@@ -119,8 +119,8 @@ class Solution():
 		return area
 
 
-	#incorect
-	def maxArea_incorrect2(self,nums):
+	#incorect solution 
+	def maxArea(self,nums):
 		"""
 		Find the max water that can be hold in the area
 		"""
@@ -132,12 +132,12 @@ class Solution():
 
 		#initilaize the variable 
 		left = 0
-		right = left + 1
+		right = len(nums) - 1
 		area = 0 
 
 		#start the sliding window 
 
-		while right < len(nums):
+		while left < right:
 
 			#calculate the temp area 
 			height = min(nums[left],nums[right])
@@ -146,16 +146,12 @@ class Solution():
 
 			#slide the pointers 
 			if nums[left] < nums[right]:
-
-				temp = right
-				left = temp
-				right +=1
+				left +=1
 
 			else:
-				right +=1
+				right -=1
 
 		return area
-
 
 
 
