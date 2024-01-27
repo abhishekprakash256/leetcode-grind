@@ -61,9 +61,11 @@ class Solution():
 
 				count +=1
 
-				if  
+				if count == 1:
+					min_num +=1
 
-
+			if i == min_num and count == 0:
+				min_num +=1
 
 
 			else:
@@ -75,11 +77,62 @@ class Solution():
 
 
 
+class Solution():
+	def firstMissingPositive(self, nums) -> int:
+		"""
+		The function to find the minimum missing 
+		positive integer in the array 
+		"""
+
+		# Initialization
+		mapper = {}
+		min_num, count = 1, 0
+
+		# Start the loop
+		for i in nums:
+			if i in mapper:
+				count += 1
+				if count == 1:
+					min_num += 1
+			elif i == min_num and count == 0:
+				min_num += 1
+			else:
+				mapper[i] = True
+
+		return min_num
+
+
+
+class Solution():
+	def firstMissingPositive(self, nums) -> int:
+		"""
+		The function to find the minimum missing 
+		positive integer in the array 
+		"""
+
+		# Initialization
+		mapper = {}
+		min_num, count = 1, 0
+
+		# Start the loop
+		for i in nums:
+			if i > 0:
+				mapper[i] = True
+				if i == min_num:
+					count += 1
+					while mapper.get(min_num):
+						min_num += 1
+					count = 0
+
+		return min_num
+
+
+
 if __name__ == "__main__":
 
 	sol = Solution()
 
-	res = sol.firstMissingPositive(nums3)
+	res = sol.firstMissingPositive(nums2)
 
 
 	print(res)
