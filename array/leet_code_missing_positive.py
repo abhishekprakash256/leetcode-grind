@@ -7,12 +7,35 @@ smallest positive array
 """
 find the missing postive integer
 
+min_pos_num = 1 
+it's not sorted ,so min sort time is nlogn 
 
+one scan is O(n)
 
+#brute force approach
 
+mapper = {1}
+
+if nums[i] in mapper:
+	min_pos_num +=1
+
+else:
+	map[nums[i]] = True
 
 """
 
+#test cases
+
+nums = [0,-1,3,5]
+out = 1
+
+
+nums2 = [1,5,2]
+out2 = [3]
+
+
+nums3 = [1,1]
+out3 = 2
 
 
 
@@ -24,4 +47,43 @@ class Solution():
 		positive integer in the array 
 		"""
 
-		pass
+		#initilization 
+
+		mapper = {}
+		min_num ,count= 1, 0
+		mapper[min_num] = True
+
+
+		#start the loop 
+		for i in nums:
+
+			if i in mapper: 
+
+				count +=1
+
+				if  
+
+
+
+
+			else:
+				mapper[i] = True
+
+
+
+		return min_num
+
+
+
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	res = sol.firstMissingPositive(nums3)
+
+
+	print(res)
+
+
+
+		
