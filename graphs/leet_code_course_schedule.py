@@ -20,6 +20,7 @@ prerequisites2 = [[1,0],[0,1]]
 out2 = False
 
 
+#not - correct solution -----
 class Solution():
 
 	def canFinish(self,numCourses, prerequisites):
@@ -46,7 +47,7 @@ class Solution():
 			if preMap[crs] == []:
 				return True
 
-			
+
 
 
 
