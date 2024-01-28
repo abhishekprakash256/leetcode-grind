@@ -10,11 +10,13 @@ Return true if you can finish all courses. Otherwise, return false.
 
 #test cases 
 
-numCourses = 2, prerequisites = [[1,0]]
+numCourses = 2
+prerequisites = [[1,0]]
 out = True 
 
 
-numCourses2 = 2 , prerequisites2 = [[1,0],[0,1]]
+numCourses2 = 2 
+prerequisites2 = [[1,0],[0,1]]
 out2 = False
 
 
@@ -25,12 +27,26 @@ class Solution():
 		The function to give the course output
 		"""
 
-		#make the list 
+		#make the hashmap
+		preMap = { i:[] for i in range(numCourses)}
 
-		premap = { i:[] for i in range(numCourses)}
+		#map the values 
+		for crs,pre in prerequisites:
+			preMap[crs].append(pre)
 
 
-		print(premap)
+		#make the visisted set
+		visitSet = ()
+
+		def dfs(crs):
+
+			if crs is visitSet:
+				return False
+
+			if preMap[crs] == []:
+				return True
+
+			
 
 
 
