@@ -1,0 +1,10 @@
+list of the question that I need to practice more
+
+1.longest substring without repeating character
+
+	- use a set data structure 
+	- use sliding window approch to traverse string
+
+2. maximum sub array of the given sum, of the given length 
+
+	- 
