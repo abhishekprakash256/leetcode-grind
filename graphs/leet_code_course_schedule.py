@@ -47,6 +47,21 @@ class Solution():
 			if preMap[crs] == []:
 				return True
 
+			visitSet.add(crs)
+			for pre in preMap[crs]:
+				if not dfs(cre) : return False
+
+			visitSet.remove(crs)
+			preMap[crs] = []
+			return True
+
+		for crs in range(numCourses):
+			if not dfs(crs): return False
+
+		return True
+
+
+
 
 
 

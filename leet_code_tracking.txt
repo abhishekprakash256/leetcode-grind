@@ -7,4 +7,6 @@ list of the question that I need to practice more
 
 2. maximum sub array of the given sum, of the given length 
 
-	- 
+	- use a sliding window 
+	- maintain a set and add and remove as unique elements are found 
+	- keep lsiding window till result is found 
