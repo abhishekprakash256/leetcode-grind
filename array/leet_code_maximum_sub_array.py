@@ -44,7 +44,7 @@ another apporch with set can be used
 
 # the time limit exceeds solution
 class Solution:
-	def maximumSubarraySum(self, nums, k) :
+	def maximumSubarraySum_bruteforce(self, nums, k) :
 		"""
 		The function to find the max of the subarray
 		"""
@@ -104,40 +104,66 @@ class Solution:
 
 
 
-    def maximumSubarraySum_incorrect(self, nums, k):
-        l = 0
-        r = 0
-        max_sum = 0
-        current_sum = 0
-        unique_elements = set()
+	def maximumSubarraySum_incorrect(self, nums, k):
+		l = 0
+		r = 0
+		max_sum = 0
+		current_sum = 0
+		unique_elements = set()
 
-        while r < len(nums):
-            if nums[r] not in unique_elements:
-                unique_elements.add(nums[r])
-                current_sum += nums[r]
-                r += 1
-            else:
-                unique_elements.remove(nums[l])
-                current_sum -= nums[l]
-                l += 1
+		while r < len(nums):
 
-            if r - l == k:
-                max_sum = max(max_sum, current_sum)
+			if nums[r] not in unique_elements:
+				unique_elements.add(nums[r])
+				current_sum += nums[r]
+				r += 1
+			else:
+				unique_elements.remove(nums[l])
+				current_sum -= nums[l]
+				l += 1
 
-        return max_sum
+			if r - l == k:
+				max_sum = max(max_sum, current_sum)
 
+		return max_sum
+
+
+
+	#the correct solution of the program 
+	def maximumSubarraySum(self, nums, k):
+		l = 0
+		r = 0
+		max_sum = 0
+		current_sum = 0
+		unique_elements = set()
+
+		while r < len(nums):
+			if nums[r] not in unique_elements:
+				unique_elements.add(nums[r])
+				current_sum += nums[r]
+				r += 1
+			else:
+				unique_elements.remove(nums[l])
+				current_sum -= nums[l]
+				l += 1
+
+			if r - l == k:
+				max_sum = max(max_sum, current_sum)
+				unique_elements.remove(nums[l])
+				current_sum -= nums[l]
+				l += 1
+
+		return max_sum
 
 
 if __name__ == "__main__":
 
 	sol = Solution()
 
-	sol2 = Solution2()
+	res = sol.maximumSubarraySum2(nums3,k3)
 
-	res = sol.maximumSubarraySum(nums3,k3)
-
-	res2 = sol2.maximumSubarraySum(nums3,k3)
-
-	print(res2)
+	res2 = sol.maximumSubarraySum_incorrect(nums3,k3)
 
 	print(res)
+
+	print(res2)
