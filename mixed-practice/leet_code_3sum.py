@@ -28,16 +28,17 @@ class Solution():
 			sum = nums[i] + nums[j] + nums[k]
 
 			#start the loop
-			while l <= r:
+			while j < k:
 
-				if sum  == 0 and i != j and i= k and j = k:
+				if sum  == 0 and i != j and i != k and j != k:
 					res_lst.append([nums[i],nums[j],nums[k]])
+					
 
 				elif sum > 0:
-					l -=1
+					k -=1
 
 				else:
-					r +=1
+					j +=1
 
 		
 		return res_lst
