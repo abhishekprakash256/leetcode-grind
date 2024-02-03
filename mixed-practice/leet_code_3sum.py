@@ -21,11 +21,9 @@ class Solution():
 		k = len(nums) - 1
 		res_lst = []
 
-
 		for i in range(len(nums)-1): 
 
-			j = i + 1 
-			
+			j = i + 1
 			#start the loop
 			while j < k:
 
