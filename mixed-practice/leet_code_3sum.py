@@ -22,19 +22,23 @@ class Solution():
 		res_lst = []
 
 
-		for i in nums: 
+		for i in range(len(nums)-1): 
 
 			j = i + 1 
-			sum = nums[i] + nums[j] + nums[k]
+			
 
 			#start the loop
 			while j < k:
 
-				if sum  == 0 and i != j and i != k and j != k:
+				sum_temp = nums[i] + nums[j] + nums[k]
+
+				if sum_temp  == 0 and i != j and i != k and j != k : 
+
 					res_lst.append([nums[i],nums[j],nums[k]])
+					j+=1
 					
 
-				elif sum > 0:
+				elif sum_temp > 0:
 					k -=1
 
 				else:
