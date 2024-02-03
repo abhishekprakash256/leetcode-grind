@@ -10,6 +10,7 @@ out = [[-1,-1,2],[-1,0,1]]
 nums2 = [0,1,1]
 out2 = []
 
+#incorect soln 
 
 class Solution():
 	def threeSum(self, nums):
@@ -20,6 +21,7 @@ class Solution():
 		nums.sort()
 		k = len(nums) - 1
 		res_lst = []
+		mapper = {}
 
 		for i in range(len(nums)-1): 
 
@@ -29,7 +31,7 @@ class Solution():
 
 				sum_temp = nums[i] + nums[j] + nums[k]
 
-				if sum_temp  == 0 and i != j and i != k and j != k :
+				if sum_temp  == 0 and i != j and i != k and j != k:
 
 					res_lst.append([nums[i],nums[j],nums[k]])
 					j+=1
