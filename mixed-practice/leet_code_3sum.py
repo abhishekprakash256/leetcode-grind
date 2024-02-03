@@ -26,18 +26,16 @@ class Solution():
 
 			j = i + 1 
 			
-
 			#start the loop
 			while j < k:
 
 				sum_temp = nums[i] + nums[j] + nums[k]
 
-				if sum_temp  == 0 and i != j and i != k and j != k : 
+				if sum_temp  == 0 and i != j and i != k and j != k :
 
 					res_lst.append([nums[i],nums[j],nums[k]])
 					j+=1
 					
-
 				elif sum_temp > 0:
 					k -=1
 
