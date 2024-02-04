@@ -39,6 +39,8 @@ out3 = 2
 
 
 
+#---------------------------all solutions are incorrect ----------------------------------------------
+
 class Solution():
 
 	def firstMissingPositive(self, nums) -> int:
@@ -102,7 +104,6 @@ class Solution():
 		return min_num
 
 
-
 class Solution():
 	def firstMissingPositive(self, nums) -> int:
 		"""
@@ -129,13 +130,8 @@ class Solution():
 
 
 if __name__ == "__main__":
+	pass
 
-	sol = Solution()
-
-	res = sol.firstMissingPositive(nums2)
-
-
-	print(res)
 
 
 
