@@ -80,7 +80,7 @@ class Solution():
 			temp = temp.next
 
 
-
+	#the corect soln
 	def addTwoNumbers(self,l1, l2):
 		"""
 		the function to find the sum of the two nodes
@@ -107,16 +107,27 @@ class Solution():
 			l2 = l2.next
 
 
-		if carry !=0 :
+		while l1:
+			temp_sum = l1.val + carry
+			carry = temp_sum // 10
+			val = temp_sum % 10
+			cur.next = ListNode(val)
+			cur = cur.next
+			l1 = l1.next
+
+		while l2:
+			temp_sum = l2.val + carry
+			carry = temp_sum // 10
+			val = temp_sum % 10
+			cur.next = ListNode(val)
+			cur = cur.next
+			l2 = l2.next
+
+		  
+		if carry != 0:
 			carry_node = ListNode(carry)
 			cur.next = carry_node
 
-		if l1: 
-			cur.next = l1
-
-
-		if l2:
-			cur.next = l2
 
 		return dummy.next
 
@@ -138,6 +149,6 @@ if __name__ == '__main__':
 
 	#sol.printList(head1)
 
-	res = sol.addTwoNumbers(head1,head2)
+	res = sol.addTwoNumbers(head4,head5)
 
 	print(res)
