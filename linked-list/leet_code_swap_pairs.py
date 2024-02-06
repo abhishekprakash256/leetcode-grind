@@ -105,6 +105,25 @@ class Solution:
 		
 		return head
 
-	
+
+class Solution2:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+        
+        while prev.next and prev.next.next:
+            first_node = prev.next
+            second_node = prev.next.next
+            
+            # Swapping the nodes
+            first_node.next = second_node.next
+            second_node.next = first_node
+            prev.next = second_node
+            
+            # Move to the next pair
+            prev = first_node
+        
+        return dummy.next
 
 		
