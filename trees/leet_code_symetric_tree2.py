@@ -47,7 +47,7 @@ def isSymetric(node):
 
 
 """
-#incoreect sol ===============
+#incorect code=--------
 class Solution():
 	def helper(self,node):
 
@@ -63,14 +63,14 @@ class Solution():
 		if not nodel and not noder:
 			return True
 		
-		if not nodel or not noder:
-			return False
-		
 		left_val = self.helper(nodel) if nodel else None
 		right_val = self.helper(noder) if noder else None
 		
-		return left_val == right_val and self.checkSymetry(nodel.left,nodel.right) and self.checkSymetry(noder.left,noder.right)	
+		if left_val == right_val :
+			return self.checkSymetry(nodel.left,nodel.right) and self.checkSymetry(noder.left,noder.right)	
 
+		else:
+			return False
 	
 
 	def isSymmetric(self, node: Optional[TreeNode]) -> bool:
