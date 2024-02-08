@@ -64,4 +64,57 @@ def validBST(self,node):
 
 
 
+
+
+algo --- 
+
+#edge case 
+if node.left is none and node.right is None:
+    return True 
+
+
+max_val = float("inf")
+min_val = float("-inf") 
+
+
+def helper(node):
+
+    return node.val
+
+
+
+def isValidBST(node):
+    
+    #base case
+    if node.left is None and node.right is node:
+        return True    
+
+    left_val = self.helper(node.left) if node.left else float("-inf")
+    right_val = self.helper(node.right) if node.right else float("inf")
+
+    if left_val < node.val < right_val:
+        
+        return True 
+
+    else:
+        return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 """
