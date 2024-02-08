@@ -84,6 +84,54 @@ class Solution():
 		return self.checkSymetry(node.left,node.right)
 
 
+#corect Code ----
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution2():
+	def helper(self,node):
+
+		#base case
+		if not node:
+			return None
+		
+		return node.val
+
+	def checkSymetry(self, nodel, noder):
+
+		#base condn
+		if not nodel and not noder:
+			return True
+		
+		if not nodel or not noder:
+			return False
+		
+		left_val = self.helper(nodel) if nodel else None
+		right_val = self.helper(noder) if noder else None
+
+		if left_val == right_val:
+			return self.checkSymetry(nodel.left,noder.right) and self.checkSymetry(nodel.right,noder.left)
+		
+		else:
+			return False
+
+
+	def isSymmetric(self, node: Optional[TreeNode]) -> bool:
+		"""
+		The main recursive function
+		"""
+		#base case 
+		if node.left is None and node.right is None:
+			return True
+		
+		return self.checkSymetry(node.left,node.right)
+
+
 if __name__ == "__main__":
 
 	sol = Solution()
