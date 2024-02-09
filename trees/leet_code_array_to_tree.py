@@ -45,3 +45,64 @@ while r < len(nums):
 
 
 """
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+#code is incorrect 
+class Solution():
+
+	def sortedArrayToBST(self,nums):
+		"""
+		The function to make the tree
+		"""
+		#base case
+		if len(nums) == 1:
+			node = TreeNode(nums[0])
+			return node
+
+		
+		#variable initialization
+		r = 1
+		length = len(nums)
+		temp_node = TreeNode(nums[0])
+
+		while r <= (length // 2):
+
+			new_node = TreeNode(nums[r])
+
+			#codn checkig 
+			if nums[r - 1] < nums[r]:
+				new_node.left = temp_node
+
+			else:
+				new_node.right = temp_node
+
+			temp_node = new_node
+			r+=1
+		
+		#assign head
+		head = temp_node
+
+		while r < length:
+
+			new_node = TreeNode(nums[r])
+			#condn checking
+			if nums[r-1] < nums[r]:
+				temp_node.right = new_node
+			
+			else:
+				temp_node.left = new_node
+			
+			temp_node = new_node
+			r+=1
+		
+		return head
+
+
+
+
