@@ -50,7 +50,30 @@ class Solution:
         self.helper(node,res_lst,flip)
         
         return res_lst
+
+
+#correect solution
+class Solution2:
+    
+    def helper(self, node, res_lst, level):
+        if not node:
+            return
         
+        if level >= len(res_lst):
+            res_lst.append([])
+            
+        if level % 2 == 0:
+            res_lst[level].append(node.val)
+        else:
+            res_lst[level].insert(0, node.val)
+        
+        self.helper(node.left, res_lst, level + 1)
+        self.helper(node.right, res_lst, level + 1)
+    
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res_lst = []
+        self.helper(root, res_lst, 0)
+        return res_lst
         
         
         
