@@ -29,6 +29,7 @@ class Solution:
             return result
 
         next_level_nodes = []
+        
         for node in nodes:
             if node:
                 result.append(node.val)
