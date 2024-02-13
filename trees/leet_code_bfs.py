@@ -14,6 +14,7 @@ rescursion
 root -> left -> right 
 
 
+#wrong code
 
 
 def levelOrder(node):
@@ -35,18 +36,6 @@ def levelOrder(node):
     
 
     return res_lst
-
-
-
-        
-
-
-
-
-
-
-
-    
 
 
 
