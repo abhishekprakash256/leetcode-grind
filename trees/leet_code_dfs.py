@@ -60,11 +60,69 @@ class Solution():
 		return res_lst
 
 
+	def helper_dfs(self,node,res_lst):
+
+		if node:
+
+			res_lst.append(node.val)
+			
+			self.helper_dfs(node.left,res_lst)
+
+			self.helper_dfs(node.right,res_lst)
+
+
+
+	def dfs_recursive(self,node,lst = None):
+		"""
+		The recursive approach for the dfs iteration
+		"""
+		res_lst = []
+
+		#base case 
+		if not node:
+			return res_lst
+
+
+		self.helper_dfs(node,res_lst)
+
+		return res_lst
+
+
+	def dfs_recursive2(self,node,res_lst = []):
+		"""
+		The function to do the recursive in one function 
+
+		"""
+
+		if not node:
+			res_lst = []
+
+		if node:
+
+			res_lst.append(node.val)
+
+			self.dfs_recursive2(node.left,res_lst)
+
+			self.dfs_recursive2(node.right,res_lst)
+
+		return res_lst
+
+
+
+
+
 
 if __name__ == '__main__':
 	sol = Solution()
 
 	res_iterative = sol.dfs_iterative(root)
 
+	res_recursive = sol.dfs_recursive(root)
+
+	res_recursive2 = sol.dfs_recursive2(root)
+
 	print(res_iterative)
 
+	print(res_recursive)
+
+	print(res_recursive2)
