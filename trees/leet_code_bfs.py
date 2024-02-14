@@ -72,8 +72,6 @@ if __name__ == '__main__':
 
 	res_iterative = sol.bfs_iterative(root)
 
-	res_recursive = sol.bfs_recursive(root)
-
 	print(res_iterative)
 
 	print(res_recursive)
