@@ -61,28 +61,8 @@ class Solution():
 
 		return res_lst
 
-
-
-	#incorrect - code
-	def bfs_recursive(self,node,res_lst = []):
-		"""
-		The revursive bfs 
-		"""
-
-		#base case 
-		if not node:
-			res_lst = []
-
-
-		if node:
-
-			res_lst.append(node.val)
-
-			self.bfs_recursive(node.left,res_lst)
-
-			self.bfs_recursive(node.right,res_lst)
-
-		return res_lst
+		
+		
 
 
 
