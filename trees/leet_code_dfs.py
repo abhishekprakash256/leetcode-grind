@@ -93,7 +93,7 @@ class Solution():
 		The function to do the recursive in one function 
 
 		"""
-
+		#base case 
 		if not node:
 			res_lst = []
 
