@@ -25,7 +25,6 @@ root.right.left = TreeNode(6)
 root.right.right = TreeNode(7)
 
 
-
 #-------not correct code ------------------------------------
 
 class Solution():
@@ -48,29 +47,15 @@ class Solution():
 
             node = queue.pop(0)
 
-            if flip == True :
+            if node:
+                res_lst.append(node.val)
 
-                if node:
-                    res_lst.append(node.val)
+            if node.left:
+                queue.append(node.left)
 
-                if node.left:
-                    queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
 
-                if node.right:
-                    queue.append(node.right)
-
-                flip = False
-            
-            else:
-                if node:
-                    res_lst.append(node.val)
-
-                if node.right:
-                    queue.append(node.right)
-                
-                if node.left:
-                    queue.append(node.left)
-        
 
         return res_lst
 

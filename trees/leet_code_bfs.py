@@ -1,5 +1,6 @@
 """
 make the bfs traversal of the tree
+
 """
 
 # Example binary tree
@@ -8,6 +9,9 @@ make the bfs traversal of the tree
 #       2     3
 #      / \   / \
 #     4   5 6   7
+
+
+
 class TreeNode:
 	def __init__(self, val):
 		self.val = val
@@ -64,9 +68,6 @@ class Solution():
 		
 		
 
-
-
-
 if __name__ == '__main__':
 	sol = Solution()
 
@@ -75,5 +76,3 @@ if __name__ == '__main__':
 	print(res_iterative)
 
 	print(res_recursive)
-
-

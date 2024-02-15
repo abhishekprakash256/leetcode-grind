@@ -1,5 +1,6 @@
 """
-the dfs traversal of the tree using the iterative and recursive approach 
+the dfs traversal of the tree using the iterative and recursive approach
+
 """
 
 # Example binary tree
@@ -106,8 +107,6 @@ class Solution():
 			self.dfs_recursive2(node.right,res_lst)
 
 		return res_lst
-
-
 
 
 
