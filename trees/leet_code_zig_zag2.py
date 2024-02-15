@@ -29,7 +29,7 @@ root.right.right = TreeNode(7)
 
 class Solution():
 
-    def zigzagLevelOrder(self,node):
+    def zigzagLevelOrder_incorrect(self,node):
         """
         The function to give zig zag order traversal 
         """
@@ -58,6 +58,44 @@ class Solution():
 
 
         return res_lst
+
+    def zigzagLevelOrder(self,node):
+        """
+        The function to append the nodes in zig zag order in tree
+        """
+
+
+        if not node:
+            return None 
+
+
+        #initilaize the queue
+        queue = [node]
+        res_lst = []
+
+        while queue:
+
+            level = []
+
+            for i in range(len(queue)):
+
+                node = queue.pop(0)
+
+                level.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+
+                if node.right:
+                    queue.append(node.right)
+
+            level = list(reversed(level)) if len(res_lst) % 2 else level[:]
+
+            res_lst.append(level)
+
+        return res_lst
+
+
 
 
 if __name__ == "__main__":
