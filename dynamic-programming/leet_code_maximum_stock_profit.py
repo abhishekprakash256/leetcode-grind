@@ -12,40 +12,79 @@ out2 = 0
 
 
 """
+
+
 algo --- 
 
 order is imp
 
 
-#base case 
-if len(nums) == 0 or len(nums) == 1:
-    return 0 
+l = 0
+r = l+1 
 
-#initilize the vars
+scan the array 
 
-l = 0 
-r = l + 1
+max_profit = 0 
 
-max_val = nums[l]
-min_val = nums[r]
-
-while r < len(nums):
-
-    #check the condn
-
-    if  nums[l] < min_val:
-
-        min_val = min(min_val,nums[l])
+while r < len(prices):
     
-    if nums[r] > max_val:
+    if prices[l] < prices[r]:
 
-        max_val = max(max_val,nums[r])
+        profit = prices[r] - prices[l]
+        max_profit = max(profit,max_profit)
+        l = r 
 
-    l +=1
-    r +=1
+    else:
+        r +=1
 
-
-
-return nums[r] - nums[l]
+return max_profit
 
 """
+
+
+class Solution():
+
+    def maxProfit(self,prices):
+        """
+        The function to find the max value by selling the stocks
+    
+        """
+        max_profit = 0 
+        l = 0 
+        r = l + 1
+
+        while r < len(prices):
+
+            if prices[l] < prices[r]:
+
+                profit = prices[r] - prices[l]
+                max_profit = max(profit,max_profit)
+
+            else:
+                l = r
+
+            r += 1
+
+        return max_profit
+
+
+
+
+if __name__ == '__main__':
+    sol = Solution()
+
+    res= sol.maxProfit(prices)
+
+    print(res)
+
+
+
+
+
+
+
+
+
+
+
+
