@@ -57,7 +57,7 @@ nums2 = [-2,1,-3,4,-1,2,1,-5,30]
 
 
 class Solution:
-	def maxSubArray(self, nums) -> int:
+	def maxSubArray_incorrect(self, nums) -> int:
 		"""
 		The function to find the max sub array
 		"""
@@ -96,6 +96,28 @@ class Solution:
 		return max_sum
 
 
+	def maxSubArray(self,nums):
+		"""
+		The function to find the max  sub array in the nums
+		"""
+
+		max_sum = nums[0]
+		cur_sum = 0
+
+
+		for i in nums:
+
+			if cur_sum < 0:
+				cur_sum = 0 
+
+			cur_sum += i 
+			max_sum = max(cur_sum,max_sum)
+
+		return max_sum 
+
+
+
+
 
 if __name__ == "__main__":
 
@@ -103,5 +125,5 @@ if __name__ == "__main__":
 
 	res = sol.maxSubArray(nums2)
 
-
 	print(res)
+
