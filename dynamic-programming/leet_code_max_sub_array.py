@@ -15,7 +15,7 @@ sub_arry = [4,-1,2,1]
 
 nums2 = [1,-2,4,6,-10]
 
-nums3 = [-2,1,-3,4]
+nums3 = [-2,1,-3,20]
 
 ---------
 
@@ -49,15 +49,13 @@ return max_sum
 
 
 """
+nums = [-2,1]
+
+nums2 = [-2,1,-3,4,-1,2,1,-5,30]
+
+#----------------wrong code ----------------
 
 
-
-
-nums = [-2,1,-3,4,-1,2,1,-5,4]
-
-
-
-#wrong code ----
 class Solution:
 	def maxSubArray(self, nums) -> int:
 		"""
@@ -92,6 +90,8 @@ class Solution:
 					r -=1
 				else:
 					l +=1
+
+
 		
 		return max_sum
 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	res = sol.maxSubArray(nums)
+	res = sol.maxSubArray(nums2)
 
 
 	print(res)
