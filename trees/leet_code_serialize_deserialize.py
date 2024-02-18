@@ -61,7 +61,6 @@ def serilization():
 
 
 
-
 """
 
 
@@ -108,30 +107,33 @@ class Solution():
 		if node.left is None and node.right is None:
 			return [node]
 
-
 		res_lst = []
 		queue = [node]
 
 		while queue:
 
+
 			node = queue.pop(0)
 
-			if node:
-
+			if node :
 				res_lst.append(node.val)
-
-			if not node:
-
+				queue.append(node.left)
+				queue.append(node.right)
+			else:
 				res_lst.append(None)
 
-			#if node.left:
-			queue.append(node.left)
-
-			#if node.right:
-			queue.append(node.right)
-
-
 		return res_lst
+
+
+		def deserialize(self, data):
+			"""
+			The function to make the tree from data
+			"""
+
+			pass
+
+
+
 
 
 
