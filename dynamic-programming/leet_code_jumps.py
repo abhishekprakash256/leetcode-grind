@@ -66,9 +66,6 @@ class Solution():
 
 		return res
 
-
-
-
 sol = Solution()
 
 
