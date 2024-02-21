@@ -70,15 +70,22 @@ eilf sum_change > amount:
     return False
 
 
+    
 
+
+
+-------------------------------
 fun coinChange
 (coins,amount)
-
 
 #contraint
 if amount == 0:
     return True
 
+temp_sum = 0 
+
+for coin in coins:
+    self.helper()
 
  
 
