@@ -38,6 +38,36 @@ run DFS in graph to calculate the least height of the tree
 if I do memoization then complexity can be saved 
 
 
+Algo recursion brute force --- 
+
+#vars 
+sum_change = -0 
+
+#base case 
+if sum_change == amount:
+    return True
+
+elif sum_change > amount:
+    return False
+
+
+#constraints
+if amount == 0 :
+    return 0    
+
+two functions -----
+
+
+fun helper 
+
+
+
+
+fun coinChange
+    
+
+
+
 
 
 """
