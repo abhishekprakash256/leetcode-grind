@@ -58,13 +58,29 @@ if amount == 0 :
 two functions -----
 
 
-fun helper 
+fun helper
+(coin, temp_sum,amount)
 
+#base case 
+
+if sum_change == amount:
+    return True
+
+eilf sum_change > amount:
+    return False
 
 
 
 fun coinChange
-    
+(coins,amount)
+
+
+#contraint
+if amount == 0:
+    return True
+
+
+ 
 
 
 
