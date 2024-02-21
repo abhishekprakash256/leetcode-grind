@@ -12,12 +12,12 @@ out = True
 nums2 = [3,2,1,0,4]
 out2 = False
 
-
-
+nums3 = [1,2]
+out3 = True
 """
 algo -- 
 
-basic approach recursion -- 
+basic approach will be a brute force approach -- 
 
 
 
@@ -28,48 +28,17 @@ basic approach recursion --
 
 
 class Solution():
-
-	def helper(self,i,nums):
-		"""
-		The function to find the jumps reaching end of list
-
-		"""
-		#base case 
-		if i == len(nums) - 1:
-			return True
-
-		for jumps in range(i+1):
-
-			self.helper(jumps,nums)
-
-		return False
+    
+	def canJump_brute_force(self,jumps):
+		pass
 
 
-	def canJump(self,nums):
-		"""
-		The main function 
-		"""
 
-		#constraints 
-		if not nums:
-			return None
-
-
-		res = False
-
-		for i in nums:
-
-			res = self.helper(i,nums)
-
-			if res == True:
-				return True
-
-		return res
 
 sol = Solution()
 
 
-res = sol.canJump(nums2)
+res = sol.canJump_brute_force(nums3)
 
 print(res)
 
