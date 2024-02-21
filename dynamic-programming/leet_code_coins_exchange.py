@@ -20,5 +20,24 @@ out3 = 0
 
 
 """
+Algo -- 
+
+[1,2,5]
+11
+
+5 + 5 + 1 = 11
+
+make a tree for calculation of the change of the items 
+till one gives zero 
+
+if greater than the sum gives False out 
+
+run DFS in graph to calculate the least height of the tree
+
+
+if I do memoization then complexity can be saved 
+
+
+
 
 """
