@@ -19,11 +19,31 @@ out = 4
 algo -- 
 
 
-dynamic programming approcah 
-
-
-
-
+dynamic programming approch
 
 
 """
+
+class Solution():
+
+	def rob(self,nums):
+		"""
+		The function to find the max value of robbing
+		"""
+
+		if len(nums) == 0:
+			return None
+
+		if len(nums) == 1:
+			return nums[0]
+
+
+		rob1, rob2 = 0,0 
+
+		for i in nums:
+
+			temp = max(n + rob1,rob2)
+			rob1 = rob2
+			rob2 = temp
+
+		return rob2
