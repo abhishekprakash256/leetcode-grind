@@ -16,6 +16,10 @@ Given an integer array nums representing the amount of money of each house, retu
 nums = [1,2,3,1]
 out = 4 
 
+algo -- 
+
+
+dynamic programming approcah 
 
 
 
