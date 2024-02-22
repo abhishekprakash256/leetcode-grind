@@ -6,15 +6,15 @@ Return the fewest number of coins that you need to make up that amount. If that 
 You may assume that you have an infinite number of each kind of coin.
 """
 
-coins = [1,2,5]
-amount = 11
+nums = [1,2,5]
+amount1 = 11
 out = 3 
 
-coins2 = [2]
+nums2 = [2,1,10]
 amount2 = 3
 out2 = -1
 
-coins3 = [1]
+nums3 = [1]
 amount3 = 0 
 out3 = 0 
 
@@ -63,15 +63,16 @@ fun helper
 
 #base case 
 
-if sum_change == amount:
+if temp_sum == amount:
     return True
 
-eilf sum_change > amount:
+eilf temp_sum > amount:
     return False
 
 
-    
-
+for change in coins:
+    temp_sum += chnage
+    self.helper(temp_sum,change,coins)
 
 
 -------------------------------
@@ -85,12 +86,74 @@ if amount == 0:
 temp_sum = 0 
 
 for coin in coins:
-    self.helper()
+    self.helper(temp_sum,coin,coins)
 
  
 
-
-
-
-
 """
+
+class Solution():
+
+
+    #correct code
+    def helper(self,coin,temp_sum,amount,coins):
+        """
+        The helper function to find the value
+        """
+
+        #base case 
+
+        if temp_sum == amount:
+            return True
+
+        if temp_sum > amount:
+            return False
+
+
+        for change in coins:
+
+            temp_sum += change
+            if self.helper(coin,temp_sum,amount,coins):
+                return True
+
+        return False
+
+
+
+    def coinChange(self,coins,amount):
+        """
+        The main function to calculate change
+        """
+
+        #constarints 
+        if amount == 0 :
+            return 0
+
+        res = False
+        temp_sum = 0
+
+
+        for coin in coins:
+            res = self.helper(coin,temp_sum,amount,coins)
+
+        return res
+
+
+
+if __name__ == "__main__":
+
+    sol = Solution()
+
+    result = sol.coinChange(nums2,amount2)
+
+    print(result)
+
+
+
+
+
+
+
+
+
+
