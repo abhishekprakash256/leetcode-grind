@@ -135,6 +135,8 @@ class Solution():
 
         for coin in coins:
             res = self.helper(coin,temp_sum,amount,coins)
+            if res:
+                return True
 
         return res
 
