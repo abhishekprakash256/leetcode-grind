@@ -57,6 +57,21 @@ class Solution():
 		return self.fibbo_recursive(nums - 1) + self.fibbo_recursive(nums - 2 )
 
 
+	def fibbo_dynamic(self,nums):
+		"""
+		The function to make the fibbonchie using dp
+
+		"""
+
+		dp = [0]*(nums + 1)
+
+		dp[1], dp[2] = 1,1
+
+		for i in range(2,nums + 1):
+
+			dp[i] = dp[i-1] + dp[i-2]
+
+		return dp[nums]
 
 
 
@@ -65,7 +80,7 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	res_rec = sol.fibbo_memo(10)
+	res_rec = sol.fibbo_dynamic(40)
 
 
 
