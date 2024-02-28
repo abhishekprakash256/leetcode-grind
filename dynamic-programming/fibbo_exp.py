@@ -16,6 +16,28 @@ class Solution():
 
 		self.memo = {}
 
+
+	def fibbo_memo(self,nums):
+		"""
+		The recursive call for memization
+		"""
+
+		if nums == 0 :
+			return 0 
+
+		if nums in self.memo:
+			return self.memo[nums]
+
+
+		if nums <=1:
+			return nums
+
+		self.memo[nums] = self.fibbo_memo(nums - 1) + self.fibbo_memo(nums - 2)
+
+		return self.memo[nums]
+
+
+
 	def fibbo_recursive(self,nums):
 		"""
 		The function to find the fibbonachi series of the number using 
@@ -35,28 +57,6 @@ class Solution():
 		return self.fibbo_recursive(nums - 1) + self.fibbo_recursive(nums - 2 )
 
 
-	def fibbo_recursive_memo(self,nums):
-		"""
-		The function to find the fibbo sequence using memoziation recursion
-		"""
-
-		for nums in self.memo:
-			return memo[nums]
-
-		if nums <=1:
-			return nums
-
-
-		self.memo[nums] = self.memo()
-
-
-
-
-
-
-
-
-
 
 
 
@@ -65,7 +65,9 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	res_rec = sol.fibbo_recursive_memo(40)
+	res_rec = sol.fibbo_memo(10)
+
+
 
 	print(res_rec)
 
