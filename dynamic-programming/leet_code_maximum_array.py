@@ -56,7 +56,7 @@ return max_sum
 #-----------------------------incorrect -------------------------
 class Solution():
 
-	def maxSubArray(self,nums):
+	def maxSubArray_incorrect(self,nums):
 		"""
 		The function to find the max sub array of the given array 
 		"""
@@ -75,6 +75,8 @@ class Solution():
 
 			temp_sum = sum(nums[l:r+1])
 
+			print(l,r)
+
 			if temp_sum < 0 :
 				l = r
 
@@ -82,6 +84,25 @@ class Solution():
 
 
 		return max_sum
+	
+	def maxSubArray(self,nums):
+		"""
+		The function to find the max sub array 
+		"""
+
+		if len(nums) == 1 :
+			return nums[0]
+		
+		#vars  
+		l = 0 
+		max_sum = 0 
+
+		for r in range(1,len(nums)):
+
+			pass
+
+
+
 
 
 
@@ -89,7 +110,7 @@ if __name__ == '__main__':
 
 	sol = Solution()
 
-	print(sol.maxSubArray(nums))
+	print(sol.maxSubArray_incorrect(nums))
 
 
 
