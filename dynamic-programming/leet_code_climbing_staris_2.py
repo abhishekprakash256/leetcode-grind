@@ -169,8 +169,6 @@ class Solution():
 
 
 
-
-
 sol = Solution()
 
 # Record start time
