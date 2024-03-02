@@ -3,8 +3,8 @@ Given an integer array nums, find the subarray with the largest sum, and return 
 
 """
 
-nums = [-2,1, ,-5,4]
-out = 6 , #[4,-1,2,1
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+out = 6 , #[4,-1,2,1]
 
 
 nums2 = [1]
@@ -56,7 +56,7 @@ return max_sum
 #-----------------------------incorrect -------------------------
 class Solution():
 
-	def maxSubArray(self,nums):
+	def maxSubArray_incorrect(self,nums):
 		"""
 		The function to find the max sub array of the given array 
 		"""
@@ -83,6 +83,39 @@ class Solution():
 
 
 		return max_sum
+
+
+	def maxSubArray(self,nums):
+		"""
+		The fucntion to find the max sub aray of the nums 
+		"""
+
+		#base case 
+		if len(nums) == 1:
+			return nums[0]
+
+
+		cur_sum = 0
+		max_sum = nums[0]
+
+		for n in nums:
+
+			#calc the temp sum 
+			if cur_sum < 0 :
+				
+				cur_sum = 0 
+
+			cur_sum +=n
+
+			max_sum = max(max_sum,cur_sum)
+
+		return max_sum
+
+
+
+
+
+
 
 
 
