@@ -3,7 +3,7 @@ Given an integer array nums, find the subarray with the largest sum, and return 
 
 """
 
-nums = [-2,1,-3,4,-1,2,1,-5,4]
+nums = [-2,1, ,-5,4]
 out = 6 , #[4,-1,2,1
 
 
@@ -74,6 +74,7 @@ class Solution():
 		for r in range(1,len(nums)):
 
 			temp_sum = sum(nums[l:r+1])
+			print(l)
 
 			if temp_sum < 0 :
 				l = r
