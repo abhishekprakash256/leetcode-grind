@@ -4,7 +4,7 @@ Given an integer array nums, find the subarray with the largest sum, and return 
 """
 
 nums = [-2,1,-3,4,-1,2,1,-5,4]
-out = 6 , #[4,-1,2,1
+out = 6 , #[4,-1,2,1]
 
 
 nums2 = [1]
@@ -74,6 +74,7 @@ class Solution():
 		for r in range(1,len(nums)):
 
 			temp_sum = sum(nums[l:r+1])
+			print(l)
 
 			print(l,r)
 
@@ -100,6 +101,39 @@ class Solution():
 		for r in range(1,len(nums)):
 
 			pass
+
+
+
+
+
+	def maxSubArray(self,nums):
+		"""
+		The fucntion to find the max sub aray of the nums 
+		"""
+
+		#base case 
+		if len(nums) == 1:
+			return nums[0]
+
+
+		cur_sum = 0
+		max_sum = nums[0]
+
+		for n in nums:
+
+			#calc the temp sum 
+			if cur_sum < 0 :
+				
+				cur_sum = 0 
+
+			cur_sum +=n
+
+			max_sum = max(max_sum,cur_sum)
+
+		return max_sum
+
+
+
 
 
 
