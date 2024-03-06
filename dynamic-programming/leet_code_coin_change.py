@@ -47,6 +47,28 @@ if temp_sum > amount:
 temp_sum = 0 
 
 
+for change in coins:
+	res = self.helper(change,temp_sum, amount)
+
+return res
+
+
+#helper function 
+
+#base case 
+if temp_sum == amount:
+	return True 
+
+if temp_sum > amount :
+	return False
+
+
+for coin in chnage:
+	res = self.helper(coin,temp_sum + coin,amount)
+
+return res
+
+
 
 """
 
