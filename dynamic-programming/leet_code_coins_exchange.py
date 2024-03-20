@@ -95,7 +95,7 @@ for coin in coins:
 class Solution():
 
 
-    #correct code
+    #correct code, not full code
     def helper(self,coin,temp_sum,amount,coins):
         """
         The helper function to find the value
