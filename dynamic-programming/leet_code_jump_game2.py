@@ -19,17 +19,24 @@ class Solution():
         Find the jump is possible or not 
         """
 
-        for i in range(len(nums)-2):
-            
-            for j in range(1,nums[i]):
+        gas = 0 
 
-                if i + j == len(nums) - 1:
-                    return True
-                
-        return False
+        for n in nums:
+
+            if gas < 0:
+                return False
+            
+            elif n > gas :
+                gas = n 
+
+            gas -=1
+        
+        return True
+
+
 
 
 sol = Solution()
-res = sol.canJump(nums)
+res = sol.canJump(nums2)
 
 print(res)
