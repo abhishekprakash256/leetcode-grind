@@ -1,3 +1,5 @@
-""
-the per fectr sqwaures
-""
+"""
+the perfect squares to find in the given number 
+"""
+
+
