@@ -3,6 +3,24 @@ find the max sliding windown in the array
 """
 
 
+"""
+Algo -- 
+
+l = 0 
+r = 0 
+
+ 
+
+
+
+"""
+
+
+
+
+
+
+
 class Solution():
 
 
@@ -18,30 +36,13 @@ class Solution():
 		return res
 
 
-	def find_max_sliding_window(nums,w):
+	def max_sliding_window(self,nums,w):
 		"""
-		The function to find the max in the sliding window
+		The function to find the max sliding window 
 		"""
-
-		res = []
-		count = 0 
-		max_val = nums[0]
-
-		for i in range(len(nums)):
-				
-			count += 1
-			
-			if count == w :
-				res.append(max_val)
-				count = 0 
-				max_val = nums[i+1]
+		pass
 
 
-			cur_max = nums[i]
-			max_val = max(cur_max,max_val)
-
-
-		return res
 
 
 
