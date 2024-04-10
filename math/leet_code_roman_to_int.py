@@ -15,9 +15,9 @@ For example, 2 is written as II in Roman numeral, just two ones added together. 
 
 Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
-    I can be placed before V (5) and X (10) to make 4 and 9. 
-    X can be placed before L (50) and C (100) to make 40 and 90. 
-    C can be placed before D (500) and M (1000) to make 400 and 900.
+	I can be placed before V (5) and X (10) to make 4 and 9. 
+	X can be placed before L (50) and C (100) to make 40 and 90. 
+	C can be placed before D (500) and M (1000) to make 400 and 900.
 
 Given a roman numeral, convert it to an integer.
 
@@ -50,29 +50,72 @@ Algo --
 hash map 
 
 mapper = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000 }
+mapper = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000 , "IV":4 , "IX": 9 , "XL":40, "XC": 90, "CM" :900 }
+
+
+IV = 4
+IX = 9 
+XL = 40 
+XC = 90
+CM = 900
+CMXCIX = 999 , 900 + 90 + 9 
+
+905 = CMV
+
 
 #base case 
 len(s) == 1 :
 	return mapper[s]
 
-l = 0 
+i = 0
+sum = 0 
+while i < len(s):
 
-while l < lem(s):
-
-	if l + 1 == len(s) - 1:
-		break
-
-	elif mapper[s[l]] => mapper[s[l+1]]:
-		sum += mapper[s[l]]
-		l+=1
-
+	if i + 1 < len(s) and (mapper[s[i+1]] < mapper[s[i]]):
+		sum  += mapper[s[i+1]] - mapper[s[i]]
+		i += 2 
+	
 	else:
-		temp_sum = mapper[s[l+1]] - mapper[s[l]]
-		sum += temp_sum
-		l+=2
+		sum += mapper[s[i]]
+		i+=1
+
+return sum 
 
 
 
 """
+
+
+class Solution:
+	def romanToInt(self, s: str) -> int:
+		"""
+		The function to make the roman to int 
+		"""
+
+		#vars 
+		i, sum = 0, 0  
+		mapper = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000 }
+
+		#base case 
+		if len(s) == 1 :
+			return mapper[s[0]]
+
+
+		#start the loop 
+
+		while i < len(s):
+
+			#check the double case 
+			if i + 1 < len(s) and mapper[s[i+1]] < mapper[s[i]]:
+
+				sum += mapper[s[i+1]] - mapper[s[i]] 
+				i+=2
+			
+			else:
+
+				sum += mapper[s[i]]
+				i+=1
+		
+		return sum 
 
 
