@@ -60,6 +60,48 @@ class MinStack():
     	"""
 
     	return min(self.stack)
+
+
+
+
+ class MinStack2():
+
+    def __init__(self):
+        self.stack = []
+        self.stack_desc =[]
+        
+
+    def push(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        self.stack.append(val)
+        if not self.stack_desc or val <= self.stack_desc[-1]:
+            self.stack_desc.append(val)
+        
+
+    def pop(self):
+        """
+        :rtype: None
+        """
+        if self.stack.pop() == self.stack_desc[-1]:
+            self.stack_desc.pop()
+
+        
+
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.stack[-1]
+        
+
+    def getMin(self):
+        """
+        :rtype: int
+        """
+        return self.stack_desc[-1]
         
 
 
