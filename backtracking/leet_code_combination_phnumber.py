@@ -33,8 +33,8 @@ if len(digits) == 0:
 """
 
 
-class solution():
-    def letter_combinations(digits):
+class Solution():
+    def letterCombinations(self,digits):
         if not digits:
             return []
 
@@ -63,6 +63,58 @@ class solution():
         return combinations
 
 # Example usage:
-sol = solution()
+sol = Solution()
 digits = "23"
 print(sol.letter_combinations(digits))  # Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+
+
+
+
+class Solution2():
+    def __init__(self):
+        self.res = []
+        self.mapping = {
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz'
+        }
+    
+
+    def backtrack(self,idx,path):
+        """
+        The helper function to form the path 
+        """
+
+        #base case 
+        if idx == len(self.digits):
+            self.res.append(path)
+            return 
+
+        for letter in self.mapping[self.digits[idx]]:
+            self.backtrack(idx + 1, letter)
+
+
+
+        
+
+
+
+    def letterCombinations(self,digits):
+        self.digits = digits
+        """
+        The function to make the combination 
+        """
+
+        #initial case 
+        if not digits:
+            return []
+    
+        return self.helper(0,'')
+
+    
+    
