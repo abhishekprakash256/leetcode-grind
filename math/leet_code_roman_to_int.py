@@ -106,7 +106,7 @@ class Solution:
 		while i < len(s):
 
 			#check the double case 
-			if i + 1 < len(s) and mapper[s[i+1]] < mapper[s[i]]:
+			if i + 1 < len(s) and mapper[s[i+1]] > mapper[s[i]]:
 
 				sum += mapper[s[i+1]] - mapper[s[i]] 
 				i+=2
