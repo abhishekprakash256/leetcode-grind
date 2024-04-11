@@ -33,7 +33,7 @@ if len(digits) == 0:
 """
 
 
-class Solution():
+class Solution2():
     def letterCombinations(self,digits):
         if not digits:
             return []
@@ -63,14 +63,14 @@ class Solution():
         return combinations
 
 # Example usage:
-sol = Solution()
+sol = Solution2()
 digits = "23"
 print(sol.letter_combinations(digits))  # Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
 
 
 
-class Solution2():
+class Solution():
     def __init__(self):
         self.res = []
         self.mapping = {
@@ -98,7 +98,7 @@ class Solution2():
         for letter in self.mapping[self.digits[idx]]:
             self.backtrack(idx + 1, letter)
 
-
+        
 
         
 
@@ -114,7 +114,9 @@ class Solution2():
         if not digits:
             return []
     
-        return self.helper(0,'')
+        self.backtrack(0,'')
+
+        return self.res
 
     
     
