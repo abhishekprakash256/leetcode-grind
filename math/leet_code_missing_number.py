@@ -27,5 +27,35 @@ Input: nums = [3,0,1]
 Output: 2
 
 
+#sum apparch 
+
+sum the first num from inclusiev array 
+
+the sum the array 
+
+subtract the both 
+
+
 
 """
+
+class Solution:
+	def missingNumber(self, nums) -> int:
+		"""
+		The function to find the missing value
+		"""
+
+		sum1,sum2 = 0 ,0 
+
+		for i in range(len(nums)+1):
+
+			sum1 +=i 
+
+		for j in nums:
+
+			sum2 +=j 
+
+		
+		return sum1 - sum2
+
+		
