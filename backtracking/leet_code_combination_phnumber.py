@@ -96,11 +96,7 @@ class Solution():
             return 
 
         for letter in self.mapping[self.digits[idx]]:
-            self.backtrack(idx + 1, letter)
-
-        
-
-        
+            self.backtrack(idx + 1, path + letter)
 
 
 
