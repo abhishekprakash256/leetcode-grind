@@ -53,9 +53,9 @@ def permute(self,nums)
 
 class Solution():
 
-    def __init(self):
+    def __init__(self):
         self.res = []
-        self.mapper = []
+        self.mapper = {}
 
 
     def bactrack(self,lst):
@@ -79,7 +79,7 @@ class Solution():
         self.nums = nums
 
         #make the hashmap
-        for i in nums:
+        for i in self.nums:
             self.mapper[i] = True
 
         self.bactrack(lst=[])
