@@ -50,15 +50,17 @@ def permute(self,nums)
 
 """
 
+nums = [1,2,3]
+
+
 
 class Solution():
 
     def __init__(self):
         self.res = []
-        self.mapper = {}
 
 
-    def bactrack(self,lst):
+    def backtrack(self,lst):
         """
         The backtrack helper function 
         """ 
@@ -67,10 +69,11 @@ class Solution():
             return
 
         for i in self.nums:
-            if i not in self.mapper:
-                self.backttrack(lst.append(i))
-        
-        
+
+            if i not in lst:
+                
+                self.backtrack(lst + [i])
+
 
     def permute(self,nums):
         """
@@ -79,9 +82,15 @@ class Solution():
         self.nums = nums
 
         #make the hashmap
-        for i in self.nums:
-            self.mapper[i] = True
 
-        self.bactrack(lst=[])
+        self.backtrack([])
 
         return self.res
+
+
+
+
+if __name__ == "__main__":
+    sol = Solution()
+    print(sol.permute(nums))
+
