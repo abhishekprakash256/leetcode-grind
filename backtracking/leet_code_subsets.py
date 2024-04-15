@@ -23,7 +23,7 @@ backtrack
 """
 
 
-class Solution:
+class Solution2:
 	def subsets(self,nums):
 		def backtrack(start, path):
 			result.append(path[:])
@@ -35,3 +35,42 @@ class Solution:
 		result = []
 		backtrack(0, [])
 		return result
+	
+
+class Solution():
+	def __init__(self):
+		self.res = []
+		self.lst = []
+
+	
+	def backtrack(self,path):
+		"""
+		The function to backtrack 
+		"""
+		if (path) >= len(self.nums):
+			self.res.append(self.lst.copy())
+			return 
+		
+		self.lst.append(self.nums[path])
+		self.backtrack(path+1)
+
+		self.lst.pop()
+		self.backtrack(path+1)
+	
+	def subsets(self,nums):
+		"""
+		The main function 
+		"""
+
+		self.nums = nums
+
+		self.backtrack(0)
+
+		return self.res
+
+        
+
+
+
+
+
