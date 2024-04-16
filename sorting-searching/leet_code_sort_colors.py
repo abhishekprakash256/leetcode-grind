@@ -99,13 +99,43 @@ i,m,r = 0 ,0 , len(nums) -1
 
 while m < r:
 
-	if nums[m] == 0 :
-		i +=1
-		m +=1
+	if nums[m] == 0 : 
+		nums[m], nums[i] = nums[i], nums[m]
+		m+=1
+		i+=1
+	
+	elif nums[m] == 2 :
+		nums[m], nums[r] = nums[r], nums[m]
+		m+=1
+		r-=1
 
-	elif nums[] 
-	
-	
+return nums
 
 
 """
+
+class Solution():
+	def sortColors(self,nums):
+		"""
+		To sort the colors in the nums 
+		"""
+
+		#vars 
+		i,m,r = 0,0, len(nums) - 1
+
+		#loop over 
+
+		while m < r : 
+
+			if nums[m] == 0 : 
+				nums[m], nums[i] = nums[i], nums[m]
+				i+=1
+				m +=1
+			
+			elif nums[m] == 2:
+				nums[m] , nums[r] == nums[r], nums[m]
+
+				m+=1
+				r -= 1
+			i+=1
+		return  nums
