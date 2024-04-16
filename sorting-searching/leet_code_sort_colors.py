@@ -51,7 +51,7 @@ for k in range(count2):
 """
 
 
-class Solution():
+class Solution2():
 
 	def sortColors(self,nums):
 		"""
@@ -88,3 +88,24 @@ class Solution():
 		return nums
 
 
+"""
+The algo using the swaaping techniue 
+
+use 3 pointers 
+
+i,m,r = 0 ,0 , len(nums) -1 
+
+#start the loop 
+
+while m < r:
+
+	if nums[m] == 0 :
+		i +=1
+		m +=1
+
+	elif nums[] 
+	
+	
+
+
+"""
