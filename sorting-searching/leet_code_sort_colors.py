@@ -153,27 +153,39 @@ return nums
 
 """
 
+
+nums = [2,0,2,1,1,0]
+nums2 = [2,0,1]
+
 class Solution():
-    def sortColors(self, nums):
-        """
-        To sort the colors in the nums 
-        """
+	def sortColors(self,nums):
+		"""
+		To sort the colors in the nums 
+		"""
 
-        # Vars 
-        i, m, r = 0, 0, len(nums) - 1
+		#vars 
+		i ,m ,r = 0,0, len(nums) - 1
 
-        # Loop over 
-        while m <= r:
-            if nums[m] == 0:
-                nums[m], nums[i] = nums[i], nums[m]
-                i += 1
-                m += 1  # Increment m since we know nums[m] is 0
+		#loop over 
 
-            elif nums[m] == 1:
-                m += 1  # No need to swap, move to the next element
+		while m <= r : 
 
-            else:  # nums[m] == 2
-                nums[m], nums[r] = nums[r], nums[m]
-                r -= 1  # Decrement r, but don't increment m since nums[m] might be 0 or 1
+			if nums[m] == 0: 
+				nums[m] , nums[i] = nums[i] , nums[m]
+				i +=1
+				m +=1
 
-        return nums
+			elif nums[m] == 1:
+				m += 1 
+
+			elif nums[m] == 2 : 
+				nums[m], nums[r] = nums[r] , nums[m]
+				r -=1
+
+
+		return nums
+
+
+if __name__ == "__main__":
+	sol = Solution()
+	print(sol.sortColors(nums2))
