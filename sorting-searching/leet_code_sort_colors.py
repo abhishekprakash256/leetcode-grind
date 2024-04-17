@@ -48,7 +48,46 @@ for j in range(count1):
 for k in range(count2):
 	nums.pop(0)
 	nums.append(2)
+
+
+#the optim approach 
+
+use three pointers 
+
+start the pointers with 
+
+i,m,r = 0, 0, len(nums) - 1 
+
+condn 
+ 
+[2,2,2,1,0]
+ 
+[0,1,0,1,2]
+
+
+[1,1,2,2,0]
+[0,1,2,2,1]
+
+if nums[m] == 0 or nums[r] == 0 : 
+	nums[m] , nums[i] = nums[i] , nums[m]
+	i +=1
+
+
+
+elif nums[m] = 2 : 
+	nums[m], nums[r] = nums[r] , nums[m]
+
+	r -=1
+
+m +=1
+	
+
 """
+
+
+
+
+
 
 
 class Solution2():
@@ -115,27 +154,26 @@ return nums
 """
 
 class Solution():
-	def sortColors(self,nums):
-		"""
-		To sort the colors in the nums 
-		"""
+    def sortColors(self, nums):
+        """
+        To sort the colors in the nums 
+        """
 
-		#vars 
-		i,m,r = 0,0, len(nums) - 1
+        # Vars 
+        i, m, r = 0, 0, len(nums) - 1
 
-		#loop over 
+        # Loop over 
+        while m <= r:
+            if nums[m] == 0:
+                nums[m], nums[i] = nums[i], nums[m]
+                i += 1
+                m += 1  # Increment m since we know nums[m] is 0
 
-		while m < r : 
+            elif nums[m] == 1:
+                m += 1  # No need to swap, move to the next element
 
-			if nums[m] == 0 : 
-				nums[m], nums[i] = nums[i], nums[m]
-				i+=1
-				m +=1
-			
-			elif nums[m] == 2:
-				nums[m] , nums[r] == nums[r], nums[m]
+            else:  # nums[m] == 2
+                nums[m], nums[r] = nums[r], nums[m]
+                r -= 1  # Decrement r, but don't increment m since nums[m] might be 0 or 1
 
-				m+=1
-				r -= 1
-			i+=1
-		return  nums
+        return nums
