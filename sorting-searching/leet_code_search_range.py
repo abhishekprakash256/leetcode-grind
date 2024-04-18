@@ -81,10 +81,12 @@ else:
 
 """
 
-nums = [5,7,7,8,8,10] 
-target = 8
+nums = [2,2] 
+target = 2
 
 
+
+#correct the code -------- 
 class Solution():
 
 	def searchRange(self,nums,target):
@@ -100,9 +102,15 @@ class Solution():
 		if len(nums) == 0 :
 			return res
 
-		l , r = 0 , len(nums) - 1 
-		found = False
+		if len(nums) == 1:
+			if nums[0] == target:
+				return [0,0]
+			else:
+				return [-1,-1]
 
+		l , r = 0 , len(nums) - 1 
+		
+		found = False
 
 		#start the loop 
 
@@ -121,23 +129,20 @@ class Solution():
 				r = m - 1
 
 
-
-
 		if not found:
 			return res
 
 		else:
 
-			print("in")
-
-			for i in range(m,len(nums) - 1):
+			for i in range(m,len(nums)):
 
 				if nums[m] != nums[i]:
 					res[1] = i - 1
 					break
 
-			for j in range(m,0,-1):
 
+			for j in range(m,0,-1):
+			
 				if nums[m] != nums[j]:
 					res[0] = j + 1
 					break
