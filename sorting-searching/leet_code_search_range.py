@@ -121,20 +121,26 @@ class Solution():
 				r = m - 1
 
 
+
+
 		if not found:
 			return res
 
 		else:
 
-			for i in range(m,len(nums) - 1 ):
+			print("in")
+
+			for i in range(m,len(nums) - 1):
 
 				if nums[m] != nums[i]:
 					res[1] = i - 1
+					break
 
-			for j in rrange(m,0,-1):
+			for j in range(m,0,-1):
 
-				if nums[m] != nums[i]:
-					res[0] = i + 1
+				if nums[m] != nums[j]:
+					res[0] = j + 1
+					break
 
 			return res
 
