@@ -50,3 +50,7 @@ class Solution():
                 r = mid - 1
 
         return l 
+
+
+#take a break and solve the question again 
+
