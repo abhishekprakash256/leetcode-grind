@@ -86,70 +86,44 @@ target = 2
 
 
 
-#correct the code -------- 
-class Solution():
+# soln 
 
-	def searchRange(self,nums,target):
-		"""
-		The function to find the target range in the nums array 
-		"""
+class Solution:
+    def searchRange(self, nums, target):
+        """
+        Find the target range in the nums array 
+        """
+        res = [-1, -1]
 
-		#make the res lst
-		res = [-1,-1]
+        # Base case
+        if not nums:
+            return res
 
+        # Binary search to find the leftmost index of the target
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = left + (right - left) // 2
+            if nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid
+        if nums[left] != target:
+            return res
+        res[0] = left
 
-		#base case
-		if len(nums) == 0 :
-			return res
+        # Binary search to find the rightmost index of the target
+        right = len(nums) - 1
+        while left < right:
+            mid = left + (right - left) // 2 + 1  # Adjusted mid calculation
+            if nums[mid] > target:
+                right = mid - 1
+            else:
+                left = mid
+        res[1] = right
 
-		if len(nums) == 1:
-			if nums[0] == target:
-				return [0,0]
-			else:
-				return [-1,-1]
-
-		l , r = 0 , len(nums) - 1 
-		
-		found = False
-
-		#start the loop 
-
-		while l <= r : 
-
-			m = (l + r ) // 2 
-
-			if nums[m] == target:
-				found = True
-				break
-
-			elif nums[m] < target:
-				l = m + 1 
-
-			else:
-				r = m - 1
+        return res
 
 
-		if not found:
-			return res
-
-		else:
-
-			for i in range(m,len(nums)):
-
-				if nums[m] != nums[i]:
-					res[1] = i - 1
-					break
-
-
-			for j in range(m,0,-1):
-			
-				if nums[m] != nums[j]:
-					res[0] = j + 1
-					break
-
-			return res
-
- 
 
 if __name__ == "__main__":
 
