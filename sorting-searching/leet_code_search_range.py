@@ -81,14 +81,17 @@ else:
 
 """
 
-nums = [2,2] 
-target = 2
+nums = [5,7,7,10,10] 
+target = 7
+
+nums2 = [2,2] 
+target2 = 2
 
 
 
 # soln 
 
-class Solution:
+class Solution2:
     def searchRange(self, nums, target):
         """
         Find the target range in the nums array 
@@ -122,6 +125,44 @@ class Solution:
         res[1] = right
 
         return res
+
+
+
+class Solution():
+
+	def searchRange(self,nums,target):
+		"""
+		The function to find the range in the given target
+		"""
+
+		res = [-1,-1]
+
+		if not nums:
+			return res
+		
+		l , r = 0, len(nums) - 1
+
+		while l <= r:
+
+			m = (l + r) // 2
+
+			if nums[m] < target:
+
+				l = m + 1
+
+			else:
+
+				r = m  - 1   
+
+		return m
+
+
+
+
+
+
+
+
 
 
 
