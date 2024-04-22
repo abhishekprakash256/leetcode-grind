@@ -36,4 +36,13 @@ def tree_printer(node):
 
 
 
-print(tree_printer(root))
+
+"""
+Capture the null values and do bfs 
+
+we implelnmt bfs using a stack iterative apprach 
+
+cath is to capture the null values 
+
+
+"""
