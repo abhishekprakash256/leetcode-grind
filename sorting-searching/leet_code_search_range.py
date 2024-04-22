@@ -131,54 +131,42 @@ class Solution2:
 
 class Solution():
 
-	def searchRange(self,nums,target):
-		"""
-		The function to find the range in the given target
-		"""
+    def searchRange(self, nums, target):
+        """
+        The function to find the range in the given target
+        """
 
-		res = [-1,-1]
+        res = [-1, -1]
 
-		if not nums:
-			return res
-		
-		l , r = 0, len(nums) - 1
+        if not nums:
+            return res
 
-		while l <= r:
+        l, r = 0, len(nums) - 1
 
-			m = (l + r) // 2
+        while l <= r:
+            m = (l + r) // 2
+            if nums[m] < target:
+                l = m + 1
+            else:
+                r = m - 1
 
-			if nums[m] < target:
+        if nums[l] != target:
+            return res
 
-				l = m + 1
+        res[0] = l
 
-			else:
+        l, r = 0, len(nums) - 1
 
-				r = m  - 1
+        while l <= r:
+            m = (l + r) // 2
+            if nums[m] <= target:  # Adjusted condition for finding the rightmost index
+                l = m + 1
+            else:
+                r = m - 1
 
-		if nums[l] != target:
-			return res
+        res[1] = r
 
-		res[0] = l 
-
-		l , r = 0, len(nums) - 1
-		
-		while l <= r:
-
-			m = (l + r + 1) // 2
-
-			if nums[m] < target:
-
-				l = m + 1
-
-			else:
-
-				r = m  - 1    
-
-		res[1] = r
-
-		return res
-
-
+        return res
 
 
 
@@ -187,7 +175,7 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	print(sol.searchRange(nums,target))
+	print(sol.searchRange(nums2,target2))
 
 
 
