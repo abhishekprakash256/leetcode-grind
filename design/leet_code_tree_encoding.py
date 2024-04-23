@@ -65,27 +65,36 @@ use a stack last in first out
 #write the BFS algo 
 
 class Solution:
-    def bfs_traversal(self, root):
-        """
-        Perform BFS traversal of the tree
-        """
-        if not root:
-            return []
+	def serialize(self, root):
+		"""
+		Perform BFS traversal of the tree
+		"""
+		if not root:
+			return []
 
-        queue = [root]
-        res = []
+		queue = [root]
+		res = []
 
-        while queue:
-            node = queue.pop(0)
+		while queue:
+			node = queue.pop(0)
 
-            if node:
-                res.append(node.val)
-                queue.append(node.left)
-                queue.append(node.right)
-            else:
-                res.append(None)  # Append None for None nodes
+			if node:
+				res.append(node.val)
+				queue.append(node.left)
+				queue.append(node.right)
+			else:
+				res.append(None)  # Append None for None nodes
 
-        return res
+		return res
+
+	def deserialize(self,res):
+		"""
+		The function to make the tree from list 
+		"""
+
+		pass
+
+
 
 
 #the main function 
