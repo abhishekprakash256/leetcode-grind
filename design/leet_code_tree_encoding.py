@@ -49,13 +49,17 @@ def tree_printer(node):
 
 
 """
-Capture the null values and do bfs 
+for reconstrauion we have 2 power nodes on the tree
 
-we implelnmt bfs using a stack iterative apprach 
+this can be used for height
 
-cath is to capture the null values 
+[1, 2, 3, None, None, 4, 5, None, None, None, None]
 
-use a stack last in first out 
+
+#base case 
+zero return None 
+
+
 
 
 
@@ -89,32 +93,11 @@ class Solution:
 
 	
 	def deserialize(self, data):
-		if not data:
-			return None
+		"""
+		The function for deserilization of the tree
+		"""
+		pass
 
-		# Create the root node with the first value
-		root = TreeNode(data[0])
-
-		# Create a queue to hold nodes during reconstruction
-		queue = [root]
-
-		i = 1
-		while queue and i < len(data):
-			node = queue.pop(0)
-
-			# Deserialize left child node
-			if data[i] is not None:
-				node.left = TreeNode(data[i])
-				queue.append(node.left)
-			i += 1
-
-			# Deserialize right child node
-			if i < len(data) and data[i] is not None:
-				node.right = TreeNode(data[i])
-				queue.append(node.right)
-			i += 1
-
-		return root
 
 
 
@@ -126,9 +109,11 @@ if __name__ == "__main__":
 
 	res = sol.serialize(root)
 
-	new_root = sol.deserialize(res)
+	print(res)
 
-	print(tree_printer(new_root))
+	#new_root = sol.deserialize(res)
+
+	#print(tree_printer(new_root))
 
 	#out = [1, 2, 3, None, None, 4, 5, None, None, None, None]
 	#expected = [1,2,3,null,null,4,5]
