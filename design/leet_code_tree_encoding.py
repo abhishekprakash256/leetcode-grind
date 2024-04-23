@@ -16,6 +16,18 @@ class TreeNode(object):
 
 #make the tree 
 
+
+"""
+The tree 
+
+	1
+   / \
+  2   3
+	 / \ 		
+	4   5  
+
+"""
+
 root = TreeNode(1)
 
 root.left = TreeNode(2)
@@ -60,20 +72,32 @@ class Solution():
 		"""
 
 		#base case no node
-		if not node:
+		if not root:
 			return None
 
 		#stack for the element
 		stack = [root]
 
+		#res lst
+		res = []
+
+		#loop start 
 		while stack:
 
 			node = stack.pop()
 
-			print(node.val)
+			#if node:
 
-			stack.append(node.right)
-			stack.append(node.left)
+			if node:
+				
+				res.append(node.val)
+
+				stack.append(node.right)
+				
+				stack.append(node.left)
+
+
+		return res
 
 
 
@@ -84,6 +108,8 @@ if __name__ == "__main__":
 
 	print(sol.bfs_traversal(root))
 
+	#out = [1,2,3,4,5]
+	#expected = [1,2,3,null,null,4,5]
 
 
 
