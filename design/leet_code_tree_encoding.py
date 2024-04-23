@@ -43,7 +43,47 @@ we implelnmt bfs using a stack iterative apprach
 
 cath is to capture the null values 
 
+use a stack last in first out 
+
+
 
 """
+
+
+#write the BFS algo 
+
+class Solution():
+
+	def bfs_traversal(self,root):
+		"""
+		The bfs traversal of the tree
+		"""
+
+		#base case no node
+		if not node:
+			return None
+
+		#stack for the element
+		stack = [root]
+
+		while stack:
+
+			node = stack.pop()
+
+			print(node.val)
+
+			stack.append(node.right)
+			stack.append(node.left)
+
+
+
+#the main function 
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	print(sol.bfs_traversal(root))
+
+
 
 
