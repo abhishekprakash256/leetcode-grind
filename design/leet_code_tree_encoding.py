@@ -64,41 +64,28 @@ use a stack last in first out
 
 #write the BFS algo 
 
-class Solution():
+class Solution:
+    def bfs_traversal(self, root):
+        """
+        Perform BFS traversal of the tree
+        """
+        if not root:
+            return []
 
-	def bfs_traversal(self,root):
-		"""
-		The bfs traversal of the tree
-		"""
+        queue = [root]
+        res = []
 
-		#base case no node
-		if not root:
-			return None
+        while queue:
+            node = queue.pop(0)
 
-		#stack for the element
-		stack = [root]
+            if node:
+                res.append(node.val)
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                res.append(None)  # Append None for None nodes
 
-		#res lst
-		res = []
-
-		#loop start 
-		while stack:
-
-			node = stack.pop()
-
-			#if node:
-
-			if node:
-				
-				res.append(node.val)
-
-				stack.append(node.right)
-				
-				stack.append(node.left)
-
-
-		return res
-
+        return res
 
 
 #the main function 
