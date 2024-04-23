@@ -62,7 +62,7 @@ use a stack last in first out
 """
 
 
-#write the BFS algo 
+#write this is wrong code
 
 class Solution:
 	def serialize(self, root):
@@ -87,12 +87,34 @@ class Solution:
 
 		return res
 
-	def deserialize(self,res):
-		"""
-		The function to make the tree from list 
-		"""
+	
+	def deserialize(self, data):
+		if not data:
+			return None
 
-		pass
+		# Create the root node with the first value
+		root = TreeNode(data[0])
+
+		# Create a queue to hold nodes during reconstruction
+		queue = [root]
+
+		i = 1
+		while queue and i < len(data):
+			node = queue.pop(0)
+
+			# Deserialize left child node
+			if data[i] is not None:
+				node.left = TreeNode(data[i])
+				queue.append(node.left)
+			i += 1
+
+			# Deserialize right child node
+			if i < len(data) and data[i] is not None:
+				node.right = TreeNode(data[i])
+				queue.append(node.right)
+			i += 1
+
+		return root
 
 
 
@@ -102,10 +124,15 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	print(sol.bfs_traversal(root))
+	res = sol.serialize(root)
 
-	#out = [1,2,3,4,5]
+	new_root = sol.deserialize(res)
+
+	print(tree_printer(new_root))
+
+	#out = [1, 2, 3, None, None, 4, 5, None, None, None, None]
 	#expected = [1,2,3,null,null,4,5]
+
 
 
 
