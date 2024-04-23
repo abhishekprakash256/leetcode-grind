@@ -69,35 +69,48 @@ zero return None
 #write this is wrong code
 
 class Solution:
-	def serialize(self, root):
-		"""
-		Perform BFS traversal of the tree
-		"""
-		if not root:
-			return []
+    def serialize(self, root):
+        if not root:
+            return []
 
-		queue = [root]
-		res = []
+        queue = [root]
+        res = []
 
-		while queue:
-			node = queue.pop(0)
+        while queue:
+            node = queue.pop(0)
 
-			if node:
-				res.append(node.val)
-				queue.append(node.left)
-				queue.append(node.right)
-			else:
-				res.append(None)  # Append None for None nodes
+            if node:
+                res.append(node.val)
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                res.append(None)
 
-		return res
+        return res
+    
 
-	
-	def deserialize(self, data):
-		"""
-		The function for deserilization of the tree
-		"""
-		pass
+    def deserialize(self, data):
+        if not data:
+            return None
+        
+        root = TreeNode(data[0])
+        queue = [root]
+        i = 1
 
+        while queue:
+            node = queue.pop(0)
+            
+            if i < len(data) and data[i] is not None:
+                node.left = TreeNode(data[i])
+                queue.append(node.left)
+            i += 1
+            
+            if i < len(data) and data[i] is not None:
+                node.right = TreeNode(data[i])
+                queue.append(node.right)
+            i += 1
+
+        return root
 
 
 
@@ -111,9 +124,9 @@ if __name__ == "__main__":
 
 	print(res)
 
-	#new_root = sol.deserialize(res)
+	new_root = sol.deserialize(res)
 
-	#print(tree_printer(new_root))
+	print(tree_printer(new_root))
 
 	#out = [1, 2, 3, None, None, 4, 5, None, None, None, None]
 	#expected = [1,2,3,null,null,4,5]
