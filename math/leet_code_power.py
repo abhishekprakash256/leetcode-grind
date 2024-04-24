@@ -22,7 +22,18 @@ class Solution():
 			val = 1
 
 			for i in range(n):
-				val = val*n
+				val = val*x
+
+
+		else:
+
+			val = 1 
+
+			for i in range(n):
+				val = 1/val*x
+
+		return val
+
 
 
 
