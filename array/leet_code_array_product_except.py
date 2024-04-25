@@ -34,7 +34,7 @@ algo --
 
 nums = [1,2,3,4]
 
-class Solution():
+class Solution2():
 
     def product_except_self(self,nums):
         n = len(nums)
@@ -62,7 +62,73 @@ class Solution():
     
 
 
+
+
+
+
+nums2 = [1,2,3,4]
+out = [24,24,8,6]
+
+
+class Solution():
+
+
+    def product_except_self(self,nums):
+        """
+        The product of the arrray except self
+        """
+
+        n = len(nums)
+        prefix = []
+        postfix = []
+        res = [1] * n
+
+
+        #calculate the prefix 
+        temp_val = 1
+
+        for i in range(n):
+
+            temp_val = nums[i]*temp_val
+            prefix.append(temp_val)
+
+
+        temp_val2 = 1
+
+        for i in  range(n-1,-1,-1):
+
+            temp_val2 = nums[i]*temp_val2
+            postfix.insert(0,temp_val2)
+
+
+        res[0] = postfix[1]
+        res[n-1] = prefix[n-2]
+
+        for i in range(1,n-2):
+
+            res[i] = prefix[i-1]* postfix[i+1]
+
+
+
+
+        return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
 
     sol = Solution()
     print(sol.product_except_self(nums))
+
