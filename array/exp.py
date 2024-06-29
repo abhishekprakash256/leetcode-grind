@@ -16,10 +16,6 @@ for i,a in enumerate(lst2):
 
 """
 
-strs = "dog"
+lst.append("_")
 
-strs = sorted(strs)
-
-strs = ''.join(strs)
-
-print(strs)
+print(lst)
