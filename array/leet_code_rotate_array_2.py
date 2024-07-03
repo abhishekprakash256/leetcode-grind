@@ -10,8 +10,7 @@ rotate 2 steps to the right: [6,7,1,2,3,4,5]
 rotate 3 steps to the right: [5,6,7,1,2,3,4]
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 Input: nums = [-1,-100,3,99], k = 2
 Output: [3,99,-1,-100]
 Explanation: 
@@ -54,9 +53,7 @@ elif k > len(nums):
 	l = 0 
 	r = len(nums) - k 
 
-=======
-=======
->>>>>>> bf60629 (code)
+
 Constraints:
 
     1 <= nums.length <= 105
@@ -72,7 +69,6 @@ Follow up:
 
 
 
-<<<<<<< HEAD
 """
 
 
@@ -152,10 +148,15 @@ if __name__ == "__main__":
 
 
 =======
+=======
+>>>>>>> bf60629 (code)
 
 
 
 
 """
 
+<<<<<<< HEAD
+>>>>>>> bf60629 (code)
+=======
 >>>>>>> bf60629 (code)
