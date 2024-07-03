@@ -69,15 +69,12 @@ Follow up:
 
 
 
-
-
-
 """
 
 
 
 class Solution:
-	def rotate_brurte_force(self, nums: List[int], k: int) -> None:
+	def rotate_brurte_force(self, nums, k: int) -> None:
 		"""
 		Do not return anything, modify nums in-place instead.
 		"""
@@ -88,7 +85,8 @@ class Solution:
 			nums.insert(0,res)
 
 
-	def rotate(self, nums: List[int], k: int) -> None:
+
+	def rotate(self, nums, k: int) -> None:
 		"""
 		Do not return anything, modify nums in-place instead.
 		"""
@@ -118,6 +116,17 @@ class Solution:
 			count +=1
 
 
+
+
+nums , k = [1,2,3,4,5,6,7] , 3
+
+
+if __name__ == "__main__":
+	sol = Solution()
+
+	res = sol.rotate(nums,k )
+
+	print(nums)
 
 
 
