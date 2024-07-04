@@ -110,7 +110,9 @@ class Solution:
 
 		length = len(nums) - 1
 
-		k = k % length  # In case k is larger than the length of nums
+		if length != 0 :
+
+			k = k % length  # In case k is larger than the length of nums
 
 		#rotate the whole array 
 		l1 = 0 
@@ -151,6 +153,7 @@ class Solution:
 
 
 nums , k = [1,2,3,4,5,6,7] , 3
+nums , k = [], 1 
 
 
 if __name__ == "__main__":
