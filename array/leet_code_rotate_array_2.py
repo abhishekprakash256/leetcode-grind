@@ -85,35 +85,13 @@ class Solution:
 			nums.insert(0,res)
 
 
-
-	def rotate(self, nums, k: int) -> None:
+	def rotate(self,nums,k):
 		"""
-		Do not return anything, modify nums in-place instead.
+		make a optimnal approach 
 		"""
 
-		#edge case
-		length = len(nums) 
-		l = 0 
-		count = 0 
-
-		if k < length:
-
-			r = length - k  + 1
-
-
-		elif k > length:
-			res = length % k
-			r = length - res
-
-		print(l,r)
-
-
-		while r < length:
-
-			nums[l], nums[r] = nums[r] , nums[l]
-			l +=1 
-			r +=1
-			count +=1
+		
+			
 
 
 
