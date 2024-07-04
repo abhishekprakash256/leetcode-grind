@@ -89,8 +89,9 @@ class Solution:
 		"""
 		make a optimnal approach 
 		"""
-
 		
+
+
 			
 
 
