@@ -85,14 +85,67 @@ class Solution:
 			nums.insert(0,res)
 
 
+
+	#correct code
+	def reverse_array(self,l,r):
+		"""
+		The function to reverse the array 
+		"""
+		 
+
+		while l < r:
+
+			nums[l] , nums[r] = nums[r] , nums[l]
+			r -= 1
+			l += 1
+
+
+
+
+
 	def rotate(self,nums,k):
 		"""
 		make a optimnal approach 
 		"""
+
+		length = len(nums) - 1
+
+		k = k % length  # In case k is larger than the length of nums
+
+		#rotate the whole array 
+		l1 = 0 
+		r1 = length
+
+		self.reverse_array(l1, r1)
+
+
+		#rotate the left part 
+
+		l2 = 0 
+		r2 = k - 1 
+
+		self.reverse_array(l2,r2)
+
+
+		#rotate the right part 
+
+		l3 = k
+		r3 = length
 		
 
+		self.reverse_array(l3,r3)
 
-			
+
+
+
+
+
+
+
+
+
+
+
 
 
 
