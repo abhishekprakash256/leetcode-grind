@@ -54,6 +54,9 @@ return the unique number of the elements
 
 
 
+2. using two pointer 
+
+
 
 
 
@@ -66,7 +69,7 @@ return the unique number of the elements
 #test case 
 
 #edge case 
-nums0 = []
+nums0 = [1,1,2]
 out0 = 0
 
 nums1 = [1,1,1,1,3]
@@ -128,6 +131,34 @@ class Solution:
 
 		return count
 
+
+	def removeDuplicates(self, nums) -> int:
+		"""
+		The function to remove the repeated elements and return the number of unique elements.
+		works the code and passsed in leet code 
+		"""
+
+		# Edge case: if the list is empty, return 0
+		if len(nums) == 0:
+			return 0
+
+		l, r = 0, 1
+
+		while r < len(nums):
+			if nums[l] == nums[r]:
+				nums.pop(r)
+			else:
+				l += 1
+				r += 1
+
+		return len(nums)
+
+
+if __name__ == "__main__":
+	sol = Solution()
+
+	res = print(sol.removeDuplicates(nums0))
+	print(res)
 
 
 
