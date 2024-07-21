@@ -154,11 +154,25 @@ class Solution:
 		return len(nums)
 
 
+	def removeDuplicates_optim(self, nums) -> int:
+		"""
+		from top soln in leetcode
+		"""
+
+		t = 1
+		for i in range(1, len(nums)):
+		    if nums[i - 1] != nums[i]:
+		        nums[t] = nums[i]
+		        t += 1
+
+		return t
+
+
 if __name__ == "__main__":
 	sol = Solution()
 
-	res = print(sol.removeDuplicates(nums0))
-	print(res)
+	res = print(sol.removeDuplicates_optim(nums2))
+	print(nums2)
 
 
 
