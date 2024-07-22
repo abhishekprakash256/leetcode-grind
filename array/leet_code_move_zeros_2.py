@@ -15,11 +15,84 @@ Output: [0]
 
 
 """
-#constarints 
+#constraints 
 
 len(nums) == 0 or len(nums) == 1
 	return empty or nums 
 
 
 
+1.Brute force 
+
+- start the loop see 
+- pop and count 
+- append as per counter 
+
+
+
+
 """
+
+
+
+
+class Solution:
+	def moveZeroes_bruteforce(self, nums) -> None:
+		"""
+		The function to modify the zeros in the nums 
+		#the code passes in leetcode 
+		"""
+
+		#base case 
+		if len(nums) == 0 :
+			nums = nums
+
+		if len(nums) == 1 :
+			nums = nums
+
+		#iter and counter
+		count , i = 0 , 0 
+
+		#count the number of zeros 
+
+		while i < len(nums):
+
+			if nums[i] == 0:
+
+				nums.pop(i)
+				count += 1 
+
+			else:
+
+				i += 1 
+
+
+		#add the zeros
+
+		for a in range(0,count):
+
+			nums.append(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
