@@ -30,11 +30,80 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 
 """
 
-1. brute force 
--  
+approch
+- two pointer 
+- if len(prices) == 0:
+	return 0 
+
+profit = 0 
+
+- l , r = 0 , 1
+
+- if prices[l] >= prices[r]:
+	r += 1
+	l += 1
+
+- else:
+	profit = max(profit , (prices[r] - pricesp[l]))
+	r += 1
+
 
 
 
 
 
 """
+
+
+class Solution:
+	def maxProfit(self, prices) -> int:
+		"""
+		The functiont to find the max profit from the stocks selling 
+		passes in leet code
+		"""
+
+		#base case 
+		if len(prices) == 0 :
+			return 0
+
+
+		#poiinter imitilization 
+		l , profit , r = 0, 0, 1 
+
+
+		#start the loop 
+
+		while r < len(prices):
+
+			#calc the profit
+			if prices[l] >= prices[r]:
+				l = r 
+				r += 1
+
+
+			else:
+				profit = max(profit, (prices[r] - prices[l]))
+				r += 1
+
+
+		return profit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
