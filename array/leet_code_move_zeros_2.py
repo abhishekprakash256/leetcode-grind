@@ -75,6 +75,11 @@ class Solution:
 			
 
 	def moveZeroes(self, nums: List[int]) -> None:
+		"""
+		The most effectient code in leetcode
+
+		"""
+
 		left = 0
 
 		for right in range(len(nums)):
