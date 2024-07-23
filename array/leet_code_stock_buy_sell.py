@@ -62,7 +62,7 @@ class Solution:
 		passes in leet code
 		"""
 
-		#base case 
+		#base case
 		if len(prices) == 0 :
 			return 0
 
