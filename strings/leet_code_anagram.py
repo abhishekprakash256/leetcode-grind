@@ -36,7 +36,7 @@ else false
 
 
 class Solution:
-	def isAnagram_bruteforce(self, s: str, t: str) -> bool:
+	def isAnagram(self, s: str, t: str) -> bool:
 		"""
 		The function to check for the anagram
 		leetcode passed
@@ -79,11 +79,6 @@ class Solution:
 			return False
 
 
-	def isAnagram(self, s: str, t: str) -> bool:
-		"""
-		The function to check for the anagram
-		"""
-		
 
 
 
