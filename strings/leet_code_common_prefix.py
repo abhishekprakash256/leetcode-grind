@@ -45,11 +45,15 @@ common_prefix = ""
 
 """
 
+strs = ["flower","flow","flight"]
+
+
 
 class Solution:
 	def longestCommonPrefix(self, strs):
 		"""
 		The function to find the longes common prefix 
+		incorrect code
 		"""
 
 		#base case 
@@ -62,9 +66,10 @@ class Solution:
 
 		for i in range(1,len(strs)):
 
-			length = min(len(strs[i]),common_prefix)
+			length = min(len(strs[i]),len(common_prefix))
 
 			for idx in range(0,length):
+
 
 				if common_prefix[idx] != strs[i][idx]:
 					common_prefix = common_prefix[0:idx]
@@ -73,6 +78,12 @@ class Solution:
 		return common_prefix
 
 
+
+
+
+sol = Solution()
+
+print(sol.longestCommonPrefix(strs))
 
 
 
