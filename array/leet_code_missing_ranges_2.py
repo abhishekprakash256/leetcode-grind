@@ -31,6 +31,8 @@ Explanation: There are no missing ranges since there are no missing numbers.
 
 """
 ideas 
+1. 
+
 
 
 
