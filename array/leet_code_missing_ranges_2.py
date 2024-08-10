@@ -10,6 +10,8 @@ Return the shortest sorted list of ranges that exactly covers all the missing nu
 
 """
 
+
+
 """
 
 Input: nums = [0,1,3,50,75], lower = 0, upper = 99
@@ -30,12 +32,84 @@ Explanation: There are no missing ranges since there are no missing numbers.
 
 
 """
-ideas 
-1. 
+Ideas
 
+1. Add the two start and the last value at the value on list
 
-
-
-
+2. Use the two pointers, if the diffrence is less than one
 
 """
+
+
+
+
+class Solution:
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[List[int]]:
+        missing_ranges = []
+
+        last_seen = lower-1
+        nums.append(upper+1)
+
+        for i in range(len(nums)):
+            if nums[i] - last_seen > 1:
+                missing_ranges.append([last_seen+1, nums[i]-1])
+            last_seen = nums[i]
+
+        return missing_ranges
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
