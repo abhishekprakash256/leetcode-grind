@@ -21,6 +21,7 @@ class Solution:
 	def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
 		"""
 		The function to find if two nodes are shared in the two linked list
+		leetcode passed
 
 		"""
 
@@ -47,6 +48,32 @@ class Solution:
 
 
 		return ptr_a
+
+
+	def getIntersectionNode_test(self,headA,headB):
+
+
+		p_a = headA
+		p_b = headB
+
+		#start the loop 
+
+		while p_a != p_b:
+
+			if p_a:
+				p_a = p_a.next
+			else:
+				p_a = headB
+
+
+			if p_b:
+				p_b = p_b.next
+
+			else:
+				p_b = headA
+
+		return p_a
+
 
 
 
