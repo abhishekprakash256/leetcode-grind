@@ -92,7 +92,6 @@ class Solution:
 
 
 
-
 	def isSymmetric(self, node: Optional[TreeNode]) -> bool:
 
 		#edge case
