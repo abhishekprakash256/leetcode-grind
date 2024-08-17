@@ -35,6 +35,7 @@ class Solution():
 	def bfs_traversal(self,node):
 		"""
 		The bfs traversal of the tree
+		the code works and tested
 		"""
 
 		#base case 
