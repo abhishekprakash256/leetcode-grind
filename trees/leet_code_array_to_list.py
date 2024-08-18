@@ -56,7 +56,7 @@ class Solution():
 		The helper function to make the tree
 		"""
 
-		while l > r:
+		if l > r:
 			return None
 
 		#calc the middle
@@ -90,6 +90,43 @@ class Solution():
 
 		#recuriosn inilization
 		return self.helper(nums,l,r)
+
+
+	def sortedArrayToBST_nested(self,nums):
+		"""
+		The nested fucntion to convert the array to bst
+		passed leet code
+		"""
+
+		#base case
+		if len(nums) == 1:
+			return TreeNode(nums[0])
+
+
+		def helper(l,r):
+			"""
+			The helper function to make the subtree
+			"""
+
+			if l > r:
+				return None
+
+
+			m = (l + r) // 2 
+
+			node = TreeNode(nums[m])
+
+			node.left = helper(l,m-1)
+			node.right = helper(m+1,r)
+
+			return node
+
+		return helper(0,len(nums)-1)
+
+
+
+
+
 
 
 
