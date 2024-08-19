@@ -57,7 +57,7 @@ appach
 class Solution():
 	def bfs(self,node):
 		"""
-		The functoin to make the bfs 
+		The function to make the bfs 
 		"""
 		#base case
 		if not node:
@@ -79,14 +79,134 @@ class Solution():
 				queue.append(curr_node.right)
 		
 		return node_lst
+	
+	
+	def bfs_list(self,node):
+		"""
+		The function to make the bfs 
+		"""
+		#base case
+		if not node:
+			return []
+	
+		#vars
+		queue = [node]
+		node_lst = []
+
+		while queue:
+
+			temp_lst = []
+
+			for i in range(len(queue)):
+
+				curr_node = queue.pop(0)
+
+				temp_lst.append(curr_node.val)
+
+				if curr_node.left:
+					queue.append(curr_node.left)
+				
+				if curr_node.right:
+					queue.append(curr_node.right)
+			
+			node_lst.append(temp_lst)
+		
+		return node_lst
+
+
+	def bfs_reversed_list(self,node):
+		"""
+		The function to make the bfs 
+		The code passed leet code 
+		"""
+		#base case
+		if not node:
+			return []
+	
+		#vars
+		queue = [node]
+		node_lst = []
+		flip = True
+
+		while queue:
+
+			temp_lst = []
+
+			for _ in range(len(queue)):
+
+				curr_node = queue.pop(0)
+
+				temp_lst.append(curr_node.val)
+
+				if curr_node.left:
+					queue.append(curr_node.left)
+				
+				if curr_node.right:
+					queue.append(curr_node.right)
+
+			
+			if not flip:
+				temp_lst.reverse()
+				flip = True
+
+			else:
+				flip = False
+
+
+			node_lst.append(temp_lst)
+		
+		return node_lst
 
 
 
+	def zigzagLevelOrder(self, node: Optional[TreeNode]) -> List[List[int]]:
+		"""
+		The function to make the bfs 
+		"""
+		#base case
+		if not node:
+			return []
+	
+		#vars
+		queue = [node]
+		node_lst = []
+		flip = True
+
+		while queue:
+
+			temp_lst = []
+
+			for _ in range(len(queue)):
+
+				curr_node = queue.pop(0)
+
+				temp_lst.append(curr_node.val)
+
+				if curr_node.left:
+					queue.append(curr_node.left)
+				
+				if curr_node.right:
+					queue.append(curr_node.right)
+
+			
+			if not flip:
+				temp_lst.reverse()
+				flip = True
+
+			else:
+				flip = False
+
+
+			node_lst.append(temp_lst)
+		
+		return node_lst
 
 if __name__ == "__main__":
 
 	sol = Solution()
 	print(sol.bfs(root))
+	print(sol.bfs_list(root))
+	print(sol.bfs_reversed_list(root))
 
 
 	
