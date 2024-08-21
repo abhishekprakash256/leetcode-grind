@@ -28,24 +28,23 @@ approach -
 
 
 """
-
+from collections import deque 
 
 class Solution:
-	def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-		"""
-		The function to make the tree recursively using the inorder and preorder lists
-		"""
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
 
-		#base case 
+        preorder = deque(preorder)
 
+        def build(preorder, inorder):
+            if inorder:
+                idx = inorder.index(preorder.popleft())
+                root = TreeNode(inorder[idx])
 
-		root = TreeNode(preorder[0])
-		mid = inorder.index(preorder[0])
+                root.left = build(preorder, inorder[:idx])
+                root.right = build(preorder, inorder[idx+1:])
 
-		#make the tree recursively
+                return root
 
-		root.left = buildTree(inorder[:,mid],preorder[1:mid+1])
-		root.right = buildTree(preorder[])
-
+        return build(preorder, inorder)
 
 
