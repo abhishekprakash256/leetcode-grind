@@ -32,6 +32,9 @@ from collections import deque
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        """
+        code passses the leetcode
+        """
 
         preorder = deque(preorder)
 
