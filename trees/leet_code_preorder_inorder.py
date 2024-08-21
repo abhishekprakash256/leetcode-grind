@@ -44,7 +44,7 @@ class Solution:
 
 		#make the tree recursively
 
-		root.left = buildTree(preorder[mid],inorder[m+1,len(inorder) - 1])
+		root.left = buildTree(inorder[:,mid],preorder[1:mid+1])
 		root.right = buildTree(preorder[])
 
 
