@@ -38,7 +38,7 @@ class Solution():
 
 		if node:
 
-			self.helper_dfs(node.left,node_lst):
+			self.helper_dfs(node.left,node_lst)
 
 			node_lst.append(node.val)
 
