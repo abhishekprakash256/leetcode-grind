@@ -97,6 +97,7 @@ class Solution():
 				level.append(curr_node.val)
 
 				if curr_node.left:
+					
 					queue.append(curr_node.left)
 
 				if curr_node.right:
