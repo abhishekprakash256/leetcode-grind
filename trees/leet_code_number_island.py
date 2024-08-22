@@ -17,3 +17,49 @@ mantain a counter for island
 
 
 """
+
+
+
+class Solution:
+
+	def dfs(self,i,j,grid):
+		"""
+		The function to do the dfs serach
+		"""
+		#get the length and width
+		length = len(grid[0])
+		width = len(grid)
+
+		if i < 0 or j < 0 or i >= width or j >= length or grid[i][j] == "0":
+			return None
+
+		# Mark the current cell as visited
+		grid[i][j] = "0"
+
+		self.dfs(i,j-1,grid)
+		self.dfs(i,j+1,grid)
+		self.dfs(i-1,j,grid)
+		self.dfs(i+1,j,grid)
+
+
+	def numIslands(self, grid) -> int:
+		"""
+		The function to find the number of islands
+		The code passes leetcode
+		"""
+		
+		#get the length and width
+		length = len(grid[0])
+		width = len(grid)
+		count_island = 0 
+
+		for i in range(width):
+			for j in range(length):
+
+				if grid[i][j] == "1":
+					count_island +=1
+				
+				self.dfs(i,j,grid)
+		
+		return count_island
+	
