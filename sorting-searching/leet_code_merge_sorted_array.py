@@ -64,6 +64,10 @@ while i + j < m+n:
 return res_lst
 
 
+
+
+
+
 """
 
 
@@ -96,7 +100,10 @@ class Solution_inc:
         return res_lst
     
 
-class Solution:
+
+
+
+class Solution_optim():
     def merge(self, nums1: list, m: int, nums2: list, n: int) -> None:
         """
         Do not return anything, modify nums1 in-place instead.
@@ -113,3 +120,19 @@ class Solution:
                 nums1[k] = nums2[j]
                 j -= 1
             k -= 1
+
+"""
+The problem has to be done in place 
+"""
+
+class Solution():
+    def merge(self,nums1,m,nums2,n):
+        """
+        The function to merge the two soreted array in place 
+        """
+
+        for i in range(n):
+            nums1[m+i] = nums2[i]
+        
+
+        nums1.sort()
