@@ -51,7 +51,7 @@ helper(nums)
 
 
 class Solution:
-	def helper(self, nums: List[int], i: int) -> int:
+	def helper_not_optim(self, nums: List[int], i: int) -> int:
 		"""
 		The helper function for the robber.
 		It uses recursion to decide whether to rob house i or not.
@@ -61,7 +61,7 @@ class Solution:
 			return 0
 
 		# Recurrence relation: rob current house and skip the next, or skip this house
-		return max(nums[i] + self.helper(nums, i - 2), self.helper(nums, i - 1))
+		return max(nums[i] + self.helper_not_optim(nums, i - 2), self.helper_not_optim(nums, i - 1))
 
 	def rob_not_optimal(self, nums: List[int]) -> int:
 		# Base cases
@@ -77,7 +77,51 @@ class Solution:
 		n = len(nums)
 
 		# Call the helper function starting from the last house (n-1)
-		return self.helper(nums, n - 1)
+		return self.helper_not_optim(nums, n - 1)
+		
+
+
+class Solution:
+	def helper(self,nums,i,memo):
+		"""
+		The helper function 
+		"""
+
+		#base case 
+		if i < 0:
+			return 0
+
+		if i in memo:
+			return memo[i]
+
+		res = max(nums[i] + self.helper(nums,i-2,memo), self.helper(nums,i-1,memo))
+		
+		memo[i] = res
+		
+		return res
+
+
+
+	def rob(self,nums):
+		"""
+		The main funciton 
+		accepted in leet code
+		"""
+
+		if len(nums) == 1:
+			return nums[0]
+
+		if len(nums) == 2:
+			return max(nums[0],nums[1])
+
+		memo = {}
+		n = len(nums)
+
+		self.helper(nums,n-1,memo)
+
+		return memo[n-1]
+
+
 
 	 
 
