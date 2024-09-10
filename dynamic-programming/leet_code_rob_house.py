@@ -51,33 +51,35 @@ helper(nums)
 
 
 class Solution:
-    def helper(self, nums: List[int], i: int) -> int:
-        """
-        The helper function for the robber.
-        It uses recursion to decide whether to rob house i or not.
-        """
-        # Base case: when index i is out of bounds
-        if i < 0:
-            return 0
+	def helper(self, nums: List[int], i: int) -> int:
+		"""
+		The helper function for the robber.
+		It uses recursion to decide whether to rob house i or not.
+		"""
+		# Base case: when index i is out of bounds
+		if i < 0:
+			return 0
 
-        # Recurrence relation: rob current house and skip the next, or skip this house
-        return max(nums[i] + self.helper(nums, i - 2), self.helper(nums, i - 1))
+		# Recurrence relation: rob current house and skip the next, or skip this house
+		return max(nums[i] + self.helper(nums, i - 2), self.helper(nums, i - 1))
 
-    def rob(self, nums: List[int]) -> int:
-        # Base cases
-        if len(nums) == 0:
-            return 0
+	def rob_not_optimal(self, nums: List[int]) -> int:
+		# Base cases
+		if len(nums) == 0:
+			return 0
 
-        if len(nums) == 1:
-            return nums[0]
+		if len(nums) == 1:
+			return nums[0]
 
-        if len(nums) == 2:
-            return max(nums[0], nums[1])
+		if len(nums) == 2:
+			return max(nums[0], nums[1])
 
-        n = len(nums)
+		n = len(nums)
 
-        # Call the helper function starting from the last house (n-1)
-        return self.helper(nums, n - 1)
+		# Call the helper function starting from the last house (n-1)
+		return self.helper(nums, n - 1)
+
+	 
 
 
 
