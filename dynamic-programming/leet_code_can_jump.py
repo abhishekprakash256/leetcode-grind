@@ -46,4 +46,23 @@ class Solution2():
             gas -= 1
         
         return True
-        
+
+
+class Solution3:
+    def canJump(self, nums: List[int]) -> bool:
+        """
+        DP solution to determine if you can reach the last index
+        Time limit exceeded 
+        """
+        n = len(nums)
+        dp = [False] * n  # Create a DP array to track if each index is reachable
+        dp[0] = True  # The first index is always reachable
+
+        # Iterate through each index and check if it's reachable
+        for i in range(1, n):
+            for j in range(i):
+                if dp[j] and j + nums[j] >= i:  # If j is reachable and we can jump to i
+                    dp[i] = True
+                    break  # No need to check further if we can already reach i
+
+        return dp[-1]  # Return True if the last index is reachable, False otherwise
