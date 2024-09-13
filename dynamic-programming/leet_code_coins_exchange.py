@@ -123,6 +123,7 @@ class Solution():
     def coinChange(self,coins,amount):
         """
         The main function to calculate change
+        Doesn't work leetcode
         """
 
         #constarints 

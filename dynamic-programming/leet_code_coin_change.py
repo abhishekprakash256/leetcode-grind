@@ -74,10 +74,37 @@ return res
 
 
 
-class Solution():
+class Solution:
+    def coinChange(self, coins: list[int], amount: int) -> int:
+        # Initialize memoization dictionary
+        memo = {}
 
-	def coinChange_brute_force(self,coins,amount):
-		"""
-		The function to calculate the least number of the coin that can be given out 
-		"""
-		pass
+        # Call the recursive function with memoization
+        return self.helper(coins, amount, memo)
+
+    # Helper function to handle recursion and memoization
+    def helper(self, coins: list[int], rem: int, memo: dict) -> int:
+        # If remaining amount is negative, return -1 (invalid)
+        if rem < 0:
+            return -1
+        # If remaining amount is 0, no coins are needed
+        if rem == 0:
+            return 0
+        # If result is already computed for rem, return it from memo
+        if rem in memo:
+            return memo[rem]
+
+        # Initialize the minimum cost to infinity
+        min_cost = float('inf')
+
+        # Try every coin and check the result of the subproblem (rem - coin)
+        for coin in coins:
+            res = self.helper(coins, rem - coin, memo)
+            if res != -1:
+                min_cost = min(min_cost, res + 1)
+
+        # Store the computed result in memo (either the minimum cost or -1 if no solution)
+        memo[rem] = min_cost if min_cost != float('inf') else -1
+        return memo[rem]
+
+		
