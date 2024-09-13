@@ -77,6 +77,7 @@ return res
 class Solution:
     def coinChange(self, coins: list[int], amount: int) -> int:
         # Initialize memoization dictionary
+        #passes the leetcode
         memo = {}
 
         # Call the recursive function with memoization
@@ -108,3 +109,21 @@ class Solution:
         return memo[rem]
 
 		
+class Solution2:
+    def coinChange(self, coins: list[int], amount: int) -> int:
+        """
+        passes the leetcode and fasster
+        """
+        # Initialize a dp array with amount + 1 as default value (amount + 1 is greater than any possible answer)
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0  # Base case: 0 coins are needed to make amount 0
+
+        # Iterate through each amount from 1 to the target amount
+        for i in range(1, amount + 1):
+            # Check each coin denomination
+            for coin in coins:
+                if i - coin >= 0:
+                    dp[i] = min(dp[i], dp[i - coin] + 1)  # Find the minimum number of coins
+
+        # If dp[amount] is still set to the initial value, return -1 (means it's impossible)
+        return dp[amount] if dp[amount] != amount + 1 else -1
