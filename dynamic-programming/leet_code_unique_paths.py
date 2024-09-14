@@ -125,6 +125,7 @@ class Solution_dp:
         # Initialize the first row and first column to 1
         for i in range(m):
             dp[i][0] = 1  # There's only one way to move down the first column
+            
         for j in range(n):
             dp[0][j] = 1  # There's only one way to move right in the first row
 
