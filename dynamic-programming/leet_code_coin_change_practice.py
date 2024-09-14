@@ -78,7 +78,7 @@ class Solution2():
 
 
 
-class Solution:
+class Solution3:
 
     def __init__(self):
         self.memo = {}  # Memoization dictionary to store results for subproblems.
@@ -123,6 +123,24 @@ class Solution:
 
         # If the result is infinity, it means it's impossible to make the amount.
         return result if result != float('inf') else -1
+
+
+
+class Solution:
+    def coinChange(self, coins, amount):
+    	#fastest solution accepted in leetcode
+        # Create a DP array to store the minimum coins for each amount.
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0  # Base case: 0 coins are needed to make amount 0.
+        
+        # Loop over each coin and compute the minimum coins for each amount.
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+        
+        # If dp[amount] is still infinity, return -1 (not possible to make amount).
+        return dp[amount] if dp[amount] != float('inf') else -1
+
 
 		
 
