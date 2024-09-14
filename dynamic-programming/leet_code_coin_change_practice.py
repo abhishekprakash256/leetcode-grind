@@ -24,7 +24,7 @@ Output: -1
 
 
 
-class Solution():
+class Solution2():
 
 	def helper_brute_force(self, rem, coins, count, lst):
 		"""
@@ -78,7 +78,57 @@ class Solution():
 
 
 
-	def helper()
+class Solution:
+
+    def __init__(self):
+        self.memo = {}  # Memoization dictionary to store results for subproblems.
+
+    def helper(self, rem, coins):
+        """
+        The helper function to find the minimum number of coins using memoization.
+        """
+        # Base case: if remaining amount is less than 0, return an impossible large value.
+        if rem < 0:
+            return float('inf')  # Return infinity to signify that it's not possible.
+
+        # Base case: if remaining amount is 0, no more coins are needed.
+        if rem == 0:
+            return 0
+
+        # If we have already computed the result for this amount, return it.
+        if rem in self.memo:
+            return self.memo[rem]
+
+        # Try each coin and take the minimum number of coins needed.
+        min_coins = float('inf')
+        for coin in coins:
+            result = self.helper(rem - coin, coins)
+            min_coins = min(min_coins, result + 1)  # Add 1 to include the current coin.
+            self.memo[rem] = min_coins
+
+        # Memoize the result for the current remaining amount.
+        
+        return min_coins
+
+    def coinChange(self, coins, amount):
+        """
+        passed leetcode
+        The main function to find the minimum number of coins to make up the amount.
+        """
+        if amount == 0:
+            return 0
+
+        # Compute the result using the helper function.
+        result = self.helper(amount, coins)
+
+        # If the result is infinity, it means it's impossible to make the amount.
+        return result if result != float('inf') else -1
+
+		
+
+
+
+
 
 
 
