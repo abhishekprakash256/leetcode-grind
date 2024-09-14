@@ -127,3 +127,8 @@ class Solution2:
 
         # If dp[amount] is still set to the initial value, return -1 (means it's impossible)
         return dp[amount] if dp[amount] != amount + 1 else -1
+
+
+
+
+
