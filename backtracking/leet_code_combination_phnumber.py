@@ -70,7 +70,7 @@ print(sol.letter_combinations(digits))  # Output: ["ad", "ae", "af", "bd", "be",
 
 
 
-class Solution():
+class Solution():  
     def __init__(self):
         self.res = []
         self.mapping = {
