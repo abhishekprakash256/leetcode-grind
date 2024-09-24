@@ -76,7 +76,16 @@ class Solution():
 		return None
 
 
-	
+	def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+		"""
+		The funtion to mereg the sorted array in place 
+		return None 
+		"""
+
+		pass
+
+
+
 
 
 
