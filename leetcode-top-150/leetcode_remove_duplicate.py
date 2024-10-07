@@ -40,6 +40,7 @@ class Solution:
 	def removeDuplicates(self, nums: List[int]) -> int:
 		"""
 		The function to removee duplicates in places in a sorted array 
+		passes leetcode
 
 		"""
 
@@ -65,3 +66,16 @@ class Solution:
 			length = len(nums)
 
 		return length
+
+
+	def removeDuplicates_optimal(self, nums: List[int]) -> int:
+		l = 1
+		
+		for r in range(1,len(nums)):
+			if nums[r] != nums[r-1]:
+				nums[l] = nums[r]
+				l += 1
+				
+		return l
+
+
