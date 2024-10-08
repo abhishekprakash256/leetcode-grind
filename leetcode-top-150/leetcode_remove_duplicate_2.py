@@ -74,6 +74,7 @@ class Solution(object):
 		"""
 		:type nums: List[int]
 		:rtype: int
+		wrong code 
 		"""
 		
 		#base case 
@@ -83,7 +84,7 @@ class Solution(object):
 
 		#vars 
 		temp = nums[0]
-		ptr = nums[1]
+		ptr = 1
 		seen, total = False, 0  
 
 		while ptr < len(nums):
