@@ -37,7 +37,73 @@ and two pointer traversal
 
 Input: nums = [1,1,1,2,2,3]
 
+out = [1,1,2,2,3,_]
 
+brute force approach -- 
+
+using two pointer 
+start from 1 position 
+move one postion at once 
+
+
+temp = nusm[0]
+ptr = nums[1]
+
+if temp == nums[ptr] and count != 2:
+	count +=2 
+
+elif temp == nums[ptr] and count == 2 : 
+	count = 0 
+
+
+else :
+	count += 1 
+	temp = nums[ptr]
+
+r += 1
+temp = nums[r]
+total = total + count 
+
+return total
 
 
 """
+
+class Solution(object):
+	def removeDuplicates(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		
+		#base case 
+		if len(nums) == 1:
+			return 1
+
+
+		#vars 
+		temp = nums[0]
+		ptr = nums[1]
+		seen, total = False, 0  
+
+		while ptr < len(nums):
+
+			#star the condn
+
+			if nums[ptr] == temp and not seen:
+				total +=2 
+				seen = True
+
+
+			else:
+				total +=1
+				seen = False
+
+			ptr +=1
+			temp = nums[ptr]
+
+		return total
+
+
+
+
