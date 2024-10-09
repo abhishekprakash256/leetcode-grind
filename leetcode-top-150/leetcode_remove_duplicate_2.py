@@ -70,40 +70,64 @@ return total
 """
 
 class Solution(object):
-	def removeDuplicates(self, nums):
+	def removeDuplicates_wrong(self, nums):
 		"""
 		:type nums: List[int]
 		:rtype: int
 		wrong code 
 		"""
-		
+
 		#base case 
+
 		if len(nums) == 1:
 			return 1
 
 
-		#vars 
-		temp = nums[0]
-		ptr = 1
-		seen, total = False, 0  
+		#make the ptrs 
+		seen = False 
+		l , r = 0,1
+		total = 0 
 
-		while ptr < len(nums):
 
-			#star the condn
 
-			if nums[ptr] == temp and not seen:
+		#star the loop 
+		while r < len(nums):
+
+			if nums[l] == nums[r] and not seen:
+
+				l +=1
+				r +=1
 				total +=2 
 				seen = True
 
+			elif nums[l] == nums[r] and seen:
+
+				l +=1
+				r +=1
 
 			else:
 				total +=1
 				seen = False
-
-			ptr +=1
-			temp = nums[ptr]
+				l +=1
+				r +=1
 
 		return total
+
+
+    def removeDuplicates(self, nums: List[int]) -> int:
+    	"""
+    	passes leet code 
+
+    	"""
+        k = 2
+
+        for i in range(2, len(nums)):
+            if nums[i] != nums[k - 2]:
+                nums[k] = nums[i]
+                k += 1 
+
+        return k
+
 
 
 
