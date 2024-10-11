@@ -50,8 +50,45 @@ if k > len(nums):
 	k = len(nums) - k
 
 
-
-
-
-
 """
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        Leetcode passed optimal approach 
+        """
+
+        #base case 
+        if len(nums) == 1 :
+            return nums
+        
+        #make the ptr 
+        if k > len(nums):
+            res = k - len(nums)
+            k = len(nums) - res
+        
+        else:
+            k = len(nums) - k 
+        
+        #make the replace 
+        def replace(i,r):
+
+            #start the loop 
+            while i < r:
+                nums[i],nums[r] = nums[r], nums[i]
+                i += 1
+                r -= 1
+        
+        replace(0,k-1)
+        replace(k,len(nums)-1)
+        replace(0,len(nums)-1)
+
+        return nums
+
+    
+        
+
+        
+
