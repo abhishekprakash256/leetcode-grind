@@ -95,21 +95,39 @@ class Solution():
 		"""
 
 		gas = 0 
+		counter = 0
 
 
 		for n in nums:
 
-			
-
 			if gas < 0:
 				return False
-			
-			gas = max(n,gas)
+
+			elif gas < n:
+				gas = n 
+				counter += 1 
 
 			gas -= 1
 
 
-		return True
+		return counter
+
+
+
+
+- resume place, remove the place (change the palce as per location of job)
+- very personalized resume ( think all are needed , customized resume) 
+- need a job the job, 
+- what prepration can you do , right oppornuity is a crack 
+- so ready to crack whenver is needed 
+- keeps shuffling 
+- nothing is correctable 
+- get rusted as well 
+- what u do  
+
+
+
+
 
 
 
