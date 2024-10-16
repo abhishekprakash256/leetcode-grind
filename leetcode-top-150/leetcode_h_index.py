@@ -46,47 +46,91 @@ a = [5, 2, 9, 1, 5, 6]
 a.sort()
 print(a)
 
+---------------------------------------------
+
+[3,0,6,1,5]
+
+[0,1,3,5,6]
+3
+
+[1,3,1]
+
+[1,1,3]
+1
+
+[0,1]
+1
+
+[0,0,0,1,1,2,2,3]
+1
+
+[0,0,0,0,0,1]
+0
+
+approach using this - 
+
+sort the array 
+nums.sort()
+
+make a small choice till geater than half 
+
+exception min is not 0 
+not update the min if zero update only if greater than zero 
+and return on the more than half length 
+
+
+
+
+
+
+
+
 """
 
 
 
+
+
+
 class Solution():
+    
 
-	def hIndex(self, citations) -> int:
-		"""
-		Find the h index in the array
-		"""
+    def hIndex_optimal(self, citations: List[int]) -> int:
+        # h_index = max(h : published at least h papers cited at least h times)
+        citations.sort()
 
-		#base case 
-		if len(citations) == 1:
-			if citations[0] == 0 :
-				return 0
-			else:
-				return 1
+        for i, v in enumerate(citations):
+            if len(citations) - i <= v:
+                return len(citations) - i
+        
+        return 0
 
-		#set the flag
-		even = False 
+    def hIndex(self, citations) -> int:
+        """
+        Find the H-index of the citations.
+		passes leetcode 
+        """
+        # Base case: if only one paper
+        if len(citations) == 1:
+            return 1 if citations[0] > 0 else 0
 
+        # Sort citations in ascending order
+        citations.sort()
 
-		#check the true and false
-		if len(citations)%2 == 0:
-			even = True
+        hindex = 0
+        r = len(citations) - 1
 
-		#sort the element
-		citations.sort()
+        # Iterate from the end of the sorted array
+        while r >= 0:
+            # Check if citations[r] is at least the number of remaining papers (h candidates)
+            h_candidate = len(citations) - r  # Number of papers including this one
+            if citations[r] >= h_candidate:
+                hindex = h_candidate
+            else:
+                break  # Once we find a value less than h_candidate, we stop
+            r -= 1
 
-		#check the mid element 
-		if even:
-
-			ele = (len(citations) // 2 ) - 1
-
-		else:
-			ele = (len(citations) // 2 )
-
-
-		return citations[ele]
-
-
+        return hindex
 
 
 
