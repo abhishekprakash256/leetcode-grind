@@ -3,6 +3,8 @@ nums2 = [2,5,6]
 
 
 
-for i in range(0,len(nums1)):
+val = set()
 
-	print(nums1[i])
+val.add(4)
+
+print(val)
