@@ -31,5 +31,17 @@ randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom()
 
 """
 
+data structure 
+set 
+hashmap as well 
+
+random = int(0,len(set))
+
+set.add()
+
+set.remove()
+
+
+
 
 """
