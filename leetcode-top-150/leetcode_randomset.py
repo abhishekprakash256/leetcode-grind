@@ -85,6 +85,10 @@ import random
 
 
 class RandomizedSet:
+	"""
+	passes leetcode and efficient
+
+	"""
 
     def __init__(self):
         self.lst = []  # List to store elements
