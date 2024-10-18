@@ -52,14 +52,17 @@ class Solution(object):
 		#compute the prefix array 
 		for i in range(1,len(nums)):
 
-			prefix_val = prefix[i] * prefix[i-1]
+			prefix_val = nums[i] * prefix[i-1]
 			prefix.append(prefix_val)
 
 
-		#compute the postfix array 
-		for i in range(len(nums)-2,-1,0):
 
-			postfix_val = postfix[i] * postfix[i+1]
+		#compute the postfix array 
+		for j in range(len(nums),-1):
+
+			print(j)
+
+			postfix_val = postfix[j] * nums[j-1]
 			postfix.insert(0,postfix_val)
 
 
