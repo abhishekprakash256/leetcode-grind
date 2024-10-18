@@ -60,12 +60,17 @@ class Solution(object):
 		for i in range(len(nums)-2,-1,0):
 
 			postfix_val = postfix[i] * postfix[i+1]
-			postfix.append(postfix_val)
+			postfix.insert(0,postfix_val)
 
 
 		#compute the final array
 
+		print(prefix)
+		print(postfix)
 
+
+sol = Solution()
+print(sol.productExceptSelf([1,2,3,4]))
 
 
 
