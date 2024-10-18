@@ -18,7 +18,9 @@ Output: [0,0,9,0,0]
 
 
 """
-prefix = [1,2,6,12]
+nums = [1,2,3,4]
+
+prefix = [1,2,6,24]
 
 postfix = [24,24,12,4]
 
@@ -30,3 +32,44 @@ how to make the output array --
 
 out = [postfix[1],prefix[0]*postfix[2],prefix[1]*postfix[len(postfix)-1],prefix[len(prefix)-2]]
 """
+
+
+
+class Solution(object):
+	def productExceptSelf(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: List[int]
+		"""
+
+		#make the array
+		prefix = [nums[0]]
+		postfix = [nums[len(nums)-1]]
+		out = []
+
+
+
+		#compute the prefix array 
+		for i in range(1,len(nums)):
+
+			prefix_val = prefix[i] * prefix[i-1]
+			prefix.append(prefix_val)
+
+
+		#compute the postfix array 
+		for i in range(len(nums)-2,-1,0):
+
+			postfix_val = postfix[i] * postfix[i+1]
+			postfix.append(postfix_val)
+
+
+		#compute the final array
+
+
+
+
+
+
+
+
+
