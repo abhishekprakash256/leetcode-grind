@@ -49,10 +49,41 @@ Explanation:
 
 
 """
+explanation --
+
 mapper = {
     1:"I", 5:"V", 10:"X", 50:"L",
     100:"C", 500:"D", 1000:"M"
 }
+
+
+100 
+
+- break it in small like ones 
+- tens
+- hundreds 
+- thousands 
+
+3000
+
+1994 
+
+1000
+900
+90
+4 
+
+MCMXCIV
+
+try to break in small and integers 
+
+
+2494
+1000
+1000
+400
+90
+4
 
 
 
