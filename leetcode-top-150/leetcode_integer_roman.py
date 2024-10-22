@@ -52,14 +52,14 @@ Explanation:
 explanation --
 
 mapper = {
-    1:"I", 5:"V", 10:"X", 50:"L",
-    100:"C", 500:"D", 1000:"M"
+	1:"I", 5:"V", 10:"X", 50:"L",
+	100:"C", 500:"D", 1000:"M"
 }
 
 
 
 mapper = {
-    1:"I", 4 : "IV", 5:"V", 9 : "IX", 10:"X", 40: "XL" 50:"L", 90: "XC" , 100:"C", 400:"CD" ,500:"D", 900:"CM" , 1000:"M"}
+	1:"I", 4 : "IV", 5:"V", 9 : "IX", 10:"X", 40: "XL" 50:"L", 90: "XC" , 100:"C", 400:"CD" ,500:"D", 900:"CM" , 1000:"M"}
 
 100 
 
@@ -108,20 +108,20 @@ try to break in small and integers
 1000 - M
 1000 - M
 300
-    - 100 - C
-    - 100 - C
-    - 100 - C
+	- 100 - C
+	- 100 - C
+	- 100 - C
 80
-    - 50 - L 
-    - 10 - X
-    - 10 - X
-    - 10 - X
+	- 50 - L 
+	- 10 - X
+	- 10 - X
+	- 10 - X
 8 
-    - 5 - V
-    - 3
-        - 1 - I
-        - 1 - I
-        - 1 - I    
+	- 5 - V
+	- 3
+		- 1 - I
+		- 1 - I
+		- 1 - I    
 
 
 
@@ -133,23 +133,23 @@ MMCCCLXXXVIII
 2388- 
 
 2000
-    - 1000
-    - 1000
+	- 1000
+	- 1000
 300
-    - 100
-    - 100
-    - 100
+	- 100
+	- 100
+	- 100
 88
-    - 50
-    - 30
-        - 10
-        - 10
-        - 10
-    - 8
-        - 5
-        - 1
-        - 1
-        - 1
+	- 50
+	- 30
+		- 10
+		- 10
+		- 10
+	- 8
+		- 5
+		- 1
+		- 1
+		- 1
 
 
 
@@ -159,19 +159,29 @@ MMCCCLXXXVIII
 
 
 class Solution:
-    def intToRoman(self, num: int) -> str:
-        thousands=["","M","MM","MMM"]
-        hundreds=["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
-        tens=["",'X','XX','XXX','XL','L','LX','LXX','LXXX','XC']
-        ones=["","I","II","III","IV","V","VI","VII","VIII","IX"]
-        t=thousands[num//1000]
-        num=num%1000
-        h=hundreds[num//100]
-        num=num%100
-        ten=tens[num//10]
-        num=num%10
-        o=ones[num%10]
-        return t+h+ten+o
+	def intToRoman(self, num: int) -> str:
+		"""
+		passes leetcode
+
+		"""
+		thousands=["","M","MM","MMM"]
+		hundreds=["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
+		tens=["",'X','XX','XXX','XL','L','LX','LXX','LXXX','XC']
+		ones=["","I","II","III","IV","V","VI","VII","VIII","IX"]
+
+
+		t=thousands[num//1000]
+		num=num%1000
+
+		h=hundreds[num//100]
+		num=num%100
+
+		ten=tens[num//10]
+		num=num%10
+
+		o=ones[num%10]
+		
+		return t+h+ten+o
 
 
 

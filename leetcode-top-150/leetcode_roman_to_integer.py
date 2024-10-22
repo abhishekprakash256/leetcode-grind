@@ -95,6 +95,7 @@ class Solution(object):
         """
         :type s: str
         :rtype: int
+        passes leetcode
         """
         
         # Correct Roman numeral mapping
