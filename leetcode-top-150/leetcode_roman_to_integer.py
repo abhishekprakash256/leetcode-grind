@@ -56,10 +56,10 @@ total = 0
 
 MCMXCIV
 
-M 
-CM
-XC
-IV
+M - 1000
+CM - 900
+XC - 90
+IV - 4
 
 i,j 
 
@@ -91,25 +91,43 @@ check the prev value and update if less
 
 
 class Solution(object):
-	def romanToInt(self, s):
-		"""
-		:type s: str
-		:rtype: int
-		"""
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        # Correct Roman numeral mapping
+        mapper = {
+            "I": 1, "V": 5, "X": 10, "L": 50,
+            "C": 100, "D": 500, "M": 1000
+        }
 
-		mapper = {"I":1, "IV" :4 , "IX":9, "X" : 10 , "XL" : 40 , "L" : 50, "XC": 90 , "C": 100 , "CD": 400, "LD": 450 , "XD":490 , "CM": 900 , "LM": 950 , "XM": 990 , "M":1000}
+        # Base case: if the input is empty, return 0
+        if not s:
+            return 0
+
+        # Vars
+        num = 0
+        length = len(s)
+
+        # Loop through the string
+        for i in range(length):
+            # If the current numeral is smaller than the next, subtract it (for cases like IV = 4, IX = 9)
+            if i < length - 1 and mapper[s[i]] < mapper[s[i + 1]]:
+                num -= mapper[s[i]]
+            else:
+                num += mapper[s[i]]
+        
+        return num
+
 		
-		#base case
-		if len(s) == 1:
-			return mapper[s]
+
+sol = Solution()
+
+print(sol.romanToInt("MCMXCIV"))
 
 
-		#vars 
-		i = 0 
-		num = 0 
-
-		#star the loop 
-		while i < len(s):
 
 			
 
