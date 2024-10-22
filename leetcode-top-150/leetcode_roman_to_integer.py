@@ -14,9 +14,9 @@ For example, 2 is written as II in Roman numeral, just two ones added together. 
 
 Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
-    I can be placed before V (5) and X (10) to make 4 and 9. 
-    X can be placed before L (50) and C (100) to make 40 and 90. 
-    C can be placed before D (500) and M (1000) to make 400 and 900.
+	I can be placed before V (5) and X (10) to make 4 and 9. 
+	X can be placed before L (50) and C (100) to make 40 and 90. 
+	C can be placed before D (500) and M (1000) to make 400 and 900.
 
 Given a roman numeral, convert it to an integer.
 """
@@ -38,7 +38,80 @@ Input: s = "MCMXCIV"
 Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
+s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
+
 
 
 """
+
+"""
+
+brute force approach  -- 
+
+
+mapper = {"I":1, "IV" :4 , "IX" = 9, "X" : 10 , "XL" : 40 , "L" : 50, "XC": 90 , "C": 100 , "CD": 400, "LD": 450 , XD":490 , "CM": 900 , "LM": 950 , "XM": 990 , "M":1000}
+
+
+total = 0 
+
+MCMXCIV
+
+M 
+CM
+XC
+IV
+
+i,j 
+
+45
+XLV
+
+
+take one pointer 
+
+check value add 
+
+check the prev value and update if less 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+
+
+
+class Solution(object):
+	def romanToInt(self, s):
+		"""
+		:type s: str
+		:rtype: int
+		"""
+
+		mapper = {"I":1, "IV" :4 , "IX":9, "X" : 10 , "XL" : 40 , "L" : 50, "XC": 90 , "C": 100 , "CD": 400, "LD": 450 , "XD":490 , "CM": 900 , "LM": 950 , "XM": 990 , "M":1000}
+		
+		#base case
+		if len(s) == 1:
+			return mapper[s]
+
+
+		#vars 
+		i = 0 
+		num = 0 
+
+		#star the loop 
+		while i < len(s):
+
+			
+
+
 
