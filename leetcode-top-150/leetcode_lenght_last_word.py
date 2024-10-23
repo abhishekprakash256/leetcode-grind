@@ -38,17 +38,21 @@ edge case
 
 start with space 
 
-if i == len(s) and i = " ":
-	count = 0 
+space = True
 
-elif i != "" and i <= len(s):
-	count += 1
+if s[i] != "" and i == len(s)-1:
+	count +=1
+	space = False
+
+elif s[i] == " " and space and i < len(s) - 1:
+	count += 0 
+
+
+elif s[i] !=" " and s < len(s) - 1:
+	count += 1  
 
 else:
-	return count
-
-
-
+	return count 
 
 
 """
@@ -58,4 +62,41 @@ class Solution:
 		"""
 		The function to find the length of last word
 		"""
-		pass
+
+		#vars 
+		count = 0
+		space = True
+		i = len(s) - 1  
+
+		#base case 
+		if len(s) == 1 :
+			return 1
+
+		#star the loop
+
+		while i > -1 :
+
+			if s[i] != " " and i <= len(s) - 1 :
+
+				count += 1 
+				space = False
+
+			elif s[i] == " " and space and i <= len(s) - 1 :
+				count += 0
+
+			elif s[i] != " " and i <= len(s) - 1 and not space:
+				count += 1
+
+
+			i -= 1
+
+		return count
+
+
+
+		
+
+
+
+
+
