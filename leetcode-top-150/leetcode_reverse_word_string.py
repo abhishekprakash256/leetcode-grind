@@ -67,12 +67,20 @@ for i in strs:
 
 class Solution:
     def reverseWords(self, s: str) -> str:
+        """
+        passes leetcode 
+        """
         words = s.split()
         left, right = 0, len(words) - 1
+
 
         while left < right:
             words[left], words[right] = words[right], words[left]
             left += 1
             right -= 1
 
-        return " ".join(words) 
+        return " ".join(words)
+    
+
+sol = Solution()
+print(sol.reverseWords("  hello world  "))
