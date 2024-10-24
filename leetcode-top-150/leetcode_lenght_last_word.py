@@ -57,7 +57,7 @@ else:
 
 """
 
-class Solution:
+class Solution_wrong:
 	def lengthOfLastWord(self, s: str) -> int:
 		"""
 		The function to find the length of last word
@@ -87,11 +87,79 @@ class Solution:
 			elif s[i] != " " and i <= len(s) - 1 and not space:
 				count += 1
 
+			else :
+				return count + 1
 
 			i -= 1
 
-		return count
 
+
+
+class Solution:
+	def lengthOfLastWord(self, s: str) -> int:
+		"""
+		The function to find the length of the last word 
+		Leetcode accepted beats 100% 
+		"""
+
+		#base case
+		if len(s) == 1:
+			if s[0] != " ":
+				return 1
+
+			else :
+				return 0 
+
+
+		#vars
+		count = 0
+		space = True
+		i = len(s) - 1
+
+
+		#star the loop
+		while i > -1 :
+
+			if s[i] != " ":
+
+				while i > -1:
+
+					count +=1
+
+					if s[i] == " ":
+						return count - 1
+
+					i -= 1
+
+			i -= 1
+
+		return count 
+
+
+
+
+
+
+
+
+
+sol = Solution()
+
+print(sol.lengthOfLastWord("luffy is still joyboy"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 
 
 		

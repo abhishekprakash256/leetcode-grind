@@ -8,3 +8,5 @@ val = set()
 val.add(4)
 
 print(val)
+
+print(len(" "))
