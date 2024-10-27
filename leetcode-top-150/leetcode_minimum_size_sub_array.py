@@ -63,36 +63,31 @@ while i < j :
 
 
 class Solution:
-    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        """
-        The function to find the minimum sum array
-        """
+	def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+		"""
+		The function to find the minimum sum array
+		"""
 
-        #vars 
-        i , j = 0 , len(nums) - 1
+		#vars 
+		i , j = 0 , len(nums) - 1
 
-        while i < j :
+		while i < j :
 
-        	cur_sum = sum(nums[i:j+1])
-
-
-        	if cur_sum > target :
-
-        		j -= 1 
-        		i += 1 
-
-        	elif cur_sum == target:
-
-        		return j - i
-
-        	else:
-
-        		return j - i  
+			cur_sum = sum(nums[i:j+1])
 
 
+			if cur_sum > target :
 
+				j -= 1
+				i += 1
 
+			elif cur_sum == target:
 
+				return j - i
+
+			else:
+
+				return j - i
 
 
 
