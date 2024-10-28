@@ -62,7 +62,7 @@ while i < j :
 
 
 
-class Solution:
+class Solution_wrong:
 	def minSubArrayLen(self, target: int, nums: List[int]) -> int:
 		"""
 		The function to find the minimum sum array
@@ -91,4 +91,38 @@ class Solution:
 
 
 
+"""
+make the function to solve the minimum array 
 
+"""
+
+class Solution:
+	def minSubArrayLen(self, target: int, nums: list) -> int:
+		"""
+		The fucnction to find the minimum size sub array
+		"""
+
+		#base case 
+		if len(nums) == 1:
+			if nums[0] < target:
+				return 0 
+			else:
+				return 1
+		
+
+		#make the sliding window
+		j = 1 
+		min_length = float("inf")
+
+
+		#start the loop 
+		for i in range(len(nums)):
+
+			curr_sum = nums[i] + nums[j]
+
+			
+
+
+			
+
+		
