@@ -97,28 +97,36 @@ make the function to solve the minimum array
 """
 
 class Solution:
-	def minSubArrayLen(self, target: int, nums: list) -> int:
-		"""
-		The fucnction to find the minimum size sub array
-		"""
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        """
+        Find the minimum length of a subarray with a sum >= target.
+        """
 
-		#base case 
-		if len(nums) == 1:
-			if nums[0] < target:
-				return 0 
-			else:
-				return 1
-		
+        # Edge case for empty array
+        if not nums:
+            return 0
 
-		#make the sliding window
-		j = 1 
-		min_length = float("inf")
+        # Edge case for when target is greater than the sum of all elements
+        if target > sum(nums):
+            return 0 
 
+        # Sliding window variables
+        i = 0
+        min_len = float("inf")
+        temp_sum = 0
 
-		#start the loop 
-		for i in range(len(nums)):
+        # Start the loop to find the subarray
+        for j in range(len(nums)):
+            temp_sum += nums[j]
 
-			curr_sum = nums[i] + nums[j]
+            # Shrink the window from the left if sum is greater than or equal to target
+            while temp_sum >= target:
+                min_len = min(j - i + 1, min_len)
+                temp_sum -= nums[i]
+                i += 1
+
+        # Return min_len if it has been updated; otherwise, return 0
+        return min_len if min_len != float("inf") else 0
 
 			
 
