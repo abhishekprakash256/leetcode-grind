@@ -63,7 +63,7 @@ while i < j :
 
 
 class Solution_wrong:
-	def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+	def minSubArrayLen(self, target: int, nums: list) -> int:
 		"""
 		The function to find the minimum sum array
 		"""
