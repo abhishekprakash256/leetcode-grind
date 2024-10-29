@@ -117,16 +117,18 @@ def dfs(board[i][j], mapper):
 
 """
 
+
+
 class Solution:
 	#dfs 
 	def dfs(self,i,j,mapper):
 
 		#base case 
-		if i == i + 3 and j == j + 3 :
+		if i == i + 3 or j == j + 3 :
 			return
 		
-		self.dfs(i+1 , j)
-		self.dfs(i,j + 1)
+		self.dfs(i+1 , j, mapper)
+		self.dfs(i,j + 1, mapper)
 
 		if self.board[i][j] not in mapper:
 			mapper[self.board[i][j]] = True
