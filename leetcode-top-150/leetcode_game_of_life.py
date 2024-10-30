@@ -60,12 +60,15 @@ for cor in mapper:
         
         if (cor[0] - cor_x) < 0:
             pass
+
+
+
+
+
+
+
         
-
-
-
-
-            
+   
 
 
 """
