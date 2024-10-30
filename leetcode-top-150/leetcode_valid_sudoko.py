@@ -145,8 +145,10 @@ class Solution:
     def isValidSudoku(self, board: list) -> bool:
         """
         Validates the Sudoku board.
+        passes leetcode
         """
         self.board = board
+
 
         # Row validation
         for i in range(9):
@@ -157,6 +159,7 @@ class Solution:
                         return False
                     row_mapper[self.board[i][j]] = True
 
+        
         # Column validation
         for j in range(9):
             col_mapper = {}
@@ -166,6 +169,7 @@ class Solution:
                         return False
                     col_mapper[self.board[i][j]] = True
 
+        
         # 3x3 subgrid validation using dfs
         for i in range(0, 9, 3):
             for j in range(0, 9, 3):
