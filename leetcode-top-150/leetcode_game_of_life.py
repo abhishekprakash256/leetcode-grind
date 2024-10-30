@@ -36,8 +36,37 @@ Output: [[1,1],[1,1]]
 [0,0,0]      [0,1,0]
 
 
+(0,0) (0,1) (0,2)
+(1,0) (1,1) (1,2)
+(2,0) (2,1) (2,2)
 
 
+cor_set = ((-1,-1), (-1,0), (-1,+1) ,(0,-1),(0, +1) ,(+1,-1) , (+1,0), (+1,+1))
+
+create a hash map
+
+mapper = {}
+
+for i in range(row_len):
+    for j in range(col_len):
+        
+        if board[i][j] == 1:
+            mapper{[[i],[j]]} = True
+
+
+for cor in mapper:
+
+    for cor_x, cor_y in cor_set:
+        
+        if (cor[0] - cor_x) < 0:
+            pass
+        
+
+
+
+
+            
 
 
 """
+
