@@ -187,42 +187,42 @@ class Solution_brute:
 from typing import List
 
 class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
-        """
-        Function to check if a Sudoku board is valid.
-        """
+	def isValidSudoku(self, board: List[List[str]]) -> bool:
+		"""
+		Function to check if a Sudoku board is valid.
+		"""
 
-        # Row validation
-        for i in range(9):
-            row_mapper = {}
-            for j in range(9):
-                if board[i][j] != ".":
-                    if board[i][j] in row_mapper:
-                        return False
-                    row_mapper[board[i][j]] = True
+		# Row validation
+		for i in range(9):
+			row_mapper = {}
+			for j in range(9):
+				if board[i][j] != ".":
+					if board[i][j] in row_mapper:
+						return False
+					row_mapper[board[i][j]] = True
 
-        # Column validation
-        for i in range(9):
-            col_mapper = {}
-            for j in range(9):
-                if board[j][i] != ".":
-                    if board[j][i] in col_mapper:
-                        return False
-                    col_mapper[board[j][i]] = True
+		# Column validation
+		for i in range(9):
+			col_mapper = {}
+			for j in range(9):
+				if board[j][i] != ".":
+					if board[j][i] in col_mapper:
+						return False
+					col_mapper[board[j][i]] = True
 
-        # 3x3 subgrid validation
-        for i in range(0, 9, 3):
-            for j in range(0, 9, 3):
-                subgrid_mapper = {}
-                for x in range(i, i + 3):
-                    for y in range(j, j + 3):
-                        if board[x][y] != ".":
-                            if board[x][y] in subgrid_mapper:
-                                return False
-                            subgrid_mapper[board[x][y]] = True
+		# 3x3 subgrid validation
+		for i in range(0, 9, 3):
+			for j in range(0, 9, 3):
+				subgrid_mapper = {}
+				for x in range(i, i + 3):
+					for y in range(j, j + 3):
+						if board[x][y] != ".":
+							if board[x][y] in subgrid_mapper:
+								return False
+							subgrid_mapper[board[x][y]] = True
 
-        # If all checks pass, the board is valid
-        return True
+		# If all checks pass, the board is valid
+		return True
 
 
 
