@@ -68,7 +68,7 @@ class Solution_wrong:
 		The function to find the minimum sum array
 		"""
 
-		#vars 
+		#vars
 		i , j = 0 , len(nums) - 1
 
 		while i < j :

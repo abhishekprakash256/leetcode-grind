@@ -120,77 +120,62 @@ def dfs(board[i][j], mapper):
 
 
 class Solution:
-	#dfs 
-	def dfs(self,i,j,mapper):
+    # Helper function for 3x3 grid validation
+    def dfs(self, i, j, mapper):
+        """
+        Recursive function to check a 3x3 grid.
+        """
+        # Base case: stop when reaching the boundaries of a 3x3 grid
+        if i == 3 or j == 3:
+            return True
+        
+        # Check if the current cell is valid
+        if self.board[self.start_i + i][self.start_j + j] != ".":
+            num = self.board[self.start_i + i][self.start_j + j]
+            if num in mapper:
+                return False
+            mapper[num] = True
+        
+        # Recursively move to the next cell in the 3x3 grid
+        if j < 2:
+            return self.dfs(i, j + 1, mapper)
+        else:
+            return self.dfs(i + 1, 0, mapper)
 
-		#base case 
-		if i == i + 3 or j == j + 3 :
-			return
-		
-		self.dfs(i+1 , j, mapper)
-		self.dfs(i,j + 1, mapper)
+    def isValidSudoku(self, board: list) -> bool:
+        """
+        Validates the Sudoku board.
+        """
+        self.board = board
 
-		if self.board[i][j] not in mapper:
-			mapper[self.board[i][j]] = True
-		
-		else:
-			return False
-		
+        # Row validation
+        for i in range(9):
+            row_mapper = {}
+            for j in range(9):
+                if self.board[i][j] != ".":
+                    if self.board[i][j] in row_mapper:
+                        return False
+                    row_mapper[self.board[i][j]] = True
 
-	def isValidSudoku(self, board: list) -> bool:
-		"""
-		The function to find the sudo is valid
-		"""
+        # Column validation
+        for j in range(9):
+            col_mapper = {}
+            for i in range(9):
+                if self.board[i][j] != ".":
+                    if self.board[i][j] in col_mapper:
+                        return False
+                    col_mapper[self.board[i][j]] = True
 
-		#vars 
-		row = len(board)
-		col = len(board[0])
-		self.board = board
+        # 3x3 subgrid validation using dfs
+        for i in range(0, 9, 3):
+            for j in range(0, 9, 3):
+                self.start_i, self.start_j = i, j  # Starting coordinates for the 3x3 grid
+                subgrid_mapper = {}
+                if not self.dfs(0, 0, subgrid_mapper):  # Start dfs within each 3x3 grid
+                    return False
 
+        return True
 
-		#row checking 
-		for i in range(row):
-
-			mapper = {}
-
-			for j in range(col):
-				
-				if board[i][j] not in mapper:
-					
-					mapper[board[i][j]] = True
-				
-				else:
-					return False
-
-
-		#column checking 
-		for i in range(row):
-
-			mapper = {}
-
-			for j in range(col):
-				
-				if board[j][i] not in mapper:
-					
-					mapper[board[j][i]] = True
-				
-				else:
-					return False
-		
-
-
-		#check the 3X3 cube 
-		for i in range(0,3,row):
-
-			for j in range(0,3,col):
-
-				mapper = {}
-				
-				if self.dfs(i,j, mapper) != True:
-					return False
-				
-		
-		return True
 
 
 
