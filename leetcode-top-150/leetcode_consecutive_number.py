@@ -24,18 +24,62 @@ nums.sort()
 
 [1,2,3,4,100,200]
 
-cur_length = 0 
+cur_length = 1
 
 
 for i in range(1,len(nums)):
 
     if nums[i] - nums[i-1] = 1:
-    
-        
-        
-        
-        
 
+        cur_length += 1 
+
+    else:
+
+        max_long = max(max_long, cur_length)
+        cur_length = 1 
+    
 
 
 """
+
+from typing import List
+
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        """
+        The function to find the consecutive longest series  
+        """
+
+        #base case 
+        if len(nums) == 1:
+            return 1
+        
+
+        #make the vars 
+        max_len = 1
+        cur_len = 1
+
+        nums.sort()
+
+
+        for i in range(1,len(nums)):
+
+            if nums[1] - nums[i-1] == 1:
+
+                cur_len += 1
+
+            else:
+
+                max_len = max(cur_len,max_len)
+                cur_len = 1
+        
+        return cur_len
+
+
+
+
+
+
+
+        
