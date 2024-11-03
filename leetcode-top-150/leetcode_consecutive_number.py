@@ -44,37 +44,46 @@ for i in range(1,len(nums)):
 
 from typing import List
 
-
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         """
-        The function to find the consecutive longest series  
+        Function to find the length of the longest consecutive sequence.
+        paases the leetcode
         """
-
-        #base case 
-        if len(nums) == 1:
-            return 1
+        # Base case: if nums is empty, return 0
+        if not nums:
+            return 0
         
+        # Sort the numbers
+        nums.sort()
 
-        #make the vars 
+        # Initialize the variables
         max_len = 1
         cur_len = 1
 
-        nums.sort()
-
-
-        for i in range(1,len(nums)):
-
-            if nums[1] - nums[i-1] == 1:
-
+        # Loop through sorted list to find longest consecutive sequence
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i - 1]:  # Skip duplicates
+                continue
+            elif nums[i] - nums[i - 1] == 1:
                 cur_len += 1
-
             else:
-
-                max_len = max(cur_len,max_len)
+                max_len = max(cur_len, max_len)
                 cur_len = 1
-        
-        return cur_len
+
+        # Final check for the maximum length
+        return max(max_len, cur_len)
+
+
+
+
+lst = [0,3,7,2,5,8,4,6,0,1]
+
+
+sol = Solution()
+print(sol.longestConsecutive(lst))
+
+
 
 
 
