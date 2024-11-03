@@ -45,10 +45,14 @@ for i in range(1,len(intervals)):
 
 """
 
+from typing import List
+
+
 class Solution:
 	def merge(self, intervals: List[List[int]]) -> List[List[int]]:
 		"""
 		The function to merge the intervals
+		passes leetcode
 		"""
 
 		#base case 
@@ -57,26 +61,64 @@ class Solution:
 			return [intervals[0]]
 
 
-		#result list 
-		res_lst = []
+		#sort the list 
+		intervals.sort( key = lambda i : i[0] )
+
+		print(intervals)
+
+		#make vars
+		i = 1
+
+		while i < len(intervals):
+
+			#the condn
+
+			if intervals[i-1][1] >= intervals[i][0] :
 
 
-		#start the loop
-		for i in range(1,len(intervals)):
+				#first and last val check 
+				if intervals[i-1][1] >= intervals[i][1] :
 
-			#condn
+					first = intervals[i-1][0]
+					second = intervals[i-1][1]
 
-			if intervals[i][0] <= intervals[i-1][1] :
+					intervals.pop(i-1)
+					intervals.pop(i-1)
 
-				first = intervals[i-1][0]
+					intervals.insert(i-1,[first,second])
+
+
+				else:
+
+					#add the element 
+					first = intervals[i-1][0]
+					second = intervals[i][1]
+
+
+					intervals.pop(i-1)
+					intervals.pop(i -1)
+
+					#add the elemenmt in the intervals
+					intervals.insert(i-1,[first,second])
 
 
 			else:
 
-				res_lst.append([first,intervals[i][1]])
+				i += 1
 
 
-		return res_lst
+		return intervals
+
+
+
+
+
+sol = Solution()
+
+print(sol.merge([[1,4],[2,3]]))
+
+
+
 
 
 
