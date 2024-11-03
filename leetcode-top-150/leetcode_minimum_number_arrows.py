@@ -77,45 +77,36 @@ while i < len(points):
 """
 
 
+from typing import List
 
 class Solution:
-	def findMinArrowShots(self, points: List[List[int]]) -> int:
-		"""
-		The function to find the count for overlapping ballons
-		"""
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        """
+        Function to find the minimum number of arrows needed to burst all balloons.
+        """
 
-		#base case 
+        # Base case: if there's only one balloon, we need one arrow
+        if len(points) <= 1:
+            return len(points)
 
-		if len(points) == 1:
+        # Sort balloons by their end coordinates
+        points.sort(key=lambda x: x[1])
 
-			return 1
+        # Initialize the count and the position of the first arrow
+        count = 1
+        arrow_position = points[0][1]
 
-		#vars 
-		count = 1 
-		i = 1 
+        # Loop through each balloon interval
+        for i in range(1, len(points)):
+            # If the start of the current balloon is beyond the position of the last arrow
+            if points[i][0] > arrow_position:
+                # We need a new arrow for this balloon
+                count += 1
+                # Update the arrow position to the end of the current balloon
+                arrow_position = points[i][1]
 
+        return count
 
-		#start the loop 
-		
-		while i < len(points) :
-
-
-			temp_val = points[i-1][1]
-
-			if temp_val  <= points[i][1] :
-
-				count += 1
-				i += 2
-
-
-			else:
-
-				count += 1
-				i += 1
-
-
-		return count
-		
 
 
 
