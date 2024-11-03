@@ -115,7 +115,7 @@ class Solution:
 
 sol = Solution()
 
-print(sol.merge([[1,4],[2,3]]))
+print(sol.merge([[10,16],[2,8],[1,6],[7,12]]))
 
 
 
