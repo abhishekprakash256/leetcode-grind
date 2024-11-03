@@ -98,8 +98,23 @@ class Solution:
 		#start the loop 
 		
 		while i < len(points) :
-			pass
 
+
+			temp_val = points[i-1][1]
+
+			if temp_val  <= points[i][1] :
+
+				count += 1
+				i += 2
+
+
+			else:
+
+				count += 1
+				i += 1
+
+
+		return count
 		
 
 
