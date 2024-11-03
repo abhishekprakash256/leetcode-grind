@@ -44,6 +44,8 @@ for i in range(1,len(nums)):
 
 from typing import List
 
+
+
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         """
