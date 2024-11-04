@@ -103,7 +103,7 @@ class Solution:
 			return False
 
 		#make the hashmap
-		mapper =  {'(', ')', '{', '}', '[',']'}
+		mapper =  {'(':')', '{': '}', '[':']'}
 
 
 		#make the stack 
@@ -121,7 +121,7 @@ class Solution:
 
 					close_para = stack.pop(0)
 
-					if close_para != mapper[s] :
+					if para != mapper[close_para] :
 
 						return False
 
@@ -130,7 +130,8 @@ class Solution:
 
 
 
-
+sol = Solution()
+print(sol.isValid("([])"))
 
 		
 
