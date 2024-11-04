@@ -93,6 +93,7 @@ class Solution:
 	def isValid(self, s: str) -> bool:
 		"""
 		The function to find valid paranthesis
+		passes leetcode 
 		"""
 
 		#base 
@@ -115,23 +116,35 @@ class Solution:
 
 				stack.insert(0,para)
 
-			else:
+				#print(stack)
 
-				while stack:
+			else :
 
-					close_para = stack.pop(0)
+				#edge case 
+				if not stack:
 
-					if para != mapper[close_para] :
+					return False
 
-						return False
+				#pop the para from stack
+				close_para = stack.pop(0)
 
-		return True
+				if para != mapper[close_para] :
+
+					return False
+
+		if stack:
+
+			return False
+
+		else:
+
+			return True
 
 
 
 
 sol = Solution()
-print(sol.isValid("([])"))
+print(sol.isValid("[["))
 
 		
 
