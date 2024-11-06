@@ -39,14 +39,64 @@ sum = 0
 
 while temp1 and temp2 :
 
-    #add
-
-
-
+    #add 
 
 
 
 
 """
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        The function to add the value of the two lists 
+        """
+
+        #make a new node 
+        node = ListNode()
+        head = node
+
+        #make vars 
+        carry, sum = 0,0
+
+        #make the ptr
+        temp1 , temp2 = l1,l2
+
+        while temp1 and temp2 :
+
+            #get the sum 
+            sum = temp1.val + temp2.val + carry
+
+            digit = sum % 10 
+            carry = sum // 10 
+
+            node.next = ListNode(digit)
+
+            temp1 = temp1.next
+            temp2 = temp2.next
+        
+        #add the remaining
+
+        if temp1 :
+            node.next = temp1
+        
+        if temp2 :
+
+            node.next = temp2
+        
+        return head.next
+
+
+        
+        
 
 
