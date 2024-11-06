@@ -39,7 +39,7 @@ sum = 0
 
 while temp1 and temp2 :
 
-    #add 
+	#add 
 
 
 
@@ -55,49 +55,66 @@ while temp1 and temp2 :
 
 
 
-class Solution_wrong:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        """
-        The function to add the value of the two lists 
-        wrong code 
-        """
+class Solution:
+	def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+		"""
+		The function to add the value of the two lists 
+		passes leetcode
+		"""
 
-        #make a new node 
-        node = ListNode()
-        head = node
+		#make a new node 
+		node = ListNode()
+		head = node
 
-        #make vars 
-        carry, sum = 0,0
+		#make vars 
+		carry, sum = 0,0
 
-        #make the ptr
-        temp1 , temp2 = l1,l2
+		#make the ptr
+		temp1 , temp2 = l1,l2
 
-        while temp1 and temp2 :
+		while temp1 and temp2 :
 
-            #get the sum 
-            sum = temp1.val + temp2.val + carry
+			#get the sum 
+			sum = temp1.val + temp2.val + carry
 
-            digit = sum % 10 
-            carry = sum // 10 
+			digit = sum % 10 
+			carry = sum // 10 
 
-            node.next = ListNode(digit)
+			node.next = ListNode(digit)
 
-            temp1 = temp1.next
-            temp2 = temp2.next
-        
-        #add the remaining
+			temp1 = temp1.next
+			temp2 = temp2.next
 
-        if temp1 :
-            node.next = temp1
-        
-        if temp2 :
+			node = node.next
+		
+		#add the remaining
 
-            node.next = temp2
-        
-        return head.next
+		while temp1:
+			sum = temp1.val + carry
+			carry = sum // 10
+			val = sum % 10
+			node.next = ListNode(val)
+			node = node.next
+			temp1 = temp1.next
 
 
-        
-        
+		while temp2:
+			sum = temp2.val + carry
+			carry = sum // 10
+			val = sum % 10
+			node.next = ListNode(val)
+			node = node.next
+			temp2 = temp2.next
+
+		  
+		if carry != 0:
+			carry_node = ListNode(carry)
+			node.next = carry_node
+		
+
+		return head.next
+
+		
+		
 
 
