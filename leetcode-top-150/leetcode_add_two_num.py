@@ -55,10 +55,11 @@ while temp1 and temp2 :
 
 
 
-class Solution:
+class Solution_wrong:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         """
         The function to add the value of the two lists 
+        wrong code 
         """
 
         #make a new node 
