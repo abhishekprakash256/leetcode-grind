@@ -102,17 +102,67 @@ if temp1:
 #         self.val = val
 #         self.next = next
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-    	"""
-    	The function to merge the two lists
-    	"""
+	def mergeTwoLists(self, list1,list2):
+		"""
+		The function to merge the two lists
+		"""
 
 
-    	#make the two ptrs 
-    	temp1 = list1
-    	temp2 = list2 
+		#make the two ptrs 
+		temp1 = list1
+		temp2 = list2 
 
-    	
+
+		#make a node 
+		dummy = Listnode()
+
+
+		#start the loop 
+
+		while temp1 and temp2:
+
+			#both are equal 
+
+			if temp1.val == temp2.val :
+
+				node = ListNode(temp2.val)
+
+				node = node.next
+				node = node.next
+
+				temp1 = temp1.next
+				temp2 = temp2.next
+
+			elif temp1.val > temp2.val :
+
+				node = ListNode(temp2.val)
+
+				node = node.next
+
+				temp2 = temp2.next
+
+
+			else:
+
+				node = ListNode(temp1.val)
+
+				node = node.next
+
+				temp1 = temp1.next
+
+		return dummy.next
+
+
+
+
+
+
+
+
+
+
+
+		
 
 
 
