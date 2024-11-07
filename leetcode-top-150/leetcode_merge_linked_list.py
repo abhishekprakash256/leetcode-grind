@@ -96,61 +96,52 @@ if temp1:
 
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+
 class Solution:
-	def mergeTwoLists(self, list1,list2):
-		"""
-		The function to merge the two lists
-		"""
+    def mergeTwoLists(self, list1, list2):
+        """
+        The function to merge two sorted linked lists into a single sorted linked list.
+        """
+
+        # Pointers for traversing the two lists
+        temp1 = list1
+        temp2 = list2
+
+        # Dummy node to help with easier manipulation of the result list
+        dummy = ListNode()
+        curr = dummy
+
+        # Start the loop to merge
+        while temp1 and temp2:
+            if temp1.val <= temp2.val:
+                node = ListNode(temp1.val)
+                curr.next = node
+                curr = node  # Move curr to the newly added node
+                temp1 = temp1.next
+            else:
+                node = ListNode(temp2.val)
+                curr.next = node
+                curr = node  # Move curr to the newly added node
+                temp2 = temp2.next
+
+        # Append the remaining nodes
+        if temp1:
+            curr.next = temp1
+        else:
+            curr.next = temp2
+
+        return dummy.next
 
 
-		#make the two ptrs 
-		temp1 = list1
-		temp2 = list2 
 
 
-		#make a node 
-		dummy = Listnode()
 
 
-		#start the loop 
-
-		while temp1 and temp2:
-
-			#both are equal 
-
-			if temp1.val == temp2.val :
-
-				node = ListNode(temp2.val)
-
-				node = node.next
-				node = node.next
-
-				temp1 = temp1.next
-				temp2 = temp2.next
-
-			elif temp1.val > temp2.val :
-
-				node = ListNode(temp2.val)
-
-				node = node.next
-
-				temp2 = temp2.next
 
 
-			else:
 
-				node = ListNode(temp1.val)
 
-				node = node.next
 
-				temp1 = temp1.next
-
-		return dummy.next
 
 
 
