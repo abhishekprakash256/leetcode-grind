@@ -75,6 +75,8 @@ class Solution():
             prev = curr
             curr = curr.next
             prev.next = temp
+        
+        return prev
 
         
 
