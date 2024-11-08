@@ -53,46 +53,78 @@ class Solution:
         """
 
         #base case :
-        if not head.next and n == 1:
+        if not head.next :
             return None
         
 
         #get the length 
-        curr = head
-        length = 1 
+        length = 1
 
+        #make the ptr 
+        cur = head
+        
+        #calc the length
         while curr:
 
+            length += 1 
             curr = curr.next
-            length += 1
 
         
-        #get the prev node pos 
-        length_prev = length - (n)
+        #if the node is head 
+        if length - n == 0:
 
-        #set ptr
-        ptr = head
-        i = 0
+            temp = head.next
+            head.next = None
 
-        #star the removal loop 
-        while i < length_prev:
+            return temp
 
-            ptr = ptr.next
-            i += 1 
+
+        #if remove the last node
+        if n == 1:
+
+            temp = head
+
+            while True:
+
+                if temp.next:
+
+                    temp = temp.next
+                
+                else:
+
+                    temp.next = None
+                    return head
+            
+
+        #case if not last and first node 
+
+        #get the length 
+        pre_len = length - n
+        prev = head
+        i = 1
+
+        while i < pre_len :
+
+            prev = prev.next
+        
+        prev.next = prev.next.next
+
+
+        return head
+
+
+
+
+
+
+
+
+
+
         
 
-        #remove the node 
-        temp = ptr.next
-
-        if temp.next :
-
-            ptr.next = temp.next
         
-        else:
 
-            ptr.next = None
-        
-        temp.next = None
         
 
 
