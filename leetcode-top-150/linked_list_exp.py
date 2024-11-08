@@ -73,6 +73,23 @@ class Solution:
             else:
                 break
 
+    
+    def fast_pointer(self,head):
+
+        slow = head
+        fast = slow
+
+        while slow and fast.next:
+
+            if slow:
+                print(slow.val)
+            
+            if fast:
+                print(fast.val)
+            
+            slow = slow.next
+            fast = fast.next.next
+
 
 
         
@@ -87,3 +104,5 @@ print(sol.print_list2(head))
 print(sol.print_list3(head))
 
 print(sol.print_list4(head))
+
+print(sol.fast_pointer(head))
