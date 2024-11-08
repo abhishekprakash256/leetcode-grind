@@ -81,7 +81,7 @@ return dummy.next
 
 
 class Solution:
-	def copyRandomList_wrong(self, head: 'Optional[Node]') -> 'Optional[Node]':
+	def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
 		"""
 		The function to find make the deep copy of the list
 		"""
@@ -91,29 +91,12 @@ class Solution:
 			return None 
 
 
-		#make vars 
-		dummy = Node(0)
-		curr = dummy 
+		#make hashmap
+		mapper = {}
+
+		pass
 
 
-		#make the ptr 
-		temp = head
-
-		#star the loop 
-		while temp:
-
-			#make new node 
-			node = Node(temp.val , temp.random)
-
-			#assignbmnet 
-			curr.next = node
-			curr = node
-
-			#temp assignmnet 
-			temp = temp.next
-
-
-		return dummy.next
 
 
 
