@@ -50,67 +50,41 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         """
         The function to remove the nth node from the last 
+        passes leet code
         """
 
         #base case :
         if not head.next :
             return None
+
+        #dumm node 
+        dummy = ListNode(0)
+        dummy.next = head
+
+        first = head
+
+        #length
+        length = 0
+
+        while first :
+
+            length += 1
+            first = first.next
         
 
-        #get the length 
-        length = 1
+        #new len 
+        length -= n
+        first = dummy
 
-        #make the ptr 
-        cur = head
-        
-        #calc the length
-        while curr:
-
-            length += 1 
-            curr = curr.next
-
-        
-        #if the node is head 
-        if length - n == 0:
-
-            temp = head.next
-            head.next = None
-
-            return temp
-
-
-        #if remove the last node
-        if n == 1:
-
-            temp = head
-
-            while True:
-
-                if temp.next:
-
-                    temp = temp.next
-                
-                else:
-
-                    temp.next = None
-                    return head
+        #remove the node 
+        while length > 0 :
             
+            length -= 1
+            first = first.next
 
-        #case if not last and first node 
+        first.next = first.next.next
 
-        #get the length 
-        pre_len = length - n
-        prev = head
-        i = 1
-
-        while i < pre_len :
-
-            prev = prev.next
-        
-        prev.next = prev.next.next
-
-
-        return head
+        return dummy.next
 
 
 
