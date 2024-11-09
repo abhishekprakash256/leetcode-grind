@@ -49,21 +49,24 @@ class Solution:
 
 		#start the removal loop 
 
-		while curr:
+		while curr and curr.next: 
+
 
 			if curr.val == curr.next.val :
 
-				if curr.next:
+				curr.next = curr.next.next
 
-					curr.next = curr.next.next
-
-				else:
-
-					curr.next = None
-
-			
 			else:
+
 				curr = curr.next
-			
-		
+
+
 		return head
+
+
+
+
+
+
+
+
