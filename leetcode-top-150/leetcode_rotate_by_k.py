@@ -13,7 +13,18 @@ Output: [2,0,1]
 
 
 """
+algo - 
+use two pointer 
 
+one at head 
+other at length - k 
+
+if k < lenghth :
+    second_ptr_pos = length - pos 
+
+else:
+
+    second_ptr_pos = length - (length//k)
 
 
 """
