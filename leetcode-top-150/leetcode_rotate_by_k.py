@@ -66,72 +66,105 @@ secon_ptr_pos.next = None
 
 """
 
-from typing import Optional , ListNode
+class Node:
+    def __init__(self,val=None,next = None ):
+        self.val = val
+        self.next = next
+
+
+
+#make the node
+
+head = Node(1)
+node1 = Node(2)
+node2 = Node(3)
+node3 = Node(4)
+node4 = Node(5)
+
+#connect the linked list 
+head.next = node1
+node1.next = node2
+node2.next = node3
+node3.next = node4
+
+
+
+
+class Helper_fun:
+    
+    def print_list(self,head):
+        """
+        To print the list
+        """
+
+        curr = head
+
+        while curr:
+
+            print(curr.val)
+            curr = curr.next
+
+
+
+
+
+
 
 class Solution:
-    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-
+    def rotateRight(self, head, k: int):
         """
-        The function to rotate the linked list by k times 
+        Rotates the linked list to the right by k places.
         """
 
-        #base case 
-        if not head :
-            return None 
+        # Base case: if the list is empty or has only one element
+        if not head or not head.next:
+            return head
 
-        if not head.next : 
-            return head 
+        # Calculate the length of the list
+        length = 0
+        temp = head
         
-
-        #get the length 
-        length = 1 
-        temp = head 
-
         while temp:
-
-            length += 1 
+            length += 1
             temp = temp.next
 
-        #get the second ptr pos 
+        # Optimize k to avoid unnecessary rotations
+        k = k % length
+        if k == 0:
+            return head  # No rotation needed
 
-        if k < length:
+        # Find the new tail (length - k - 1) and new head (length - k)
+        new_tail_pos = length - k - 1
+        new_tail = head
+        for _ in range(new_tail_pos):
+            new_tail = new_tail.next
 
-            r = length - k 
-        
-        else:
+        new_head = new_tail.next  # New head is next of new_tail
 
-            r = length - (length//k)
+        # Find the last node to connect it with the original head
+        temp = new_head
+        while temp.next:
+            temp = temp.next
+        temp.next = head  # Connect last node to the original head
 
-        
-        #get the last node 
-        right = head 
+        # Break the list at new_tail
+        new_tail.next = None
 
-        while right.next:
-
-            right = right.next
-        
-
-        #put the seond ptr in pos 
-
-        left = head
-
-        for _ in range(length-r ):
-
-            left = left.next
-
-        
-        #swap the nodes
-
-        left.next = None 
-        right.next = head
-
-        return head
-        
+        return new_head
 
 
         
 
 
 
+helper_fun = Helper_fun()
+
+sol =  Solution()
+
+#print(helper_fun.print_list(head))
+
+sol.rotateRight(head,2)
+
+print(helper_fun.print_list(head))
 
             
