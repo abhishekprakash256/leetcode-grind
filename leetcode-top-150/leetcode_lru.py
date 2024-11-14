@@ -14,8 +14,76 @@ The functions get and put must each run in O(1) average time complexity.
 """
 
 """
+size fixed 
+
+self.capacity = capacity 
+
+get if exist -1 
+    comes in head 
+
+put if there update 
+else : 
+    add if less value
+    capacity +=1 
+
+
+mapper = {key : value_node} 
+
 
 
 
 
 """
+
+class Linkedlist():
+
+    def __init__(self,val = None,next= None):
+
+        self.val = val 
+        self.next = next
+
+
+
+
+
+
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.mapper = {}
+
+        
+
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+
+        if key in self.mapper:
+
+            return mapper[key]
+
+            node = Node(mapper[key])
+
+            node.next = head 
+
+        else:
+
+            return -1
+        
+
+    def put(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+
+        if self.key in mapper:
+
+

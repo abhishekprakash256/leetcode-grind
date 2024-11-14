@@ -91,3 +91,13 @@ sol = Solution()
 print(sol.print_list(head))
 sol.rev_list(head)
 print(sol.print_list(node4))
+
+
+
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+
+del my_dict['b']  # Removes the key-value pair with key 'b'
+
+my_dict.pop("c")
+
+print(my_dict)
