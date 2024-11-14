@@ -114,6 +114,7 @@ class Solution:
     def rotateRight(self, head, k: int):
         """
         Rotates the linked list to the right by k places.
+        passes leet code
         """
 
         # Base case: if the list is empty or has only one element
@@ -123,7 +124,7 @@ class Solution:
         # Calculate the length of the list
         length = 0
         temp = head
-        
+
         while temp:
             length += 1
             temp = temp.next
