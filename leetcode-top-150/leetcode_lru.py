@@ -37,55 +37,201 @@ mapper = {key : value_node}
 
 """
 
-class Linkedlist():
+class Node():
 
-    def __init__(self,val = None,next= None):
+    def __init__(self,val= None,next = None):
 
-        self.val = val 
+        self.val = val
         self.next = next
 
 
 
 
+class Linked_list_helper():
+
+    def __init__(self):
+
+        self.head = None
+        self.tail = None
 
 
-class LRUCache(object):
-
-    def __init__(self, capacity):
+    def add_node(self,val):
         """
-        :type capacity: int
+        The function to add node 
+        """
+
+        #make the node
+        node = Node(val)
+
+        #add the head 
+        if not self.head:
+
+            self.head = node
+            self.tail = node
+
+            return "Head is set "
+
+
+        #add the tail 
+        if not self.tail :
+
+            self.tail = node 
+
+            self.head.next = self.tail
+
+            return "Tail is set"
+
+
+
+        #add the node in middle 
+
+        self.tail.next = node
+        self.tail = node
+
+
+
+        return "node is added"
+
+
+
+    def list_printer(self):
+        """
+        The functon to print the list
+        """
+
+        if not self.head:
+            return ""
+
+        temp = self.head
+
+        while temp:
+
+            print(temp.val)
+            temp = temp.next
+
+
+
+
+
+class Node:
+
+    def __init__(self,val = None,prev = None,next = None):
+
+        self.val = val
+        self.prev = prev
+        self.next = next
+
+
+
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        """
+        The function to set the initails of the LRU
         """
         self.capacity = capacity
         self.mapper = {}
+        self.length = 0
+        self.head = None
+        self.tail = None
 
-        
 
-    def get(self, key):
+
+    def add_node(self,val):
         """
-        :type key: int
-        :rtype: int
+        The function to add the value in the doubly linked list 
+        """
+
+        #make the node 
+        node = Node(val)
+
+
+        if not self.head:
+
+            self.head = node
+
+
+        if not self.tail:
+
+            self.tail = node
+            
+            #set the ptrs
+            self.head.next = self.tail
+            self.tail.prev = self.head
+
+
+
+
+    def get(self, key: int) -> int:
+        """
+        The function to get the value of the key 
         """
 
         if key in self.mapper:
 
-            return mapper[key]
+            #do the doubly linked list manupulation
 
-            node = Node(mapper[key])
+            new_head = mapper[key]
 
-            node.next = head 
+            mapper[key].prev.next = mapper[key].next
+
+            mapper[key].next.prev = mapper[key].prev
+
+            new_head.next = self.head
+
+            self.head = new_head
+
+            return mapper[key].val
+
 
         else:
 
-            return -1
+            return -1 
+
+
         
 
-    def put(self, key, value):
+    def put(self, key: int, value: int) -> None:
         """
-        :type key: int
-        :type value: int
-        :rtype: None
+        The fucntion to put the value in LRU 
         """
 
-        if self.key in mapper:
+        #make the new node 
+        node = Node(val)
+
+
+        if key in self.mapper:
+
+            mapper[key] = node
+
+            #update the linke list 
+
+
+
+        elif key not in self.mapper and self.length < self.capacity:
+
+            self.mapper[key] = node
+            self.length += 1 
+
+            #addd the node 
+            self.tail.next = node
+            self.tail = node
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
