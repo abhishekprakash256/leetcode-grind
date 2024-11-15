@@ -76,8 +76,12 @@ class Solution:
             
             return False
         
+        if not p and not q:
+
+            return True
+        
         if p and q :
-            
+
             if self.traverse(p.left) != self.traverse(q.left) :
 
                 return False
