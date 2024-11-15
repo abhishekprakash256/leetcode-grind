@@ -210,5 +210,6 @@ doublelist.add_node(4)
 doublelist.print_list_head()
 
 doublelist.remove_node(3)
+doublelist.remove_node(1)
 
 doublelist.print_list_tail()
