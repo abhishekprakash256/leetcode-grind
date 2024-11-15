@@ -124,7 +124,7 @@ class Node:
 
 
 
-class LRUCache:
+class LRUCache_wrong:
 
     def __init__(self, capacity: int):
         """
@@ -133,90 +133,215 @@ class LRUCache:
         self.capacity = capacity
         self.mapper = {}
         self.length = 0
-        self.head = None
-        self.tail = None
-
-
-
-    def add_node(self,val):
-        """
-        The function to add the value in the doubly linked list 
-        """
-
-        #make the node 
-        node = Node(val)
-
-
-        if not self.head:
-
-            self.head = node
-
-
-        if not self.tail:
-
-            self.tail = node
-            
-            #set the ptrs
-            self.head.next = self.tail
-            self.tail.prev = self.head
-
-
-
-
-    def get(self, key: int) -> int:
-        """
-        The function to get the value of the key 
-        """
-
-        if key in self.mapper:
-
-            #do the doubly linked list manupulation
-
-            new_head = mapper[key]
-
-            temp = mapper[key].prev
-            temp2 = mapper[key].next
-
-            temp.next = temp2
-            temp2.prev = temp
-
-            new_head.next = self.head
-            new_head.prev = None
-
-            self.head = new_head
-
-            return mapper[key].val
-
-
-        else:
-
-            return -1 
+        self.head = None  #the recently used
+        self.tail = None  #tail the lastly used
 
 
         
 
-    def put(self, key: int, value: int) -> None:
+    def get(self, key: int) -> int:
         """
-        The fucntion to put the value in LRU 
+        The functon to get the value of the key value and set it to head
         """
-
-        #make the new node 
-        node = Node(val)
-
-
+        
         if key in self.mapper:
 
-            #update the linke list 
+            #put the node in head
+            #if node is head 
 
-            mapper[key].val = value
+            if self.mapper[key] == self.head:
 
- 
+                return self.mapper[key].val
+
+            #if node is not head 
+            elif self.mapper[key] == self.tail :
+
+                temp_node = self.tail.prev 
+
+                self.tail.next = self.head
+                self.head.prev = self.tail 
+
+                self.tail.prev = None
+                self.head = self.tail
+
+                temp_node.next = None
+
+                self.tail = temp_node
+
+                return self.mapper[key].val
+
+            #if node not head or tail
+            else:
+
+                temp_prev = self.mapper[key].prev
+                temp_next = self.mapper[key].next
+
+                temp_prev.next = temp_next
+                temp_next.prev = temp_prev
+
+                self.head.prev = self.mapper[key]
+                self.mapper[key].next = self.head
+
+                self.head = self.mapper[key]
+             
+
+                return self.mapper[key].val
+    
+        else:
+
+            return -1 
+        
+
+    def put(self, key: int, value: int) -> None:
+        """
+        The function to put the value only if capacity is length
+        """
+
+        #update the value if present
+
+        if key in self.mapper : 
+
+            self.mapper[key].val = value
+
+        
+        #if the value is not present and length is less than capacity
+
+        if key not in self.mapper and self.length != self.capacity : 
+
+            node = Node(value)
+            self.length += 1 
+
+            #if head is not set
+
+            if not self.head: 
+
+                self.head = node
+
+                self.tail = node
+
+            #if tail is not set
+
+            elif not self.tail: 
+
+                self.node.prev = self.head
+
+                self.head.next = node
+
+                self.tail = node
+            
+
+            #if other node is not set
+
+            else:
+
+                node.prev = self.tail
+
+                self.tail.next = node
+
+                self.tail = node
+                
+            self.mapper[key] = node
+
+        
+        if key in self.mapper and self.length == self.capacity : 
+            
+            #cut the tail and put new value in mapper 
+
+            node = Node(value)
+
+            #remove the value from mapper 
+            self.mapper.pop(key)
+
+            #remove the tail 
+
+            temp_node = self.tail.prev
+
+            temp_node.next = node
+            node.prev = temp_node
+
+            self.tail.prev = None
+
+            self.tail = node
 
 
-        #remove the least used 
-        elif key not in self.mapper :
 
-            pass
+
+
+class Node:
+    def __init__(self, key=None, value=None):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        """
+        Initialize the LRU cache with a fixed capacity.
+        passes leetcode
+        """
+        self.capacity = capacity
+        self.mapper = {}  # Dictionary for O(1) access to nodes
+        self.head = Node()  # Dummy head (most recently used)
+        self.tail = Node()  # Dummy tail (least recently used)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def _remove(self, node: Node):
+        """
+        Remove a node from the doubly linked list.
+        """
+        prev_node = node.prev
+        next_node = node.next
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+    def _add_to_head(self, node: Node):
+        """
+        Add a node right after the dummy head.
+        """
+        next_node = self.head.next
+        self.head.next = node
+        node.prev = self.head
+        node.next = next_node
+        next_node.prev = node
+
+    def get(self, key: int) -> int:
+        """
+        Return the value of the key if it exists in the cache, otherwise return -1.
+        """
+        if key in self.mapper:
+            node = self.mapper[key]
+            # Move the accessed node to the head (most recently used)
+            self._remove(node)
+            self._add_to_head(node)
+            return node.value
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        """
+        Add a key-value pair to the cache. If the cache exceeds capacity, evict the least recently used item.
+        """
+        if key in self.mapper:
+            # Update the value and move node to head
+            node = self.mapper[key]
+            node.value = value
+            self._remove(node)
+            self._add_to_head(node)
+        else:
+            # Add a new node
+            if len(self.mapper) == self.capacity:
+                # Evict the least recently used node
+                lru_node = self.tail.prev
+                self._remove(lru_node)
+                del self.mapper[lru_node.key]
+            new_node = Node(key, value)
+            self._add_to_head(new_node)
+            self.mapper[key] = new_node
+
+
+
 
 
 

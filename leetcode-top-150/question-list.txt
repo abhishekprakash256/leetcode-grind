@@ -10,5 +10,5 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/des
 https://leetcode.com/problems/isomorphic-strings/description/
 https://leetcode.com/problems/basic-calculator/description/
 https://leetcode.com/problems/copy-list-with-random-pointer/description/
-
+https://leetcode.com/problems/lru-cache/description/
 
