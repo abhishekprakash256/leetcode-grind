@@ -174,11 +174,14 @@ class LRUCache:
 
             new_head = mapper[key]
 
-            mapper[key].prev.next = mapper[key].next
+            temp = mapper[key].prev
+            temp2 = mapper[key].next
 
-            mapper[key].next.prev = mapper[key].prev
+            temp.next = temp2
+            temp2.prev = temp
 
             new_head.next = self.head
+            new_head.prev = None
 
             self.head = new_head
 
@@ -203,20 +206,19 @@ class LRUCache:
 
         if key in self.mapper:
 
-            mapper[key] = node
-
             #update the linke list 
 
+            mapper[key].val = value
+
+ 
 
 
-        elif key not in self.mapper and self.length < self.capacity:
+        #remove the least used 
+        elif key not in self.mapper :
 
-            self.mapper[key] = node
-            self.length += 1 
+            pass
 
-            #addd the node 
-            self.tail.next = node
-            self.tail = node
+
 
 
 
