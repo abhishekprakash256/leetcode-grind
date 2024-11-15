@@ -72,22 +72,31 @@ class Solution:
         """
 
         #base case 
-        if not q or not p:
+        if not p or not q:
             
             return False
         
-        if p.left and q.left:
+        if p and q :
+            
+            if self.traverse(p.left) != self.traverse(q.left) :
 
-            p_left = self.traverse(p.left)
-            q_right = self.traverse(q.left)
-        
-        if p.right and q.right : 
+                return False
 
-            p_right = self.traverse(p.right)
-            q_right = self.traverse(q.right)
+            if self.traverse(p.right) != self.traverse(p.right) : 
+
+                return False
+
+
+        self.isSameTree(p.left,q.left)
+        self.isSameTree(p.right, q.right)
+
+
+        return True        
         
 
         
+
+
 
 
          
