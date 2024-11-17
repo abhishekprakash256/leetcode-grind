@@ -23,85 +23,97 @@ traversal problem
 
 def traverse(self,node):
 
-    if not node:
-        return None
-    
-    self.traverse(node.left)
-    self.traverse(node.right)
+	if not node:
+		return None
+	
+	self.traverse(node.left)
+	self.traverse(node.right)
 
-    return node.val
+	return node.val
 
 
-        
+		
 def main(self,node):   
 
-    #base case 
-    if not node :
-     
-        return None
+	#base case 
+	if not node :
+	 
+		return None
 
-    left = self.traverse(node.left)
-    right = self.traverse(node.right)
+	left = self.traverse(node.left)
+	right = self.traverse(node.right)
 
-    if left == right :
-        return True
-    
-    else:
-        
-        return False
+	if left == right :
+		return True
+	
+	else:
+		
+		return False
 
 
 """
 
 class Solution:
 
-    def traverse(self,node):
-        """
-        The traverse function 
-        """
+	def traverse(self,node):
+		"""
+		The traverse function 
+		"""
 
-        if not node :
-            return None
-    
+		if not node :
+			return None
+	
 
-        return node.val
+		return node.val
 
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        """
-        The main checking function
-        """
-
-        #base case 
-        if not p or not q:
-            
-            return False
-        
-        if not p and not q:
-
-            return True
-        
-        if p and q :
-
-            if self.traverse(p.left) != self.traverse(q.left) :
-
-                return False
-
-            if self.traverse(p.right) != self.traverse(p.right) : 
-
-                return False
+	def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+		"""
+		The main checking function
+		"""
 
 
-        self.isSameTree(p.left,q.left)
-        self.isSameTree(p.right, q.right)
+		#base case 
+
+		if not p and not q : 
+
+			return True
 
 
-        return True        
-        
+		if not p and q : 
 
-        
+			return False
+
+		if p and not q :
+
+			return False
+
+
+		if p and q :
+
+			if self.traverse(p.left) != self.traverse(q.left) : 
+
+				return False
+
+
+			if self.traverse(p.right) != self.traverse(q.right) : 
+
+				return False
+
+
+		return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right) 
 
 
 
 
-         
+
+
+
+		
+
+		
+
+
+
+
+		 
 
