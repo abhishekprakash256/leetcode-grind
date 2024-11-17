@@ -52,56 +52,34 @@ def main(self,node):
 
 
 """
-
 class Solution:
+    def traverse(self, node):
+        """
+        The traverse function that returns the value of the node
+        or None if the node is None.
+        """
+        return None if not node else node.val
 
-	def traverse(self,node):
-		"""
-		The traverse function 
-		"""
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        """
+        The main checking function to determine if two trees are the same.
+        passes leet code 
+        """
 
-		if not node :
-			return None
-	
+        # Base case: both trees are empty
+        if not p and not q:
+            return True
 
-		return node.val
+        # If one tree is empty and the other is not
+        if not p or not q:
+            return False
 
-	def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-		"""
-		The main checking function
-		"""
+        # Check current node values
+        if self.traverse(p) != self.traverse(q):
+            return False
 
-
-		#base case 
-
-		if not p and not q : 
-
-			return True
-
-
-		if not p and q : 
-
-			return False
-
-		if p and not q :
-
-			return False
-
-
-		if p and q :
-
-			if self.traverse(p.left) != self.traverse(q.left) : 
-
-				return False
-
-
-			if self.traverse(p.right) != self.traverse(q.right) : 
-
-				return False
-
-
-		return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right) 
-
+        # Recursively check left and right subtrees
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
 
 
