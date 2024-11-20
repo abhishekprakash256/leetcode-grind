@@ -33,9 +33,9 @@ preoder - root,left,right
 inorder - left,root, right 
 
 
-[3,9,20,15,7]
-
-[9,3,15,20,7]
+[3,9,20,15,7] - preorder
+ 
+[9,3,15,20,7] - inorder 
 
 root = 3 
 
@@ -43,5 +43,17 @@ root = 3
 
 
 
-
 """
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+    	"""
+		The function to make the tree
+    	"""
+
+        if inorder:
+            ind = inorder.index(preorder.pop(0))
+            root = TreeNode(inorder[ind])
+            root.left = self.buildTree(preorder, inorder[0:ind])
+            root.right = self.buildTree(preorder, inorder[ind+1:])
+            return root
