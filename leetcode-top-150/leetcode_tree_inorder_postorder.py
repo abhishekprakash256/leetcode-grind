@@ -18,17 +18,17 @@ Output: [-1]
 
 
 class Solution(object):
-    def buildTree(self, inorder, postorder):
-        """
-        :type inorder: List[int]
-        :type postorder: List[int]
-        :rtype: Optional[TreeNode]
-        """
+	def buildTree(self, inorder, postorder):
+		"""
+		:type inorder: List[int]
+		:type postorder: List[int]
+		:rtype: Optional[TreeNode]
+		"""
 
-        if inorder:
+		if inorder:
 
-        	ind = postorder.pop()
-        	root = TreeNode(inorder[ind])
-            root.left = self.buildTree(preorder, inorder[0:ind])
-            root.right = self.buildTree(preorder, inorder[ind+1:])
-            return root
+			ind = postorder.pop()
+			root = TreeNode(inorder[ind])
+			root.left = self.buildTree(preorder, inorder[0:ind])
+			root.right = self.buildTree(preorder, inorder[ind+1:])
+			return root
