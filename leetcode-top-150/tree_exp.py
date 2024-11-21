@@ -70,6 +70,7 @@ class TreeHelper():
 
 			curr_node = queue.pop(0)
 
+
 			if curr_node :
 
 				res_lst.append(curr_node.val)
@@ -79,7 +80,7 @@ class TreeHelper():
 
 		return res_lst
 
-		
+
 
 
 
