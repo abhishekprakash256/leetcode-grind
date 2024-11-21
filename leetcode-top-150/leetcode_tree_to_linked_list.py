@@ -100,16 +100,16 @@ class Solution(object):
 
 		#add the node like a list 
 		
-		print(node_lst)
+		#print(node_lst)
 
 		for i in range(len(node_lst) - 1 ) :
 
 			node_lst[i].right = node_lst[i+1]
 			node_lst[i].left = None
 
-			print(i)
+			#print(i)
 
-		node_lst[i+1].right = None
+		node_lst[-1].right = None
 
 
 
