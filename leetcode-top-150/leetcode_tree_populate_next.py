@@ -41,6 +41,56 @@ queue is used in bfs
 
 """
 
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+
+        #base case 
+        if not root :
+
+          return None
+
+
+
+        #make the queue
+        queue = [root]
+
+        #make the res lst 
+        res_lst = []
+
+
+        while queue :
+
+          temp_lst = []
+
+          for _ in range(len(queue)):
+
+            temp_node = queue.pop(0)
+
+            if temp_node:
+
+              temp_lst.append(temp_node)
+
+              queue.append(temp_node.left)
+
+              queue.append(temp_node.right)
+
+          res_lst.append(temp_lst)
+
+
+        #connect the nodes 
+        for nodes in res_lst : 
+
+            for i in range(len(nodes)-1) :
+
+                nodes[i].next = nodes[i+1]
+
+            nodes[len(nodes)-1].next = None
+
+
 
 
 
