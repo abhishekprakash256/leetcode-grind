@@ -80,6 +80,13 @@ class TreeHelper():
 
 		return res_lst
 
+	def dfs_tree_level(self,node):
+		"""
+		The function to append the node per level
+		"""
+
+		#base case 
+
 
 
 
