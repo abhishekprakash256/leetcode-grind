@@ -80,6 +80,7 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :type targetSum: int
         :rtype: bool
+        wrong code
         """
 
         self.targetSum = targetSum
