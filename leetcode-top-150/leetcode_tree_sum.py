@@ -32,8 +32,70 @@ Explanation: Since the tree is empty, there are no root-to-leaf paths.
 
 
 """
+approach 
+
+use dfs 
+
+make the sum zero on start 
+
+sum = 0 
+
+carry_sum = 0 
+
 
 
 
 
 """
+
+
+
+
+class Solution(object):
+	def dfs_sum(self,node,temp_sum):
+		"""
+		The function to find the sum 
+
+		"""
+
+		if node:
+
+			temp_sum += node.val
+
+			if temp_sum == self.targetSum : 
+
+				return True
+
+			self.dfs_sum(node.left,temp_sum)
+			self.dfs_sum(node.right,temp_sum)
+
+
+		return False
+
+
+
+
+    def hasPathSum(self, root, targetSum):
+        """
+        :type root: Optional[TreeNode]
+        :type targetSum: int
+        :rtype: bool
+        """
+
+        self.targetSum = targetSum
+
+        #base case
+        if not node and sum == 0 :
+        	rerurn True
+
+        if not node and sum != 0 :
+        	return False
+
+
+        #make the sum 
+        sum = 0 
+
+       return  self.dfs_sum(sum,root)
+
+
+
