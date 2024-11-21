@@ -80,16 +80,42 @@ class TreeHelper():
 
 		return res_lst
 
-	def dfs_tree_level(self,node):
+	def bfs_tree_level(self,node):
 		"""
 		The function to append the node per level
 		"""
 
 		#base case 
+		if not node:
+			return [[]]
+
+		#make the queue 
+		queue = [node]
+
+		#make the result list 
+		res_lst = []
 
 
+		while queue:
+
+			temp_lst = []
+
+			for _ in range(len(queue)):
+
+				temp_node = queue.pop(0)
+
+				if temp_node:
+
+					temp_lst.append(temp_node.val)
+
+					queue.append(temp_node.left)
+
+					queue.append(temp_node.right)
+
+			res_lst.append(temp_lst)
 
 
+		return res_lst
 
 
 
@@ -106,3 +132,5 @@ if __name__ == '__main__':
 	print(treehelper.dfs_tree(root))
 
 	print(treehelper.bfs_tree(root))
+
+	print(treehelper.bfs_tree_level(root))
