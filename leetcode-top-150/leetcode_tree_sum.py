@@ -52,51 +52,40 @@ carry_sum = 0
 
 
 class Solution(object):
-	def dfs_sum(self,node,temp_sum):
-		"""
-		The function to find the sum 
+    def dfs_sum(self, node, temp_sum):
+        """
+        Helper function to find the sum using DFS.
+        """
+        if not node:  # Base case: reached a null node
+            return False
 
-		"""
+        # Add the current node's value to the running sum
+        temp_sum += node.val
 
-		if node:
+        # Check if it's a leaf node and the path sum equals the target
+        if not node.left and not node.right:
+            return temp_sum == self.targetSum
 
-			temp_sum += node.val
+        # Recur for left and right subtrees and return True if any path matches
+        left = self.dfs_sum(node.left, temp_sum)
+        right = self.dfs_sum(node.right, temp_sum)
 
-			if temp_sum == self.targetSum : 
-
-				return True
-
-			self.dfs_sum(node.left,temp_sum)
-			self.dfs_sum(node.right,temp_sum)
-
-
-		return False
-
-
-
+        return left or right
 
     def hasPathSum(self, root, targetSum):
         """
+        Main function to determine if a path with the given sum exists.
         :type root: Optional[TreeNode]
         :type targetSum: int
         :rtype: bool
-        wrong code
         """
-
         self.targetSum = targetSum
 
-        #base case
-        if not node and sum == 0 :
-        	rerurn True
+        # Base case: If the tree is empty, no path exists
+        if not root:
+            return False
 
-        if not node and sum != 0 :
-        	return False
-
-
-        #make the sum 
-        sum = 0 
-
-       return  self.dfs_sum(sum,root)
-
+        # Start the DFS traversal
+        return self.dfs_sum(root, 0)
 
 
