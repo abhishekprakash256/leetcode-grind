@@ -34,6 +34,13 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 
 
 """
+approach -- 
+
+
+height is imp 
+
+we get number of tens 
+
 
 
 
