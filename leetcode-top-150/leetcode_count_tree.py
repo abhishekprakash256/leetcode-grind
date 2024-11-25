@@ -60,6 +60,7 @@ class Solution_slow(object):
 		"""
 		:type root: Optional[TreeNode]
 		:rtype: int
+		passes leetcode
 		"""
 
 		#base case 
