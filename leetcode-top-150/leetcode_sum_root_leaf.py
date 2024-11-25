@@ -42,6 +42,18 @@ height is imp
 we get number of tens 
 
 
+we case use a string and typoe cast to the 
 
+
+aporoach -- 
+
+dfs but adding values 
+so rempty string and carry the vaues freom behind 
+res_lst to add all the values 
+
+type cast to all values to int 
 
 """
+
+
+
