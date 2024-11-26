@@ -39,6 +39,10 @@ using bfs
 
 [1,2,3,5,4]
 
+add the null nodes 
 
+also make the node with 2 intevral and have last element
 
 """
+
+

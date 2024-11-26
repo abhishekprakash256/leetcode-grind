@@ -39,3 +39,46 @@ using list
 
 
 """
+
+
+class Node:
+
+	def __init__(self,val = None, left = None, right = None , next = None):
+
+		self.val = val
+		self.left = left
+		self.right = right
+		self.next = next
+
+
+
+#make node 
+
+root = Node(1)
+node1 = Node(2)
+node2 = Node(3)
+node3 = Node(4)
+node4 = Node(5)
+node5 = Node(7)
+
+
+#connect the trees
+
+root.left = node1
+root.right = node2
+node1.left = node3
+node1.right = node4
+node2.right = node5
+
+
+
+
+
+class Solution():
+
+	def bfs(self,node):
+		"""
+		
+
+
+		"""
