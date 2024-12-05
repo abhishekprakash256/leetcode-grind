@@ -77,7 +77,7 @@ node2.right = node5
 
 class Solution():
 
-    def bfs(self,root):
+    def rightSideView(self,root):
         """
         The function to do the bfs of the tree
         """
@@ -94,19 +94,20 @@ class Solution():
         #start the loop
         while queue :
 
-            node = queue.pop(0)
-            
-            if node : 
+            level_size = len(queue)
 
-                res_lst.append(node.val)
-
-                queue.append(node.right)
-
-                queue.append(node.left)
-            
-            else:
+            for i in range(level_size):
                  
-                 res_lst.append(None)
+                node = queue.pop(0)
+                 
+                if i == level_size -1 :
+                      res_lst.append(node.val)
+                    
+                if node.left : 
+                     queue.append(node.left)
+                    
+                if node.right:
+                     queue.append(node.right)
 
         return res_lst
             
