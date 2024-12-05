@@ -53,8 +53,6 @@ class Node:
 		self.val = val
 		self.left = left
 		self.right = right
-		self.next = next
-
 
 
 #make node 
@@ -103,8 +101,12 @@ class Solution():
                 res_lst.append(node.val)
 
                 queue.append(node.left)
-    
+
                 queue.append(node.right)
+            
+            else:
+                 
+                 res_lst.append(None)
 
         return res_lst
             
