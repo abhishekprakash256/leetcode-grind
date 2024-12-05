@@ -100,9 +100,9 @@ class Solution():
 
                 res_lst.append(node.val)
 
-                queue.append(node.left)
-
                 queue.append(node.right)
+
+                queue.append(node.left)
             
             else:
                  
