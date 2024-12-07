@@ -46,7 +46,9 @@ class Solution:
 
 		# Loop until the queue is empty
 		while queue:
+
 			temp_lst = []  # To store the current level's node values
+			
 			level_size = len(queue)  # Number of nodes at the current level
 
 			for _ in range(level_size):
