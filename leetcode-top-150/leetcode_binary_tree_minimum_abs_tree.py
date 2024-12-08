@@ -87,6 +87,7 @@ class Solution():
 	def getMinimumDifference(self, root) -> int:
 		"""
 		The function to find the minimum diffrence of the node
+		passes leetcode
 		"""
 
 		#make the list
@@ -97,6 +98,9 @@ class Solution():
 
 		#call the dfs function
 		self.dfs_tree(root)
+
+		#sort the res list
+		self.res_lst.sort()
 
 
 		for i in range(1,len(self.res_lst)):
