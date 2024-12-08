@@ -76,9 +76,9 @@ class Solution(object):
 
 
 		#make the iterative search
-		for i in range(len(self.grid)-1) :
+		for i in range(len(self.grid)) :
 
-			for j in range(len(self.grid[0])-1) :
+			for j in range(len(self.grid[0])) :
 
 				if self.grid[i][j] == "1":
 
