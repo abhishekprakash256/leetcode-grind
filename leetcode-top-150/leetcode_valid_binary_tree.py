@@ -26,6 +26,9 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 class Solution:
 
 	def isValidBST(self, node: Optional[TreeNode], low=float('-inf'), high=float('inf')) -> bool:
+		"""
+		Passes leetcode
+		"""
 		# Base case: An empty tree is a valid BST
 		if not node:
 			return True
