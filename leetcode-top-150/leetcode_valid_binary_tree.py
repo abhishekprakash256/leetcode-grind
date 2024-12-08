@@ -36,10 +36,10 @@ class Solution(object):
 
 			return True
 
-		#make the queue 
+		#make the queue
 		queue = [root]
 
-		while queue : 
+		while queue :
 
 			curr_node = queue.pop(0)
 
