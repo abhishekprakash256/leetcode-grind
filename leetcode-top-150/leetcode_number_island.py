@@ -47,7 +47,7 @@ class Solution(object):
 		"""
 
 		#base case 
-		if self.grid[i][j] == "0" or i < 0 or j > len(self.grid[0]) - 1  or i > len(self.grid)-1 or j < 0 :
+		if self.grid[i][j] == "0" or i < 0 or j >= len(self.grid[0]) or i >= len(self.grid) or j < 0 :
 
 			return None
 
@@ -59,7 +59,7 @@ class Solution(object):
 		self.dfs_graph(i-1,j)
 		self.dfs_graph(i+1,j)
 		self.dfs_graph(i,j-1)
-		self.dfs_graph(i,j-1)
+		self.dfs_graph(i,j+1)
 
 
 
