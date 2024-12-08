@@ -11,6 +11,9 @@ root = [5,3,6,2,4,null,null,1], k = 3
 Output: 3
 """
 
+
+
+
 class Solution(object):
 	def kthSmallest(self, root, k):
 		"""
@@ -57,3 +60,13 @@ class Solution(object):
 
 		return res_lst[k-1] 
 		
+
+
+
+
+
+
+
+
+
+
