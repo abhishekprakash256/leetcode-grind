@@ -50,6 +50,39 @@ class TreeHelper():
 			self.dfs_tree(node.right)
 
 
+	def dfs_tree_iterative(self,node):
+		"""
+		The function to do the dfs using iteratiion
+		"""
+
+		#base case
+		if not node:
+			return []
+
+
+		#make the stack
+		stack = [node]
+
+		#make the result list
+		res_lst = []
+
+		while stack:
+
+			curr_node = stack.pop()
+
+			if curr_node:
+
+				res_lst.append(curr_node.val)
+
+				stack.append(curr_node.right)
+
+				stack.append(curr_node.left)
+
+		return res_lst
+
+
+
+
 
 	def bfs_tree(self,node):
 		"""
@@ -130,6 +163,8 @@ if __name__ == '__main__':
 	treehelper = TreeHelper()
 
 	print(treehelper.dfs_tree(root))
+
+	print(treehelper.dfs_tree_iterative(root))
 
 	print(treehelper.bfs_tree(root))
 
