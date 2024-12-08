@@ -47,9 +47,11 @@ class Solution(object):
 		"""
 
 		#base case 
-		if self.grid[i][j] == "0" or i < 0 or j >= len(self.grid[0]) or i >= len(self.grid) or j < 0 :
 
-			return None
+		if i < 0 or j < 0 or i > len(self.grid) - 1 or j > len(self.grid[0]) - 1 or self.grid[i][j] == "0":
+
+			return None 
+
 
 
 		#make the grid 0 
@@ -84,7 +86,17 @@ class Solution(object):
 
 					count +=1
 				
-				self.dfs_graph(i,j)
+					self.dfs_graph(i,j)
 
 		return count
+
+
+
+
+
+
+
+
+
+
 
