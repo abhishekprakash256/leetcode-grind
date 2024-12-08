@@ -23,44 +23,19 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 
 """
 
-class Solution(object):
+class Solution:
 
-	def isValidBST(self, root):
-		"""
-		:type root: TreeNode
-		:rtype: bool
-		"""
-
-		#base case 
-		if root.left is None and root.right is None :
-
+	def isValidBST(self, node: Optional[TreeNode], low=float('-inf'), high=float('inf')) -> bool:
+		# Base case: An empty tree is a valid BST
+		if not node:
 			return True
 
-		#make the queue
-		queue = [root]
+		# The current node's value must be in the range (low < node.val < high)
+		if not (low < node.val < high):
+			return False
 
-		while queue :
-
-			curr_node = queue.pop(0)
-
-			if curr_node.left :
-
-				queue.append(curr_node.left)
-
-				if curr_node.val > curr_node.left.val :
-
-					return False
-
-
-			if curr_node.right:
-
-				queue.append(curr_node.right)
-
-				if curr_node.val < curr_node.right.val :
-
-					return False
-
-		return True
+		# Recursively check the left and right subtrees with updated ranges
+		return (self.isValidBST(node.left, low, node.val) and self.isValidBST(node.right, node.val, high))
 
 
 
