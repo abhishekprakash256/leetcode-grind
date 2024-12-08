@@ -76,9 +76,11 @@ class Solution():
 
 		if node:
 
-			self.min_val = min(self.min_val,)
+			self.res_lst.append(node.val)
+			
 
 			self.dfs_tree(node.left)
+
 			self.dfs_tree(node.right)
 
 
@@ -87,9 +89,26 @@ class Solution():
 		The function to find the minimum diffrence of the node
 		"""
 
-		self.min_val = float("inf")
+		#make the list
+		self.res_lst = []
 
-		pass
+		#make the initial value
+		min_val = float("inf")
+
+		#call the dfs function
+		self.dfs_tree(root)
+
+
+		for i in range(1,len(self.res_lst)):
+
+			min_val = min(min_val,abs(self.res_lst[i] - self.res_lst[i-1]))
+
+
+		return min_val
+
+
+
+
 
 
 
