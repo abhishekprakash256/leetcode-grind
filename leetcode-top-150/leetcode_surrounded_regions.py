@@ -81,9 +81,6 @@ class Solution:
 
 
 
-
-
-
 	def solve(self, board) -> None:
 		"""
 		Do not return anything, modify board in-place instead.
@@ -93,7 +90,7 @@ class Solution:
 
 
 		#iteration 
-
+		
 		for i in range(len(self.board)):
 
 			for j in range(len(self.board[0])) :
