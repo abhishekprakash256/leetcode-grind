@@ -85,21 +85,26 @@ class Helper_Fun():
 		#make the queue:
 		queue = [node]
 
-
 		#start the traversal 
 
 		while queue :
+
+			temp_lst = []
 
 			curr_node = queue.pop(0)
 
 			if curr_node.val not in node_set :
 
 				node_set.add(curr_node.val)
+
 				res_lst.append(curr_node.val)
 
 				for neighbors in curr_node.neighbors:
 
 					if neighbors.val not in node_set:
+
+						#temp_lst.append(neighbors.val)
+
 						queue.append(neighbors)
 
 
