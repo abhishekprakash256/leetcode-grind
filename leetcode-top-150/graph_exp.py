@@ -92,14 +92,16 @@ class Helper_Fun():
 
 			curr_node = queue.pop(0)
 
-			node_set.add(curr_node.val)
+			if curr_node.val not in node_set :
 
-			res_lst.append(curr_node.val)
+				node_set.add(curr_node.val)
+				res_lst.append(curr_node.val)
 
-			for neighbors in curr_node.neighbors :
+				for neighbors in curr_node.neighbors:
 
-				if curr_node.val not in node_set:
-					queue.append(curr_node)
+					if neighbors.val not in node_set:
+						queue.append(neighbors)
+
 
 		return res_lst
 
