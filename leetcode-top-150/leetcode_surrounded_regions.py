@@ -51,6 +51,9 @@ if self.dfs(i-1,j) and self.dfs(i+1,j) and self.dfs(i,j-1) and  self.dfs(i,j-1) 
 """
 
 
+inp = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+
+
 
 
 class Solution:
@@ -61,16 +64,14 @@ class Solution:
 		"""
 
 		#base case
-		if i < 0 or j < 0 or i > len(self.board) - 1 or j > len(self.board[0]) - 1:
+		if i < 0 or j < 0 or i > len(self.board) - 1 or j > len(self.board[0]) - 1 or self.board[i][j] == "#" :
 
 			return False
 
 
-		if self.board[i][j] == "X" :
+		self.board[i][j] = "#" 
 
-			return True
-
-
+		
 		#call the dfs recursive
 		up = self.dfs_search(i-1,j)
 		down = self.dfs_search(i+1,j) 
@@ -78,17 +79,12 @@ class Solution:
 		right = self.dfs_search(i,j+1)
 
 
-		if up and down and right and left :
-
-			self.board[i][j] = "X"
-
-	
 
 
 
 
 
-	def solve(self, board: List[List[str]]) -> None:
+	def solve(self, board) -> None:
 		"""
 		Do not return anything, modify board in-place instead.
 		"""
@@ -103,6 +99,16 @@ class Solution:
 			for j in range(len(self.board[0])) :
 
 				self.dfs_search(i,j)
+
+
+
+
+if __name__ == '__main__':
+	sol = Solution()
+
+	sol.solve(inp)
+
+	print(inp)
 
 
 
