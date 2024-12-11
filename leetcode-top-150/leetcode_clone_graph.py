@@ -218,17 +218,17 @@ class Solution:
             if curr_node.val not in visited:
 
                 #add the node in visited 
-                visited[node.val] = True
+                visited[curr_node.val] = True
 
                 #add to the result list 
-                res_lst.append(node.val)
+                res_lst.append(curr_node.val)
 
 
                 for neighbor in node.neighbors:
 
-                    if neighbor.val not in visited:
+                    #if neighbor.val not in visited:
 
-                        queue.append(neighbor)
+                    queue.append(neighbor)
 
         return res_lst
 
