@@ -104,7 +104,7 @@ class Solution:
             if board[self.row - 1][j] == "O":
                 self.dfs(self.row - 1, j)
 
-
+                
         # Step 2: Replace all remaining 'O' with 'X', and revert 'T' back to 'O'
         for i in range(self.row):
             for j in range(self.col):
