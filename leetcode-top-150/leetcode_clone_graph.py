@@ -73,7 +73,7 @@ class Node:
 
 
 class Solution2:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+    def cloneGraph(self, node):
         """
         Clones a graph using BFS.
         """
@@ -110,11 +110,7 @@ class Solution2:
 
 
 
-
-
-
-
-class Solution:
+class Solution3:
     def cloneGraph(self, node):
         if not node:
             return None
@@ -137,3 +133,111 @@ class Solution:
 
         return dfs(node)
 
+
+
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+
+
+
+
+
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(3)
+node4 = Node(4)
+
+
+
+node1.neighbors = [node2,node4]
+node2.neighbors = [node1,node3]
+node3.neighbors = [node2,node4]
+node4.neighbors = [node1,node3]
+
+
+class Solution:
+
+    def __init__(self):
+
+        self.visited = {}
+        self.res_lst = []
+
+
+    def dfs_graph(self,node):
+        """
+        The dfs graph traversal 
+        """
+
+        #base case 
+        if node in self.visited:
+            return
+
+        #add the node in visited
+        self.visited[node] = True
+
+        #add the ndoe in result list 
+        self.res_lst.append(node.val)
+
+        for nodes in node.neighbors:
+
+            self.dfs_graph(nodes)
+
+
+        return self.res_lst
+
+
+    def bfs_graph(self,node):
+        """
+        The bfs traverdal of the graph 
+        """
+
+        #base case 
+        if not node :
+            return []
+
+        #only one node 
+        if not node.neighbors : 
+            return [node]
+
+        #make the visisted dict 
+        visited = {}
+
+        #make the result list 
+        res_lst = []
+
+        #make the queue
+        queue = [node]
+
+        #start the traversal 
+        while queue : 
+
+            curr_node = queue.pop(0)
+
+            if curr_node.val not in visited:
+
+                #add the node in visited 
+                visited[node.val] = True
+
+                #add to the result list 
+                res_lst.append(node.val)
+
+
+                for neighbor in node.neighbors:
+
+                    if neighbor.val not in visited:
+
+                        queue.append(neighbor)
+
+        return res_lst
+
+
+
+
+
+if __name__ == "__main__":
+
+    sol = Solution()
+    print(sol.dfs_graph(node1))
+    print(sol.bfs_graph(node1))
