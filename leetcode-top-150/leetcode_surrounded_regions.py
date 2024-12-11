@@ -57,45 +57,73 @@ inp = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
 
 
 class Solution:
+    def dfs(self, i, j):
+        """
+        The DFS function to mark boundary-connected 'O' regions.
+        """
+        # Base case: out of bounds or cell is not 'O'
+        if i < 0 or j < 0 or i > self.row -1  or j > self.col -1  or self.board[i][j] != "O":
+            return
+        
+        # Mark the cell as 'T' (temporary mark)
+        self.board[i][j] = "T"
+        
+        # Traverse in all four directions
+        self.dfs(i - 1, j)
+        self.dfs(i + 1, j)
+        self.dfs(i, j - 1)
+        self.dfs(i, j + 1)
 
-	def dfs_search(self,i,j):
-		"""
-		The function to do the dfs search
-		"""
+    def solve(self, board) -> None:
+        """
+        Modify the board in-place to capture surrounded regions.
+        passes leetcode
+        """
+        self.board = board
 
-		#base case
-		if i < 0 or j < 0 or i > len(self.board) - 1 or j > len(self.board[0]) - 1 or self.board[i][j] == "#" :
+        # Base case: empty board
+        if not board or not board[0]:
+            return
 
-			return False
-
-
-		self.board[i][j] = "#" 
-
-		
-		#call the dfs recursive
-		up = self.dfs_search(i-1,j)
-		down = self.dfs_search(i+1,j) 
-		left = self.dfs_search(i,j-1)
-		right = self.dfs_search(i,j+1)
+        # Get the number of rows and columns
+        self.row = len(board)
+        self.col = len(board[0])
 
 
+        # Step 1: Mark all boundary-connected 'O' regions with 'T'
+        for i in range(self.row):
+            if board[i][0] == "O":
+                self.dfs(i, 0)
+            if board[i][self.col - 1] == "O":
+                self.dfs(i, self.col - 1)
 
 
-	def solve(self, board) -> None:
-		"""
-		Do not return anything, modify board in-place instead.
-		"""
+        for j in range(self.col):
+            if board[0][j] == "O":
+                self.dfs(0, j)
+            if board[self.row - 1][j] == "O":
+                self.dfs(self.row - 1, j)
 
-		self.board = board
+
+        # Step 2: Replace all remaining 'O' with 'X', and revert 'T' back to 'O'
+        for i in range(self.row):
+            for j in range(self.col):
+                if board[i][j] == "O":
+                    board[i][j] = "X"
+                elif board[i][j] == "T":
+                    board[i][j] = "O"
 
 
-		#iteration 
-		
-		for i in range(len(self.board)):
 
-			for j in range(len(self.board[0])) :
 
-				self.dfs_search(i,j)
+
+
+
+
+
+
+
+
 
 
 
@@ -105,7 +133,6 @@ if __name__ == '__main__':
 
 	sol.solve(inp)
 
-	print(inp)
 
 
 
