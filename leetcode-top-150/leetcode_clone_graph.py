@@ -157,7 +157,7 @@ node3.neighbors = [node2,node4]
 node4.neighbors = [node1,node3]
 
 
-class Solution:
+class Solution4:
 
     def __init__(self):
 
@@ -224,11 +224,11 @@ class Solution:
                 res_lst.append(curr_node.val)
 
 
-                for neighbor in node.neighbors:
+                for neighbor in curr_node.neighbors:
 
-                    #if neighbor.val not in visited:
+                    if neighbor.val not in visited:
 
-                    queue.append(neighbor)
+                        queue.append(neighbor)
 
         return res_lst
 
@@ -236,8 +236,105 @@ class Solution:
 
 
 
+
+class Solution():
+
+    def __init__(self):
+
+        self.visited = {}
+
+
+    def cloneGraph(self,node):
+        """
+        The function to clone the graph using bfs
+        """
+
+        #base case 
+        if not node :
+            return []
+
+        #only one node 
+        if not node.neighbors : 
+            return [node]
+
+        #make the visisted dict 
+        visited = {}
+
+        #make the queue
+        queue = [node]
+
+        #start the traversal 
+        while queue:
+
+            curr_node = queue.pop(0)
+
+            if curr_node.val not in visited:
+
+                new_node = Node(curr_node.val)
+
+                visited[curr_node.val] = True
+
+                #explore all the neighbors 
+                for neighbor in curr_node.neighbors :
+
+                    if curr_node.val not in visited:
+
+                        curr_node.neighbors = neighbor
+
+                        queue.append(curr_node)
+
+
+
+#understand this 
+
+
+class Node:
+    def __init__(self, val=0, neighbors=None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+
+class Solution:
+    def cloneGraph(self, node):
+        """
+        Clones a graph using BFS.
+        """
+        # Base case: If the input node is None, return None
+        if not node:
+            return None
+
+        # Dictionary to store visited nodes and their clones
+        visited = {}
+
+        # Create the clone of the starting node
+        visited[node] = Node(node.val)
+
+        # BFS queue initialized with the original node
+        queue = [node]
+
+        while queue:
+            curr_node = queue.pop(0)
+
+            # Iterate through all neighbors
+            for neighbor in curr_node.neighbors:
+                if neighbor not in visited:
+                    # Clone the neighbor and add to visited
+                    visited[neighbor] = Node(neighbor.val)
+                    # Add the original neighbor to the queue
+                    queue.append(neighbor)
+                
+                # Link the clone of the current node to the clone of the neighbor
+                visited[curr_node].neighbors.append(visited[neighbor])
+
+        # Return the clone of the original input node
+        return visited[node]
+
+
+
+
+
+
 if __name__ == "__main__":
 
-    sol = Solution()
+    sol = Solution4()
     print(sol.dfs_graph(node1))
     print(sol.bfs_graph(node1))

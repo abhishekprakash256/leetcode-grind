@@ -89,8 +89,6 @@ class Helper_Fun():
 
 		while queue :
 
-			temp_lst = []
-
 			curr_node = queue.pop(0)
 
 			if curr_node.val not in node_set :
