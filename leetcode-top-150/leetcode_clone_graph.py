@@ -72,7 +72,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
-class Solution:
+class Solution2:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         """
         Clones a graph using BFS.
@@ -111,4 +111,29 @@ class Solution:
 
 
 
+
+
+
+class Solution:
+    def cloneGraph(self, node):
+        if not node:
+            return None
+
+        visited = {}
+
+        def dfs(node):
+            if node in visited:
+                return visited[node]
+
+            # Clone the current node
+            clone = Node(node.val)
+            visited[node] = clone
+
+            # Clone all neighbors
+            for neighbor in node.neighbors:
+                clone.neighbors.append(dfs(neighbor))
+
+            return clone
+
+        return dfs(node)
 
