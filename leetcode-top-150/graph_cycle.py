@@ -111,7 +111,7 @@ class HelperFun():
 
 				for neighbor in self.graph[curr_node]:
 
-					if neighbor not in self.visited:
+					if neighbor not in visited:
 
 						queue.append(neighbor)
 
