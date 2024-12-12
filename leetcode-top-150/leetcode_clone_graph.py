@@ -9,7 +9,7 @@ Return a deep copy (clone) of the graph.
 Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
 Output: [[2,4],[1,3],[2,4],[1,3]]
 Explanation: There are 4 nodes in the graph.
-1st node (val = 1)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
+1st node (val = 1)'s neighbors   are 2nd node (val = 2) and 4th node (val = 4).
 2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
 3rd node (val = 3)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
 4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
@@ -237,53 +237,6 @@ class Solution4:
 
 
 
-class Solution():
-
-    def __init__(self):
-
-        self.visited = {}
-
-
-    def cloneGraph(self,node):
-        """
-        The function to clone the graph using bfs
-        """
-
-        #base case 
-        if not node :
-            return []
-
-        #only one node 
-        if not node.neighbors : 
-            return [node]
-
-        #make the visisted dict 
-        visited = {}
-
-        #make the queue
-        queue = [node]
-
-        #start the traversal 
-        while queue:
-
-            curr_node = queue.pop(0)
-
-            if curr_node.val not in visited:
-
-                new_node = Node(curr_node.val)
-
-                visited[curr_node.val] = True
-
-                #explore all the neighbors 
-                for neighbor in curr_node.neighbors :
-
-                    if curr_node.val not in visited:
-
-                        curr_node.neighbors = neighbor
-
-                        queue.append(curr_node)
-
-
 
 #understand this 
 
@@ -293,7 +246,16 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
+
+
 class Solution:
+
+    def __init__(self):
+
+        self.visited = {}
+
+
+
     def cloneGraph(self, node):
         """
         Clones a graph using BFS.
@@ -330,6 +292,59 @@ class Solution:
 
 
 
+    def dfs(self,node):
+        """
+        The function to traverse dfs the graph 
+        """
+        if node in self.visited:
+            return 
+
+        #add the node in visited 
+        self.visited[node] = Node(node.val)
+
+        for neighbor in node.neighbors:
+
+            self.dfs(neighbor)
+
+
+
+
+
+
+
+    def cloneGraphDfs(self,node):
+        """
+        The funtion to clone the graph uisng dfs 
+        """
+
+        #base case 
+        if not node :
+            return []
+
+        if not node.neighbors:
+            return Node(node.val)
+
+
+        #initial node 
+        self.new_node = Node(node.val)
+
+
+        #star the making clone 
+        self.dfs(node)
+
+
+        return self.new_node
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -338,3 +353,6 @@ if __name__ == "__main__":
     sol = Solution4()
     print(sol.dfs_graph(node1))
     print(sol.bfs_graph(node1))
+
+
+
