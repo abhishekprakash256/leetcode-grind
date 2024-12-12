@@ -111,7 +111,7 @@ class Solution:
 
 		for edge in prerequisites:
 
-			edge.reverse()
+			edge.reverse()	
 
 			if edge[0] not in self.graph:
 
