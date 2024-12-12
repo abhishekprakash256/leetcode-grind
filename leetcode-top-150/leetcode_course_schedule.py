@@ -101,9 +101,10 @@ class Solution:
 
 		self.graph = {}
 		self.visited = {}
+		self.recursion_stack = {}
 
 
-	def make_graph(prerequisites):
+	def make_graph(self,prerequisites):
 		"""
 		The function to make graph
 		"""
@@ -122,20 +123,25 @@ class Solution:
 
 
 
-	def dfs_graph(self,node):
+	def dfs_graph(self, node):
 		"""
-		The function to traverse the graph
+		DFS traversal to detect cycles in the graph.
 		"""
+		if node in self.recursion_stack:
+			# Cycle detected
+			return True
+		if node in self.visited:
+			# Node already processed
+			return False
 
-		if node in self.visited :
-			return None
-
-		#add the node into visited 
+		# Mark the node as visited and add to recursion stack
 		self.visited[node] = True
+		self.recursion_stack[node] = True
 
-		for edge in self.graph
-
-			for node in 
+		# Traverse neighbors
+		for neighbor in self.graph.get(node, []):
+			if self.dfs_graph(neighbor):  # Cycle found in the subgraph
+				return True
 
 
 
@@ -154,12 +160,12 @@ class Solution:
 		#make the graph 
 		self.make_graph(prerequisites)
 
-		#traverse the graph 
-		for node in self.graph:
+		for node in range(numCourses):
+			if node not in self.visited:
+				if self.dfs_graph(node):  # If a cycle is detected
+					return False
 
-			self.dfs(node)
-
-
+		return True
 
 
 		
