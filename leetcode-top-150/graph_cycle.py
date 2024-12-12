@@ -54,31 +54,41 @@ class HelperFun():
 
 				self.graph[edge[0]].append(edge[i])
 
+		return self.graph
 
-	def dfs_graph(self,node):
+
+
+	def dfs_graph(self, node):
 		"""
-		The dfs for the graph
+		The DFS for the graph
 		"""
-		
+
+		# If the node is already visited, return (skip it)
 		if node in self.visited:
 			return None
 
-		#add the node in visited 
+		# Mark the node as visited
 		self.visited[node] = True
 
-		#traverse the nodes
-		for neighbor in self.graph[node]:
+		# Traverse the neighbors of the node
+		if node in self.graph:
+			for neighbor in self.graph[node]:
+				if neighbor not in self.visited:
 
-			if neighbor not in self.graph:
+					self.dfs_graph(neighbor)
 
-				self.res_lst.append(neighbor)
-
-				self.dfs_graph(neighbor)
-
-		print(self.res_lst)
-
+		# Append the node to the result list after all its neighbors are visited (post-order)
+		self.res_lst.append(node)
 
 
+	def bfs_graph(self,node):
+
+		
+
+
+
+
+		
 
 
 	def main(self):
@@ -89,6 +99,8 @@ class HelperFun():
 		for node in self.graph:
 
 			self.dfs_graph(node)
+
+		return self.res_lst
 
 
 
