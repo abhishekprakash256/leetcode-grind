@@ -25,3 +25,50 @@ To take course 1 you should have finished course 0, and to take course 0 you sho
 
 
 """
+
+"""
+
+aapproach -- 
+
+using the traversal find the cycle 
+
+not a graph 
+
+no neighbors ? 
+
+
+
+"""
+
+
+#make graph testing 
+
+numCourses = 4
+prerequisites = [[0, 1], [1, 2]]
+
+
+def make_graph(prerequisites) : 
+    """
+    The function to make the graph 
+    """
+
+    graph = {}
+
+
+    for edge in prerequisites:
+
+        edge.reverse()
+
+        graph[edge[0]] = []
+
+        for i in range(1,len(edge)) :
+
+            if edge[i] not in graph:
+
+                graph[edge[0]].append(edge[i])
+
+    return graph
+
+           
+print(make_graph(prerequisites))
+
