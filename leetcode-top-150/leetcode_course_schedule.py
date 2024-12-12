@@ -46,6 +46,8 @@ no neighbors ?
 numCourses = 4
 prerequisites = [[0, 1], [1, 2]]
 
+prerequisites2 = [[1, 0], [2, 1], [3, 2]]
+
 
 def make_graph(prerequisites) : 
     """
