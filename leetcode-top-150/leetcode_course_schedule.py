@@ -1,7 +1,7 @@
 """
 There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
 
-    For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+	For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
 
 Return true if you can finish all courses. Otherwise, return false.
 
@@ -44,35 +44,126 @@ no neighbors ?
 #make graph testing 
 
 numCourses = 4
-prerequisites = [[0, 1], [1, 2]]
+prerequisites0 = [[0, 1], [1, 2]]
 
-prerequisites2 = [[1, 0], [2, 1], [3, 2]]
+"""
+graph = {
+	1: [0],  # Course 1 points to course 0
+	2: [1]   # Course 2 points to course 1
+}
+"""
+
+
+prerequisites1 = [[1, 0], [2, 1], [3, 2]]
+
+#out {0: [1], 1: [2], 2: [3]}
+
+
+prerequisites = [[0, 1], [1, 2], [2, 0], [3, 2]]
+
+"""
+graph = {
+	1: [0],
+	2: [1, 3],
+	0: [2]
+}
+"""
+
 
 
 def make_graph(prerequisites) : 
-    """
-    The function to make the graph 
-    """
+	"""
+	The function to make the graph 
+	"""
 
-    graph = {}
+	graph = {}
+
+	for edge in prerequisites : 
+
+		edge.reverse()
+
+		if edge[0] not in graph:
+
+			graph[edge[0]] = []
+
+		for i in range(1,len(edge)):
+
+			graph[edge[0]].append(edge[i])
+
+	return graph
 
 
-    for edge in prerequisites:
 
-        edge.reverse()
 
-        for i in range(0,len(edge)) :
+class Solution:
 
-            if edge[i] not in graph:
+	def __init__(self):
 
-                graph[edge[i]] = []
+		self.graph = {}
+		self.visited = {}
 
-            else:
 
-                graph[edge[i]].append(edge[i])
+	def make_graph(prerequisites):
+		"""
+		The function to make graph
+		"""
 
-    return graph
+		for edge in prerequisites:
 
-           
-print(make_graph(prerequisites))
+			edge.reverse()
+
+			if edge[0] not in self.graph:
+
+				self.graph[edge[0]] = []
+
+			for i in range(1,len(edge)):
+
+				self.graph[edge[0]].append(edge[i])
+
+
+
+	def dfs_graph(self,node):
+		"""
+		The function to traverse the graph
+		"""
+
+		if node in self.visited :
+			return None
+
+		#add the node into visited 
+		self.visited[node] = True
+
+		for edge in self.graph
+
+			for node in 
+
+
+
+	def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+		"""
+		The function to fid the couse schedule 
+		try to find cycle in graph 
+
+		"""
+
+		#base case 
+		if not prerequisites:
+			return None
+
+
+		#make the graph 
+		self.make_graph(prerequisites)
+
+		#traverse the graph 
+		for node in self.graph:
+
+			self.dfs(node)
+
+
+
+
+		
+
+
+		
 
