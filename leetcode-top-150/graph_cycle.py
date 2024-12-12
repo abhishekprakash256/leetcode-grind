@@ -82,8 +82,43 @@ class HelperFun():
 
 
 	def bfs_graph(self,node):
+		"""
+		The code for bfs traversal of the graph 
+		"""
 
-		
+		#base case 
+		if not node :
+			return None 
+
+		#make the visited
+		visited = {}
+
+		#make the queue
+		queue = [node]
+
+		#make the res list 
+		res_lst = []
+
+		while queue :
+
+			curr_node = queue.pop(0)
+
+			res_lst.append(curr_node)
+
+			visited[curr_node] = True
+
+			if curr_node in self.graph :
+
+				for neighbor in self.graph[curr_node]:
+
+					if neighbor not in self.visited:
+
+						queue.append(neighbor)
+
+		return res_lst
+
+
+
 
 
 
@@ -96,6 +131,14 @@ class HelperFun():
 		The function to run the dfs 
 		"""
 
+		first_node = list(self.graph.keys())[0]
+
+		print(first_node)
+
+		print(self.bfs_graph(first_node))
+
+
+		#for the dfs 
 		for node in self.graph:
 
 			self.dfs_graph(node)
@@ -111,6 +154,8 @@ if __name__ == "__main__":
 	print(helper_fun.make_graph(prerequisite3))
 
 	print(helper_fun.main())
+
+
 
 
 
