@@ -61,13 +61,15 @@ def make_graph(prerequisites) :
 
         edge.reverse()
 
-        graph[edge[0]] = []
-
-        for i in range(1,len(edge)) :
+        for i in range(0,len(edge)) :
 
             if edge[i] not in graph:
 
-                graph[edge[0]].append(edge[i])
+                graph[edge[i]] = []
+
+            else:
+
+                graph[edge[i]].append(edge[i])
 
     return graph
 
