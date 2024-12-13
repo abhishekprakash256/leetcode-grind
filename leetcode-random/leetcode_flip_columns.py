@@ -52,43 +52,46 @@ return max(mapper.count)
 
 
 class Solution:
-    def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
-    	"""
-    	The function to check for the max number of rows that can be matched
-    	"""
+	def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
+		"""
+		The function to check for the max number of rows that can be matched
+		"""
 
-    	#base case 
-    	if len(matrix) == 1 :
+		#base case 
+		if len(matrix) == 1 :
 
-    		return 0 
+			return 0 
 
-    	#make the hashmap
-    	mapper = {}
-
-
-    	#make the matrix 
-    	for row in matrix:
-
-    		if row not in mapper : 
-
-    			mapper[row] = 1 
-
-    		else :
-
-    			flipped_row = [1 - x for x in row]
-
-    			if tuple(flipped_row) in mapper :
-
-    				mapper[tuple(flipped_row)] = mapper[tuple(flipped_row)] + 1
-
-    			else:
-
-    				mapper[tuple(row)] = mapper[tuple(row)] + 1
-
-    	 
+		#make the hashmap
+		mapper = {}
 
 
-    		
+		#make the matrix 
+		for row in matrix:
+
+			if row not in mapper : 
+
+				mapper[row] = 1 
+
+			else :
+
+				flipped_row = [1 - x for x in row]
+
+				if tuple(flipped_row) in mapper :
+
+					mapper[tuple(flipped_row)] = mapper[tuple(flipped_row)] + 1
+
+				else:
+
+					mapper[tuple(row)] = mapper[tuple(row)] + 1
+		
+
+		return max(mapper.values())
+
+		 
+
+
+			
 
 
 
