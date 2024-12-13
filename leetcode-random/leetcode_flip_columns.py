@@ -69,9 +69,9 @@ class Solution:
 		#make the matrix 
 		for row in matrix:
 
-			if row not in mapper : 
+			if tuple(row) not in mapper : 
 
-				mapper[row] = 1 
+				mapper[tuple(row)] = 1 
 
 			else :
 
