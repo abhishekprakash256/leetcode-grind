@@ -37,44 +37,55 @@ class Solution:
 	def twoSumLessThanK(self, nums, k: int) -> int:
 		"""
 		The function to find the sum out equal or less
+		passes leeet code 
 		"""
-
-		#base case 
-		if len(nums) == 1 :
-
-			if nums[0] <= k:
-
-				return nums[0]
-
-			else:
-
-				return -1
-
 
 		#sort the array
 		nums.sort()
 
-		print(nums)
+		answer = -1
+
+
 
 		#initilalize the vars
-		i = 0 
-		j = len(nums) -  1
+		l = 0 
+		r = len(nums)  - 1 
 
-		while i < j :
 
-			if nums[i] + nums[j] > k :
+		while l < r :
 
-				j -= 1 
+			sum = nums[l] + nums[r] 
 
-			else :
+			if sum < k :
 
-				while nums[i] + nums[j] < k :
+				answer = max(answer,sum)
+				l += 1 
 
-					i += 1
+			else:
 
-				return nums[i] + nums[j]
+				r -= 1 
 
-		return -1
+		return answer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
