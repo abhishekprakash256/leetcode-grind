@@ -31,10 +31,10 @@ sort and use binary search
 """
 
 
-nums = [10,20,30]
+nums = [34,23,1,24,75,33,54,8]
 
 class Solution:
-	def twoSumLessThanK(self, nums: List[int], k: int) -> int:
+	def twoSumLessThanK(self, nums, k: int) -> int:
 		"""
 		The function to find the sum out equal or less
 		"""
@@ -54,24 +54,48 @@ class Solution:
 		#sort the array
 		nums.sort()
 
+		print(nums)
+
 		#initilalize the vars
 		i = 0 
-		j = len(nums) - 1
+		j = len(nums) -  1
 
-
-		#star the loop
-		while True:
+		while i < j :
 
 			if nums[i] + nums[j] > k :
 
-				j -= 1
+				j -= 1 
 
 			else :
 
+				while nums[i] + nums[j] < k :
+
+					i += 1
+
 				return nums[i] + nums[j]
 
-
 		return -1
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+			
+ 
+
+
+
+
+
 
 
 
@@ -80,5 +104,5 @@ if __name__ == "__main__" :
 
 	sol = Solution()
 
-	print(sol.twoSumLessThanK(nums))
+	print(sol.twoSumLessThanK(nums,60))
 
