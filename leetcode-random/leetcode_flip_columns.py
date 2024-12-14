@@ -51,7 +51,7 @@ return max(mapper.count)
 
 
 
-class Solution:
+class Solution_wrong:
 	def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
 		"""
 		The function to check for the max number of rows that can be matched
@@ -87,6 +87,57 @@ class Solution:
 		
 
 		return max(mapper.values())
+
+
+
+
+class Solution():
+
+	def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
+		"""
+		The function to check for the max number of rows tha can be matched 
+		passed leet code 
+		"""
+
+		#base case 
+		if len(matrix) == 1 :
+
+			return 1 
+
+
+		#make the hashmap
+		mapper = {}
+
+
+		#check the matrix 
+		for row in matrix : 
+
+			if row[0] == 0 :
+
+				if tuple(row) not in mapper:
+
+					mapper[tuple(row)] = 1
+
+				else:
+
+					mapper[tuple(row)] = mapper[tuple(row)] + 1
+
+
+			else:
+
+				normalized = tuple(x ^ row[0] for x in row)
+
+				if normalized not in mapper:
+
+					mapper[normalized] = 1 
+
+				else:
+
+					mapper[normalized] = mapper[normalized] + 1 
+
+
+		return max(mapper.values())
+
 
 		 
 
