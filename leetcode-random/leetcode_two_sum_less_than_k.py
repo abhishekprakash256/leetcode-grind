@@ -46,7 +46,6 @@ class Solution:
 		answer = -1
 
 
-
 		#initilalize the vars
 		l = 0 
 		r = len(nums)  - 1 
