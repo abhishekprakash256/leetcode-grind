@@ -18,3 +18,114 @@ Explanation: Flipping node 1 swaps nodes 2 and 3, so the pre-order traversal mat
 
 """
 
+
+
+"""
+approach -- 
+
+do the dfs traversal in the pre order 
+then make a dst based on the chnages 
+using recursion 
+then change the roots and traverse and draw the tree again
+and match the list till it comes up
+
+
+
+
+"""
+
+
+
+
+class Solution:
+
+	def __init__(self):
+
+		self.res_lst = []
+
+
+	def dfs_traversal(self,node):
+		"""
+		The functiont to do the dfs traversal
+		"""
+
+		#base case 
+		if not node:
+			return None
+
+
+		#do the traversal 
+		if node:
+
+			self.res_lst.append(node.val)
+
+			#make left node traversal
+			self.dfs_traversal(node.left)
+
+			#make right node traversal
+			self.dfs_traversal(node.right)
+
+
+
+	def flip_tree(self,node):
+		"""
+		The function to flip the node of the tree
+		"""
+
+		#base case 
+		if not node:
+			return None
+
+
+		#flip the node
+		node.left , node.right = node.right , node.left
+
+		#make the traversal
+		self.flip_tree(node.left)
+		self.flip_tree(node.right)
+
+
+
+
+	def flipMatchVoyage(self, root: Optional[TreeNode], voyage: List[int]) -> List[int]:
+		"""
+		The function to make the flip match the tree
+		"""
+
+		#the base case 
+		if not node:
+			return [-1]
+
+		#make the flip list
+		self.flip_lst = []
+
+		#the counter
+		self.count = 0 
+
+		#make the traversal
+		self.flip_tree(root)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
