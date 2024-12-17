@@ -83,7 +83,7 @@ class Solution:
 		#match the traversal 
 		if self.res_lst == self.voyage :
 
-			return self.count
+			return [self.count]
 
 		#flip the node
 		node.left , node.right = node.right , node.left
@@ -92,10 +92,13 @@ class Solution:
 		self.count += 1 
 
 
-
-		#make the traversal
+		#make the recursive traversal calls
 		self.flip_tree(node.left)
 		self.flip_tree(node.right)
+
+		#the last case if both node ends :
+		if not node.left and not node.right : 
+			return [-1]
 
 
 
@@ -111,6 +114,12 @@ class Solution:
 		#the base case 	
 		if not root :
 			return None
+		
+		#base case for no flip needed 
+		self.dfs_traversal(self.root)
+
+		if self.res_lst == voyage:
+			return []
 		
 
 		#make the flip and match 
