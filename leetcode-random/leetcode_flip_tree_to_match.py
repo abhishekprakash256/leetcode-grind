@@ -42,6 +42,7 @@ class Solution:
 	def __init__(self):
 
 		self.res_lst = []
+		self.count = 0 
 
 
 	def dfs_traversal(self,node):
@@ -75,10 +76,22 @@ class Solution:
 		#base case 
 		if not node:
 			return None
+		
+		#check the tree match 
+		self.dfs_traversal(self.root)
 
+		#match the traversal 
+		if self.res_lst == self.voyage :
+
+			return self.count
 
 		#flip the node
 		node.left , node.right = node.right , node.left
+		
+		#incraese the count if flipped 
+		self.count += 1 
+
+
 
 		#make the traversal
 		self.flip_tree(node.left)
@@ -92,18 +105,21 @@ class Solution:
 		The function to make the flip match the tree
 		"""
 
+		self.root = root
+		self.voyage = voyage
+
 		#the base case 	
-		if not node:
-			return [-1]
+		if not root :
+			return None
+		
 
-		#make the flip list
-		self.flip_lst = []
+		#make the flip and match 
+		self.flip_tree(self.root)
+		
 
-		#the counter
-		self.count = 0 
 
-		#make the traversal
-		self.flip_tree(root)
+
+		
 
 
 
