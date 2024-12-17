@@ -41,30 +41,28 @@ class Solution:
 
 	def __init__(self):
 
-		self.res_lst = []
 		self.count = 0 
 
 
-	def dfs_traversal(self,node):
+	def dfs_traversal(self, node, res_lst):
 		"""
-		The functiont to do the dfs traversal
+		Perform preorder traversal and append node values to res_lst.
 		"""
-
-		#base case 
+		# base case
 		if not node:
-			return None
+			return
 
+		# Add the current node value
+		res_lst.append(node.val)
 
-		#do the traversal 
-		if node:
+		# Traverse left
+		self.dfs_traversal(node.left, res_lst)
 
-			self.res_lst.append(node.val)
+		# Traverse right
+		self.dfs_traversal(node.right, res_lst)
 
-			#make left node traversal
-			self.dfs_traversal(node.left)
+		return res_lst
 
-			#make right node traversal
-			self.dfs_traversal(node.right)
 
 
 
@@ -78,13 +76,15 @@ class Solution:
 			return None
 		
 		#check the tree match 
-		self.dfs_traversal(self.root)
+
+		res_lst = self.dfs_traversal(self.root,res_lst= [])
 
 		#match the traversal 
-		if self.res_lst == self.voyage :
+		if res_lst == self.voyage :
 
 			return [self.count]
 
+		
 		#flip the node
 		node.left , node.right = node.right , node.left
 		
@@ -96,10 +96,10 @@ class Solution:
 		self.flip_tree(node.left)
 		self.flip_tree(node.right)
 
-		#the last case if both node ends :
-		if not node.left and not node.right : 
-			return [-1]
 
+		#the last case if both node ends :
+		if self.count > len(self.voyage) and not node.left and not node.right and res_lst != self.voyage: 
+			return [-1]
 
 
 
@@ -107,24 +107,22 @@ class Solution:
 		"""
 		The function to make the flip match the tree
 		"""
-
 		self.root = root
 		self.voyage = voyage
 
-		#the base case 	
-		if not root :
-			return None
-		
-		#base case for no flip needed 
-		self.dfs_traversal(self.root)
-
-		if self.res_lst == voyage:
+		# the base case 	
+		if not root:
 			return []
 		
+		# base case for no flip needed
+		res_lst = self.dfs_traversal(self.root, res_lst=[])
 
-		#make the flip and match 
+		if res_lst == voyage:
+			return []
+
+		# make the flip and match 
 		self.flip_tree(self.root)
-		
+
 
 
 
