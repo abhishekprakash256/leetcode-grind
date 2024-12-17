@@ -37,7 +37,7 @@ and match the list till it comes up
 
 
 
-class Solution:
+class Solution_wrong:
 
 	def __init__(self):
 
@@ -126,7 +126,45 @@ class Solution:
 
 
 
+	
+from typing import List, Optional
+
+class Solution:
+	"""
+	passes leetcode
+	"""
+
+	def __init__(self):
+		self.index = 0  # To track position in voyage
+		self.flipped = []  # List to store flipped nodes
+
+	def flipMatchVoyage(self, root: Optional['TreeNode'], voyage: List[int]) -> List[int]:
+		self.voyage = voyage
+		if self.dfs(root):
+			return self.flipped
+		return [-1]
+
+	def dfs(self, node):
+		# Base case: null node
+		if not node:
+			return True
+
+		# Check if current node matches voyage
+		if node.val != self.voyage[self.index]:
+			return False  # Mismatch found
+
+		# Move to the next index in voyage
+		self.index += 1
+
+		# Check if flipping is needed
+		if node.left and node.left.val != self.voyage[self.index]:
+			# Flip required; record the node value
+			self.flipped.append(node.val)
+			# Flip left and right children
+			return self.dfs(node.right) and self.dfs(node.left)
 		
+		# No flip needed; traverse normally
+		return self.dfs(node.left) and self.dfs(node.right)
 
 
 
