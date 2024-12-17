@@ -95,7 +95,7 @@ def make_graph(prerequisites) :
 
 
 
-class Solution:
+class Solution1:
 
 	def __init__(self):
 
@@ -171,5 +171,19 @@ class Solution:
 		
 
 
+		
+class Solution():
+
+	def __init__(self):
+
+		self.graph = {}
+		self.visited = {}
+		self.recursion_stack = {}
+
+	
+	def make_graph(self,node):
+		"""
+		The code to make the graph
+		"""
 		
 
