@@ -123,7 +123,7 @@ def make_linear_graph(board):
 
 
 
-class Solution:
+class Solution_wrong:
 
 	def __init__(self):
 
@@ -170,9 +170,10 @@ class Solution:
 		#make the base case 
 		#starts with 0 for indexing but the number should be correct to -1
 
-		if curr > len(self.board)*len(self.board) -1 :
+		if curr > len(self.board)*len(self.board) -1:
 
 			return False
+
 
 
 		#make the move 
@@ -188,21 +189,19 @@ class Solution:
 
 				return True
 
-			elif self.board[curr] != -1:
+			elif self.graph_lst[curr] != -1:
 
-				self.graph_traversal(count+1,self.board[curr]-1)
+				print(self.graph_lst[curr])
+
+				self.graph_traversal(count+1,self.graph_lst[curr]-1)
 
 			else:
 
 				self.graph_traversal(count+1,curr + i)
 
 
-	
 
-
-
-
-	def snakesAndLadders(self, board: List[List[int]]) -> int:
+	def snakesAndLadders(self, board) -> int:
 		"""
 		The last value can be reached or not 
 		"""
@@ -226,6 +225,58 @@ class Solution:
 
 
 
+from collections import deque
+
+class Solution:
+	def snakesAndLadders(self, board):
+		"""
+		Passes leet code
+		"""
+		n = len(board)
+		
+		# Step 1: Create a linear graph from the board
+		linear_board = [-1] * (n * n)  # Flattened board
+		idx = 0
+		flip = False
+		for row in reversed(board):  # Start from the bottom row
+			if flip:
+				row.reverse()
+			for val in row:
+				linear_board[idx] = val
+				idx += 1
+			flip = not flip
+
+		# Step 2: BFS to find the shortest path
+		queue = deque([(0, 0)])  # (current square, dice rolls)
+		visited = set()
+
+		while queue:
+			curr, rolls = queue.popleft()
+			
+			if curr == n * n - 1:  # Reached the last square
+				return rolls
+			
+			for dice in range(1, 7):  # Roll the dice (1 to 6)
+				next_square = curr + dice
+				if next_square >= n * n:  # Out of bounds
+					continue
+				
+				if linear_board[next_square] != -1:  # Snake or ladder
+					next_square = linear_board[next_square] - 1
+
+				if next_square not in visited:
+					visited.add(next_square)
+					queue.append((next_square, rolls + 1))
+
+		return -1  # If the end is unreachable
 
 
 
+
+
+board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]
+
+
+if __name__ == '__main__':
+	sol = Solution()
+	print(sol.snakesAndLadders(board))
