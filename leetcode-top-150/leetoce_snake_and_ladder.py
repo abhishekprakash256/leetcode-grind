@@ -43,13 +43,11 @@ visited marking with like -2
 node visted in queue and the pop and visiited again 
 
 traversal techniques will be 
-graph[curr+1][min(curr + 6, n^2)]
+graph[curr+1,min(curr + 6, n^2)]
 
 curr = 1 
 
 2 -- min(7,36)
-
-move can be in between 2 to 7 
 
 
 how to know reach and can't reach 
@@ -60,6 +58,62 @@ if graph[i][j] == len(graph)*len(graph) :
 
 #get the least number of moves ? 
 
+range(curr+1 , min(curr + 6, n^2))
+
+we can do a range of moves 
+
+if the bfs return true then 
+
+min_count = min(min_count,count)
+
+
+ [[-1,-1,-1,-1,-1,-1],
+ [-1,-1,-1,-1,-1,-1],
+ [-1,-1,-1,-1,-1,-1],
+ [-1,35,-1,-1,13,-1],
+ [-1,-1,-1,-1,-1,-1], (1,1),(1,2)
+ [-1,15,-1,-1,-1,-1]]
+
+
+Output: 4
+
+this is board 
+
+
+how do I traverse the board in correct way 
+
+take one row and reverse the other row and attach ? 
+
+[-1,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,35,-1,-1,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+
+
+make a list and revserse the row alternativley and append 
+
+
+def make_linear_graph(board):
+	
+	graph_lst = []
+	
+	flip = True
+
+	for row in boad :
+
+		if flip :
+
+			for i in row :
+
+				graph_lst.append(i)
+
+			flip = False
+
+		else:
+			
+			row.reverse()
+			for i in row :
+
+				graph_lst.append(i)
+
+			flip = True
 
 
 
@@ -72,18 +126,104 @@ if graph[i][j] == len(graph)*len(graph) :
 class Solution:
 
 	def __init__(self):
-		pass
 
-	def graph_bfs(self,node):
+		self.graph_lst = []
+		self.move_lst = []
+
+
+
+	def make_linear_graph(self,board):
 		"""
-		Make the bfs traversal of the graph
+		The function to make the graph linear
+		"""
+		
+		flip = True
+
+		for row in board :
+
+			if flip :
+
+				for i in row :
+
+					self.graph_lst.append(i)
+
+				flip = False
+
+			else:
+				
+				row.reverse()
+
+				for i in row :
+
+					self.graph_lst.append(i)
+
+				flip = True
+
+
+
+	def graph_traversal(self,count, curr ):
+		"""
+		Make the traversal of the graph
 
 		"""
-		pass
+
+		#make the base case 
+		#starts with 0 for indexing but the number should be correct to -1
+
+		if curr > len(self.board)*len(self.board) -1 :
+
+			return False
+
+
+		#make the move 
+		for i in range(curr+1, min(curr + 6, len(self.board)*len(self.board))) :
+
+			if curr > len(self.board)*len(self.board) -1 and len(self.move_lst) == 0:
+
+				return False
+
+			elif curr == len(self.board)*len(self.board) -1 :
+
+				self.move_lst.append(count+1)
+
+				return True
+
+			elif self.board[curr] != -1:
+
+				self.graph_traversal(count+1,self.board[curr]-1)
+
+			else:
+
+				self.graph_traversal(count+1,curr + i)
+
+
+	
+
+
 
 
 	def snakesAndLadders(self, board: List[List[int]]) -> int:
 		"""
 		The last value can be reached or not 
 		"""
-		pass
+
+		#base case 
+		if len(self.board) == 1 :
+
+			return 1
+
+		#make the graph
+		self.make_linear_graph(board)
+
+		#iterate the graph from 0 
+		self.graph_traversal(0,0) :
+
+		#count the min vales for moves 
+		return self.move_lst.sort()[0]
+
+
+
+
+
+
+
