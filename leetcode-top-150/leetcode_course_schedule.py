@@ -227,11 +227,6 @@ class Solution():
 		"""
 		The dfs traversal of the graph
 		"""
-
-		#if node is in visted
-		if node in self.visited :
-			return False
-
 		#cycle is detected
 		if node in self.recursion_stack:
 			return True
@@ -240,7 +235,7 @@ class Solution():
 		self.visited[node] = True
 
 		#add the node in stack
-		self.recursion_stack = True
+		self.recursion_stack[node] = True
 
 		#start the dfs traversal 
 		if node in self.graph :
