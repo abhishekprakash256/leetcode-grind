@@ -227,6 +227,7 @@ class Solution_wrong:
 
 from collections import deque
 
+
 class Solution:
 	def snakesAndLadders(self, board):
 		"""
