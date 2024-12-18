@@ -207,6 +207,8 @@ class Solution:
 		The last value can be reached or not 
 		"""
 
+		self.board = board
+
 		#base case 
 		if len(self.board) == 1 :
 
@@ -216,7 +218,7 @@ class Solution:
 		self.make_linear_graph(board)
 
 		#iterate the graph from 0 
-		self.graph_traversal(0,0) :
+		self.graph_traversal(0,0)
 
 		#count the min vales for moves 
 		return self.move_lst.sort()[0]
