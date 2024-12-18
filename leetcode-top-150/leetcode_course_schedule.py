@@ -195,6 +195,10 @@ graph = {
 
 		
 class Solution():
+	"""
+	Works in leetcode
+
+	"""
 
 	def __init__(self):
 
@@ -244,7 +248,16 @@ class Solution():
 
 				if neighbor not in self.visited :
 
-					self.dfs_traversal(neighbor)
+					if self.dfs_traversal(neighbor) :
+
+						return True
+
+				elif neighbor in self.recursion_stack :
+
+					return True
+
+		del self.recursion_stack[node]
+		return False
 
 
 
@@ -258,17 +271,24 @@ class Solution():
 			return True
 
 
+		if len(prerequisites) == 0 :
+			return True
+
+
 		#make the graph 
 		self.make_graph(prerequisites)
 
 		#traverse the the graph 
-		for node in self.graph :
+		for node in range(numCourses)
 
 			if node not in self.visited :
 
-				for neighbor in self.graph[node] :
+				if self.dfs_traversal(node) :
 
-					self.dfs_traversal(neighbor)
+					return False
+
+
+		return True
 
 
 
