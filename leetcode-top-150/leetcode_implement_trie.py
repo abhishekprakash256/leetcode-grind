@@ -36,6 +36,57 @@ trie.search("app");     // return True
 approach -- 
 
 
+make a TrieNode
+
+
+self.val = None
+self.chidren = []
+
+in trie 
+
+self.trie = {}
+self.seen = set()
+
+insert is word 
+
+root = TrieNode[]
+self.trie[root] = root.neighbor
+
+
+for char in word :
+
+	if char not in word :
+
+		node = TrieNode(char)
+		
+		root.neghbor.append(node)
+
+		#putting in the trie
+		self.trie[node] = node.neighbor
+
+	else:
+
+		node = tr
+
+
+
+
+
+	root = node
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 """
