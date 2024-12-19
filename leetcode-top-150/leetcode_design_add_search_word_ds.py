@@ -89,6 +89,9 @@ class WordDictionary:
 """
 
 class TrieNode:
+	"""
+	Wrong code 
+	"""
 
 	def __init__(self):
 		self.children = {}
@@ -130,3 +133,66 @@ class WordDictionary:
 			node = node.children[char]
 
 		return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class TrieNode:
+	"""
+	Passes leet code 
+
+	"""
+    def __init__(self):
+        self.children = {}
+        self.end = False
+
+
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word: str) -> None:
+        """
+        Adds a word to the dictionary.
+        """
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.end = True
+
+    def search(self, word: str) -> bool:
+        """
+        Searches for a word in the dictionary, supporting the '.' wildcard.
+        """
+        def dfs(node: TrieNode, i: int) -> bool:
+            if i == len(word):  # Base case: fully traversed the word
+                return node.end
+
+            char = word[i]
+            if char == ".":
+                # Check all possible paths for the wildcard
+                for child in node.children.values():
+                    if dfs(child, i + 1):
+                        return True
+                return False
+            else:
+                # Regular character case
+                if char not in node.children:
+                    return False
+                return dfs(node.children[char], i + 1)
+
+        return dfs(self.root, 0)
+
