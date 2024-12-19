@@ -3,15 +3,19 @@ A trie (pronounced as "try") or prefix tree is a tree data structure used to eff
 
 Implement the Trie class:
 
-    Trie() Initializes the trie object.
-    void insert(String word) Inserts the string word into the trie.
-    boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
-    boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
+	Trie() Initializes the trie object.
+	void insert(String word) Inserts the string word into the trie.
+	boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
+	boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
 
 """
 
 
+
+
 """
+
+
 Input
 ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
 [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
@@ -27,12 +31,12 @@ trie.startsWith("app"); // return True
 trie.insert("app");
 trie.search("app");     // return True
 
- 
 
 
 """
 
 """
+
 approach -- 
 
 
@@ -49,44 +53,79 @@ self.seen = set()
 
 insert is word 
 
-root = TrieNode[]
-self.trie[root] = root.neighbor
-
-
-for char in word :
-
-	if char not in word :
-
-		node = TrieNode(char)
-		
-		root.neghbor.append(node)
-
-		#putting in the trie
-		self.trie[node] = node.neighbor
-
-	else:
-
-		node = tr
-
-
-
-
-
-	root = node
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 """
+
+
+class TrieNode:
+	"""
+	Passes leetcode 
+	"""
+
+	def __init__(self):
+
+		self.children = {}
+		self._end = False
+
+
+class Trie:
+
+	def __init__(self):
+
+		self.root = TrieNode()
+
+
+	def insert(self,word):
+		"""
+		The method to insert into the trie
+
+		"""
+
+		node = self.root
+
+		for char in word:
+
+			if char not in node.children:
+
+				node.children[char] = TrieNode()
+
+			node = node.children[char]
+
+		node._end = True
+
+
+	def search(self, word):
+		"""
+		The function to search for a word in the Trie.
+		"""
+		node = self.root  # Start at the root node
+
+		for char in word:
+
+			if char not in node.children:
+
+				return False  # If a character is missing, the word doesn't exist
+
+			node = node.children[char]  # Move to the child node
+
+		return node._end  # Return True only if we reach the end of a valid word
+
+
+
+
+	def startsWith(self,perfix:str):
+		"""
+		The function to check the start with 
+		"""
+
+		node = self.root #make the node for start point 
+
+		for char in perfix :
+
+			if char not in node.children :
+
+				return False
+
+			node = node.children[char]
+
+		return True
