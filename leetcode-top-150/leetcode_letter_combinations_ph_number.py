@@ -70,14 +70,18 @@ def helper_dfs(char,i, combination):
 		self.combinations_lst.append(combination)
 		return None
 
-	
+	#add the values in string
 
+	for j in mapper[char]:
+		
+		combination += "j"
 
-
-
-
-
+		self.helper_dfs( digit[i+1],i+1, combination)
 
 """
+
+
+
+
 
 
