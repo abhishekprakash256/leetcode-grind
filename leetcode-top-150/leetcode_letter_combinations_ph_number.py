@@ -82,7 +82,10 @@ def helper_dfs(char,i, combination):
 
 
 
-class Solution:
+class Solution1:
+	"""
+	Passes leet code 
+	"""
 
 	def __init__(self):
 
@@ -132,6 +135,55 @@ class Solution:
 
 		return self.combinatons_lst
 
+
+
+class Solution:
+	"""
+	passes leetcode 
+	"""
+
+	def __init__(self):
+
+		self.combinatons_lst = []
+		self.mapper = self.mapper = { 2: "abc" ,3: "def" , 4:"ghi" , 5:"jkl", 6:"mno" , 7:"pqrs", 8:"tuv", 9:"wxyz"}
+
+
+	def helper_dfs(self,i,combination):
+		"""
+		The helper function for the dfs traversal of the combinations
+		"""
+
+		#base case 
+		if i == len(self.digits):
+
+			self.combinatons_lst.append(combination)
+			return 
+
+		digit = int(self.digits[i])
+
+		for char in self.mapper[digit] :
+
+			#add the letter and recurse the combinations
+			self.helper_dfs(i+1,combination + char)
+
+
+
+	def letterCombinations(self,digits) :
+		"""
+		The function to make the letter combinations
+		"""
+		self.digits = digits
+
+
+		#base case 
+		if not digits:
+			return self.combinatons_lst
+
+		#make the combinations
+		self.helper_dfs(0,"")
+
+		#make the return of combinations list 
+		return self.combinatons_lst
 
 
 
