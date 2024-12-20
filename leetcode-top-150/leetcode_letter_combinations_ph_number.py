@@ -87,28 +87,27 @@ class Solution:
 	def __init__(self):
 
 		self.combinatons_lst = []
-		self.mapper = = { 2: "abc" ,3: "def" , 4:"ghi" , 5:"jkl", 6:"mno" , 7:"pqrs", 8:"tuv", 9:"wxyz"}
+		self.mapper = { 2: "abc" ,3: "def" , 4:"ghi" , 5:"jkl", 6:"mno" , 7:"pqrs", 8:"tuv", 9:"wxyz"}
 
 
-	def helper_dfs(char,i,combination):
+	def helper_dfs(self,i,combination):
 		"""
 		The dfs helper function
 		"""
 
 		#base case 
-		if i == len(self.digits) - 1 :
+		if i == len(self.digits) :
 
 			self.combinatons_lst.append(combination)
-
 			return None
 
+
+		current_digit = int(self.digits[i])
+
 		#add the value in the string
-		for j in self.mapper[char]:
+		for char in self.mapper[current_digit]:
 
-			combination += j
-
-			self.helper_dfs(self.digits[i+1],i+1,combination)
-
+			self.helper_dfs(i+1,combination + char)
 
 
 
@@ -128,12 +127,13 @@ class Solution:
 		combination = ""
 
 		#start the traversal 
-		for i in range(len(self.digits)) :
-
-			self.helper_dfs(self.digits[i],i,combination)
+		self.helper_dfs(0,combination)
 
 
 		return self.combinatons_lst
+
+
+
 
 
 
