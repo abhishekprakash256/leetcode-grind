@@ -123,7 +123,7 @@ class Solution():
 
 class Solution1:
 	"""
-	passes leet code
+	passes leet code no popping is used 
 	"""
     def __init__(self):
         self.combinations_lst = []
