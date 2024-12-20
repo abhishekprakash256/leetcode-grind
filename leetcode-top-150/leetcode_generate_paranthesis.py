@@ -58,7 +58,7 @@ self.helper_dfs(left+right)
 
 """
 
-class Solution():
+class Solution_wrong():
 
 	def __init__(self):
 
@@ -111,6 +111,7 @@ class Solution():
 
 		#return the list 
 		return self.paranthesis_lst
+
 
 
 
