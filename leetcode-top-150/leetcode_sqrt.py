@@ -54,7 +54,8 @@ class Solution():
 
 	def mySqrt(self, x: int) -> int:
 		"""
-		The function to find the squrt
+		The function to find the sqrt
+		passes leetcode
 		"""
 		#constraint 
 		if x == 0 :
@@ -73,7 +74,7 @@ class Solution():
 
 			elif val > x:
 				return prev_val
-				
+
 			prev_val = i
 
 
