@@ -56,6 +56,7 @@ class Solution():
 		"""
 		The function to find the sqrt
 		passes leetcode
+		use binary search for better approach 
 		"""
 		#constraint 
 		if x == 0 :
