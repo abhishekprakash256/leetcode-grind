@@ -162,8 +162,11 @@ class Solution():
 		
 		#base case 
 		if len(para) == self.length :
+			
+			if para[self.length-1] == ")" and self.count_para(para):
 
-			self.res_lst.append(para)
+				self.res_lst.append(para)
+
 
 			return
 
