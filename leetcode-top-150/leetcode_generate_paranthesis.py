@@ -121,7 +121,7 @@ class Solution_wrong():
 
 
 
-class Solution():
+class Solution_wrong_2():
 
 	def __init__(self):
 		
