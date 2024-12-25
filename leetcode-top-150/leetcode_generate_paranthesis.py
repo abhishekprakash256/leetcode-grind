@@ -93,7 +93,7 @@ class Solution_wrong():
 
 
 
-	def generateParenthesis(self, n: int) -> List[str]:
+	def generateParenthesis(self, n: int) :
 		"""
 		The function to generate the dfs 
 		"""
@@ -111,6 +111,138 @@ class Solution_wrong():
 
 		#return the list 
 		return self.paranthesis_lst
+
+
+
+
+#----------------------------------------------------------------------------------------------
+
+
+
+
+
+class Solution():
+
+	def __init__(self):
+		
+		self.res_lst = []
+
+
+	def count_para(self,para):
+		"""
+		The function to count the parantheis and make it equal on open and close braces
+		"""
+
+		count_open = 0
+		count_close = 0
+
+		for braces in para:
+
+			if braces == "(":
+
+				count_open += 1
+
+			else :
+
+				count_close += 1 
+
+
+		if count_open == count_close:
+			return True
+
+		else:
+			return False
+
+
+
+	def helper_dfs(self,para):
+		"""
+		The dfs helper function
+		"""
+		
+		#base case 
+		if len(para) == self.length :
+
+
+			self.res_lst.append(para)
+
+			return
+
+
+
+		#start the resurion
+		self.helper_dfs(para + ")")
+		self.helper_dfs(para + "(")
+
+
+
+
+	def generateParenthesis(self, n: int):
+		"""
+		The function to generate the paranthesis  
+		"""
+
+		self.length = 2*n
+		
+
+		#constarints 
+		if n == 1:
+
+			return ["()"]
+
+		#start the recursion 
+		self.helper_dfs("(")
+
+		#return the list 
+		return self.res_lst
+
+
+
+
+
+
+
+if __name__ == '__main__':
+	sol = Solution()
+	print(sol.generateParenthesis(3))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
