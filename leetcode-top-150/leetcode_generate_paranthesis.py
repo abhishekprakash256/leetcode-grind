@@ -163,7 +163,6 @@ class Solution():
 		#base case 
 		if len(para) == self.length :
 
-
 			self.res_lst.append(para)
 
 			return
