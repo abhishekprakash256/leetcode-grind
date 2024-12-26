@@ -121,37 +121,34 @@ class Solution_wrong():
 
 
 
-class Solution_wrong_2():
+class Solution():
+	"""
+	Passess leetcode
+	"""
 
 	def __init__(self):
 		
 		self.res_lst = []
 
-
-	def count_para(self,para):
+	def count_para(self, para):
 		"""
-		The function to count the parantheis and make it equal on open and close braces
+		Check if the parentheses string is valid at this point.
 		"""
-
 		count_open = 0
-		count_close = 0
 
 		for braces in para:
-
 			if braces == "(":
-
 				count_open += 1
+			else:  # braces == ")"
+				count_open -= 1
+			
+			# If at any point, closing braces exceed opening braces, it's invalid
+			if count_open < 0:
+				return False
 
-			else :
+		# Return True if counts are valid
+		return count_open == 0
 
-				count_close += 1 
-
-
-		if count_open == count_close:
-			return True
-
-		else:
-			return False
 
 
 
@@ -198,6 +195,31 @@ class Solution_wrong_2():
 		#return the list 
 		return self.res_lst
 
+
+
+
+class Solution_optim:
+	"""
+	The optimized solution
+
+	"""
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+
+        def dfs(openP, closeP, s):
+            if openP == closeP and openP + closeP == n * 2:
+                res.append(s)
+                return
+            
+            if openP < n:
+                dfs(openP + 1, closeP, s + "(")
+            
+            if closeP < openP:
+                dfs(openP, closeP + 1, s + ")")
+
+        dfs(0, 0, "")
+
+        return res
 
 
 
