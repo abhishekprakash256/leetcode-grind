@@ -32,4 +32,39 @@
 
 
 
+The year 2024 has come to an end and there are some highlights and accomplishment which I have done this year. Couple of milestones I have achieved this year which seems impossible before but through persistance and perverance work I was able to accomplish couple of them. So here is a highlight --- 
+
+
+Completed 150 question in Leetcode --
+
+This was a long term goal to complete and a part of job preprations as well . The Completion of 150 quetions took about 3-4 months of continous everyday work with learning new concepts and grinding on old concepts as well. The process was rigrous and slow but the concepts and topics seems impossible to do before now seems throughtout clear. The topics seems most worth spending time for is dynamic programming and graph problems. Even though I was doing leetcode and DSA from a long time I was not being consistent and everytime I gave up after sometime as encounter some tough topics . This time the approach was just tackle one problem for a day even in busiset day and keep going and don't give up and don't get stuck on the problem for long, learn the pattern and move to the next problem. I also achioved one more milestone of leetcode 100 days badge for the year 2024. With this I am not stopping rightnow for 150 questions the goal for next year to cover 400 questions in total inlcuing more hard questions as well and just keep going one at a time. 
+
+Building my Personal Portfolio Website --
+
+This was a long time goal for me to build my portfolio from scratch but never gotten time and enough courage to start the project. So this year in Jan I started the project with no pre planning and just design some wireframe design on board and start the code for front end . Before even that I selected some frame work that I am gonna use so for the front end I decided bootstrap cause I have used before and for the backend I used Flask. The process statrted very slow and a lot of designing decisions I have to take which was challenging at the start but later I statred to enjoy those process. The process also made me learn about the front-end and backend end which was unexplored for me. So a lot of learning happend and new areas I have developed myself.
+
+The learning happend on these sides --
+- Database design (mongodb)
+- Frontend Design (Bootstrap, JS)
+- Backend Design (Flask)
+- Cloud Inffrasture development (CI-CD, AWS)
+- Testing 
+
+The next step for me is learning REACT framework for the frontend development, so for the moudulartization of the persoanl portfolio. The building is already on progress and testing each module. The design of the new website differs a litte but not drastically. The backend is also made in packages so the code can be resusbale and depend are easy to manage. I am also using REACT so that new functionalty can be implemnt as well in future and then make new projects based on that.
+
+
+Doing 10k run-- 
+
+I also completed a 10K run that was a mile stone to do. It was a good experience and I pushed myself a lot. There was not much practice done before the run but  still I was able to complete the run. It helped me to boost my health and my mental health as well as last year I was battling with some mental health issues but this year I found much more peace and calmed in myself. 
+
+
+Lots of Networking -- 
+
+This year I also incorportaed a new starategy for newtorking that helped me to connect with a lot of good indivuals. I statered this starategy back in September where I started to find people on linkedin and send them perosnalized message to get thier connection and some are kind enough that I was even able to talk to them as well. My connection rise from 800 to 1600+ in just 3-4 months. 
+
+System Design -- 
+
+Back in Jan 2024 I also started stydying system design and that opened my mind on the way I used to see the software . The 
+
+
 
