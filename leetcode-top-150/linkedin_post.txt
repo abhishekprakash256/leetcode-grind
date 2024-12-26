@@ -64,7 +64,86 @@ This year I also incorportaed a new starategy for newtorking that helped me to c
 
 System Design -- 
 
-Back in Jan 2024 I also started stydying system design and that opened my mind on the way I used to see the software . The 
+Back in Jan 2024 I also started stydying system design and that opened my mind on the way I used to see the software . I started with Alex Xu book on system design and then jumped to eduactive couse on system design I used some other article to study as well. These all helped me to develop good understanding of the softeare develeopment and when I designed my website, I use the concepts as well. Based on the study I also made two prohject one is a chat system and other is tiny url system . They both helped me to grab me more conecepts on the design and also grasp more in depth knbowledge of the developpemnt knowledge.
+
+
+Integraion of AI on work --
+
+The integreation of AI on work helped me a lot , with making a boiler plate code. The depends on AI has also increased as it, which seems doesn't good all the time. So now I try to balance the use of AI and my own personal skills. Some of the work that AI does is pretty remarkable but still in some places I see it lacks, it can definalty get better in future. It has defibnatly helped me a lot in the a lot of ways and makes my learning faster as well. 
 
 
 
+Next Year Goals -- 
+
+- Learn REACT and make all the code of front end of my website on react 
+- Complete a total of 400 leetcode questions with more hard question frequecny. 
+- Make more projects that can solve life problems or do soemthing better if it already exists or add more value. One have planned already that will be a colobration too where someone can coordinate with other perosonn and code together . 
+- Deep dive more into system design
+- Do a good open source coloboration
+- Deep dive into GPT models and AI working 
+
+
+
+
+
+
+🎉 2024: A Year of Growth, Persistence, and Milestones! 🚀  
+
+As the year comes to an end, I wanted to reflect on some highlights and accomplishments that seemed impossible at first but were achieved through persistence and perseverance. Here's a look back at what 2024 has been all about for me:  
+
+
+🧠Completed 150 LeetCode Questions 
+This milestone was a long-term goal and part of my job preparation journey. Over 3-4 months, I worked consistently every single day, grinding through tough problems and learning new concepts like:  
+- Dynamic Programming
+- Graph Problems  
+
+This time, I adopted a different approach:  
+- Solve one problem daily, no matter how busy the day was.  
+- Don’t get stuck too long—learn the pattern and move on.  
+
+I even earned the 100 Days LeetCode badge for 2024! 🚀 The next goal is ambitious: 400 questions, including more hard-level problems.  
+
+
+🌐 Built My Personal Portfolio Website 
+This year, I finally built my portfolio from scratch—something I had been postponing for years! Starting with just a wireframe design, I developed it using:  
+- Frontend: Bootstrap, JavaScript  
+- Backend: Flask  
+- Database: MongoDB  
+- Cloud Infrastructure: CI/CD and AWS  
+
+This project was a tremendous learning experience, and next year, I plan to:  
+- Learn React for modular frontend design.  
+- Add new features and improve testing and modularity.  
+
+
+🏃Completed a 10K Run  
+This was more than just a physical milestone. It was a testament to improving both my mental and physical health, finding peace, and overcoming personal challenges.  
+
+
+🤝 Networking Like Never Before  
+Starting in September, I adopted a personalized LinkedIn networking strategy that helped me connect with incredible professionals. My connections grew from 800 to 1600+ in just a few months, and I had the privilege of meaningful conversations with many.  
+
+
+🛠️ System Design Journey  
+Diving into system design was eye-opening this year! Using resources like Alex Xu's book and online courses, I gained insights into software architecture. This knowledge helped me build projects like:  
+- A Chat System 
+- A TinyURL Clone 
+
+
+🤖 Integrating AI at Work
+AI became a significant part of my workflow, streamlining boilerplate code generation and speeding up learning. While I’m cautious about over-reliance, I look forward to balancing AI and personal skills better in 2025.  
+
+
+
+🎯 Goals for 2025  
+1. Learn React and refactor my portfolio's frontend.  
+2. Complete a total of 400 LeetCode questions, focusing on harder problems.  
+3. Create impactful projects that solve real-world problems.  
+4. Collaborate on open-source projects.  
+5. Deep dive into System Design and GPT Models.  
+6. Push myself for more physical challenges.  
+
+2024 was all about learning, growing, and pushing limits. Here's to a bigger, bolder, and better 2025! 🎊  
+
+
+#GrowthJourney #Reflection #TechMilestones #DSA #Networking #AI #SystemDesign
