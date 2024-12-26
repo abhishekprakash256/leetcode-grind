@@ -33,11 +33,19 @@ board and word consists of only lowercase and uppercase English letters.
 
 
 class Solution():
+	"""
+	Slower solution
+	"""
 
 	def helper_dfs(self,i,j,res_lst):
 		"""
 		The function to make the dfs of the word grid
 		"""
+
+		#check for the word
+		if res_lst == self.word :
+
+			return True
 			
 		#base case 
 		if i < 0 or j < 0 or i > len(self.board)-1 or j > len(self.board[0])-1 or self.board[i][j] == "#" :
@@ -45,22 +53,25 @@ class Solution():
 			return 
 
 
-		#check for the word
-		if res_lst == self.word :
-
-			return True
-
-		#mark the board
-		self.board[i][j] = "#" 
-
-		print(res_lst)
-
+		#temprory mark the board
+		temp = self.board[i][j]
+		self.board[i][j] = "#"
 
 		#start the dfs search
-		self.helper_dfs(i-1,j,res_lst + [self.board[i][j]])
-		self.helper_dfs(i+1,j,res_lst + [self.board[i][j]])
-		self.helper_dfs(i,j-1,res_lst + [self.board[i][j]])
-		self.helper_dfs(i,j+1,res_lst + [self.board[i][j]])
+
+
+		found = (
+			self.helper_dfs(i-1,j,res_lst + [temp]) or 
+			self.helper_dfs(i+1,j,res_lst + [temp]) or 
+			self.helper_dfs(i,j-1,res_lst + [temp]) or 
+			self.helper_dfs(i,j+1,res_lst + [temp])
+			)
+
+
+
+		self.board[i][j] = temp
+
+		return found
 
 
 
@@ -84,11 +95,13 @@ class Solution():
 
 			for j in range(len(self.board[0])) :
 
-				if self.board[i][j] != "#":
+				if self.board[i][j] == self.word[0] :
 
-					if self.helper_dfs(i,j,[]) :
+					if self.board[i][j] != "#":
 
-						return True
+						if self.helper_dfs(i,j,[]) :
+
+							return True
 
 
 		return False
