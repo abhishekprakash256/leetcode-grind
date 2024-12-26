@@ -81,7 +81,11 @@ islead = 1
 isVal = 1 or 0 depends on the values in the grid 
 
 what we need -- 
-some kind of searning and finding the mid point of the each grid 
+some kind of searching and finding the mid point of the each grid 
+
+recusive approach to find the grid like dfs and also the mid point finding 
+
+and passing the values 
 
 
 
