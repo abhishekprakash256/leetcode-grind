@@ -26,13 +26,13 @@ n = board[i].length
 1 <= word.length <= 15
 board and word consists of only lowercase and uppercase English letters.
 
-
-
+[["a","a","b","a","a","b"],["b","a","b","a","b","b"],["b","a","b","b","b","b"],["a","a","b","a","b","a"],["b","b","a","a","a","b"],["b","b","b","a","b","a"]]
+word = "aaaababab"
 
 """
 
 
-class Solution():
+class Solution_slow():
 	"""
 	Slower solution
 	"""
@@ -66,7 +66,6 @@ class Solution():
 			self.helper_dfs(i,j-1,res_lst + [temp]) or 
 			self.helper_dfs(i,j+1,res_lst + [temp])
 			)
-
 
 
 		self.board[i][j] = temp
@@ -110,8 +109,68 @@ class Solution():
 
 
 
+class Solution:
+    """
+    Faster solution with the same structure and logic.
+    passses leetcode
+    """
+
+    def helper_dfs(self, i, j, word_index):
+        """
+        The function to perform DFS on the word grid.
+        """
+
+        # Check if we've matched the entire word
+        if word_index == len(self.word):
+            return True
+
+        # Base case: invalid indices or mismatched character or already visited
+        if (
+            i < 0 or j < 0 or 
+            i >= len(self.board) or j >= len(self.board[0]) or 
+            self.board[i][j] != self.word[word_index]
+        ):
+            return False
+
+        # Temporarily mark the cell as visited
+        temp = self.board[i][j]
+        self.board[i][j] = "#"
+
+        # Explore all four directions
+        found = (
+            self.helper_dfs(i - 1, j, word_index + 1) or
+            self.helper_dfs(i + 1, j, word_index + 1) or
+            self.helper_dfs(i, j - 1, word_index + 1) or
+            self.helper_dfs(i, j + 1, word_index + 1)
+        )
+
+        # Backtrack: restore the cell
+        self.board[i][j] = temp
+
+        return found
+
+    def exist(self, board, word):
+        """
+        The function to search for the word in the board.
+        """
+
+        self.board = board
+        self.word = word
+
+        # Start DFS from every cell that matches the first character of the word
+        for i in range(len(self.board)):
+            for j in range(len(self.board[0])):
+                if self.board[i][j] == self.word[0]:
+                    if self.helper_dfs(i, j, 0):
+                        return True
+
+        return False
+
+
+
+
 if __name__ == '__main__':
 	sol = Solution()
-	print(sol.exist(board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"))
+	print(sol.exist(board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"))
 
 
