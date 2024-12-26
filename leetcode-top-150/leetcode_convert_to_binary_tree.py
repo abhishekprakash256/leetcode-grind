@@ -59,6 +59,9 @@ root.left = self.helper()
 
 
 class Solution:
+	"""
+	passes leet code and beat 70%
+	"""
 
 	def helper(self,i,j):
 		"""
@@ -66,20 +69,18 @@ class Solution:
 		"""
 
 		#base case 
-		if i == j :
+		if i > j :
 			return 
 
 		#make the node 
 		mid = (i+j) // 2 
 		node = TreeNode(self.nums[mid])
 
-		#get the head node 
-		if i == 0 and j == len(self.nums) - 1 :
-			self.headnode = node
-
 		#make the recursive node calls 
-		node.left = self.helper(i,mid)
+		node.left = self.helper(i,mid-1)
 		node.right = self.helper(mid+1,j)
+
+		return node
 
 
 
@@ -95,9 +96,9 @@ class Solution:
 			return node
 
 		#make the recursion call
-		self.helper(0,len(self.nums)-1)
+		return self.helper(0,len(self.nums)-1)
 
-		return self.headnode
+		
 
 
 
