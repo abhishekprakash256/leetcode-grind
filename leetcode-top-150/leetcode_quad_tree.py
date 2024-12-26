@@ -87,8 +87,34 @@ recusive approach to find the grid like dfs and also the mid point finding
 
 and passing the values 
 
+if is_val all are same then not divide 
+
+else divide into the grid 
+
+two type of recurins one for dfs search and other for making the node 
+
+how find the mid 
+(i+j) // 2
+
+
+
+
 
 
 
 
 """
+
+"""
+# Definition for a QuadTree node.
+class Node:
+    def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
+        self.val = val
+        self.isLeaf = isLeaf
+        self.topLeft = topLeft
+        self.topRight = topRight
+        self.bottomLeft = bottomLeft
+        self.bottomRight = bottomRight
+"""
+
+
