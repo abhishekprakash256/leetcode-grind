@@ -131,78 +131,16 @@ class Node:
 		self.bottomRight = bottomRight
 
 
-
 class Solution():
 
-	def __init__(self):
+	def helper_dfs(self):
+		"""
+		The helper dfs for the traversal
+		"""
 		pass
 
-	def helper_dfs(self,(i,j),(a,b),(c,d),(e,f),(g,h),count_ones,count_zeros):
-		"""
-		The helper funcition to search the grid
-		
-		"""
-		#base case
-		if i < a or j < b or self.grid[i][j] == "#" or i > b or j > b :
-
-			return 
-
-		#count the 1 and 0
-		if self.grid[i][j] == 1 :
-
-			count_ones += 1 
-
-		if self.grid[i][j] == 0 :
-
-			count_zeros += 1 
-
-		if count_ones != 0 and count_zeros == 0 :
-
-			make_quad = True
-
-
-		if count_ones == 0 and count_zeros != 0:
-
-			make_quad = True
-
-
-		if count_ones > 0 and count_zeros > 0:
-
-			make_quad = False
-
-
-
-
-
-
-
-
-
-	def recusrive_node(self,i,j):
-		"""
-		The recursive node builder method
-		"""
-		
-		#base case 
-
-
-
-
 	def construct(self, grid: List[List[int]]) -> 'Node':
-		"""
-		The method to construct the tree
-		"""
-
-		self.grid = grid
-
-		#constarints 
-		if len(self.grid) == 1 and len(self.grid) == 1 :
-
-			return Node(self.grid[0],1,None,None,None,None)
-
-
-		#start the recursive node builder
-		return self.recusrive_node((0,0),(0,len(self.grid)-1),((len(self.grid)-1),0),(len(self.grid)-1,len(self.grid)-1),0,0)
+		pass
 
 
 
