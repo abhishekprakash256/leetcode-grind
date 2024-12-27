@@ -55,6 +55,8 @@ move right + 1
 and left to right 
 
 
+[-2,1]
+
 
 """
 
@@ -70,11 +72,29 @@ class Solution():
 			return sum(nums)
 
 		#make the temp sum 
-		max_sum = 0 
+		max_sum = float("-inf")
+
+		running_sum = nums[0]
 
 		for i in range(1,len(nums)) :
 
-			
+			running_sum += nums[i]
+
+			if running_sum < 0 :
+
+				running_sum = 0 
+
+			max_sum = max(running_sum,max_sum)
+
+		return max_sum
+
+
+
+
+
+
+
+
 
 
 
