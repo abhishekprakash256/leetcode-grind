@@ -122,43 +122,93 @@ class Node:
 
 
 class Node:
-    def __init__(self, val, isLeaf, topLeft=None, topRight=None, bottomLeft=None, bottomRight=None):
-        self.val = val
-        self.isLeaf = isLeaf
-        self.topLeft = topLeft
-        self.topRight = topRight
-        self.bottomLeft = bottomLeft
-        self.bottomRight = bottomRight
+	def __init__(self, val, isLeaf, topLeft=None, topRight=None, bottomLeft=None, bottomRight=None):
+		self.val = val
+		self.isLeaf = isLeaf
+		self.topLeft = topLeft
+		self.topRight = topRight
+		self.bottomLeft = bottomLeft
+		self.bottomRight = bottomRight
 
 
 
 
-class Solution:
-    def construct(self, grid: List[List[int]]) -> Node:
-        return self.helper(grid, 0, 0, len(grid))
+class Solution1:
+	def construct(self, grid: List[List[int]]) -> Node:
+		return self.helper(grid, 0, 0, len(grid))
 
 
-    def helper(self, grid, i, j, w):
-        if self.allSame(grid, i, j, w):
-            return Node(grid[i][j] == 1, True)
+	def helper(self, grid, i, j, w):
+		if self.allSame(grid, i, j, w):
+			return Node(grid[i][j] == 1, True)
 
-        node = Node(True, False)
-        node.topLeft = self.helper(grid, i, j, w // 2)
-        node.topRight = self.helper(grid, i, j + w // 2, w // 2)
-        node.bottomLeft = self.helper(grid, i + w // 2, j, w // 2)
-        node.bottomRight = self.helper(grid, i + w // 2, j + w // 2, w // 2)
-        return node
-
-
-    def allSame(self, grid, i, j, w):
-        for x in range(i, i + w):
-            for y in range(j, j + w):
-                if grid[x][y] != grid[i][j]:
-                    return False
-        return True
+		node = Node(True, False)
+		node.topLeft = self.helper(grid, i, j, w // 2)
+		node.topRight = self.helper(grid, i, j + w // 2, w // 2)
+		node.bottomLeft = self.helper(grid, i + w // 2, j, w // 2)
+		node.bottomRight = self.helper(grid, i + w // 2, j + w // 2, w // 2)
+		return node
 
 
+	def allSame(self, grid, i, j, w):
+		for x in range(i, i + w):
+			for y in range(j, j + w):
+				if grid[x][y] != grid[i][j]:
+					return False
+		return True
 
+
+
+
+
+class Solution():
+	def check_board(self,i,j,w):
+		"""
+		The funciton to check all board is same
+		passes leetcode
+		"""
+
+		for a in range(i,i+w) :
+
+			for b in range(j,j+w) :
+
+				if self.board[a][b] != self.board[i][j] :
+					return False
+
+		return True
+
+
+
+	def helper(self,i,j,w):
+		"""
+		The helper funcion for the traverdsal of the board 
+		"""
+		
+		#base case
+		if self.check_board(i,j,w):
+			return Node(self.board[i][j] ,True)
+
+		#make the leaves node
+		node = Node(self.board[i][j], False)
+		node.topLeft = self.helper(i, j, w // 2)
+		node.topRight = self.helper(i, j + w // 2, w // 2)
+		node.bottomLeft = self.helper( i + w // 2, j, w // 2)
+		node.bottomRight = self.helper(i + w // 2, j + w // 2, w // 2)
+
+		return node		
+
+
+
+
+
+	def construct(self,board):
+		"""
+		The main function to call the recursive call
+		"""
+		self.board = board
+
+		#make the recurseive call
+		return self.helper(0,0,len(self.board))
 
 
 
