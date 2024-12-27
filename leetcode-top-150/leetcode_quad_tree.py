@@ -10,12 +10,12 @@ val: True if the node represents a grid of 1's or False if the node represents a
 Notice that you can assign the val to True or False when isLeaf is False, and both are accepted in the answer.
 isLeaf: True if the node is a leaf node on the tree or False if the node has four children.
 class Node {
-    public boolean val;
-    public boolean isLeaf;
-    public Node topLeft;
-    public Node topRight;
-    public Node bottomLeft;
-    public Node bottomRight;
+	public boolean val;
+	public boolean isLeaf;
+	public Node topLeft;
+	public Node topRight;
+	public Node bottomLeft;
+	public Node bottomRight;
 }
 We can construct a Quad-Tree from a two-dimensional area using the following steps:
 
@@ -108,13 +108,106 @@ how find the mid
 """
 # Definition for a QuadTree node.
 class Node:
-    def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
-        self.val = val
-        self.isLeaf = isLeaf
-        self.topLeft = topLeft
-        self.topRight = topRight
-        self.bottomLeft = bottomLeft
-        self.bottomRight = bottomRight
+	def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
+		self.val = val
+		self.isLeaf = isLeaf
+		self.topLeft = topLeft
+		self.topRight = topRight
+		self.bottomLeft = bottomLeft
+		self.bottomRight = bottomRight
+
+
+
 """
+
+
+class Node:
+	def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
+		self.val = val
+		self.isLeaf = isLeaf
+		self.topLeft = topLeft
+		self.topRight = topRight
+		self.bottomLeft = bottomLeft
+		self.bottomRight = bottomRight
+
+
+
+class Solution():
+
+	def __init__(self):
+		pass
+
+	def helper_dfs(self,(i,j),(a,b),(c,d),(e,f),(g,h)):
+		"""
+		The helper funcition to search the grid
+		
+		"""
+		#base case
+		if i < a or j < b or self.grid[i][j] == "#" or i > b or j > b :
+
+			return 
+
+		# 
+
+
+
+
+
+	def recusrive_node(self,i,j):
+		"""
+		The recursive node builder method
+		"""
+		
+		#base case 
+
+
+
+
+	def construct(self, grid: List[List[int]]) -> 'Node':
+		"""
+		The method to construct the tree
+		"""
+
+		self.grid = grid
+
+		#constarints 
+		if len(self.grid) == 1 and len(self.grid) == 1 :
+
+			return Node(self.grid[0],1,None,None,None,None)
+
+
+		#start the recursive node builder
+		return self.recusrive_node((0,0),(0,len(self.grid)-1),((len(self.grid)-1),0),(len(self.grid)-1,len(self.grid)-1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
