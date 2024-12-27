@@ -137,7 +137,7 @@ class Solution():
 	def __init__(self):
 		pass
 
-	def helper_dfs(self,(i,j),(a,b),(c,d),(e,f),(g,h)):
+	def helper_dfs(self,(i,j),(a,b),(c,d),(e,f),(g,h),count_ones,count_zeros):
 		"""
 		The helper funcition to search the grid
 		
@@ -147,7 +147,32 @@ class Solution():
 
 			return 
 
-		# 
+		#count the 1 and 0
+		if self.grid[i][j] == 1 :
+
+			count_ones += 1 
+
+		if self.grid[i][j] == 0 :
+
+			count_zeros += 1 
+
+		if count_ones != 0 and count_zeros == 0 :
+
+			make_quad = True
+
+
+		if count_ones == 0 and count_zeros != 0:
+
+			make_quad = True
+
+
+		if count_ones > 0 and count_zeros > 0:
+
+			make_quad = False
+
+
+
+
 
 
 
@@ -177,7 +202,7 @@ class Solution():
 
 
 		#start the recursive node builder
-		return self.recusrive_node((0,0),(0,len(self.grid)-1),((len(self.grid)-1),0),(len(self.grid)-1,len(self.grid)-1))
+		return self.recusrive_node((0,0),(0,len(self.grid)-1),((len(self.grid)-1),0),(len(self.grid)-1,len(self.grid)-1),0,0)
 
 
 
