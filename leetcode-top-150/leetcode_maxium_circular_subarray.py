@@ -181,7 +181,8 @@ class Solution():
 		max_circular = total_sum - min_kadane
 
 		# Return the maximum of the normal and circular cases
-		return max(max_kadane, max_circular)	
+		return max(max_kadane, max_circular)
+
 
 
 
