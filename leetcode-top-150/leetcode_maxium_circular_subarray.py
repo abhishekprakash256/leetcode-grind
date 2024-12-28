@@ -59,11 +59,12 @@ out = -2
 
 from typing import List
 
-class Solution:
+class Solution_:
 	def maxSubarraySumCircular(self, nums: List[int]) -> int:
 		"""
 		Finds the maximum possible sum of a non-empty subarray in a circular array.
 		"""
+
 		# Function to calculate the maximum subarray sum using Kadane's algorithm
 		def kadane_max(arr: List[int]) -> int:
 			max_sum = current_sum = arr[0]
@@ -72,6 +73,7 @@ class Solution:
 				max_sum = max(max_sum, current_sum)
 			return max_sum
 
+		
 		# Function to calculate the minimum subarray sum using Kadane's algorithm
 		def kadane_min(arr: List[int]) -> int:
 			min_sum = current_sum = arr[0]
@@ -79,6 +81,7 @@ class Solution:
 				current_sum = min(num, current_sum + num)
 				min_sum = min(min_sum, current_sum)
 			return min_sum
+
 
 		# Calculate the total sum of the array
 		total_sum = sum(nums)
@@ -98,6 +101,92 @@ class Solution:
 
 		# Return the maximum of the normal and circular cases
 		return max(max_kadane, max_circular)
+
+
+
+
+
+class Solution():
+	"""
+	Passes leetcode
+	"""
+
+	def kadane_max(self):
+		"""
+		The function to find the max kadande
+		"""
+		
+		#make the temp sum 
+		max_sum = float("-inf")
+		running_sum = 0
+
+		for i in range(len(self.nums)) :
+
+			if running_sum < 0 :
+
+				running_sum = 0
+
+			running_sum += self.nums[i]
+
+			max_sum = max(running_sum,max_sum)
+
+		return max_sum
+
+
+
+	def kadane_min(self):
+		"""
+		The function to find the min kadane
+		"""
+
+		#make the temp sum
+		min_sum = float("inf")
+		running_sum = 0
+
+		for i in range(len(self.nums)) :
+
+			if running_sum > 0 :
+
+				running_sum = 0
+
+			running_sum += self.nums[i]
+
+			min_sum = min(running_sum,min_sum)
+
+		return min_sum
+
+
+
+	def maxSubarraySumCircular(self, nums) :
+		"""
+		The function to find the maximum possible subarray
+		"""
+
+		self.nums = nums
+
+		# Calculate the total sum of the array
+		total_sum = sum(self.nums)
+
+		# Calculate the maximum subarray sum (normal case)
+		max_kadane = self.kadane_max()
+
+		# Calculate the minimum subarray sum
+		min_kadane = self.kadane_min()
+
+		# Handle the edge case where all elements are negative
+		if max_kadane < 0:
+			return max_kadane
+
+		# Calculate the maximum subarray sum (circular case)
+		max_circular = total_sum - min_kadane
+
+		# Return the maximum of the normal and circular cases
+		return max(max_kadane, max_circular)	
+
+
+
+
+
 
 
 
