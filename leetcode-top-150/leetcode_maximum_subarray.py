@@ -74,15 +74,15 @@ class Solution():
 		#make the temp sum 
 		max_sum = float("-inf")
 
-		running_sum = nums[0]
+		running_sum = 0
 
-		for i in range(1,len(nums)) :
-
-			running_sum += nums[i]
+		for i in range(len(nums)) :
 
 			if running_sum < 0 :
 
 				running_sum = 0 
+
+			running_sum += nums[i]
 
 			max_sum = max(running_sum,max_sum)
 
