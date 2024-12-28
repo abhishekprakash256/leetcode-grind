@@ -80,7 +80,7 @@ class Solution():
 
 			if running_sum < 0 :
 
-				running_sum = 0 
+				running_sum = 0
 
 			running_sum += nums[i]
 
