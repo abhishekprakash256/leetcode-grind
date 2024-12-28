@@ -42,6 +42,57 @@ use binary search
 """
 
 
+class Solution():
+
+	def searchInsert(self, nums: List[int], target: int) -> int:
+		"""
+		The function to find the search place or the insert place of the target
+		"""
+
+		#constraints
+		if len(nums) == 1:
+
+			if nums[0] == target :
+
+				return 0 
+
+			elif nums[0] < target:
+
+				return 1
+
+			else :
+
+				return 0 
+
+
+		#initialize the ptrs 
+		i , j = 0 , len(nums) - 1 
+
+		#start the search loop 
+		while i <= j :
+
+			mid = (i+j) // 2 
+
+			if nums[mid] == target :
+
+				return mid
+
+			elif nums[mid] < target :
+
+				i = mid + 1 
+
+			else:
+
+				j = mid - 1 
+
+
+		return i
+
+
+
+
+
+
 
 
 
