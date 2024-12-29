@@ -95,7 +95,7 @@ class Solution():
 
 					if row[mid] < target :
 
-						left = mid + 1 
+						left = mid + 1
 
 					else :
 
