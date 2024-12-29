@@ -62,92 +62,47 @@ if mid[i] == len(nums[0]) - 1
 
 """
 
-matrix = [
-[1,3,5,7],
-[10,11,16,20],
-[23,30,34,60]
-]
+matrix = [[1]]
 
-print(matrix[0][0])
 
-print(matrix[(0+len(matrix)-1)//2][ (0 + len(matrix[0]))//2] )
+#print(matrix[0][0])
+
+#print(matrix[(0+len(matrix)-1)//2][ (0 + len(matrix[0]))//2] )
 
 
 
 class Solution():
 
-	def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+	def searchMatrix(self, matrix, target: int) -> bool:
 		"""
 		The function to search a 2d matrix using binary search
+		passes leet code
 		"""
 
-		#constraints 
-		if len(matrix) == 1 and len(matrix[0]) == 1 :
+		for row in matrix :
 
-			if matrix[0][0] == target :
+			if row[0] <= target <= row[-1] :
 
-				return True
+				left , right = 0 , len(row) - 1
 
-			else:
+				while left <= right :
 
-				return False
+					mid = (left + right) // 2 
 
+					if row[mid] == target : 
 
-		#start the traversal 
-		a , b = 0 , 0
-		c , d  = len(matrix) - 1, len(matrix[0]) - 1 
+						return True
 
+					if row[mid] < target :
 
-		#start the loop 
-		while a <= c and b <= d :
+						left = mid + 1 
 
-			mid1 , mid2 = (a+c)//2 , (b+d)//2
+					else :
 
-			if matrix[mid1][mid2] == target :
-
-				return True
+						right = mid - 1 
 
 
-			elif target < matrix[mid1][mid2] :
-
-				#right shit before mid
-
-				if mid2 == 0 :
-
-					mid1 = mid1-1
-					mid2 = len(matrix[0]) - 1
-
-					c = mid1
-					d = mid2
-
-				else:
-
-					c = mid1
-					d = mid2 - 1 
-
-
-
-			else:
-
-				#left shift after the mid 
-
-				if mid2 == len(matrix[0]) - 1 :
-
-					mid1 = mid1 + 1 
-					mid2 = 0 
-
-					a = mid1
-					b = mid2
-
-				else:
-
-					a = mid1
-					b = mid2 + 1 
-
-
-
-
-		return False 
+		return False
 
 
 
@@ -155,6 +110,11 @@ class Solution():
 
 
 
+
+
+if __name__ == '__main__':
+	sol = Solution()
+	print(sol.searchMatrix(matrix,1))
 
 
 
