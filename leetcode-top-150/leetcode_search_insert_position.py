@@ -66,7 +66,7 @@ class Solution():
 
 
 		#initialize the ptrs 
-		i , j = 0 , len(nums) - 1 
+		i , j = 0 , len(nums) 
 
 		#start the search loop 
 		while i <= j :
