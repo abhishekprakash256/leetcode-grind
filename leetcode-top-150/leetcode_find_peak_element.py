@@ -37,10 +37,77 @@ nums[i] != nums[i + 1] for all valid i.
 
 
 """
+
 approach -- 
 
 
+use a binary search and move as per small side 
 
+if both are equal move one side 
+
+in the last return one side that is higher 
 
 
 """
+
+
+class Solution_slow():
+
+	def findPeakElement(self,nums):
+		"""
+		The function to find the peak elemmen in logn time
+		passes leetcode
+		o(n) time 
+		"""
+
+		#constraints case 
+		if len(nums) == 1:
+			return 0
+
+
+		#make the ptr
+		l , r = 0 , len(nums) - 1 
+
+
+		while l <= r :
+
+			if nums[l] <= nums[r] :
+
+				l += 1 
+
+			else:
+
+				r -= 1 
+
+		return l - 1
+
+
+
+
+class Solution:
+
+    def findPeakElement(self, nums):
+        """
+        Function to find a peak element in O(log n) time.
+        A peak element is an element that is greater than or equal to its neighbors.
+        """
+        # Handle edge case: single element array
+        if len(nums) == 1:
+            return 0
+
+        # Binary search for peak element
+        left, right = 0, len(nums) - 1
+
+        while left < right:
+            mid = (left + right) // 2
+
+            # Compare middle element with its right neighbor
+            if nums[mid] > nums[mid + 1]:
+                # Move to the left half
+                right = mid
+            else:
+                # Move to the right half
+                left = mid + 1
+
+        # At the end, left and right converge to the peak element
+        return left
