@@ -50,48 +50,69 @@ and use two loops to iter the boundaries
 """
 
 
+
 from typing import List
 
-class Solution:
+class Solution_slow:
 
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        """
-        The function to find the start and end indices of a target value in a sorted array.
-        """
-        # Constraints
-        if not nums:
-            return [-1, -1]
+	def searchRange(self, nums: List[int], target: int) -> List[int]:
+		"""
+		The function to find the start and end indices of a target value in a sorted array.
+		"""
+		# Constraints
+		if not nums:
+			return [-1, -1]
 
-        # Initialize pointers
-        l, r = 0, len(nums) - 1
+		# Initialize pointers
+		l, r = 0, len(nums) - 1
 
-        # Initialize boundaries
-        first, second = -1, -1
+		# Initialize boundaries
+		first, second = -1, -1
 
-        # Start binary search
-        while l <= r:
-            mid = (l + r) // 2
+		# Start binary search
+		while l <= r:
+			mid = (l + r) // 2
 
-            if nums[mid] == target:
-                # Traverse left to find the first occurrence
-                first = mid
-                while first > 0 and nums[first - 1] == target:
-                    first -= 1
+			if nums[mid] == target:
+				# Traverse left to find the first occurrence
+				first = mid
 
-                # Traverse right to find the second occurrence
-                second = mid
-                while second < len(nums) - 1 and nums[second + 1] == target:
-                    second += 1
+				while first > 0 and nums[first - 1] == target:
+					first -= 1
 
-                break  # Found the target range; exit the loop
+				# Traverse right to find the second occurrence
+				second = mid
 
-            elif nums[mid] < target:
-                l = mid + 1
+				while second < len(nums) - 1 and nums[second + 1] == target:
+					second += 1
 
-            else:
-                r = mid - 1
+				break  # Found the target range; exit the loop
 
-        return [first, second]
+			elif nums[mid] < target:
+				l = mid + 1
+
+			else:
+				r = mid - 1
+
+		return [first, second]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
