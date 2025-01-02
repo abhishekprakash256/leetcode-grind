@@ -66,7 +66,7 @@ class Solution():
 		min_heap = []
 
 		#make the res list
-		res_lst = [] 
+		res_lst = []
 
 
 		#append the first elements 
