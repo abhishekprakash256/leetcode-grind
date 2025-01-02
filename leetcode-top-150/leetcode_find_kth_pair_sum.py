@@ -52,7 +52,8 @@ class Solution():
 
 	def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[Tuple[int, int]]:
 		"""
-		The functotion to find the smallest sum pairts in the array 
+		Passes leetcode
+		The function to find the smallest sum pairts in the array 
 		"""
 
 		#constarints 
@@ -64,7 +65,7 @@ class Solution():
 		#make the heap 
 		min_heap = []
 
-		#make the res list 
+		#make the res list
 		res_lst = [] 
 
 
@@ -82,7 +83,7 @@ class Solution():
 			#append in the res list 
 			res_lst.append([nums1[i],nums2[j]])
 
-			if i + 1 < len(nums2) :
+			if i + 1 < len(nums1) :
 
 				#put the recent element
 				heapq.heappush(min_heap,(nums1[i+1] + nums2[j],i+1,j))
