@@ -74,12 +74,14 @@ class Solution:
 
 	"""
 	def addBinary(self, a: str, b: str) -> str:
+
+
 		carry = 0
 		res = []
 		
 		idxA, idxB = len(a) - 1, len(b) - 1
 		
-		while idxA >= 0 or idxB >= 0 or carry == 1:
+		while idxA >= 0 or idxB >= 0 or carry:
 			if idxA >= 0:
 				carry += int(a[idxA])
 				idxA -= 1            
