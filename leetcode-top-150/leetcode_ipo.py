@@ -50,3 +50,42 @@ w is capitol
 
 
 """
+
+
+import heapq
+
+
+class Solution():
+
+	def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int :
+		"""
+		passes leet code
+		The function to find the max prfit with the capitol used
+		"""
+
+		max_profit = []
+
+		min_capitol = [ (c,p) for c,p in zip(capital,profits)]
+
+		heapq.heapify(min_capitol)
+
+		for i in range(k) :
+
+			while min_capitol and min_capitol[0][0] <= w:
+
+				c , p = heapq.heappop(min_capitol)
+
+				heapq.heappush(max_profit,-1 * p ) 
+
+			if not max_profit :
+				break
+
+			w += -1 * heapq.heappop(max_profit)
+
+
+		return w
+
+
+
+
+
