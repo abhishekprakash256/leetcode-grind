@@ -50,17 +50,21 @@ return final
 """
 
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-    	"""
-    	passes leet code
+	def singleNumber(self, nums) -> int:
+		"""
+		passes leet code
 
-    	"""
+		"""
 
-        final = 0 
+		final = 0 
 
-        for i in nums:
+		for i in nums:
 
-            final ^= i
-        
-        return final
-        
+			final ^= i
+
+			#print(final)
+		
+		return final
+
+sol = Solution()
+print(sol.singleNumber([4,1,2,1,2]))
