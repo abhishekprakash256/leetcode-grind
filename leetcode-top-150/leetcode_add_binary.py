@@ -35,42 +35,62 @@ play with carry rule
 """
 
 class Solution:
-    def addBinary(self, a: str, b: str) -> str:
-        """
-        Adds two binary strings and returns their sum as a binary string.
-        """
-        # Make the lengths equal by padding with leading zeros
-        max_len = max(len(a), len(b))
-        a = a.zfill(max_len)  # Pad with zeros to the left
-        b = b.zfill(max_len)
-        
-        carry = 0
-        result = []
-        
-        # Traverse from right to left
-        for i in range(max_len - 1, -1, -1):
-            # Convert characters to integers and calculate the sum
-            sum_val = int(a[i]) + int(b[i]) + carry
-            
-            # Determine the bit to add to the result and the carry
-            result.append(str(sum_val % 2))  # Append remainder (0 or 1)
-            carry = sum_val // 2  # Update carry (0 or 1)
-        
-        # If there's a leftover carry, add it to the result
-        if carry:
-            result.append('1')
-        
-        # The result is in reverse order, so reverse it back
-        return ''.join(result[::-1])
-
-# Example usage:
-solution = Solution()
-print(solution.addBinary("11", "1"))  # Output: "100"
+	def addBinary(self, a: str, b: str) -> str:
+		"""
+		Adds two binary strings and returns their sum as a binary string.
+		"""
+		# Make the lengths equal by padding with leading zeros
+		max_len = max(len(a), len(b))
+		a = a.zfill(max_len)  # Pad with zeros to the left
+		b = b.zfill(max_len)
+		
+		carry = 0
+		result = []
+		
+		# Traverse from right to left
+		for i in range(max_len - 1, -1, -1):
+			# Convert characters to integers and calculate the sum
+			sum_val = int(a[i]) + int(b[i]) + carry
+			
+			# Determine the bit to add to the result and the carry
+			result.append(str(sum_val % 2))  # Append remainder (0 or 1)
+			carry = sum_val // 2  # Update carry (0 or 1)
+		
+		# If there's a leftover carry, add it to the result
+		if carry:
+			result.append('1')
+		
+		# The result is in reverse order, so reverse it back
+		return ''.join(result[::-1])
 
 
 
 
 
+
+class Solution:
+	"""
+	Faster solution
+
+	"""
+	def addBinary(self, a: str, b: str) -> str:
+		carry = 0
+		res = []
+		
+		idxA, idxB = len(a) - 1, len(b) - 1
+		
+		while idxA >= 0 or idxB >= 0 or carry == 1:
+			if idxA >= 0:
+				carry += int(a[idxA])
+				idxA -= 1            
+			if idxB >= 0:
+				carry += int(b[idxB])
+				idxB -= 1            
+
+			res.append(str(carry % 2))
+			carry = carry // 2
+			
+		return "".join(res[::-1])
 
 
 
