@@ -87,9 +87,10 @@ class Solution():
 		"""
 		The function to find the sqrt of the integer
 		"""
+		pass
 
 
-		
+
 
 
 
