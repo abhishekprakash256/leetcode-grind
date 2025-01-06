@@ -63,60 +63,79 @@ class Solution_wrong():
 
 
 
+class Solution:
 
-class Solution():
+    def rob(self, nums):
+        """
+        The function to find the max value that can be robbed 
+        using a dynamic programming solution.
+        """
+
+        # Base cases
+        if len(nums) == 1:
+            return nums[0]
+
+        if len(nums) == 2:
+            return max(nums[0], nums[1])
+
+        # Create a copy of the input array and add padding
+        dp = [0, 0] + nums
+
+        # Apply dynamic programming to the copied array
+        for i in range(2, len(dp)):
+            dp[i] = max(dp[i - 1], dp[i] + dp[i - 2])
+
+        return dp[-1]
+
+
+
+
+
+class Solution_wrong():
 
 	def __init__(self):
 
 		self.memo = {}
 
 
-	def helper(self):
+	def helper(self,idx, val):
 		"""
 		The function to make the helper
 		"""
-		pass
+		if idx >= len(self.nums) - 1 :
+			return 
+
+
+		if idx in self.memo:
+			return self.memo[idx]
+
+
+		#store the result 
+		self.memo[idx] = max(self.nums[idx+1], val + max(self.nums[idx-1], self.nums[idx] + self.nums[idx-2]))
+
 
 
 	def rob(self,nums):
 		"""
 		The function to find the rob house 
 		"""
-		
 
+		self.nums = nums
 
-
-
-class Solution() :
-
-	def rob(self,nums):
-		"""
-		The function to find the max value that can be robbed 
-		using a dp solution
-		passes leetcode
-		"""
-
-		#base case 
+		#constarints 
 		if len(nums) == 1:
 			return nums[0]
 
 		if len(nums) == 2 :
 			return max(nums[0],nums[1])
 
-		#add to the array 
+
+		#add the 0 in the list
 		nums.insert(0,0)
 		nums.insert(0,0)
 
+		self.helper(2,0)
 
-		for i in range(2,len(nums)):
-
-			nums[i] = max(nums[i-1], nums[i] + nums[i-2])
-
-		return nums[-1]
-
-
-
-
-
+		return self.nums[-1]
 
 		
