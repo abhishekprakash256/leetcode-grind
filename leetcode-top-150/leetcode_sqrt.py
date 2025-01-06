@@ -80,14 +80,54 @@ class Solution_slow():
 
 
 
-
 class Solution():
 
 	def mySqrt(self,x) -> int:
 		"""
 		The function to find the sqrt of the integer
+		passes leetcode
 		"""
-		pass
+
+		#constraints 
+		if x == 0 :
+			return 0 
+
+		if x == 1 :
+
+			return 1
+
+
+		#left and right pointer
+		l , r = 1 , x 
+
+		#start the loop
+		while l <= r :
+
+			mid = (l + r) // 2 
+
+			sqr = mid * mid 
+
+			if sqr == x :
+
+				return mid 
+
+
+			elif sqr < x :
+
+				l = mid + 1
+
+			else :
+
+				r = mid -1
+
+		return l - 1
+
+
+
+
+
+
+
 
 
 
