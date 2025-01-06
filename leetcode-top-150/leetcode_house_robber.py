@@ -75,11 +75,48 @@ class Solution():
 		"""
 		The function to make the helper
 		"""
+		pass
 
 
 	def rob(self,nums):
 		"""
 		The function to find the rob house 
 		"""
+		
+
+
+
+
+class Solution() :
+
+	def rob(self,nums):
+		"""
+		The function to find the max value that can be robbed 
+		using a dp solution
+		passes leetcode
+		"""
+
+		#base case 
+		if len(nums) == 1:
+			return nums[0]
+
+		if len(nums) == 2 :
+			return max(nums[0],nums[1])
+
+		#add to the array 
+		nums.insert(0,0)
+		nums.insert(0,0)
+
+
+		for i in range(2,len(nums)):
+
+			nums[i] = max(nums[i-1], nums[i] + nums[i-2])
+
+		return nums[-1]
+
+
+
+
+
 
 		
