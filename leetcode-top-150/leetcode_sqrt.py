@@ -50,7 +50,7 @@ for i in raneg(1,x//2) :
 
 
 
-class Solution():
+class Solution_slow():
 
 	def mySqrt(self, x: int) -> int:
 		"""
@@ -77,6 +77,21 @@ class Solution():
 				return prev_val
 
 			prev_val = i
+
+
+
+
+class Solution():
+
+	def mySqrt(self,x) -> int:
+		"""
+		The function to find the sqrt of the integer
+		"""
+
+
+		
+
+
 
 
 if __name__ == "__main__":
