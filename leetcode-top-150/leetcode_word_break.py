@@ -63,14 +63,14 @@ for word in WordDict:
 
 
 
-class Solution_wrong():
+class Solution_slow():
 
 	def helper_dfs(self,sequence):
 		"""
 		The function to make the dfs and find the seq
 		"""
 
-		print(sequence)
+		#print(sequence)
 
 		#base case 
 		if len(sequence) > len(self.s) :
@@ -84,7 +84,11 @@ class Solution_wrong():
 		#make the recursive call
 		for word in self.wordDict :
 
-			self.helper_dfs(sequence + word)
+			if self.helper_dfs(sequence + word) :
+
+				return True
+
+		return False
 
 
 
@@ -111,12 +115,8 @@ class Solution_wrong():
 
 		#make the recursive call
 
-		if self.helper_dfs("") :
+		return self.helper_dfs("")
 
-			return True
-
-
-		return False
 
 
 
