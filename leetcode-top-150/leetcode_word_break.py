@@ -154,11 +154,6 @@ class Solution_slow2():
 
 			return self.memo[sequence]
 
-		# Check if sequence is a valid prefix of s.
-		if not self.s.startswith(sequence):
-
-			self.memo[sequence] = False
-
 
 		if sequence == self.s :
 
@@ -167,9 +162,16 @@ class Solution_slow2():
 		#make the recursive call
 		for word in self.wordDict :
 
-			if self.helper_dfs(sequence + word) :
+	
+			if self.s.startswith(sequence) :
+				
+				if self.helper_dfs(sequence + word) :
 
-				return True
+					self.memo[sequence] = True
+
+					return True
+
+		self.memo[sequence] = False
 
 		return False
 
@@ -201,6 +203,43 @@ class Solution_slow2():
 		return self.helper_dfs("")
 
 
+
+
+class Solution:
+    def __init__(self):
+        self.memo = {}
+
+    def helper_dfs(self, start):
+        """
+        The function to make the DFS and find the sequence using index-based memoization.
+        """
+        # Base case: If we reach the end of the string, return True.
+        if start == len(self.s):
+            return True
+
+        # Check in memo to avoid redundant computation.
+        if start in self.memo:
+            return self.memo[start]
+
+        # Try every word in wordDict as a potential prefix starting from 'start'.
+        for word in self.wordDict:
+            if self.s.startswith(word, start):  # Check if `word` matches the substring starting at `start`.
+                if self.helper_dfs(start + len(word)):  # Move to the next part of the string.
+                    self.memo[start] = True
+                    return True
+
+        # If no valid word break is found, store False in the memo.
+        self.memo[start] = False
+        return False
+
+    def wordBreak(self, s, wordDict):
+        """
+        The function to determine if the word can be segmented using wordDict.
+        """
+        self.s = s
+        self.wordDict = set(wordDict)  # Convert to set for O(1) lookups.
+        self.memo = {}  # Reset memo for a fresh computation.
+        return self.helper_dfs(0)  # Start DFS from the beginning of the string.
 
 
 s = "leetcode"
