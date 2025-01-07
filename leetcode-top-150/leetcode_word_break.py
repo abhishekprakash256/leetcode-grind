@@ -66,6 +66,7 @@ for word in WordDict:
 class Solution_slow():
 	"""
 	The solution is slow
+	can't pass leetcode
 	"""
 
 	def helper_dfs(self,sequence):
@@ -131,6 +132,7 @@ class Solution_slow():
 class Solution_slow2():
 	"""
 	The solution is slow
+	passes leetcode
 	"""
 
 	def __init__(self):
@@ -162,9 +164,8 @@ class Solution_slow2():
 		#make the recursive call
 		for word in self.wordDict :
 
-	
 			if self.s.startswith(sequence) :
-				
+
 				if self.helper_dfs(sequence + word) :
 
 					self.memo[sequence] = True
@@ -174,8 +175,6 @@ class Solution_slow2():
 		self.memo[sequence] = False
 
 		return False
-
-
 
 
 	def wordBreak(self,s,wordDict):
@@ -212,6 +211,7 @@ class Solution:
     def helper_dfs(self, start):
         """
         The function to make the DFS and find the sequence using index-based memoization.
+        passes leetcode
         """
         # Base case: If we reach the end of the string, return True.
         if start == len(self.s):
