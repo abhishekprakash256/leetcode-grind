@@ -65,7 +65,7 @@ for word in WordDict:
 
 class Solution_slow():
 	"""
-	The solution is slow 
+	The solution is slow
 	"""
 
 	def helper_dfs(self,sequence):
@@ -83,6 +83,82 @@ class Solution_slow():
 		# Check if sequence is a valid prefix of s.
 		if not self.s.startswith(sequence):
 			return False
+
+		if sequence == self.s :
+
+			return True
+
+		#make the recursive call
+		for word in self.wordDict :
+
+			if self.helper_dfs(sequence + word) :
+
+				return True
+
+		return False
+
+
+
+
+	def wordBreak(self,s,wordDict):
+		"""
+		The function to find the word in the dict
+		"""
+
+		self.wordDict = wordDict
+		self.s = s
+
+		#constraints 
+		if len(self.wordDict) == 1 :
+
+			if self.wordDict[0] == s :
+
+				return True
+
+			else:
+
+				return False
+
+
+		#make the recursive call
+
+		return self.helper_dfs("")
+
+
+
+
+
+class Solution_slow2():
+	"""
+	The solution is slow
+	"""
+
+	def __init__(self):
+
+		self.memo = {}
+
+	def helper_dfs(self,sequence):
+		"""
+		The function to make the dfs and find the seq
+		"""
+
+		#print(sequence)
+
+		#base case 
+		if len(sequence) > len(self.s) :
+
+			return 
+
+		#check in the memo
+		if sequence in self.memo:
+
+			return self.memo[sequence]
+
+		# Check if sequence is a valid prefix of s.
+		if not self.s.startswith(sequence):
+
+			self.memo[sequence] = False
+
 
 		if sequence == self.s :
 
