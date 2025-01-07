@@ -64,6 +64,9 @@ for word in WordDict:
 
 
 class Solution_slow():
+	"""
+	The solution is slow 
+	"""
 
 	def helper_dfs(self,sequence):
 		"""
@@ -76,6 +79,10 @@ class Solution_slow():
 		if len(sequence) > len(self.s) :
 
 			return 
+
+		# Check if sequence is a valid prefix of s.
+		if not self.s.startswith(sequence):
+			return False
 
 		if sequence == self.s :
 
