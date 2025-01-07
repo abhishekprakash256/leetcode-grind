@@ -91,51 +91,46 @@ class Solution:
 
 
 
-class Solution_wrong():
+class Solution_wrong:
+    def __init__(self):
+        self.memo = {}
 
-	def __init__(self):
+    def helper(self, idx, val):
+        """
+        The helper function to calculate the maximum amount that can be robbed.
+        """
+        # Base case: if the index is out of bounds
+        if idx >= len(self.nums):
+            return 0
 
-		self.memo = {}
+        # If the value is already computed, return it
+        if idx in self.memo:
+            return self.memo[idx]
+
+        # Calculate the result using the two options: rob or skip
+        rob_current = val + self.helper(idx + 2, self.nums[idx])
+        skip_current = self.helper(idx + 1, 0)
+
+        # Store the maximum result in the memoization table
+        self.memo[idx] = max(rob_current, skip_current)
+
+        return self.memo[idx]
+
+    def rob(self, nums):
+        """
+        The function to find the maximum amount that can be robbed.
+        """
+        self.nums = nums
+
+        # Edge cases
+        if len(nums) == 1:
+            return nums[0]
+        if len(nums) == 2:
+            return max(nums[0], nums[1])
+
+        # Start the helper function
+        return self.helper(0, 0)
 
 
-	def helper(self,idx, val):
-		"""
-		The function to make the helper
-		"""
-		if idx >= len(self.nums) - 1 :
-			return 
-
-
-		if idx in self.memo:
-			return self.memo[idx]
-
-
-		#store the result 
-		self.memo[idx] = max(self.nums[idx+1], val + max(self.nums[idx-1], self.nums[idx] + self.nums[idx-2]))
-
-
-
-	def rob(self,nums):
-		"""
-		The function to find the rob house 
-		"""
-
-		self.nums = nums
-
-		#constarints 
-		if len(nums) == 1:
-			return nums[0]
-
-		if len(nums) == 2 :
-			return max(nums[0],nums[1])
-
-
-		#add the 0 in the list
-		nums.insert(0,0)
-		nums.insert(0,0)
-
-		self.helper(2,0)
-
-		return self.nums[-1]
 
 		
