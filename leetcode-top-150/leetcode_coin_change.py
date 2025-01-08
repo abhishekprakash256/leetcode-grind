@@ -235,9 +235,80 @@ class Solution_slow2():
 
 
 
-class Solution():
+class Solution_slow3():
 
-	def 
+	def __init__(self):
+
+		self.memo = {}
+		self.min_count = float("inf")
+
+
+	def helper_dfs(self,val,count):
+		"""
+		The function to do the dfs for coin change
+
+		"""
+		
+		#base case 
+		if val > self.amount :
+
+			return
+
+		if val == self.amount :
+
+			self.min_count = min(self.min_count , count)
+
+			return
+
+		if val in self.memo and self.memo[val] <= count :
+
+			return
+
+		#add in memo
+		self.memo[val] = count
+
+		#make the recursive call
+		for coin in self.coins :
+
+			if (val + coin) <= self.amount :
+
+				self.helper_dfs(val + coin , count + 1 )
+
+
+
+
+	def coinChange(self,coins,amount):
+		"""
+		The function to coun the coins needed
+		"""
+
+		self.coins = coins
+		self.amount = amount
+
+		#constarints
+		if (len(self.coins) == 1) :
+
+			if self.coins[0] == self.amount :
+
+				return 1
+
+		if self.amount == 0 :
+
+			return 0
+
+		#make vars 
+		val = 0 
+		count = 0 
+
+		self.helper_dfs(val,count)
+
+		if self.min_count == float("inf") :
+
+			return -1 
+
+		return self.min_count
+
+
 
 
 
