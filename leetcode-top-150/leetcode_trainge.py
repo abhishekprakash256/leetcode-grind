@@ -66,7 +66,7 @@ class Solution():
 		"""
 		#base case
 
-		if i < 0 or j < 0 or i > len(self.triangle[-1]) or j 
+		if i < 0 or j < 0 or i > len(self.triangle[-1]) or j : #make more condn
 
 		#not pass the boundary
 
