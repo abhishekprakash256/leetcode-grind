@@ -143,7 +143,7 @@ class Solution_slow():
 
 
 
-class Solution():
+class Solution_slow2():
 	"""
 	works , but slow solution
 	"""
@@ -231,6 +231,13 @@ class Solution():
 		self.res_lst.sort()
 
 		return self.res_lst[0]
+
+
+
+
+class Solution():
+
+	def 
 
 
 
