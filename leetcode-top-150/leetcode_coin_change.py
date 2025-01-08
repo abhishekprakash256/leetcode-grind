@@ -64,14 +64,17 @@ base case
 """
 
 
-class Solution():
+class Solution_slow():
+	"""
+	works , but slow solution
+	"""
 
 	def __init__(self):
 
 		self.memo = {}
 		self.res_lst = []
 
-	def helper_dfs(self,count, val):
+	def helper_dfs(self,val, count):
 		"""
 		The function to do the dfs for the tree
 		"""
@@ -89,14 +92,10 @@ class Solution():
 
 		#add in the memo 
 
-
 		#do the recursive call 
 		for coin in self.coins:
 
-			val += coin
-			count += 1 
-
-			self.helper_dfs(val,count)
+			self.helper_dfs(val + coin , count + 1 )
 
 
 
@@ -108,30 +107,17 @@ class Solution():
 		self.coins = coins
 		self.amount = amount
 
+		
+		if self.amount == 0 :
+
+			return 0 
+
 		#constraints 
 		if len(self.coins) == 1 :
 
 			if self.coins[0] == self.amount :
 
 				return 1
-
-			elif self.coins[0] > self.amount :
-
-				return -1 
-
-			else :
-
-				val = 0
-				count = 0 
-
-				while val < amount :
-
-					val += self.coins[0]
-					count += 1 
-
-					if val == amount :
-
-						return count
 
 
 
@@ -140,7 +126,17 @@ class Solution():
 		count = 0
 
 		#make the recurion call 
-		self.coinChange(val,count)
+		self.helper_dfs(val,count)
+
+		#print(self.res_lst)
+
+		#return -1 if no value exists
+		if not self.res_lst:
+
+			return -1 
+
+
+		self.res_lst.sort()
 
 		return self.res_lst[0]
 
@@ -149,6 +145,8 @@ class Solution():
 
 
 
+sol = Solution()
+print(sol.coinChange([1,2,5],11))
 
 
 
