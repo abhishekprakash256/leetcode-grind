@@ -236,6 +236,9 @@ class Solution_slow2():
 
 
 class Solution_slow3():
+	"""
+	Accepted in leetcode but slow soln
+	"""
 
 	def __init__(self):
 
@@ -260,6 +263,10 @@ class Solution_slow3():
 
 			return
 
+		# If the current count is already worse than the best solution, prune
+		if count >= self.min_count:
+			return
+
 		if val in self.memo and self.memo[val] <= count :
 
 			return
@@ -282,7 +289,7 @@ class Solution_slow3():
 		The function to coun the coins needed
 		"""
 
-		self.coins = coins
+		self.coins = sorted(coins, reverse=True)  # Sort coins in descending order
 		self.amount = amount
 
 		#constarints
