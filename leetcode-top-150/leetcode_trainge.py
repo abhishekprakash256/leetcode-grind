@@ -64,7 +64,9 @@ class Solution():
 		"""
 		The helper dfs function to calculate the sum
 		"""
-		#base case 
+		#base case
+
+		if i < 0 or j < 0 or i > len(self.triangle[-1]) or j 
 
 		#not pass the boundary
 
@@ -79,6 +81,8 @@ class Solution():
 		The function to find the min path sum in the trinage
 		"""
 
+		self.triangle = triangle
+
 		#constarints 
 		if len(triangle) == 1:
 
@@ -86,7 +90,17 @@ class Solution():
 
 				return triangle[0][0]
 
+		#sum var
+		carry_sum = 0 
 
-		#start the dfs traversal 
-		#how to get the number of traversal from top ? 
+		#initial coordinate
+		i = j = 0 
+
+		#start the dfs traversal
+		self.helper_dfs(i,j,carry_sum)
+
+		return self.min_sum
+
+
+
 
