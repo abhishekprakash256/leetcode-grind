@@ -44,12 +44,49 @@ one is greedy approch
 
 move only i, i+ 1 on the next row 
 
-making and dfs can be used 
+making and dfs can be used the restrcition of movemmet can be used in dfs next as i and i + 1 on the next row
 
 with getting the value and memoization can be done for faster 
 
-
-
-
+cal the value in all and give min by maintaing the global min value 
 
 """
+
+
+class Solution():
+
+	def __init__(self):
+
+		self.min_sum = float("inf")
+
+
+	def helper_dfs(self,i,j,carry_sum):
+		"""
+		The helper dfs function to calculate the sum
+		"""
+		#base case 
+
+		#not pass the boundary
+
+		#maintatin a copy of the map to not make the search again 
+
+		#with update the min sum 
+		pass
+
+
+	def minimumTotal(self,triangle):
+		"""
+		The function to find the min path sum in the trinage
+		"""
+
+		#constarints 
+		if len(triangle) == 1:
+
+			if len(triangle[0]) == 1 :
+
+				return triangle[0][0]
+
+
+		#start the dfs traversal 
+		#how to get the number of traversal from top ? 
+
