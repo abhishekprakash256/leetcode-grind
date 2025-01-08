@@ -316,11 +316,86 @@ class Solution_slow3():
 		return self.min_count
 
 
+"""
+approach -- 
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+
+
+[1,2]
+4 -> 1,2,3,4
+
+1->1
+2->2
+3->2,1 , 1,1,1
+4-> 2,2 
+
+[5,2,1]
 
 
 
-sol = Solution()
-print(sol.coinChange([1,2,5],11))
+"""
+
+
+class Solution():
+
+	def coinChange(self,coins,amount):
+		"""
+		The function to find the coin change needed 
+		passes leetcode
+		"""
+
+		#base case 
+		if len(coins) == 1 :
+
+			if coins[0] == amount :
+
+				return 1
+
+		if amount == 0 :
+
+			return 0 
+
+
+		#make the dp solution 
+		dp = [float("inf")] * (amount + 1)
+		dp[0] = 0 
+
+
+		#make the loop calls 
+		for coin in coins :
+
+			for i in range(coin, amount + 1 ):
+
+				dp[i] = min(dp[i], dp[i-coin]+1)
+
+		if dp[amount] == float("inf") :
+
+			return -1 
+
+		return dp[amount]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#sol = Solution()
+#print(sol.coinChange([1,2,5],11))
 
 
 
