@@ -143,6 +143,95 @@ class Solution_slow():
 
 
 
+class Solution():
+	"""
+	works , but slow solution
+	"""
+
+	def __init__(self):
+
+		self.memo = {}
+		self.res_lst = []
+
+	def helper_dfs(self,val, coin_tuple, count):
+		"""
+		The function to do the dfs for the tree
+		"""
+
+		#base case
+		if val > self.amount :
+
+			return
+
+		if coin_tuple in self.memo :
+
+			self.helper_dfs(self.memo[coin_tuple] + val, coin_tuple + (coin,) , count + 1 )
+
+
+		if val == self.amount:
+
+			self.res_lst.append(count)
+
+			return
+
+
+		#add the value in memo
+		self.memo[coin_tuple] = val
+
+
+		#do the recursive call 
+		for coin in self.coins:
+
+			if val + coin <= self.amount :
+
+				self.helper_dfs(val + coin , coin_tuple + (coin,), count + 1 )
+
+
+
+	def coinChange(self, coins, amount) :
+		"""
+		The function to find the coin chnage 
+		"""
+
+		self.coins = coins
+		self.amount = amount
+
+		
+		if self.amount == 0 :
+
+			return 0 
+
+		#constraints 
+		if len(self.coins) == 1 :
+
+			if self.coins[0] == self.amount :
+
+				return 1
+
+
+
+		#make the vars 
+		val = 0 
+		count = 0
+		coin_tuple = ()
+
+		#make the recurion call 
+		self.helper_dfs(val, coin_tuple, count)
+
+		#print(self.res_lst)
+
+		#return -1 if no value exists
+		if not self.res_lst:
+
+			return -1 
+
+		print(self.memo)
+
+
+		self.res_lst.sort()
+
+		return self.res_lst[0]
+
 
 
 sol = Solution()
