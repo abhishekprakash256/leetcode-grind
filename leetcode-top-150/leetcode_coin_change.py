@@ -100,9 +100,6 @@ class Solution():
 
 
 
-
-
-
 	def coinChange(self, coins, amount) :
 		"""
 		The function to find the coin chnage 
