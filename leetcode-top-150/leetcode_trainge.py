@@ -60,20 +60,34 @@ class Solution():
 		self.min_sum = float("inf")
 
 
-	def helper_dfs(self,i,j,carry_sum):
+	def helper_dfs(self,i,j,carry_sum, path):
 		"""
 		The helper dfs function to calculate the sum
 		"""
+
+		print(path)
+
+		#get the sum and return
+		if i == len(self.triangle) - 1:
+
+			self.min_sum = min(self.min_sum, carry_sum)
+
+			return
+
+
 		#base case
+		if i > len(self.triangle) - 1 or j > len(self.triangle[i+1])-1 :  #or self.triangle == "#": #make more condn
 
-		if i < 0 or j < 0 or i > len(self.triangle[-1]) or j : #make more condn
+			return
 
-		#not pass the boundary
+		#marked the search area
+		#self.temp_board[i][j] = "#"
 
-		#maintatin a copy of the map to not make the search again 
 
-		#with update the min sum 
-		pass
+		#make the dfs traversal 
+		first_pos = self.helper_dfs(i+1,j, carry_sum + self.triangle[i][j], path + str(self.triangle[i][j]) )
+		second_pos = self.helper_dfs(i+1,j+1, carry_sum + self.triangle[i][j], path + str(self.triangle[i][j]))
+
 
 
 	def minimumTotal(self,triangle):
@@ -96,11 +110,17 @@ class Solution():
 		#initial coordinate
 		i = j = 0 
 
+		path = ""
+
 		#start the dfs traversal
-		self.helper_dfs(i,j,carry_sum)
+		self.helper_dfs(i,j,carry_sum, path)
 
 		return self.min_sum
 
 
+
+
+sol = Solution()
+print(sol.minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]))
 
 

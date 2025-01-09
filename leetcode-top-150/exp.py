@@ -101,3 +101,12 @@ del my_dict['b']  # Removes the key-value pair with key 'b'
 my_dict.pop("c")
 
 print(my_dict)
+
+
+triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+
+print(len(triangle))
+
+print(len(triangle[1]))
+
+print(triangle[3])
