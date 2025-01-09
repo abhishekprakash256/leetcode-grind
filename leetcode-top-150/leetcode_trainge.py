@@ -115,71 +115,43 @@ class Solution_slow():
 
 
 
+class Solution:
 
-class Solution():
+    def __init__(self):
+        self.memo = {}
 
-	def __init__(self):
+    def helper_dfs(self, i, j):
+        """
+        The helper function to calculate the minimum path sum using DFS with memoization.
+        """
+        # Base case: If we're at the last row, return the value at (i, j)
+        if i == len(self.triangle) - 1:
+            return self.triangle[i][j]
 
-		self.min_sum = float("inf")
-		self.memo = {}
+        # Check memo
+        if (i, j) in self.memo:
+            return self.memo[(i, j)]
 
+        # Recursive DFS calls
+        left_path = self.helper_dfs(i + 1, j)
+        right_path = self.helper_dfs(i + 1, j + 1)
 
-	def helper_dfs(self,i,j,carry_sum, path):
-		"""
-		The helper dfs function to calculate the sum
-		"""
+        # Store the result in memo
+        self.memo[(i, j)] = self.triangle[i][j] + min(left_path, right_path)
+        return self.memo[(i, j)]
 
-		
-		#base case
-		if i >= len(self.triangle) - 1 or j >= len(self.triangle[i+1])-1 :  #or self.triangle == "#": #make more condn
+    def minimumTotal(self, triangle):
+        """
+        The function to find the minimum path sum in the triangle.
+        """
+        self.triangle = triangle
 
-			#print(path + str(self.triangle[i][j]))
+        # Edge case: single element triangle
+        if len(triangle) == 1 and len(triangle[0]) == 1:
+            return triangle[0][0]
 
-			return carry_sum + self.triangle[i][j]
-
-
-		#check the value in memo
-		if (i,j) in self.memo :
-
-			return self.memo[(i,j)]
-
-
-		#make the dfs traversal 
-		first_pos = self.helper_dfs(i+1,j, carry_sum + self.triangle[i][j], path + str(self.triangle[i][j]) )
-		second_pos = self.helper_dfs(i+1,j+1, carry_sum + self.triangle[i][j], path + str(self.triangle[i][j]))
-
-		#add the value 
-		self.memo[(i,j)] = min(first_pos,second_pos)
-
-		return self.memo[(i,j)]
-
-
-	def minimumTotal(self,triangle):
-		"""
-		The function to find the min path sum in the trinage
-		"""
-
-		self.triangle = triangle
-
-		#constarints 
-		if len(triangle) == 1:
-
-			if len(triangle[0]) == 1 :
-
-				return triangle[0][0]
-
-		#sum var
-		carry_sum = 0 
-
-		#initial coordinate
-		i = j = 0 
-
-		path = ""
-
-		#start the dfs traversal
-		return self.helper_dfs(i,j,carry_sum, path)
-
-		#return self.min_sum
+        # Start DFS from the top of the triangle
+        return self.helper_dfs(0, 0)
 
 
 
