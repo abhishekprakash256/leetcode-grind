@@ -64,19 +64,11 @@ class Solution():
 		"""
 		The helper dfs function to calculate the sum
 		"""
-
-		print(path)
-
-		#get the sum and return
-		if i == len(self.triangle) - 1:
-
-			self.min_sum = min(self.min_sum, carry_sum)
-
-			return
-
-
+		
 		#base case
-		if i > len(self.triangle) - 1 or j > len(self.triangle[i+1])-1 :  #or self.triangle == "#": #make more condn
+		if i >= len(self.triangle) - 1 or j >= len(self.triangle[i+1])-1 :  #or self.triangle == "#": #make more condn
+
+			self.min_sum = min(self.min_sum, carry_sum + self.triangle[i][j])
 
 			return
 
