@@ -11,7 +11,7 @@ Example 1:
 Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
 Output: 11
 Explanation: The triangle looks like:
-   2
+	2
   3 4
  6 5 7
 4 1 8 3
@@ -53,7 +53,11 @@ cal the value in all and give min by maintaing the global min value
 """
 
 
-class Solution():
+class Solution_slow():
+	"""
+	It is a slow solution
+
+	"""
 
 	def __init__(self):
 
@@ -64,7 +68,7 @@ class Solution():
 		"""
 		The helper dfs function to calculate the sum
 		"""
-		
+
 		#base case
 		if i >= len(self.triangle) - 1 or j >= len(self.triangle[i+1])-1 :  #or self.triangle == "#": #make more condn
 
@@ -109,6 +113,73 @@ class Solution():
 
 		return self.min_sum
 
+
+
+
+class Solution():
+
+	def __init__(self):
+
+		self.min_sum = float("inf")
+		self.memo = {}
+
+
+	def helper_dfs(self,i,j,carry_sum, path):
+		"""
+		The helper dfs function to calculate the sum
+		"""
+
+		
+		#base case
+		if i >= len(self.triangle) - 1 or j >= len(self.triangle[i+1])-1 :  #or self.triangle == "#": #make more condn
+
+			#print(path + str(self.triangle[i][j]))
+
+			return carry_sum + self.triangle[i][j]
+
+
+		#check the value in memo
+		if (i,j) in self.memo :
+
+			return self.memo[(i,j)]
+
+
+		#make the dfs traversal 
+		first_pos = self.helper_dfs(i+1,j, carry_sum + self.triangle[i][j], path + str(self.triangle[i][j]) )
+		second_pos = self.helper_dfs(i+1,j+1, carry_sum + self.triangle[i][j], path + str(self.triangle[i][j]))
+
+		#add the value 
+		self.memo[(i,j)] = min(first_pos,second_pos)
+
+		return self.memo[(i,j)]
+
+
+	def minimumTotal(self,triangle):
+		"""
+		The function to find the min path sum in the trinage
+		"""
+
+		self.triangle = triangle
+
+		#constarints 
+		if len(triangle) == 1:
+
+			if len(triangle[0]) == 1 :
+
+				return triangle[0][0]
+
+		#sum var
+		carry_sum = 0 
+
+		#initial coordinate
+		i = j = 0 
+
+		path = ""
+
+		#start the dfs traversal
+		return self.helper_dfs(i,j,carry_sum, path)
+
+		#return self.min_sum
 
 
 
