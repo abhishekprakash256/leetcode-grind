@@ -115,43 +115,76 @@ class Solution_slow():
 
 
 
-class Solution:
+class Solution_memo:
+"""
+Passes leet code 
 
-    def __init__(self):
-        self.memo = {}
+"""
 
-    def helper_dfs(self, i, j):
-        """
-        The helper function to calculate the minimum path sum using DFS with memoization.
-        """
-        # Base case: If we're at the last row, return the value at (i, j)
-        if i == len(self.triangle) - 1:
-            return self.triangle[i][j]
+def __init__(self):
+	self.memo = {}
 
-        # Check memo
-        if (i, j) in self.memo:
-            return self.memo[(i, j)]
+	def helper_dfs(self, i, j):
+		"""
+		The helper function to calculate the minimum path sum using DFS with memoization.
+		"""
+		# Base case: If we're at the last row, return the value at (i, j)
+		if i == len(self.triangle) - 1:
+			return self.triangle[i][j]
 
-        # Recursive DFS calls
-        left_path = self.helper_dfs(i + 1, j)
-        right_path = self.helper_dfs(i + 1, j + 1)
+		# Check memo
+		if (i, j) in self.memo:
+			return self.memo[(i, j)]
 
-        # Store the result in memo
-        self.memo[(i, j)] = self.triangle[i][j] + min(left_path, right_path)
-        return self.memo[(i, j)]
+		# Recursive DFS calls
+		left_path = self.helper_dfs(i + 1, j)
+		right_path = self.helper_dfs(i + 1, j + 1)
 
-    def minimumTotal(self, triangle):
-        """
-        The function to find the minimum path sum in the triangle.
-        """
-        self.triangle = triangle
+		# Store the result in memo
+		self.memo[(i, j)] = self.triangle[i][j] + min(left_path, right_path)
+		return self.memo[(i, j)]
 
-        # Edge case: single element triangle
-        if len(triangle) == 1 and len(triangle[0]) == 1:
-            return triangle[0][0]
+	def minimumTotal(self, triangle):
+		"""
+		The function to find the minimum path sum in the triangle.
+		"""
+		self.triangle = triangle
 
-        # Start DFS from the top of the triangle
-        return self.helper_dfs(0, 0)
+		# Edge case: single element triangle
+		if len(triangle) == 1 and len(triangle[0]) == 1:
+			return triangle[0][0]
+
+		# Start DFS from the top of the triangle
+		return self.helper_dfs(0, 0)
+
+
+
+
+class Solution():
+
+	def minimumTotal(self,triangle):
+		"""
+		The function to make the minimum sum
+		passes leetcode
+		"""
+		# Edge case: single element triangle
+		if len(triangle) == 1 and len(triangle[0]) == 1:
+			return triangle[0][0]
+
+		#make the dp array 
+		dp = triangle[-1][:]
+
+		#make the sum
+		for i in range(len(triangle) - 2,-1,-1):
+
+			for j in range(len(triangle[i])) :
+
+				dp[j] = triangle[i][j] + min(dp[j],dp[j+1])
+
+		return dp[0] 
+
+
+
 
 
 
