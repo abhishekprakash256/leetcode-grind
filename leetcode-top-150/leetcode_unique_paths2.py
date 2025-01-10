@@ -235,4 +235,40 @@ class Solution():
 			return 0
 
 
-		
+
+class Solution:
+    """
+    DP solution for unique paths with obstacles.
+    passes leetcode
+    """
+
+    def uniquePathsWithObstacles(self, obstacleGrid):
+        """
+        Find the total number of unique paths using dynamic programming.
+        """
+        rows = len(obstacleGrid)
+        cols = len(obstacleGrid[0])
+
+        # If the start or end point is blocked, there are no paths
+        if obstacleGrid[0][0] == 1 or obstacleGrid[rows - 1][cols - 1] == 1:
+            return 0
+
+        # Create a DP table to store the number of unique paths to each cell
+        dp = [[0] * cols for _ in range(rows)]
+
+        # Base case: Starting position has one path if not blocked
+        dp[0][0] = 1
+
+        # Fill the DP table
+        for i in range(rows):
+            for j in range(cols):
+                if obstacleGrid[i][j] == 1:
+                    dp[i][j] = 0  # No paths through an obstacle
+                else:
+                    if i > 0:  # Add paths from the cell above
+                        dp[i][j] += dp[i - 1][j]
+                    if j > 0:  # Add paths from the cell to the left
+                        dp[i][j] += dp[i][j - 1]
+
+        # The value at the bottom-right corner is the total number of unique paths
+        return dp[rows - 1][cols - 1]
