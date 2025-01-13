@@ -56,3 +56,32 @@ class Solution:
 			return len1
 
 		return str1[:gcd(len(str1), len(str2))]
+
+
+
+class Solution():
+
+	def gcd(self,len1,len2):
+		"""
+		The function to find the gcd
+		"""
+
+		while len2 :
+
+			len1 , len2 = len2 , len1 % len2
+
+		return len1
+
+
+	def gcdOfStrings(self,str1,str2):
+		"""
+		The function to find the common string
+		"""
+
+		if str1 + str2 != str2 + str1 :
+
+			return ""
+
+
+		return str1[:gcd(len(str1), len(str2))]
+
