@@ -34,6 +34,7 @@ approach --
 
 
 
+
 class Solution():
 
 	def generate(self, numsRows) :
@@ -46,16 +47,20 @@ class Solution():
 
 			return [[1]]
 
-		#result list
-		res_lst = [[1]]
+		if numsRows == 2 :
 
-		for i in range(numsRows) :
+			return [[1],[1,1]]
+
+		#result list
+		res_lst = [[1],[1,1]]
+
+		for i in range(1,numsRows-1) :
 
 			temp_lst = [1]
 
 			for j in range(i) :
 
-				temp_lst.append(res_lst[i-1][i-1] + res_lst[i-1][i])
+				temp_lst.append(res_lst[i][j] + res_lst[i][j+1])
 
 			temp_lst.append(1)
 
@@ -66,3 +71,7 @@ class Solution():
 
 
 
+
+sol = Solution()
+
+print(sol.generate(5))
