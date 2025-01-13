@@ -51,12 +51,137 @@ Each ingredients[i] does not contain any duplicate values.
 
 """
 
+
+"""
+approach -- 
+
+
+using graph ? 
+
+bread -> yeast, flour -> yeast, flour, meat 
+sandwich -> bread, meat -> yeast, flour , meat 
+
+graph of list -- 
+
+bread -> [yeast,flour] -> { yeast, flour, meat }
+sandwich -> [bread, meat] -> {yeast, flour, meat }
+
+
+make hasmap of things 
+
+one recipe with ingredients
+
+res_lst = []
+
+recipie = { bread : [yeast,flour] , sandwich : [bread, meat] } 
+
+ingredinets = {yeast, flour, meat }
+
+
+
+"""
+
+class Solution_brute_force:
+	def findAllRecipes(self, recipes, ingredients, supplies):
+		"""
+		The function to find the recipes that can be made given supplies and ingredients.
+		"""
+		# Create a supply map for quick lookup
+		supply_map = set(supplies)
+		result = []
+
+		# Keep track of recipes that have already been checked
+		recipes_checked = set()
+
+		# Repeat until no new recipes can be made
+		while True:
+
+			found_new_recipe = False
+
+			for i, recipe in enumerate(recipes):
+
+				if recipe in recipes_checked:
+					continue  # Skip recipes we've already processed
+
+				# Check if all ingredients for this recipe are in supply_map
+				if all(ingredient in supply_map for ingredient in ingredients[i]):
+					supply_map.add(recipe)  # Add the recipe to supplies
+					result.append(recipe)
+					recipes_checked.add(recipe)
+					found_new_recipe = True
+
+			if not found_new_recipe:
+				break  # Exit loop if no new recipes were added in this iteration
+
+		return result
+
+
+
+
+from collections import defaultdict, deque
+
 class Solution():
 
-	def findAllRecipes(self,recipies, ingredients ,supplies ) :
+	def findAllRecipes(self, recipes, ingredients, supplies):
 		"""
-		The function to find the recipies that can be made 
+		The function to find the recipies possible
 		"""
 
-		pass
+		graph = defaultdict(list)
+		in_degree = defaultdict(int)
+
+		for recipie, recipie_ingrdients in zip(recipes,ingredients) :
+
+			for ingredient in recipie_ingrdients :
+
+				graph[ingredient].append(recipie)
+
+				in_degree[recipie] += 1 
+
+		
+		queue = deque(supplies)
+
+		result = []
+
+
+		while queue :
+
+			curr = queue.popleft()
+
+			if curr in recipes :
+
+				result.append(curr)
+
+
+			for dependent_recipe in graph[curr] :
+
+				in_degree[dependent_recipe] -= 1
+
+				if in_degree[dependent_recipe] == 0 :
+
+					queue.append(dependent_recipe)
+
+		return result
+
+
+
+
+
+
+
+
+
+recipes = ["bread"]
+ingredients = [["yeast","flour"]]
+supplies = ["yeast","flour","corn"]
+
+sol = Solution()
+
+print(sol.findAllRecipes(recipes,ingredients, supplies))
+
+
+
+
+
+
 
