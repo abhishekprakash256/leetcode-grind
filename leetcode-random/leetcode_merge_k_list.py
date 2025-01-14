@@ -90,7 +90,7 @@ for i in range(1,lists) :
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
+class Solution_wrong:
 	def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
 		"""
 		The function to merge the k lists 
