@@ -57,30 +57,30 @@ curr = dummy
 
 for i in range(1,lists) :
 
-	left = lists[i-1]
-	right = lists[i]
+    left = lists[i-1]
+    right = lists[i]
 
-	l, r = left[0] , right[0]
+    l, r = left[0] , right[0]
 
-	while l and r :
+    while l and r :
 
-		if l.val < r.val :
+        if l.val < r.val :
 
-			curr.next = l
-			l = r.next
+            curr.next = l
+            l = r.next
 
-		else:
+        else:
 
-			curr.next = r
-			l = r.next
+            curr.next = r
+            l = r.next
 
-		curr = curr.next
+        curr = curr.next
 
-	if l:
-		curr.next = l
+    if l:
+        curr.next = l
 
-	elif r:
-		curr.next = r
+    elif r:
+        curr.next = r
 
 
 """
@@ -91,53 +91,137 @@ for i in range(1,lists) :
 #         self.val = val
 #         self.next = next
 class Solution_wrong:
-	def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-		"""
-		The function to merge the k lists 
-		"""
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        """
+        The function to merge the k lists 
+        """
 
-		if len(lists) == 1 :
+        if len(lists) == 1 :
 
-			return lists[0]
-
-
-		#make the dummy node
-		dummy = ListNode()
-		curr = dummy
+            return lists[0]
 
 
-		#start the traversal
-
-		for i in range(1,len(lists)) :
-
-			l = lists[i-1]
-			r = lists[i]
-
-			while l and r :
-
-				if l.val < r.val :
-
-					curr.next = l
-					l = l.next
-
-				else:
-
-					curr.next = r 
-					r = r.next
-
-				curr = curr.next
-
-			if l :
-
-				curr.next = l
-
-			elif r :
-
-				curr.next = r
+        #make the dummy node
+        dummy = ListNode()
+        curr = dummy
 
 
-		return dummy.next
+        #start the traversal
+
+        for i in range(1,len(lists)) :
+
+            l = lists[i-1]
+            r = lists[i]
+
+            while l and r :
+
+                if l.val < r.val :
+
+                    curr.next = l
+                    l = l.next
+
+                else:
+
+                    curr.next = r 
+                    r = r.next
+
+                curr = curr.next
+
+            if l :
+
+                curr.next = l
+
+            elif r :
+
+                curr.next = r
+
+
+        return dummy.next
 
 
 
-		
+        
+
+
+
+class Solution():
+
+    def megerLists(self, l, r ):
+        """
+        The function to merge list alternatively 
+        """
+
+        dummy = ListNode()
+        curr = dummy 
+
+        while l and r :
+
+            if l.val < r.val :
+
+                curr.next = l 
+                l = l.next
+
+            else:
+
+                curr.next = r 
+                r = r.next
+
+            curr = curr.next
+
+
+        if l :
+
+            curr.next = l
+
+        elif r :
+
+            curr.next = r
+
+
+        return dummy.next
+
+                
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        """
+        The function to merge the list
+        """
+
+        #constarints
+        if not lists:
+            return None
+        
+        # If there's only one list, return it
+        if len(lists) == 1:
+            return lists[0]
+
+        while len(lists) > 1:
+
+            merged_list = []
+
+            #loop over the list 
+            
+            for i in range(0,len(lists),2):
+
+                l = lists[i]
+
+                if i + 1 < len(lists) :
+
+                    r = lists[i+1]
+
+                else:
+
+                    r = None
+
+                merged_list.append(self.megerLists(l,r))
+
+            lists = merged_list
+
+
+        return lists[0]
+
+
+
+
+
+
