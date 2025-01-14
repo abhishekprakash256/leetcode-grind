@@ -34,13 +34,18 @@ approach --
 
 use a stack ? 
 
-()()() -> 3
+"()()()" -> 3
 
-(() -> 2
-
-
+"(()" -> 2
 
 
+if not paranthesis:
 
+	return 0
+
+"((()))"
+
+
+-> "())))"
 
 """
