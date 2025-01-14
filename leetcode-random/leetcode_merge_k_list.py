@@ -149,6 +149,7 @@ class Solution():
     def megerLists(self, l, r ):
         """
         The function to merge list alternatively 
+        passes leetcode
         """
 
         dummy = ListNode()
