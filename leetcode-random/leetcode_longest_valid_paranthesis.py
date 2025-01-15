@@ -68,15 +68,54 @@ class Solution():
 
 		if len(s) == 1 :
 
-			return 1
+			return 0
+
+		l,r = 0,0
+
+		mx = 0 
+
+		for para in s:
+
+			if para == "(" :
+
+				l += 1 
+
+			if para == ")" :
+
+				r += 1 
 
 
-		#stack 
-		stack = []
+			if l == r :
 
-		
+				mx = max(mx, r*2)
+
+			elif r > l :
+
+				l ,r = 0,0
+
+		l , r = 0,0
+		#reverse the logic to check 
+
+		for para in reversed(s) :
+
+			if para == ")" :
+
+				l += 1 
+
+			if para == "(" :
+
+				r += 1 
+
+			if l == r :
+
+				mx = max(mx , r*2)
+
+			elif r > l :
+
+				l , r = 0,0 
 
 
+		return mx
 
 
 
