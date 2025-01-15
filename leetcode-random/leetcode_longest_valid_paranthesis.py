@@ -45,7 +45,38 @@ if not paranthesis:
 
 "((()))"
 
-
 -> "())))"
 
+()))) -> invalid
+()()() -> valid,  
+
+
 """
+
+class Solution():
+
+	def longestValidParentheses(self,s):
+		"""
+		The function to find the invalid string
+		"""
+
+		#constraints 
+		if not s :
+
+			return 0
+
+
+		if len(s) == 1 :
+
+			return 1
+
+
+		#stack 
+		stack = []
+
+		
+
+
+
+
+
