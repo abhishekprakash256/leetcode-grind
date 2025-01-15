@@ -58,6 +58,7 @@ class Solution():
 	def longestValidParentheses(self,s):
 		"""
 		The function to find the invalid string
+		passes leetcode
 		"""
 
 		#constraints 
