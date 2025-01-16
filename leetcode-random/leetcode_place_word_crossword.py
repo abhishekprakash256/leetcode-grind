@@ -137,7 +137,8 @@ class Solution():
 		The function to do the dfs traversal
 		"""
 		#make the base case 
-		if i < 0 or j < 0 or i >= self.row  or j >= self.col or self.board[i][j] == "#":
+		print(i,j)
+		if i < 0 or j < 0 or i > self.row  or j > self.col  or self.board[i][j] == "#":
 
 			return False
 
@@ -148,27 +149,27 @@ class Solution():
 
 			#print("in")
 
-			if dir == "up" and ( (i - 1 ) < 0 or self.board[i][j] == "#") :
+			if dir == "up" and ( (i - 1 ) < 0 or self.board[i-1][j] == "#") :
 
 				return True
 
-			elif dir == "down" and ( (i + 1 ) == self.row - 1 or self.board[i][j] == "#"):
+			elif dir == "down" and ( (i + 1 ) == self.row - 1 or self.board[i+1][j] == "#"):
 
 				return True
 
 
-			elif dir == "left" and ( (j - 1 ) < 0 or self.board[i][j] == "#") :
+			elif dir == "left" and ( (j - 1 ) < 0 or self.board[i][j-1] == "#") :
 
 				return True
 
-			elif dir == "right" and ( (j+1) == self.col - 1 or self.board[i][j] == "#" ):
+			elif dir == "right" and ( (j+1) == self.col - 1 or self.board[i][j+1] == "#" ):
 				return True
 
 
 		# Check if the current character matches or is a blank space.
-		#if self.board[i][j] != self.word[count] and self.board[i][j] != " ":
+		if self.board[i][j] != self.word[count] and self.board[i][j] != " ":
 
-		#	return False
+			return False
 
 		#mark the board
 		temp = self.board[i][j]
@@ -229,8 +230,6 @@ class Solution():
 
 		for i in range(self.row) :
 
-			print(i)
-
 			for j in range(self.col) :
 
 				if self.word[0] == self.board[i][j] or self.word[len(word)-1] == self.board[i][j] or self.board == " " :
@@ -244,11 +243,12 @@ class Solution():
 
 
 
-
 sol = Solution()
 
-board = [["#"," ","#"],[" "," ","#"],["#"," ","c"]]
-word = "ca"
+board = [["#"," ","#"],[" "," ","#"],["#","c"," "]]
+word = "abc"
+
+#out = True
 
 res = sol.placeWordInCrossword(board,word)
 
