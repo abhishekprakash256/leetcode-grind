@@ -60,24 +60,54 @@ look for two space or three space ? how ?
 """
 
 
-class Solution():
+class Solution_wrong():
 
-	def helper_dfs(self,i,j):
+	def helper_dfs(self,i,j, count):
 		"""
 		The helper function to do the dfs 
 		"""
+		#make the base case :
 
-		pass
+		#the result case:
+		if count == len(self.word) :
+
+			return True
+
+
+		#out of bound case
+		if i < 0 or j < 0 or i >= self.row or j >= self.col or self.board[i][j] == "#":
+
+			return
+
+		#mark the board
+		temp = self.board[i][j]
+		self.board[i][j] = "#"
+
+		#make the recursisve call
+		up = self.helper_dfs(i-1,j, count +1 )
+		down = self.helper_dfs(i+1,j, count + 1 )
+		left = self.helper_dfs(i,j-1 , count + 1)
+		right = self.helper_dfs(i,j+1 , count + 1 )
+
+
+		#restore the board
+		self.board[i][j] = temp
+
+		return False
+
+
+
+
 
 	def placeWordInCrossword(self,board,word):
 		"""
 		The function to find the cross word can be placed vertically or horizontally
 
 		"""
-
-		self.board = board:
-		self.row = len(self.board) -1 
-		self.col = len(self.board[0]) -1 
+		self.word = word
+		self.board = board
+		self.row = len(self.board) 
+		self.col = len(self.board[0])
 
 
 		#star the board traversal 
@@ -96,5 +126,113 @@ class Solution():
 		return False
 
 
+
+
+
+
+class Solution():
+
+	def helper_dfs(self,i,j,count,dir):
+		"""
+		The function to do the dfs traversal
+		"""
+		#make the base case 
+		if i < 0 or j < 0 or i >= self.row or j >= self.col or count > len(self.word) or self.board[i][j] == "#":
+
+			return False
+
+
+		#if matches 
+		if count == len(self.word) :
+
+			if dir == "up" and ( (i - 1 ) < 0 or self.board[i][j] != " ") :
+
+				return True
+
+			elif dir == "down" and ( (i + 1 ) > self.row or self.board[i][j] != " "):
+
+				return True
+
+
+			elif dir == "left" and ( (j - 1 ) < 0 or self.board[i][j] != " ") :
+
+				return True
+
+			elif dir == "right" and ( (j+1) > self.col or self.board[i][j] != " " ):
+
+				return True
+
+			else:
+
+				return False
+
+
+		# Check if the current character matches or is a blank space.
+		if self.board[i][j] != self.word[count] and self.board[i][j] != " ":
+			return False
+
+
+		#mark the board
+		temp = self.board[i][j]
+		self.board[i][j] = "#"
+
+
+		#make the recursive call
+
+		if dir == "up" :
+
+			res = self.helper_dfs(i-1,j,count + 1, "up")
+
+		elif dir == "down" :
+
+			res = self.helper_dfs(i+1,j,count +1 , "down")
+
+		elif dir == "left" :
+
+			res = self.helper_dfs(i,j-1, count + 1 ,"left")
+
+		elif dir == "right" :
+
+			res = self.helper_dfs(i,j + 1, count + 1 , "right") 
+
+
+		else :
+
+			res = False
+
+
+		#revert the board back 
+		self.board[i][j] = temp
+
+		return res 
+
+
+
+
+	def placeWordInCrossword(self,board, word):
+		"""
+		The main function to find if we can make the cross word
+		"""
+
+		self.board = board
+		self.word = word
+		self.row = len(self.board)
+		self.col = len(self.board[0])
+
+
+		#make the dfs calls
+
+		for i in range(self.row) :
+
+			for j in range(self.col) :
+
+				if self.word[0] == self.board[i][j] or self.word[len(word)-1] == self.board[i][j] or self.board == " " :
+
+					if self.helper_dfs(i,j,1,"up") or self.helper_dfs(i,j,1,"down") or self.helper_dfs(i,j,1,"left") or self.helper_dfs(i,j,1,"right") :
+
+						return True
+
+
+		return False
 
 
