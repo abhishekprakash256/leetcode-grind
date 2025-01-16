@@ -130,26 +130,29 @@ class Solution_wrong():
 
 
 
-class Solution_wrong():
+class Solution():
 
 	def helper_dfs(self,i,j,count,dir):
 		"""
 		The function to do the dfs traversal
 		"""
 		#make the base case 
-		if i < 0 or j < 0 or i >= self.row or j >= self.col or self.board[i][j] == "#":
+		if i < 0 or j < 0 or i >= self.row  or j >= self.col or self.board[i][j] == "#":
 
 			return False
+
 
 
 		#if matches 
 		if count == len(self.word) :
 
+			#print("in")
+
 			if dir == "up" and ( (i - 1 ) < 0 or self.board[i][j] == "#") :
 
 				return True
 
-			elif dir == "down" and ( (i + 1 ) > self.row or self.board[i][j] == "#"):
+			elif dir == "down" and ( (i + 1 ) == self.row - 1 or self.board[i][j] == "#"):
 
 				return True
 
@@ -158,39 +161,42 @@ class Solution_wrong():
 
 				return True
 
-			elif dir == "right" and ( (j+1) > self.col or self.board[i][j] == "#" ):
+			elif dir == "right" and ( (j+1) == self.col - 1 or self.board[i][j] == "#" ):
 				return True
-
-			else:
-
-				return False
 
 
 		# Check if the current character matches or is a blank space.
-		if self.board[i][j] != self.word[count] and self.board[i][j] != " ":
-			return False
+		#if self.board[i][j] != self.word[count] and self.board[i][j] != " ":
 
+		#	return False
 
 		#mark the board
 		temp = self.board[i][j]
 		self.board[i][j] = "#"
 
-
 		#make the recursive call
 
 		if dir == "up" :
 
-			res = self.helper_dfs(i-1,j,count + 1, "up")
+			print("up")
+
+			res = self.helper_dfs(i-1,j, count + 1, "up")
 
 		elif dir == "down" :
+
+			print("down")
 
 			res = self.helper_dfs(i+1,j,count +1 , "down")
 
 		elif dir == "left" :
 
+			print("left")
+
 			res = self.helper_dfs(i,j-1, count + 1 ,"left")
 
 		elif dir == "right" :
+
+			print("right")
 
 			res = self.helper_dfs(i,j + 1, count + 1 , "right") 
 
@@ -223,6 +229,8 @@ class Solution_wrong():
 
 		for i in range(self.row) :
 
+			print(i)
+
 			for j in range(self.col) :
 
 				if self.word[0] == self.board[i][j] or self.word[len(word)-1] == self.board[i][j] or self.board == " " :
@@ -235,3 +243,13 @@ class Solution_wrong():
 		return False
 
 
+
+
+sol = Solution()
+
+board = [["#"," ","#"],[" "," ","#"],["#"," ","c"]]
+word = "ca"
+
+res = sol.placeWordInCrossword(board,word)
+
+print(res)
