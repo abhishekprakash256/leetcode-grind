@@ -130,14 +130,14 @@ class Solution_wrong():
 
 
 
-class Solution():
+class Solution_wrong():
 
 	def helper_dfs(self,i,j,count,dir):
 		"""
 		The function to do the dfs traversal
 		"""
 		#make the base case 
-		if i < 0 or j < 0 or i >= self.row or j >= self.col or count > len(self.word) or self.board[i][j] == "#":
+		if i < 0 or j < 0 or i >= self.row or j >= self.col or self.board[i][j] == "#":
 
 			return False
 
@@ -145,21 +145,20 @@ class Solution():
 		#if matches 
 		if count == len(self.word) :
 
-			if dir == "up" and ( (i - 1 ) < 0 or self.board[i][j] != " ") :
+			if dir == "up" and ( (i - 1 ) < 0 or self.board[i][j] == "#") :
 
 				return True
 
-			elif dir == "down" and ( (i + 1 ) > self.row or self.board[i][j] != " "):
+			elif dir == "down" and ( (i + 1 ) > self.row or self.board[i][j] == "#"):
 
 				return True
 
 
-			elif dir == "left" and ( (j - 1 ) < 0 or self.board[i][j] != " ") :
+			elif dir == "left" and ( (j - 1 ) < 0 or self.board[i][j] == "#") :
 
 				return True
 
-			elif dir == "right" and ( (j+1) > self.col or self.board[i][j] != " " ):
-
+			elif dir == "right" and ( (j+1) > self.col or self.board[i][j] == "#" ):
 				return True
 
 			else:
