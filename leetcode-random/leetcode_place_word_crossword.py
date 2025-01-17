@@ -130,7 +130,7 @@ class Solution_wrong():
 
 
 
-class Solution():
+class Solution_wrong():
 
 	def helper_dfs(self,i,j,count,dir):
 		"""
@@ -240,6 +240,113 @@ class Solution():
 
 
 		return False
+
+
+
+
+
+class Solution():
+
+	def helper_dfs(self,i,j,count,dir) :
+		"""
+		The function to make the helper dfs
+
+		"""
+
+		#print(i,j)
+
+		#make the base case 
+		if i < 0 or j < 0 or i > self.row - 1 or j > self.col - 1 or self.board[i][j] == "#" or self.board[i][j] not in (self.word[count], " ") :
+
+			return False
+
+
+		#make the equal case 
+		if count == len(self.word) -1 :
+
+			if dir == "up" and (i == 0 or self.board[i-1][j] == "#" ) :
+
+				return True
+
+			elif dir == "down" and ( i == self.row - 1 or self.board[i+1][j] == "#") :
+
+				return  True
+
+			elif dir == "left" and ( j == 0 or self.board[i][j-1] == "#") :
+
+				return  True
+
+			elif dir == "right" and ( j == self.col -1  or self.board[i][j+1] == "#") :
+
+				return True
+
+
+			return False
+
+
+		#mark the postion 
+
+		temp = self.board[i][j]
+		self.board[i][j] = "#"
+
+
+		#do the recursion call
+		if dir == "up" :
+
+			res = self.helper_dfs(i-1,j,count + 1, "up")
+
+		elif dir == "down" :
+
+			res = self.helper_dfs(i+1,j,count + 1, "down")
+
+		elif dir == "left" :
+
+			res = self.helper_dfs(i,j-1, count + 1 , "left")
+
+		elif dir == "right" :
+
+			res = self.helper_dfs(i,j+1, count + 1 ,"right")
+
+
+		#revert the marking back
+		self.board[i][j] = temp
+
+		return res
+
+
+
+	def placeWordInCrossword(self,board, word ) :
+		"""
+		The function to find the cross word can be set in the board
+		"""
+
+		self.board = board
+		self.word = word
+		self.row = len(self.board)
+		self.col = len(self.board[0])
+
+		#iterate the board
+		for i in range(self.row) :
+
+			for j in range(self.col) :
+
+				if self.board[i][j] in (self.word[0], self.word[-1], " ") :
+
+					if self.helper_dfs(i,j,0,"up") or self.helper_dfs(i,j,0,"down") or self.helper_dfs(i,j,0,"left") or self.helper_dfs(i,j,0,"right") :
+
+						return True
+
+		return False
+
+
+
+
+
+
+
+
+
+
 
 
 
