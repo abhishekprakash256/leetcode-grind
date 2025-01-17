@@ -342,6 +342,45 @@ class Solution():
 
 
 
+class Solution:
+    def placeWordInCrossword(self, board: List[List[str]], word: str) -> bool:
+        rows, cols = len(board), len(board[0])
+        dirs = { 'left': (0, -1), 'right': (0, 1), 'up': (-1, 0), 'down': (1, 0) }
+
+        def coord_is_start(r, c, dir):
+            if board[r][c] == '#': return False
+            if dir == 'down' and r-1 >= 0 and (board[r-1][c] == ' ' or board[r-1][c].isalpha()): return False
+            if dir == 'right' and c-1 >= 0 and (board[r][c-1] == ' ' or board[r][c-1].isalpha()): return False
+            if dir == 'up' and r+1 < rows and (board[r+1][c] == ' ' or board[r+1][c].isalpha()): return False
+            if dir == 'left' and c+1 < cols and (board[r][c+1] == ' ' or board[r][c+1].isalpha()): return False
+            return True
+
+        def coord_is_end(r, c, dir):
+            if dir == 'down' and (r+1 == rows or board[r+1][c] == '#'): return True
+            if dir == 'right' and (c+1 == cols or board[r][c+1] == '#'): return True
+            if dir == 'up' and (r-1 < 0 or board[r-1][c] == '#'): return True
+            if dir == 'left' and (c-1 < 0 or board[r][c-1] == '#'): return True
+            return False
+
+        def dfs(r, c, dir):
+            stack = [(r, c, 0)]
+            while stack:
+                i, j, l = stack.pop()
+                if l+1 == len(word) and coord_is_end(i, j, dir): return True
+                a, b = dirs[dir]
+                ii, jj = i + a, j + b
+                if 0 <= ii < rows and 0 <= jj < cols and l+1 < len(word) and (board[ii][jj] == word[l+1] or board[ii][jj] == ' '):
+                    stack.append((ii, jj, l+1))
+            return False
+
+        for r in range(rows):
+            for c in range(cols):
+                for dir in dirs:
+                    if coord_is_start(r, c, dir) and (board[r][c] == ' ' or board[r][c] == word[0]) and dfs(r, c, dir): return True
+
+        return False
+
+
 
 
 
