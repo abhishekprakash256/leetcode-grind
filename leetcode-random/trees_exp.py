@@ -56,7 +56,7 @@ class Tree_Helper():
 			return
 
 		#make the stack and add value
-		stack = [node]
+		stack = deque([node])
 
 		while stack :
 
@@ -114,6 +114,55 @@ class Tree_Helper():
 		return "Tree print is done as bfs"
 
 
+	def tree_bfs_lst(self,node):
+		"""
+		The fuction to append the node in list at per level
+		"""
+
+		#base case 
+		if not node:
+
+			return []
+
+
+		#make the result list 
+		result = []
+
+		#make the queue
+		queue = deque([node])
+
+		#start the loop over queue
+		while queue:
+
+			temp_lst = []
+
+			for _ in range(len(queue)):
+
+				temp_node = queue.popleft()
+
+				if temp_node:
+
+					temp_lst.append(temp_node.val)
+
+				if temp_node.left :
+
+					queue.append(temp_node.left)
+
+				if temp_node.right :
+
+					queue.append(temp_node.right)
+
+
+			result.append(temp_lst)
+
+
+		return result
+
+
+
+
+
+
 
 
 
@@ -124,3 +173,5 @@ print(helper.tree_dfs_rec(root))
 print(helper.tree_dfs_iter(root))
 
 print(helper.tree_bfs(root))
+
+print(helper.tree_bfs_lst(root))
