@@ -191,78 +191,61 @@ class Solution_wrong2:
 
 
 
-class Solution():
+class Solution:
 
-	def helper_dfs(self,parent,level):
-		"""
-		The helper function to return the node and level
-		"""
+    def helper_dfs(self, parent, level):
+        """
+        The helper function to check for cousin nodes and return
+        information about x and y's parent and levels.
+        """
 
-		#base case
+        # Base case: if the node is None, return (False, -1)
+        if not parent:
+            return (False, -1)
 
-		#check the next node
-		if not parent.left :
+        # Check if x or y are direct children of the current node
+        is_x_child = parent.left and parent.left.val == self.x
+        is_y_child = parent.left and parent.left.val == self.y
+        is_x_child = is_x_child or (parent.right and parent.right.val == self.x)
+        is_y_child = is_y_child or (parent.right and parent.right.val == self.y)
 
-			return(False,level)
+        # If either x or y is found as a child, return (parent, level + 1)
+        if is_x_child or is_y_child:
+            return (parent, level + 1)
 
-		if not parent.right :
+        # Recursive calls to left and right subtrees
+        left = self.helper_dfs(parent.left, level + 1)
+        right = self.helper_dfs(parent.right, level + 1)
 
-			return (False, level)
+        # If both nodes are found, check if they are cousins
+        if left[0] and right[0]:
+            if left[0] != right[0] and left[1] == right[1]:
+                return (True, level)  # Cousins found
+            else:
+                return (False, -1)  # Not cousins
 
-		#if not a node
-		if not parent:
+        # Propagate valid results upwards
+        return left if left[0] else right
 
-			return (False,level)
+    def isCousins(self, root, x, y):
+        """
+        Determine if the nodes x and y are cousins.
+        """
+        self.x = x
+        self.y = y
 
-		#make the node match with x 
-		if parent.left.val == self.x or parent.right.val == self.x :
+        # Constraints: If the tree is empty or has no children, return False
+        if not root or (not root.left and not root.right):
+            return False
 
-			return (True,level + 1 )
+        # Check for cousins using DFS
+        result = self.helper_dfs(root, 0)
 
-		if parent.right.val == self.y or parent.left.val == self.y :
-
-			return (True,level + 1)
-
-		#make the recursive call
-		left = self.helper_dfs(parent.left,level + 1)
-		right = self.helper_dfs(parent.right, level + 1 )
-
-		#make the equal evalation of the level and node 
-
-		if left == right :
-
-			return True
-
-		return False
-
-
-
-	def isCousins(self, root, x, y):
-		"""
-		The function to make the cousions found
-		"""
-
-		self.x = x 
-		self.y = y
-
-		#constraints case 
-
-		#if not node 
-		if not root :
-
-			return False
-
-		if root.left is None and root.right is None :
-
-			return False
+        # Return True only if cousins are found
+        return result[0] == True
 
 
-		#make the level
-		level = 0 
 
-		result = self.helper_dfs(root,level)
-
-		return result
 
 
 
