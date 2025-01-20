@@ -137,7 +137,7 @@ class Solution_wrong():
 
 
 
-class Solution:
+class Solution_wrong2:
 	def helper_dfs(self, node, parent, x, y, level):
 		"""
 		DFS helper function to find the level and parent of nodes x and y.
@@ -183,5 +183,126 @@ class Solution:
 			return x_info[1] == y_info[1] and x_info[0] != y_info[0]  # Same level, different parents
 
 		return False
+
+
+
+
+
+
+
+
+class Solution():
+
+	def helper_dfs(self,parent,level):
+		"""
+		The helper function to return the node and level
+		"""
+
+		#base case
+
+		#check the next node
+		if not parent.left :
+
+			return(False,level)
+
+		if not parent.right :
+
+			return (False, level)
+
+		#if not a node
+		if not parent:
+
+			return (False,level)
+
+		#make the node match with x 
+		if parent.left.val == self.x or parent.right.val == self.x :
+
+			return (True,level + 1 )
+
+		if parent.right.val == self.y or parent.left.val == self.y :
+
+			return (True,level + 1)
+
+		#make the recursive call
+		left = self.helper_dfs(parent.left,level + 1)
+		right = self.helper_dfs(parent.right, level + 1 )
+
+		#make the equal evalation of the level and node 
+
+		if left == right :
+
+			return True
+
+		return False
+
+
+
+	def isCousins(self, root, x, y):
+		"""
+		The function to make the cousions found
+		"""
+
+		self.x = x 
+		self.y = y
+
+		#constraints case 
+
+		#if not node 
+		if not root :
+
+			return False
+
+		if root.left is None and root.right is None :
+
+			return False
+
+
+		#make the level
+		level = 0 
+
+		result = self.helper_dfs(root,level)
+
+		return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
