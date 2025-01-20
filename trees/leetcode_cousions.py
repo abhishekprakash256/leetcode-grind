@@ -44,9 +44,25 @@ we need level parent node dfs can give height :
 
 the helper_dfs can have depth , and also the parent node then match 
 
-base case 
 
-if value equal then we match depth and paent match
+check if the value match , 
+then check the level match 
+then check if parent differnet 
+	return true
+
+else:
+
+	return False
+
+how to check node parent ? 
+
+i can do two dfs one to check val 
+next to check the level if True 
+
+then check the parent ? 
+
+I have level information and value can match
+
 
 Constraints:
 
@@ -59,7 +75,7 @@ x and y are exist in the tree.
 
 """
 
-class Solution():
+class Solution_wrong():
 
 	def level_fun(self,node):
 		"""
@@ -115,3 +131,57 @@ class Solution():
 
 		#make the recursive calls
 		return self.helper_dfs(root,1)
+
+
+
+
+
+
+class Solution:
+	def helper_dfs(self, node, parent, x, y, level):
+		"""
+		DFS helper function to find the level and parent of nodes x and y.
+		"""
+
+		#not node 
+		if not node:
+			return None, None
+
+		#node val is equal
+		if node.val == x:
+			return (parent, level)
+
+		#node val is equal
+		if node.val == y:
+			return (parent, level)
+		
+		# Search left and right subtrees
+		left = self.helper_dfs(node.left, node, x, y, level + 1)
+		right = self.helper_dfs(node.right, node, x, y, level + 1)
+
+		# Combine results
+		if left[0] and right[0]:  # Both found
+			return left, right
+
+		#if left is none and right is none
+		return left if left[0] else right
+
+
+	def isCousins(self, root, x, y):
+		"""
+		Determines if two nodes are cousins in a binary tree.
+		"""
+		if not root:
+			return False
+
+		# Find the parent and level of both x and y
+		x_info, y_info = self.helper_dfs(root, None, x, y, 0)
+
+		# Check if x and y are cousins
+		if x_info and y_info:
+
+			return x_info[1] == y_info[1] and x_info[0] != y_info[0]  # Same level, different parents
+
+		return False
+
+
