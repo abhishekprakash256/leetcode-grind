@@ -12,7 +12,9 @@ class Solution():
 
 		self.result_permutations = []
 
-		self.result_all = [] 
+		self.result_all = []
+
+		self.result_selective = []
 
 
 	def helper_dfs_combinations(self,i,temp_lst):
@@ -160,6 +162,58 @@ class Solution():
 
 
 
+	def helper_dfs_selective(self,temp_lst):
+		"""
+		The function to make the all list possible
+		"""
+
+		#base case 
+
+		#if the length is equal 
+		if len(temp_lst) == self.n :
+
+			self.result_selective.append(temp_lst)
+
+			return
+
+
+		#make the recursive call
+		for i in range(1,self.n + 1) :
+
+			#make the function call
+			self.helper_dfs_selective(temp_lst + [i])
+
+	
+
+
+	def make_selective(self,n):
+		"""
+		The function to make all the possible seletive permutations
+		"""
+
+		self.n = n
+
+		#constaraint case 
+		if self.n == 0:
+
+			return []
+
+		if self.n == 1 :
+
+			return [[1]]
+
+		#make the temp_lst
+		temp_lst = []
+
+		#make the function recursive call
+		self.helper_dfs_selective(temp_lst)
+
+		return self.result_selective
+
+
+
+
+
 
 	
 
@@ -177,6 +231,8 @@ print(sol.make_combination(3))
 print(sol.make_permutations(3))
 
 print(sol.make_all(3))
+
+print(sol.make_selective(3))
 
 
 
