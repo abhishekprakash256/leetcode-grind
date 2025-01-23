@@ -40,19 +40,6 @@ as the level reaches then cut
 """
 
 
-class TreeNode:
-	"""
-	The tree node class to make the tree
-	"""
-
-	def __init__(self, val=0, left=None, right=None):
-
-		self.val = val
-
-		self.left = left
-
-		self.right = right
-
 
 
 class Solution_combinations():
@@ -111,6 +98,37 @@ class Solution_combinations():
 
 
 
-sol = Solution_combinations()
+#sol = Solution_combinations()
 
-print(sol.make_combinations(3))
+#print(sol.make_combinations(3))
+
+
+class TreeNode:
+	"""
+	The tree node class to make the tree
+	"""
+
+	def __init__(self, val=0, left=None, right=None):
+
+		self.val = val
+
+		self.left = left
+
+		self.right = right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
