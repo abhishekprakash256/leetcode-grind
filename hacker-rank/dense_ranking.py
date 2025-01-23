@@ -56,6 +56,8 @@ def climbingLeaderboard(ranked, player) :
 	#make the set and sort it 
 	ranked = sorted(set(ranked), reverse = True)
 
+	print(ranked)
+
 	#make the result list
 	result = []
 
