@@ -125,12 +125,65 @@ class TreeNode:
 
 class Solution():
 
+	def __init__(self):
+
+		self.result = []
+
+
+	def helper_dfs(self,node):
+		"""
+		The helper function of the dfs
+		"""
+		
+		#base case 
+		if left >= right :
+
+			result.append(temp_lst)
+
+			return
+
+		#make the node 
+		left = TreeNode()
+		right = TreeNode()
+
+		
+
+
+
+
+
+
+
+
 	def generateTrees(self, n: int) :
 		"""
 		The function to make the tree
 
 		"""
-		pass
+		
+		self.n = n
+
+		#constaints case 
+
+		if self.n == 1 :
+
+			return [[1]]
+
+		#make the left and right tree
+		left = 1
+		right = self.n
+
+		#make the temp lst
+		temp_lst = []
+
+		#make the recursive request
+		self.helper_dfs(left,right,temp_lst)
+
+		#return the result
+		return self.result
+
+
+
  
 
 
