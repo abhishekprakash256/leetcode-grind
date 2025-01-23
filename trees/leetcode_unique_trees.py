@@ -53,67 +53,64 @@ class TreeNode:
 
 		self.right = right
 
-class Solution():
+
+
+class Solution_combinations():
 
 	def __init__(self):
 
 		self.result = []
 
-	def make_tree(self,idx,node,tree_lst):
+	def helper_dfs(self,temp_lst):
 		"""
-		The make tree function to attach the node 
+		The function to make combinations
 		"""
+
 		#base case 
+		if len(temp_lst) == self.n :
 
-		#if idx is equal
-		if idx == self.n :
+			self.result.append(temp_lst)
 
-			result.append(tree_lst)
-			
 			return
 
-		#make node 
-		node = TreeNode(idx)
+		#make the recureive call
+		for i in range(1,self.n + 1) :
 
-		#make the recursive call
-		for i in range(idx, n+1) :
-
-			node.left = 
-
+			if i not in temp_lst:
+			
+				self.helper_dfs(temp_lst + [i])
 
 
+		
 
 
-
-
-
-
-
-
-
-
-
-
-
-	def generateTrees(self, n: int): 
+	def make_combinations(self,n):
 		"""
-		The main function to make the node of lists
+		The function to make the possible combinations
 		"""
 
 		self.n = n
 
+		#constraints case 
+		if self.n == 0 :
+
+			return []
+
 		if self.n == 1 :
 
-			return[[1]]
+			return [[1]]
 
-		#make the treenode 
-		idx = 1 
-		tree_lst = []
 
-		node = TreeNode(idx)
+		temp_lst = []
 
-		#make the recursion call
-		self.make_tree(self,idx,node,tree_lst)
+		#make the recursive call
+		self.helper_dfs(temp_lst)
 
 		return self.result
 
+
+
+
+sol = Solution_combinations()
+
+print(sol.make_combinations(3))
