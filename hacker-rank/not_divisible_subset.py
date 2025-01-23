@@ -38,6 +38,8 @@ go through all value and add in the main list and give the length back
 result = []
 final_lst = []
 
+#debug the code
+
 def helper_dfs(i,temp_lst,k,s):
 	"""
 	The helper dfs for making the two pairs that is not divisible
