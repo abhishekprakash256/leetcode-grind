@@ -98,10 +98,14 @@ class Solution_combinations():
 
 
 
-#sol = Solution_combinations()
+sol = Solution_combinations()
 
-#print(sol.make_combinations(3))
+print(sol.make_combinations(3))
 
+
+#output -> [1,3,2] , [1,2,3] , [2,1,3] , [3,2,1] ,[3,1,2]
+
+# [2,3,1]
 
 class TreeNode:
 	"""
@@ -115,6 +119,18 @@ class TreeNode:
 		self.left = left
 
 		self.right = right
+
+
+
+class Solution():
+
+	def generateTrees(self, n: int) :
+		"""
+		The function to make the tree
+
+		"""
+		pass
+ 
 
 
 
