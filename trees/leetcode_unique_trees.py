@@ -146,10 +146,6 @@ class Solution():
 		left = TreeNode()
 		right = TreeNode()
 
-		
-
-
-
 
 
 
