@@ -12,6 +12,8 @@ class Solution():
 
 		self.result_permutations = []
 
+		self.result_all = [] 
+
 
 	def helper_dfs_combinations(self,i,temp_lst):
 		"""
@@ -110,6 +112,58 @@ class Solution():
 
 
 
+	def helper_dfs_all(self,temp_lst):
+		"""
+		The functon to make all the three digit combinations
+		"""
+
+		#base case 
+
+		#if the length is equal
+
+		if len(temp_lst) == self.n :
+
+			self.result_all.append(temp_lst)
+
+			return
+
+		#make the recurisve call
+		for i in range(1,self.n+1) :
+
+			self.helper_dfs_all(temp_lst + [i])
+
+	
+
+	def make_all(self,n):
+		"""
+		The function to make all the 3 digit combinations
+
+		"""
+		self.n = n
+
+		if self.n == 0 :
+
+			return []
+
+		if self.n == 1 :
+
+			return [[1]]
+
+		#make the list
+		temp_lst = []
+
+		#make the recursive call to the function
+		self.helper_dfs_all(temp_lst)
+
+		#return the list
+		return self.result_all
+
+
+
+
+	
+
+
 
 
 
@@ -121,4 +175,8 @@ sol = Solution()
 print(sol.make_combination(3))
 
 print(sol.make_permutations(3))
+
+print(sol.make_all(3))
+
+
 
