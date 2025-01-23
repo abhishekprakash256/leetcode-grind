@@ -37,13 +37,6 @@ make node and add the node and calcukate the level
 
 as the level reaches then cut 
 
-we can use a set of numbers like backtracking 
-
-and pick the value and add it 
-
-
-
-
 """
 
 
@@ -60,9 +53,67 @@ class TreeNode:
 
 		self.right = right
 
+class Solution():
+
+	def __init__(self):
+
+		self.result = []
+
+	def make_tree(self,idx,node,tree_lst):
+		"""
+		The make tree function to attach the node 
+		"""
+		#base case 
+
+		#if idx is equal
+		if idx == self.n :
+
+			result.append(tree_lst)
+			
+			return
+
+		#make node 
+		node = TreeNode(idx)
+
+		#make the recursive call
+		for i in range(idx, n+1) :
+
+			node.left = 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+	def generateTrees(self, n: int): 
+		"""
+		The main function to make the node of lists
+		"""
+
+		self.n = n
+
+		if self.n == 1 :
+
+			return[[1]]
+
+		#make the treenode 
+		idx = 1 
+		tree_lst = []
+
+		node = TreeNode(idx)
+
+		#make the recursion call
+		self.make_tree(self,idx,node,tree_lst)
+
+		return self.result
 
