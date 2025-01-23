@@ -26,8 +26,10 @@ ranking = [1]
 
 """
 
+"""
 def climbingLeaderboard(ranked, player):
     # Remove duplicates and sort in descending order
+    #code passes
     ranked = sorted(set(ranked), reverse=True)
     
     result = []
@@ -36,14 +38,46 @@ def climbingLeaderboard(ranked, player):
     for score in player:
         # Find the player's rank
         while n > 0 and score >= ranked[n - 1]:
+
             n -= 1
+
         result.append(n + 1)
     
     return result
 
+"""
+
+
+def climbingLeaderboard(ranked, player) :
+	"""
+	The function to put the players in the rank
+	"""
+
+	#make the set and sort it 
+	ranked = sorted(set(ranked), reverse = True)
+
+	#make the result list
+	result = []
+
+	#take the length
+	n = len(ranked)
+
+	for score in player :
+
+		while n > 0 and score >= ranked[n-1]:
+
+			n -= 1 
+
+		result.append(n+1)
+
+	return result
+
+
+
+
 # Example Usage
-ranked = [100, 90, 90, 80, 75, 60]
-player = [50, 65, 77, 90, 102]
+ranked = [100, 90, 90, 80, 75, 60] #-> #[100,90,80,75,60]
+player = [50, 65, 77, 90, 102] #-> #[100,90,80,75,60] 
 print(climbingLeaderboard(ranked, player))  # Output: [6, 5, 4, 2, 1]
 
 
