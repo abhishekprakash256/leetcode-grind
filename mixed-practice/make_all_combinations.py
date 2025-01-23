@@ -172,7 +172,11 @@ class Solution():
 		#if the length is equal 
 		if len(temp_lst) == self.n :
 
-			self.result_selective.append(temp_lst)
+			sorted_combination = sorted(temp_lst)
+
+			if sorted_combination not in self.result_selective :
+
+				self.result_selective.append(sorted_combination)
 
 			return
 
