@@ -53,7 +53,7 @@ def helper_dfs(n,k,i,j,dir,obstacles,result):
 	#base case 
 
 	#if out of the bound 
-	if i < 1 or j < 1 or i > n or j > n:
+	if i < 1 or j < 1 or i > n or j > n or (i,j) in obstacles:
 
 		return result
 
@@ -109,6 +109,7 @@ def queensAttack(n,k,r_q,c_q,obstacles) :
 	The function to find the number of attack can be made	
 	"""
 
+	obstacle_set = set((r, c) for r, c in obstacles)
 
 	#constraints case
 
@@ -129,7 +130,7 @@ def queensAttack(n,k,r_q,c_q,obstacles) :
 
 def queensAttack(n, k, r_q, c_q, obstacles):
     # Convert obstacles to a set for O(1) lookups
-    obstacle_set = set((r, c) for r, c in obstacles)
+    obstacle = set((r, c) for r, c in obstacles)
 
     # Directions: (row_change, col_change)
     directions = [
