@@ -94,6 +94,37 @@ def nonDivisibleSubset(k, s):
 
 
 
+
+
+
+def nonDivisibleSubset(k, s):
+    """
+    Find the largest subset such that the sum of any two numbers is not divisible by k.
+    """
+    # Step 1: Count remainders when elements are divided by k
+    #code passes
+
+    remainder_count = [0] * k
+    
+    for num in s:
+        remainder_count[num % k] += 1
+
+    # Step 2: Include at most one element with remainder 0
+    max_subset_size = min(remainder_count[0], 1)
+
+    # Step 3: Process pairs of remainders
+    for i in range(1, (k // 2) + 1):
+        if i == k - i:  # Special case for the middle remainder
+            max_subset_size += min(remainder_count[i], 1)
+        else:
+            max_subset_size += max(remainder_count[i], remainder_count[k - i])
+
+    return max_subset_size
+
+
+
+
+
 s = [1,7,2,4]
 k = 3 
 
