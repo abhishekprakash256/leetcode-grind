@@ -52,8 +52,84 @@ hcdk
 """
 approach -- 
 
+put in a list 
+
+sort the list 
+
+put in reverse orrder 
+
+make the string 
+result = ""
+
+start from the back 
+
+and match the heirachy 
+
+[h,g,f,e] -> [e,f,g,h]
+
+hefg -> hegf
 
 
 
 """
+
+result = []
+
+def helper_dfs(temp_lst,s) :
+	"""
+	The function to make the result list 
+	"""
+
+	#base case
+
+	#if length is equal 
+	if len(temp_lst) == len(s) :
+
+		result.append(temp_lst)
+
+		return
+
+	#make the recursive call
+	for j in range(len(s)) :
+
+		helper_dfs(temp_lst + s[j] , s)
+
+
+def biggerIsGreater(s):
+	"""
+	The fucntion to make bigger string 
+	"""
+
+	#constraints case 
+	if len(s) == 1:
+
+		return s
+
+	#vars
+	i = 0 
+	temp_str = ""
+
+	#make the recursive call
+	helper_dfs(temp_str,s)
+
+	result.sort()
+
+	for i in range(len(result)):
+
+		if result[i] == s :
+
+			break
+
+	print(result)
+
+	if i < len(result)  :
+
+		return result[i+1]
+
+
+	return "no answer"
+
+
+	
+print(biggerIsGreater("fe"))
 
