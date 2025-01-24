@@ -41,94 +41,7 @@ based on that traversaral will be done and base case elimination
 """
 
 
-
-
-def helper_dfs(n,k,i,j,dir,obstacles,result):
-	"""
-	The function to make the helper dfs
-	"""
-
-	print("in")
-
-	#base case 
-
-	#if out of the bound 
-	if i < 1 or j < 1 or i > n or j > n or (i,j) in obstacles:
-
-		return result
-
-	#the obstacle case 
-	if [i,j] in obstacles :
-
-		dir = None
-
-
-	#make the traverse in direction
-
-	if dir == "up":
-
-		print("up")
-
-		helper_dfs(n,k,i-1,j,"up",obstacles, result + 1)
-
-	if dir == "down":
-
-		helper_dfs(n,k,i+1,j,"down",obstacles, result + 1)
-
-	if dir == "left" :
-
-		helper_dfs(n,k,i,j-1,"left",obstacles, result + 1)
-
-	if dir == "right" :
-
-		helper_dfs(n,k,i,j+1,"right",obstacles, result + 1)
-
-	if dir == "diagonal_left_up" :
-
-		helper_dfs(n,k,i-1,j-1,"diagonal_left_up",obstacles, result + 1)
-
-	if dir == "diagonal_left_down" :
-
-		helper_dfs(n,k,i-1,j+1,"diagonal_left_down",obstacles , result + 1)
-
-	if dir == "diagonal_right_up" :
-
-		helper_dfs(n,k,i+1,j-1,"diagonal_right_up",obstacles, result + 1)
-
-	if dir == "diagonal_right_down" :
-
-		helper_dfs(n,k,i+1,j+1,"diagonal_right_down",obstacles , result + 1)
-
-	return result
-
-
-
-
-def queensAttack(n,k,r_q,c_q,obstacles) :
-	"""
-	The function to find the number of attack can be made	
-	"""
-
-	obstacle_set = set((r, c) for r, c in obstacles)
-
-	#constraints case
-
-	#make the recursion call
-	up = helper_dfs(n,k,r_q,c_q,"up",obstacles,0)
-	down = helper_dfs(n,k,r_q,c_q,"down",obstacles,0)
-	left = helper_dfs(n,k,r_q,c_q,"left",obstacles,0)
-	right = helper_dfs(n,k,r_q,c_q,"right",obstacles,0)
-	diagonal_left_up = helper_dfs(n,k,r_q,c_q,"diagonal_left_up",obstacles,0)
-	diagonal_left_down = helper_dfs(n,k,r_q,c_q,"diagonal_left_down",obstacles,0)
-	diagonal_right_up = helper_dfs(n,k,r_q,c_q,"diagonal_right_up",obstacles,0)
-	diagonal_right_down = helper_dfs(n,k,r_q,c_q,"diagonal_right_down",obstacles,0)
-
-	return up + down + left + right + diagonal_left_down + diagonal_left_up + diagonal_right_up + diagonal_right_down
-
-
-
-
-def queensAttack(n, k, r_q, c_q, obstacles):
+def queensAttack_optim(n, k, r_q, c_q, obstacles):
     # Convert obstacles to a set for O(1) lookups
     obstacle = set((r, c) for r, c in obstacles)
 
@@ -172,6 +85,81 @@ def queensAttack(n, k, r_q, c_q, obstacles):
 
 
 
+def helper_dfs(n,k,i,j,dir,obstacles,result) :
+	"""
+	The helper dfs to make the recursive call
+
+	#slow solution
+	"""
+
+	#base case 
+
+	#if out of the bound 
+	if i < 1 or j < 1 or i > n or j > n or (i,j) in obstacles:
+
+		return result
+
+
+	#make the traverse in direction
+
+	if dir == "up":
+
+		return helper_dfs(n,k,i-1,j,"up",obstacles,result + 1 )
+
+	if dir == "down":
+
+		return helper_dfs(n,k,i+1,j,"down",obstacles, result + 1 )
+
+	if dir == "left" :
+
+		return helper_dfs(n,k,i,j-1,"left",obstacles, result + 1 )
+
+	if dir == "right" :
+
+		return helper_dfs(n,k,i,j+1,"right",obstacles, result + 1 )
+
+	if dir == "diagonal_left_up" :
+
+		return helper_dfs(n,k,i-1,j-1,"diagonal_left_up",obstacles, result + 1 )
+
+	if dir == "diagonal_left_down" :
+
+		return helper_dfs(n,k,i-1,j+1,"diagonal_left_down",obstacles ,result + 1  )
+
+	if dir == "diagonal_right_up" :
+
+		return helper_dfs(n,k,i+1,j-1,"diagonal_right_up",obstacles, result + 1 )
+
+	if dir == "diagonal_right_down" :
+
+		return helper_dfs(n,k,i+1,j+1,"diagonal_right_down",obstacles, result + 1 )
+
+
+	return result
+
+
+
+def queensAttack(n,k,r_q,c_q,obstacles) :
+	"""
+	The function to find the number of attack can be made
+	slow solution
+	"""
+
+	obstacles = set((r, c) for r, c in obstacles)
+
+	#constraints case
+
+	#make the recursion call
+	up = helper_dfs(n,k,r_q-1,c_q,"up",obstacles,0)
+	down = helper_dfs(n,k,r_q+1,c_q,"down",obstacles,0)
+	left = helper_dfs(n,k,r_q,c_q-1,"left",obstacles,0)
+	right = helper_dfs(n,k,r_q,c_q + 1,"right",obstacles,0)
+	diagonal_left_up = helper_dfs(n,k,r_q-1,c_q-1,"diagonal_left_up",obstacles,0)
+	diagonal_left_down = helper_dfs(n,k,r_q-1,c_q+1,"diagonal_left_down",obstacles,0)
+	diagonal_right_up = helper_dfs(n,k,r_q+1,c_q-1,"diagonal_right_up",obstacles,0)
+	diagonal_right_down = helper_dfs(n,k,r_q+1,c_q+1,"diagonal_right_down",obstacles,0)
+
+	return up + down + left + right + diagonal_left_down + diagonal_left_up + diagonal_right_up + diagonal_right_down
 
 
 
@@ -179,7 +167,46 @@ def queensAttack(n, k, r_q, c_q, obstacles):
 
 
 
+def queensAttack(n,k,r_q,c_q,obstacles):
+	"""
+	The functiont to find the queen attack postions
+	passes leetcode
+	"""
 
+	#make the set obstacles
+	obstacles = set((r, c) for r, c in obstacles)
+
+	dirs = [(-1,0), (+1,0), (0,-1) , (0,+1), (-1,-1), (-1,+1), (+1,-1),(+1,+1)]
+
+	#make the total moves
+	total_moves = 0
+
+	#start the loop
+	for dir_r , dir_l in dirs :
+
+		curr_r = r_q
+		curr_l = c_q
+
+		while True:
+
+			#add the direction
+			curr_r += dir_r
+			curr_l += dir_l
+
+
+			if curr_r < 1 or curr_l < 1 or curr_r > n or curr_l > n :
+
+				break
+
+
+			if (curr_r, curr_l) in obstacles :
+
+				break
+
+			total_moves += 1 
+
+
+	return total_moves
 
 
 
