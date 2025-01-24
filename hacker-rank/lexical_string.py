@@ -95,7 +95,7 @@ def helper_dfs(temp_lst,s) :
 		helper_dfs(temp_lst + s[j] , s)
 
 
-def biggerIsGreater(s):
+def biggerIsGreater_slow(s):
 	"""
 	The fucntion to make bigger string 
 	"""
@@ -131,5 +131,12 @@ def biggerIsGreater(s):
 
 
 	
-print(biggerIsGreater("fe"))
+#-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
