@@ -34,6 +34,7 @@ go through all value and add in the main list and give the length back
 """
 
 
+
 #maket the result list 
 result = []
 final_lst = []
@@ -105,7 +106,7 @@ def nonDivisibleSubset(k, s):
     #code passes
 
     remainder_count = [0] * k
-    
+
     for num in s:
         remainder_count[num % k] += 1
 
