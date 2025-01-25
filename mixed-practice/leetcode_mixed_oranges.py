@@ -277,7 +277,6 @@ class Solution_wrong2():
 
                     return -1
 
-
         #return the count
         return self.minutes if fresh_oranges > 0 else 0
 
@@ -289,10 +288,7 @@ grid1 = [[2,1,1],[1,1,0],[0,1,1]]
 
 grid2 = [[2,1,1],[0,1,1],[1,0,1]]
 
-grid3 = [
-[2,1,1],
-[1,1,1],
-[0,1,2]]
+grid3 = [[2,1,1],[1,1,1],[0,1,2]]
 
 
 sol = Solution_wrong2()

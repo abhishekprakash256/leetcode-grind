@@ -43,6 +43,10 @@ grid[i][j] is '0' or '1'.
 """
 
 
+
+
+from collections import deque
+
 class Solution_dfs():
     """
     passes leetcode
@@ -96,13 +100,6 @@ class Solution_dfs():
                 self.helper_dfs(i,j)
 
         return self.count
-
-
-
-
-
-
-from collections import deque
 
 
 
