@@ -44,6 +44,7 @@ grid[i][j] is 0, 1, or 2.
 
 
 """
+
 0 - empty 
 1 - fesh 
 2 - rotten 
