@@ -88,6 +88,15 @@ return count
 """
 
 
+#inputs 
+grid1 = [[2,1,1],[1,1,0],[0,1,1]]
+
+grid2 = [[2,1,1],[0,1,1],[1,0,1]]
+
+grid3 = [[2,1,1],[1,1,1],[0,1,2]]
+
+
+
 class Solution_wrong():
     """
     The solution is wrong and should use a DFS solution
@@ -284,29 +293,111 @@ class Solution_wrong2():
 
 
 
-grid1 = [[2,1,1],[1,1,0],[0,1,1]]
-
-grid2 = [[2,1,1],[0,1,1],[1,0,1]]
-
-grid3 = [[2,1,1],[1,1,1],[0,1,2]]
+from collections import deque
 
 
-sol = Solution_wrong2()
+class Solution():
 
-res = sol.orangesRotting(grid3)
+    def __init__(self):
 
-print(res)
-
-
+        self.minutes = -1 
 
 
+    def helper_bfs(self,i,j):
+        """
+        The function to traverse using bfs strategy
+        """
+
+        #make the dirs
+        dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)] #the possible 
+
+        queue = deque([(i,j)])
+
+        #print(queue)
+
+        #make the mark
+        self.grid[i][j] = 2
+
+        #traverse the queue
+        while queue :
+
+            x , y = queue.popleft()
+
+            for dx , dy in dirs :
+
+                nx , ny = x + dx , y + dy 
+
+                if 0 <= nx <= self.row - 1 and 0 <= ny <= self.col - 1 and self.grid[nx][ny] == 1 :
+
+                    #mark the grid 
+                    self.grid[nx][ny] = 2
+
+                    #increase the minutes
+
+                    #append in the queue for traversal
+                    queue.append((nx,ny))
+
+            if queue :
+
+                self.minutes += 1
+
+
+        
+
+
+    def orangesRotting(self,grid) :
+        """
+        The function to get the minute for rotten orange
+        """
+
+        #make the vars
+        self.grid = grid
+        self.row = len(self.grid)
+        self.col = len(self.grid[0])
+        fresh_oranges = 0 
+
+        #constarint case
+        if self.row == 1 and self.col == 1 :
+
+            if self.grid[0][0] == 2 or self.grid[0][0] == 0:
+
+                return 0
+
+            else:
+
+                return -1
+
+        #make the first pass for check the rotten oranges
+        for i in range(self.row) :
+
+            for j in range(self.col) :
+
+                #print(i,j)
+
+                if self.grid[i][j] == 2 :
+
+                    self.helper_bfs(i,j)
+
+        #print(self.grid)
+
+        #check if any orange is remain ,i.e 1
+        for i in range(self.row) :
+
+            for j in range(self.col) :
+
+                if self.grid[i][j] == 1 :
+
+                    return -1
+
+
+        return self.minutes
 
 
 
 
+sol = Solution()
 
-
-
+print(sol.orangesRotting(grid1))
 
 
 
