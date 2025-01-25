@@ -265,7 +265,7 @@ class Solution_wrong2():
                     self.helper_dfs(i,j,0)
 
 
-        #print(self.grid)
+        print(self.grid)
 
 
         #check if any orange is remain ,i.e 1
@@ -283,20 +283,25 @@ class Solution_wrong2():
 
 
 
-"""
+
 
 grid1 = [[2,1,1],[1,1,0],[0,1,1]]
 
 grid2 = [[2,1,1],[0,1,1],[1,0,1]]
 
+grid3 = [
+[2,1,1],
+[1,1,1],
+[0,1,2]]
 
-sol = Solution()
 
-res = sol.orangesRotting(grid1)
+sol = Solution_wrong2()
+
+res = sol.orangesRotting(grid3)
 
 print(res)
 
-"""
+
 
 
 
