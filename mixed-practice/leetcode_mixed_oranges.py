@@ -64,7 +64,138 @@ approach use a dfs algo --
 
 dfs 
 
+make the grid[i][j] = 2
 
+count += 1 
 
+two pass 
+
+if grid[i][j] == 2 :
+
+	helper_dfs(i,j)
+
+other pass 
+
+for i in 
+	for j in 
+
+		if grid[i][j] == 1 :
+
+			return -1
+			
+return count
 
 """
+
+
+class Solution():
+
+	def __init__(self):
+
+		self.minutes = 0
+
+
+	def helper_dfs(self,i,j):
+		"""
+		The function to help the dfs traversal in the grid 
+		"""
+
+		#base case
+
+		#out of boud case and empoty and rotten case
+		if i < 0 or j < 0 or i > self.row - 1 or j > self.col - 1 or self.grid[i][j] == 0 or self.grid[i][j] == "#":
+
+			return None
+
+		#mark the grid touched or make it rotten
+		self.grid[i][j] = "#"
+
+		#do the recursive call
+		up = self.helper_dfs(i-1,j) 
+		down = self.helper_dfs(i+1,j)
+		left = self.helper_dfs(i,j-1)
+		right = self.helper_dfs(i,j+1)
+
+		#increase the minutes
+		self.minutes += 1
+
+
+
+	def orangesRotting(self, grid):
+		"""
+		The function to find the rotten oragne in the grid
+		"""
+
+		#make the vars
+		self.grid = grid
+		self.row = len(self.grid)
+		self.col = len(self.grid[0])
+
+		#constarint case
+		if self.row == 1 and self.col == 1 :
+
+			if self.grid[0][0] == 2 :
+
+				return 0 
+
+			else:
+
+				return -1
+
+
+		#make the first pass for check the rotten oranges
+		for i in range(self.row) :
+
+			for j in range(self.col) :
+
+				#print(i,j)
+
+				if self.grid[i][j] == 2 :
+
+					self.helper_dfs(i,j)
+
+
+		#print(self.grid)
+
+
+		#check if any orange is remain ,i.e 1
+		for i in range(self.row) :
+
+			for j in range(self.col) :
+
+				if self.grid[i][j] == 1 :
+
+					return -1
+
+		#return the count
+		return self.minutes 
+
+
+
+
+
+grid1 = [[2,1,1],[1,1,0],[0,1,1]]
+
+grid2 = [[2,1,1],[0,1,1],[1,0,1]]
+
+
+sol = Solution()
+
+res = sol.orangesRotting(grid2)
+
+print(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
