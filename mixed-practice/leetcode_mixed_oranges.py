@@ -296,7 +296,7 @@ class Solution_wrong2():
 from collections import deque
 
 
-class Solution():
+class Solution_wrong3():
 
     def __init__(self):
 
@@ -395,9 +395,103 @@ class Solution():
 
 
 
-sol = Solution()
 
-print(sol.orangesRotting(grid1))
+class Solution():
+
+    def orangesRotting(self, grid):
+        """
+        The function to check for the rotten tomataoes and  time it takes
+        """
+
+        #get the row and cols
+        rows = len(grid)
+        cols = len(grid[0])
+
+
+        #constarint case
+        if rows == 1 and cols == 1 :
+
+            if grid[0][0] == 2 or grid[0][0] == 0:
+
+                return 0
+
+            else:
+
+                return -1
+
+
+        #make the dirs
+        dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)] #the possible 
+
+        #make the queue
+        queue = deque([(0,0)])
+
+
+        for i in range(rows) :
+
+            for j in range(cols) :
+
+                if 
+
+        #start the bfs traversal
+        while queue :
+
+            x, y = queue.popleft()
+
+            for dx , dy in dirs :
+
+                nx , ny = x + dx , y + dy
+
+                #the bound condition 
+                if 0 <= nx <= self.rows - 1 and 0 <= ny <= self.cols - 1 and grid[nx][ny] == 1 :
+
+                    #mark the grid
+                    grid[i][j] = 2
+
+                    #append in the queue
+                    queue.append((nx,ny))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#sol = Solution()
+
+#print(sol.orangesRotting(grid1))
 
 
 

@@ -185,6 +185,29 @@ class Solution():
 
 
 
+class Solution():
+
+    def numIslands(self,grid):
+        """
+        The function to find the number of the islands
+        """
+
+        grid = grid
+        row = len(grid)
+        col = len(grid[0])
+
+        #constarint case
+        if row == 1 and col == 1 :
+
+            if grid[0][0] == "1" :
+
+                return 1
+
+            else :
+
+                return 0
+
+        
 
 
 
