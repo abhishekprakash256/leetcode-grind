@@ -395,8 +395,7 @@ class Solution_wrong3():
 
 
 
-
-class Solution():
+class Solution_wrong():
 
     def orangesRotting(self, grid):
         """
@@ -406,6 +405,7 @@ class Solution():
         #get the row and cols
         rows = len(grid)
         cols = len(grid[0])
+        minutes = -1
 
 
         #constarint case
@@ -419,37 +419,108 @@ class Solution():
 
                 return -1
 
-
         #make the dirs
         dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)] #the possible 
 
         #make the queue
-        queue = deque([(0,0)])
+        queue = deque()
 
-
+        #add all the ornages position in the queue
         for i in range(rows) :
 
-            for j in range(cols) :
+            for j in range(cols):
 
-                if 
+                if grid[i][j] == 2 :
 
-        #start the bfs traversal
+                    queue.append((i,j))
+
+        #start the traversal from the queue
         while queue :
 
             x, y = queue.popleft()
 
+            #traverse the neighbor 
             for dx , dy in dirs :
 
                 nx , ny = x + dx , y + dy
 
-                #the bound condition 
-                if 0 <= nx <= self.rows - 1 and 0 <= ny <= self.cols - 1 and grid[nx][ny] == 1 :
+                #condn for the bound 
+                if 0 <= nx <= rows - 1 and 0 <= ny <= cols - 1 and grid[nx][ny] == 1 :
 
                     #mark the grid
-                    grid[i][j] = 2
+                    grid[nx][ny] = 2
 
-                    #append in the queue
                     queue.append((nx,ny))
+
+            minutes += 1
+
+
+        #check if any orange is there
+        for i in range(rows) :
+
+            for j in range(cols) :
+
+                if grid[i][j] == 1:
+
+                    return -1
+
+
+        return minutes
+
+
+
+
+
+
+class Solution:
+    def orangesRotting(self, grid):
+        """
+        The function to check for the time it takes for all oranges to rot.
+        passes leetcode
+        """
+
+        # Get the number of rows and columns
+        rows = len(grid)
+        cols = len(grid[0])
+
+        # Initialize variables
+        queue = deque()
+        fresh_oranges = 0
+        minutes = 0
+
+        # Add all rotten oranges to the queue and count fresh oranges
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 2:
+                    queue.append((i, j))
+                elif grid[i][j] == 1:
+                    fresh_oranges += 1
+
+        # Directions for the neighbors
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+        # Perform BFS
+        while queue and fresh_oranges > 0:
+            # Process all oranges at the current time step
+            for _ in range(len(queue)):
+                x, y = queue.popleft()
+
+                for dx, dy in directions:
+                    nx, ny = x + dx, y + dy
+
+                    # If the neighbor is a fresh orange, rot it
+                    if 0 <= nx < rows and 0 <= ny < cols and grid[nx][ny] == 1:
+                        grid[nx][ny] = 2
+                        fresh_oranges -= 1
+                        queue.append((nx, ny))
+
+            # Increment minutes after processing one level of BFS
+            minutes += 1
+
+        # If there are still fresh oranges, return -1
+        return minutes if fresh_oranges == 0 else -1
+
+
 
 
 

@@ -190,14 +190,15 @@ class Solution():
     def numIslands(self,grid):
         """
         The function to find the number of the islands
+        passes leetcode
         """
 
-        grid = grid
-        row = len(grid)
-        col = len(grid[0])
+        count = 0
+        rows = len(grid)
+        cols = len(grid[0])
 
         #constarint case
-        if row == 1 and col == 1 :
+        if rows == 1 and cols == 1 :
 
             if grid[0][0] == "1" :
 
@@ -207,7 +208,44 @@ class Solution():
 
                 return 0
 
-        
+        dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)] #the possible
+
+        #make the queue
+        #queue = deque()
+
+        #make the loop over the points 
+        for i in range(rows) :
+
+            for j in range(cols) :
+
+                if grid[i][j] == "1" :
+
+                    count += 1
+
+                    #append the value in the queue
+                    queue = deque([(i,j)])
+
+                    #start the loop over the queue
+                    while queue :
+
+                        x , y = queue.popleft()
+
+                        for dx, dy in dirs :
+
+                            nx , ny = x + dx , y + dy 
+
+                            #make the bound conditio
+                            if 0 <= nx <= rows - 1 and 0 <= ny <= cols - 1 and grid[nx][ny] == "1" :
+
+                                #mark the grid
+                                grid[nx][ny] = "0"
+
+                                queue.append((nx,ny))
+
+        return count
+
+
+
 
 
 
