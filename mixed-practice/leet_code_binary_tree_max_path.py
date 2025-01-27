@@ -141,25 +141,17 @@ class Solution_max():
 		The function to get the carry sum as per dfs traversal
 
 		"""
-		
+
 		#base case
 		if not node :
 
-			return
-
-		#add the sum 
-		curr_sum += node.val
-
-		#update the max value 
-		self.max_sum = max(curr_sum,self.max_sum)
+			return 0
 
 		#make the recursive call
-		self.helper_dfs(node.left , curr_sum)
-		self.helper_dfs(node.right, curr_sum)
+		left = self.helper_dfs(node.left , curr_sum)
+		right = self.helper_dfs(node.right, curr_sum)
 
-
-
-
+		return node.val + left + right
 
 	def maxPathSum(self,root):
 		"""
@@ -177,11 +169,80 @@ class Solution_max():
 		curr_sum = 0 
 
 		#make the helper dfs call
-		self.helper_dfs(root,curr_sum)
+		#self.helper_dfs(root,curr_sum)
+
+		#return the max sum
+		return self.helper_dfs(root,curr_sum)
+
+
+
+# The tree looks like this:
+#        -10
+#        /  \
+#       9    20
+#             / \
+#            15  7
+
+
+class Solution():
+
+	def __init__(self):
+
+		self.max_sum = float("-inf")
+
+	def helper_dfs(self,node):
+		"""
+		The function to get the carry sum as per dfs traversal
+
+		"""
+
+		#base case
+		if not node :
+
+			return 0
+
+		#make the left and right pass
+		left = max(self.helper_dfs(node.left),0)
+		right = max(self.helper_dfs(node.right),0)
+
+		#make the current path sum
+		curr_path_sum = left + right + node.val
+
+		#update the max sum 
+		self.max_sum = max(self.max_sum,curr_path_sum)
+
+		return max(left,right) + node.val
+
+
+
+
+	def maxPathSum(self,root):
+		"""
+		The function to find the max sum path 
+		passes leetcode
+		"""
+
+		#constarints case 
+
+		#one node 
+		if not root.left and not root.right :
+
+			return root.val
+
+		#make the helper dfs call
+		self.helper_dfs(root)
 
 		#return the max sum
 		return self.max_sum
 
 
-sol = Solution_max()
+
+
+
+
+
+
+
+
+sol = Solution()
 print(sol.maxPathSum(root))
