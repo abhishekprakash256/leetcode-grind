@@ -48,14 +48,18 @@ and check every value for max
 class Solution:
     """
     passess leetcode
+
     """
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         res = []
         q = deque()
 
         for idx, num in enumerate(nums):
+            
             while q and q[-1] < num:
+
                 q.pop()
+
             q.append(num)
 
             if idx >= k and nums[idx - k] == q[0]:
