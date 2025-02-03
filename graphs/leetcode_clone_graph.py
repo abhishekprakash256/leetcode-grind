@@ -181,37 +181,39 @@ class Helper_Fun():
 
 
 
-class Solution():
+class Solution_dfs():
+    """
+    passes leetcode 
+    """
 
     def __init__(self):
 
-        self.visited = set()
+        self.clone_graph = {}
 
-    def helper_dfs(self,node,new_node):
+    def helper_dfs(self,node):
         """
         The function for helper dfs to traverse graph
         """
 
         #base case 
 
-        #no node 
-        if not node :
+        #if node in hash map
+        if node in self.clone_graph :
 
-            return None
+            return self.clone_graph[node]
 
-        #add in the visited
-        self.visited.add(node.val)
+        #clone the node 
+        clone_node = Node(node.val)
+        self.clone_graph[node] = clone_node
 
-        #make the recusive call
+        #traverse the graph and add in the neighbors
         for neighbor in node.neighbors :
 
-            if neighbor.val not in self.visited :
+            clone_node.neighbors.append(self.helper_dfs(neighbor))
 
-                new_node.neighbors = neighbor
+        return clone_node
 
-                new_node = Node(neighbor.val)
 
-                self.helper_dfs(neighbor , new_node )
 
 
     def cloneGraph(self,node):
@@ -231,12 +233,97 @@ class Solution():
 
             return Node(node.val)
 
-        #make the node
-        new_node = Node(node.val)
+        #make the recurisve call
+        return self.helper_dfs(node)
 
-        self.helper_dfs(node, new_node)
 
-        return new_node
+ 
+from collections import deque
+
+
+class Solution():
+
+    def __init__(self):
+
+        self.clone_graph = {}
+
+
+
+    def cloneGraph(self,node):
+        """
+        The function to make the clone graph usinhg bfs 
+        passes leetcode
+        """
+
+        #constraints case
+
+        #no node
+        if not node :
+
+            return None
+
+        #only one node 
+        if node.neighbors is None :
+
+            return Node(node.val)
+
+
+        # Clone the first node and store it in the hashmap
+        self.clone_graph[node] = Node(node.val)
+
+        #make the queue
+        queue = deque([node])
+
+        #start the itertaion
+        while queue :
+
+            original_node = queue.popleft()
+
+            for neighbor in original_node.neighbors :
+
+                if neighbor not in self.clone_graph :
+
+                    #make the mapping 
+                    self.clone_graph[neighbor] = Node(neighbor.val)
+
+                    #make the copy node 
+                    queue.append(neighbor)
+
+                self.clone_graph[original_node].neighbors.append(self.clone_graph[neighbor])
+
+        return self.clone_graph[node]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
