@@ -21,7 +21,7 @@ out2 = False
 
 
 #not - correct solution -----
-class Solution():
+class Solution_wrong():
 
 	def canFinish(self,numCourses, prerequisites):
 		"""
@@ -63,12 +63,58 @@ class Solution():
 
 
 
+class Solution():
+
+	def __init__(self):
+
+		self.graph = {}
+		self.visited = set()
+
+
+	def make_graph(self,prerequisites):
+		"""
+		The function to make the graph
+		"""
+
+		pass
+
+	def helper_dfs(self,node):
+		"""
+		The function to check for cycle in graph
+		"""
+
+		pass
+
+	def canFinish(self, numCourses: int, prerequisites ) -> bool:
+		"""
+		
+		"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 if __name__ == '__main__':
-	sol =  Solution()
-	res = sol.canFinish(numCourses,prerequisites)
+	pass
+	#sol =  Solution()
+	#res = sol.canFinish(numCourses,prerequisites)
 
 
-	print(res)
+	#print(res)
