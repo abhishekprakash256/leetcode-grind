@@ -1,5 +1,3 @@
-Here’s a simple README for your "LeetCode Grind" repository:
-
 ---
 
 # LeetCode Grind
@@ -39,4 +37,3 @@ This repository is licensed under the MIT License - see the [LICENSE](LICENSE) f
 
 ---
 
-This basic README provides a clear introduction and structure for anyone using or contributing to the repository.
