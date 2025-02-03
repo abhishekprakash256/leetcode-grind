@@ -46,7 +46,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
-class Solution():
+class Solution_wrong():
 
     def __init__(self):
 
@@ -114,6 +114,96 @@ class Solution():
         self.helper_dfs(node, new_node )
 
         return new_node
+
+
+
+# make the graph 
+# Creating a simple graph
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(3)
+node4 = Node(4)
+
+node1.neighbors = [node2, node4]
+node2.neighbors = [node1, node3]
+node3.neighbors = [node2, node4]
+node4.neighbors = [node1, node3]
+
+
+
+class Helper_Fun():
+
+    def __init__(self):
+
+        self.visited = set()
+
+    def helper_dfs(self, node) :
+        """
+        The function to print the graph
+        """
+        #base case 
+        if not node.neighbors :
+
+            return None
+
+        print(node.val)
+
+        #add the node in visited
+        self.visited.add(node.val)
+
+        #print the graph
+        for neighbor in node.neighbors : 
+
+            if neighbor.val not in self.visited :
+                
+                self.helper_dfs(neighbor)
+
+
+    def print_graph_dfs(self,node):
+        """
+        The function to print the graph using dfs
+        """
+
+        #constraints case
+
+        #no node 
+        if not node :
+
+            return None
+
+
+        if node.neighbors is None :
+
+            return node.val
+
+        #make the recursive graph calls
+        self.helper_dfs(node)
+
+
+
+helper_fun = Helper_Fun()
+
+print(helper_fun.print_graph_dfs(node1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
