@@ -181,6 +181,65 @@ class Helper_Fun():
 
 
 
+class Solution():
+
+    def __init__(self):
+
+        self.visited = set()
+
+    def helper_dfs(self,node,new_node):
+        """
+        The function for helper dfs to traverse graph
+        """
+
+        #base case 
+
+        #no node 
+        if not node :
+
+            return None
+
+        #add in the visited
+        self.visited.add(node.val)
+
+        #make the recusive call
+        for neighbor in node.neighbors :
+
+            if neighbor.val not in self.visited :
+
+                new_node.neighbors = neighbor
+
+                new_node = Node(neighbor.val)
+
+                self.helper_dfs(neighbor , new_node )
+
+
+    def cloneGraph(self,node):
+        """
+        The function to make the clone graph
+        """
+
+        #constraints case
+
+        #no node
+        if not node :
+
+            return None
+
+        #only one node 
+        if node.neighbors is None :
+
+            return Node(node.val)
+
+        #make the node
+        new_node = Node(node.val)
+
+        self.helper_dfs(node, new_node)
+
+        return new_node
+
+
+
 helper_fun = Helper_Fun()
 
 print(helper_fun.print_graph_dfs(node1))
