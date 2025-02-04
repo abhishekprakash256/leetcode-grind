@@ -35,50 +35,50 @@ use two pointer in side by side and slide per max and get the stack length
 """
 
 class Solution():
-	"""
-	clean code passes leet code
-	"""
+    """
+    clean code passes leet code
+    """
 
-	def lengthOfLongestSubstring(self, s: str):
-		"""
-		The function to find the max length of substring without repeat
-		"""
+    def lengthOfLongestSubstring(self, s: str):
+        """
+        The function to find the max length of substring without repeat
+        """
 
-		#constarints case 
-		
-		#no string 
-		if not s :
+        #constarints case 
+        
+        #no string 
+        if not s :
 
-			return 0 
+            return 0 
 
-		#only one len
-		if len(s) == 1 :
+        #only one len
+        if len(s) == 1 :
+            
+            return 1
 
-			return 1
+        #set the max length 
+        max_length = float("-inf")
 
-		#set the max length 
-		max_length = float("-inf")
+        #make the ptrs 
+        l = 0 
 
-		#make the ptrs 
-		l = 0 
+        #make the set 
+        char_set = set()
 
-		#make the set 
-		char_set = set()
+        #make the loop over the array 
+        for r in range(len(s)):
 
-		#make the loop over the array 
-		for r in range(len(s)):
+            while s[r] in char_set:
 
-			while s[r] in char_set:
+                char_set.remove(s[l])
 
-				char_set.remove(s[l])
+                l += 1 
 
-				l += 1 
+            char_set.add(s[r])
 
-			char_set.add(s[r])
+            max_length = max(max_length, r - l + 1)
 
-			max_length = max(max_length, r - l + 1)
-
-		return max_length
+        return max_length
 
 
 
