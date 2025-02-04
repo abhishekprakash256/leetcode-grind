@@ -75,8 +75,11 @@ class Solution():
 
         # Check each course (node) for cycles using DFS
         for node in range(numCourses):  # Check all nodes (0 to numCourses-1)
+
             if node not in self.visited:  # If node not visited yet
+
                 if self.helper_dfs(node):  # Detect cycle starting from node
+                    
                     return False  # Cycle found, cannot finish all courses
 
         return True  # No cycle detected, all courses can be finished

@@ -56,9 +56,143 @@ return path from 0 to last
 
 dfs can find path or bfs ? 
 
+find any path ?
 
+dfs how I know the last node is reached ? 
 
+n-1 is the last node and start is from 0 
+
+that can be the base case 
 
 """
+
+from collections import defaultdict
+
+
+class Solution():
+
+    def __init__(self):
+
+        self.visited = set()
+        self.recusive_stack = set()
+        self.graph = defaultdict(list)
+
+
+    def make_graph(self, prerequisites):
+        """
+        The funciton to make the graph 
+        """
+        
+        #iterate the list
+        for a,b in prerequisites :
+
+            self.graph[a].append(b) #make the graph
+
+
+    def helper_dfs(self,node, result) :
+        """
+        The helper function to find the path and check for cycle 
+        """
+
+        #base case
+
+        #if the node in visited node 
+        if node in self.visited :
+
+            #if the node is last node 
+            if node == self.numCourses - 1 :
+
+                return result + [node]
+
+        #if node in recursive stack
+        if node in self.recusive_stack :
+
+            print("in")
+
+            return []
+
+        #add in the result
+        result = result + [node]
+
+        print(node)
+
+        print(result)
+
+        #add the node 
+        self.visited.add(node)
+
+        #add the node in stack
+        self.recusive_stack.add(node)
+
+        #make the recursive calls
+        for neighbor in self.graph[node] :
+
+            if neighbor not in self.visited :
+
+                self.helper_dfs(neighbor , result)
+
+        #flush the node from stack 
+        self.recusive_stack.remove(node)
+
+        return result
+
+
+
+    def findOrder(self,numCourses , prerequisites) :
+        """
+        The function to find the order of the visit
+        """
+
+        self.numCourses = numCourses
+        
+        #constarints case 
+
+        #only one node 
+        if numCourses == 1 :
+
+            return [0]
+
+        #make graph 
+        self.make_graph(prerequisites)
+
+        print(self.graph)
+
+        #result list
+        result = []
+
+        #make the recusive dfs call 
+        for node in range(numCourses):  # Check all nodes (0 to numCourses-1)
+
+            if node not in self.visited :
+
+                res = self.helper_dfs(node, result)
+
+        return res
+
+
+
+
+
+#test case 
+numCourses = 4 
+prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+
+sol = Solution()
+
+print(sol.findOrder(numCourses, prerequisites))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
