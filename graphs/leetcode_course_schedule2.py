@@ -167,13 +167,89 @@ class Solution_wrong():
 
 
 
+class Solution():
+    """
+    passes leet code 
+
+    """
 
 
+    def __init__(self):
+
+        self.visited = set()  #visited set 
+        self.recusive_stack = set() #recusive stack for tracking
+        self.graph = defaultdict(list)  #thr graph in dict 
+        self.result = []  #the result list 
 
 
+    def make_graph(self,prerequisites) :
+        """
+        The function to make the graph 
+        """
+
+        #iterate and make graph
+        for a,b in prerequisites :
+
+            self.graph[a].append(b)
 
 
+    def helper_dfs(self,node):
+        """
+        The function to traverse the graph and make the path 
+        """
 
+        #base case 
+
+        #if the node found in recusive stacl
+        if node in self.recusive_stack :
+
+            return True
+
+        #if node found in the visited
+        if node in self.visited :
+
+            return False
+
+        #add the node in recursive stack
+        self.recusive_stack.add(node)
+
+        #add the node in visited 
+        self.visited.add(node)
+
+        #make the recursivce calls 
+        for neighbor in self.graph[node] :
+
+            if self.helper_dfs(neighbor) :
+                
+                return True
+
+        #remove the node 
+        self.recusive_stack.remove(node)
+
+        #add the node in order 
+        self.result.append(node)
+
+        return False
+
+
+    def findOrder(self, numCourses, prerequisites) :
+        """
+        The function to get the order of the course taken if possible
+        """
+
+        #make the graph
+        self.make_graph(prerequisites)
+
+        #make the recursive call with helper function 
+        for node in range(numCourses) :
+
+            if node not in self.visited :
+
+                if self.helper_dfs(node) :
+
+                    return []
+
+        return self.result
 
 
 
