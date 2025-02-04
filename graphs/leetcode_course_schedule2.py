@@ -69,7 +69,7 @@ that can be the base case
 from collections import defaultdict
 
 
-class Solution():
+class Solution_wrong():
 
     def __init__(self):
 
@@ -96,27 +96,14 @@ class Solution():
 
         #base case
 
-        #if the node in visited node 
-        if node in self.visited :
-
-            #if the node is last node 
-            if node == self.numCourses - 1 :
-
-                return result + [node]
-
         #if node in recursive stack
         if node in self.recusive_stack :
 
-            print("in")
-
             return []
 
-        #add in the result
-        result = result + [node]
+        if node in self.visited :
 
-        print(node)
-
-        print(result)
+            return result
 
         #add the node 
         self.visited.add(node)
@@ -124,12 +111,16 @@ class Solution():
         #add the node in stack
         self.recusive_stack.add(node)
 
+        print("inside the fun",result)
+
         #make the recursive calls
         for neighbor in self.graph[node] :
 
-            if neighbor not in self.visited :
+            path = self.helper_dfs(neighbor , result + [neighbor] )
 
-                self.helper_dfs(neighbor , result)
+            if path :
+
+                return path
 
         #flush the node from stack 
         self.recusive_stack.remove(node)
@@ -163,12 +154,16 @@ class Solution():
         #make the recusive dfs call 
         for node in range(numCourses):  # Check all nodes (0 to numCourses-1)
 
+            print(node)
+
             if node not in self.visited :
 
-                res = self.helper_dfs(node, result)
+                path = self.helper_dfs(node, result + [node])
 
-        return res
+                if path :
+                    return path
 
+        return []
 
 
 
