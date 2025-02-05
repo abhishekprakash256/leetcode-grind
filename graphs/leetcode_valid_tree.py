@@ -163,7 +163,7 @@ class Solution_one:
 
 
 
-class Solution:
+class Solution_two:
     """
     passes leetcode 
     """
@@ -222,4 +222,87 @@ class Solution:
 
 
 
+class Solution():
+    """
+    passes leetcoode
+    """
 
+    def __init__(self):
+
+        self.graph = defaultdict(list)
+        self.visited = set()
+        self.recursion_stack = set()
+
+    def make_graph(self,edges):
+        """
+        The function to make the graph
+        """
+
+        for a,b in edges :
+
+            #append the edges in dict and make graph
+            self.graph[a].append(b)
+            self.graph[b].append(a)
+
+
+
+    def helper_dfs(self,node, parent):
+        """
+        The heleper dfs function to find the graph is a tree or not 
+        """
+
+        #base case 
+
+        #if in the rec stack 
+        if node in self.recursion_stack :
+
+            return True
+
+        if node in self.visited :
+
+            return False
+
+        #add the node in the visied and rec stack 
+        self.visited.add(node)
+        self.recursion_stack.add(node)
+
+        #iterate over the neighbor
+        for neighbor in self.graph[node] :
+
+            if neighbor != parent and self.helper_dfs(neighbor,node) :
+
+                return True
+
+        #remove the node 
+        self.recursion_stack.remove(node)
+
+        return False
+
+
+
+
+    def validTree(self, n, edges):
+        """
+        The function to find if a tree is valid or not
+        """
+
+        #constraints case 
+
+        #no edge
+        if n - 1 != len(edges):
+            return False
+
+
+        #make the graph
+        self.make_graph(edges)
+
+        #make the vars 
+        start_node = 0
+        parent = -1 
+
+        #make the recursive traversal 
+        if self.helper_dfs(start_node, parent) :
+
+            return False
+
+        return len(self.visited) == n
