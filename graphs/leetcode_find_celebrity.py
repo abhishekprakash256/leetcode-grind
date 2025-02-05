@@ -64,9 +64,15 @@ ask the question from bool and make edges of only the T ones
 
 also 1 should not know any of those 
 simple never in key 
-{0:1, 0:2 , 2:0 , 2:1 }
+{0:[1,2], , 2:[0,1] }
 
-find the max indegree ? and 0 out degree is degree the number of neighbor ?
+make freq table ? 
+
+{ 0 : 1 , 2 : 0 , 1 : 2 } in degree 
+
+
+
+have max out degree and 0 in degree
 
 
 
@@ -78,9 +84,11 @@ if all equal then return -1
 
 # def knows(a: int, b: int) -> bool:
 
+
 from collections import defaultdict
 
-class Solution():
+
+class Solution_wrong():
 
     def __init__(self):
 
@@ -104,7 +112,7 @@ class Solution():
 
             if i not in temp_lst :
 
-                self.helper_dfs(temp_lst + [i])
+                self.make_combinations(temp_lst + [i])
 
 
 
@@ -118,8 +126,35 @@ class Solution():
 
             if knows(a,b) : #use the know function api
 
-                self.graph[a] = b 
-      
+                self.graph[a].append(b)
+
+
+    def find_max_indegree_zero_outdegree(self):
+        in_degree = defaultdict(int)
+        out_degree = defaultdict(int)
+
+        # Initialize all nodes in in-degree and out-degree
+        for node in self.graph:
+            in_degree[node] = 0  # Ensure all nodes are in dictionary
+            out_degree[node] = 0
+
+        # Calculate in-degree and out-degree
+        for node in self.graph:
+            out_degree[node] = len(self.graph[node])  # Out-degree = number of outgoing edges
+            for neighbor in self.graph[node]:
+                in_degree[neighbor] += 1  # Increment in-degree for the target node
+
+        # Find the node with max in-degree and zero out-degree
+        max_in_degree_node = None
+        max_in_degree = -1
+
+        for node in in_degree:
+            if out_degree[node] == 0 and in_degree[node] > max_in_degree:
+                max_in_degree = in_degree[node]
+                max_in_degree_node = node
+
+        return max_in_degree_node
+
 
     def findCelebrity(self, n: int) -> int:
         """
@@ -136,17 +171,62 @@ class Solution():
         temp_lst = []
 
         #make the combinations
-        for i in range(n):
-
-            self.make_combinations(temp_lst)
+        self.make_combinations(temp_lst)
 
         #make the graph
-        self.make_graph(self.result)
+        self.make_graph(self.combinations)
 
-        #iterate the graph and retrun the max edge 
+        #iterate the graph and retrun the max edge
+        return self.find_max_indegree_zero_outdegree()
 
 
 
+class Solution_slow:
 
+    def is_celebrity(self, i):
+
+        for j in range(self.n):
+
+            if i == j:
+
+                continue # Don't ask if they know themselves.
+            
+            if knows(i, j) or not knows(j, i):
+
+                return False
+
+        return True
+
+    def findCelebrity(self, n: int) -> int:
+        self.n = n
+
+        for i in range(n):
+
+            if self.is_celebrity(i):
+                
+                return i
+        
+        return -1
+    
+
+
+class Solution:
+    """
+    passes leetcode
+    """
+    def findCelebrity(self, n: int) -> int:
+        candidate = 0  # Assume the first person is the celebrity
+        
+        # First pass: Find the potential celebrity
+        for i in range(1, n):
+            if knows(candidate, i):  
+                candidate = i  # If candidate knows i, then candidate is not a celebrity, i might be
+        
+        # Second pass: Verify the candidate
+        for i in range(n):
+            if i != candidate and (knows(candidate, i) or not knows(i, candidate)):
+                return -1  # Not a celebrity
+        
+        return candidate
 
 

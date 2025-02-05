@@ -40,3 +40,6 @@ class Solution():
 sol = Solution()
 
 print(sol.make_combinations(3))
+
+
+
