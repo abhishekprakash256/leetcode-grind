@@ -25,6 +25,64 @@ Output: [3,4]
 """
 approach -- 
 
+make graph 
+
+{1 : [0,2,3] } -> 1 
+
+{ 3 : [0,1,2,4] , 5 : [4] }
+
+number of keys ? 
+
+do a height dfs traversal ? 
+
+
 
 
 """
+
+
+from collections import defaultdict
+
+class Solution_wrong:
+
+    def __init__(self):
+
+        self.graph = defaultdict(list)
+        self.result = []
+
+
+    def make_graph(self, edges ) :
+        """
+        The function to make the graph
+        """
+
+        for a ,b in edges :
+
+            self.graph[a].append(b)
+            self.graph[b].append(a)
+
+
+    def findMinHeightTrees(self, n, edges) :
+        """
+        The function to find the min height tree that can be formed
+        """
+
+        #constraints case
+        if n == 0 :
+
+            return 1 
+
+        #make graph 
+        self.make_graph(edges)
+
+        #return the length of the graph that will be min height
+        return self.graph
+
+
+
+n = 4 
+edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
+
+sol = Solution()
+
+print(sol.findMinHeightTrees(n, edges))
