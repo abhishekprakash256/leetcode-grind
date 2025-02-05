@@ -31,6 +31,17 @@ Since the largest window of s only has one 'a', return empty string.
 """
 approach -- 
 
+make a dict of t freq 
+
+{"A" : 1 , "B": 1 , "C" : 1 }
+
+"ADOBECODEBANC"
+                              
+
+use a sliding window ? 
+
+how to check ? 
+
 
 
 
