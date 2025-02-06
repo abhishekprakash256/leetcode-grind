@@ -105,7 +105,9 @@ class Solution_wrong():
 
 
 
-class Solution():
+
+
+class Solution_optim1():
     def sortColors(self, nums) -> None:
         """
         Modify nums in-place to sort colors using two-pass swapping.
@@ -115,15 +117,65 @@ class Solution():
         l = 0  # Pointer for placing 0s
         for i in range(len(nums)):
             if nums[i] == 0:
+
                 nums[i], nums[l] = nums[l], nums[i]
                 l += 1
 
         # Move all 2s to the end
         r = len(nums) - 1  # Pointer for placing 2s
-        for j in range(len(nums) - 1, -1, -1):
+
+        for j in reversed(range(len(nums))):
+
             if nums[j] == 2:
+
                 nums[j], nums[r] = nums[r], nums[j]
                 r -= 1
+
+
+class Solution():
+
+    def sortColors(self, nums) ->None : 
+        """
+        The function to sort the colors in the place 
+        """
+
+        #constraint case 
+
+        if len(nums) == 1 :
+
+            return nums
+
+        #make the two ptrs 
+        l , r  = 0 , len(nums) - 1 
+        
+        curr = 0 
+
+        #start the iteration for switch 
+        while curr <= r :
+
+            #if the nums is 1 
+            if nums[curr] == 0 :
+
+                nums[curr] , nums[l] = nums[l] , nums[curr]  #swap the 0 
+
+                l += 1
+                curr += 1 
+
+            elif nums[curr] == 2 :
+
+                nums[curr] , nums[r] = nums[r] , nums[curr] #swap the 2
+
+                r -= 1 
+
+            else :
+
+                curr += 1 
+           
+
+
+
+
+
 
 
 sol = Solution()
