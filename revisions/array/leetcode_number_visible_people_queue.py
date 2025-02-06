@@ -18,6 +18,7 @@ Output: [3,1,2,1,1,0]
 
 
 Explanation:
+
 Person 0 can see person 1, 2, and 4.
 Person 1 can see person 2.
 Person 2 can see person 3 and 4.
