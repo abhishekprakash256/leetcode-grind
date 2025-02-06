@@ -39,37 +39,39 @@ also maintain the max and min with idx values like dict and subtract the index a
 """
 
 class Solution():
+	"""
+	passes leetcode
+	"""
 
 	def dailyTemperatures(self, temperatures) :
 		"""
-		The function to find the tempr max day 
+		The function to find the days needed afer the tempr is high 
 		"""
 
 		length = len(temperatures)
 
 		#constarints case 
-		if length == 1:
+		if length == 1 :
 
 			return [0]
 
-		#make the result array
-		result  = [0] * length
+		#make the result 
+		result = [0] * length
 
-		#make the stack
-		stack = [] 
+		#make the stack 
+		stack = []
 
 		for i in range(length) :
 
-			while stack and temperatures[i] > temperatures[stack[-1]] : 
+			while stack and temperatures[i] > temperatures[stack[-1]] :
 
-				prev = stack.pop()
+				prev_val = stack.pop()
 
-				result[prev] = i - prev
+				result[prev_val] = i - prev_val
 
 			stack.append(i)
 
-		return result 
-
+		return result
 
 
 
