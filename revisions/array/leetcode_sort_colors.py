@@ -137,6 +137,7 @@ class Solution():
     def sortColors(self, nums) ->None : 
         """
         The function to sort the colors in the place 
+        passes leetcode
         """
 
         #constraint case 
