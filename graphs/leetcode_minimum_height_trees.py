@@ -143,55 +143,94 @@ class Solution_wrong2():
 
 
 
+class Solution():
+    """
+    passes leetcode 
+    """
 
-class Solution:
     def __init__(self):
+
         self.graph = defaultdict(list)
+
 
     def make_graph(self, edges):
         """
-        Construct the graph from edge list.
+        The function to make the graph
         """
-        for a, b in edges:
+
+        for a , b in edges :
+
             self.graph[a].append(b)
-            self.graph[b].append(a)  # Ensure bidirectional edges
+            self.graph[b].append(a)
 
-
-    def findMinHeightTrees(self, n, edges):
+    def findMinHeightTrees(self,n, edges) :
         """
-        Find the root nodes for Minimum Height Trees (MHTs).
+        The fucntion to find the root node of min trees
         """
-        if n == 1:
-            return [0]  # Only one node, it is the root itself
 
-        # Step 1: Build the graph
+        #constarints case
+
+        #if n is 0 
+        if n == 0 :
+
+            return [0]
+
+        if n == 1 and not edges :
+
+            return [0]
+
+        #make the graph 
         self.make_graph(edges)
 
-        # Step 2: Find all leaf nodes (nodes with only one edge)
-        degree = {i: len(self.graph[i]) for i in range(n)}
-        
-        leaves = deque([node for node in self.graph if degree[node] == 1])
+        #make the degree map
+        degree_map = {}
+
+        for i in range(n) :
+
+            if i in self.graph :
+
+                degree_map[i] = len(self.graph[i])
+
+        #make the list for least degree node 
+        queue = deque()
+
+        for node in self.graph :
+
+            if degree_map[node] == 1 :
+
+                queue.append(node)
 
 
-        # Step 3: Trim leaves level by level until 1 or 2 nodes remain
-        remaining_nodes = n
+        #make remain_node
+        remain_nodes = n 
 
-        while remaining_nodes > 2:
+        #start the traversal 
+        while remain_nodes > 2 :
 
-            num_leaves = len(leaves)
-            remaining_nodes -= num_leaves  # Remove leaf nodes
+            length_queue = len(queue)
 
-            for _ in range(num_leaves):
+            remain_nodes -= length_queue
 
-                leaf = leaves.popleft()
+            for _ in range(length_queue) :
 
-                for neighbor in self.graph[leaf]:
-                    degree[neighbor] -= 1  # Reduce neighbor's degree
-                    if degree[neighbor] == 1:  # If it becomes a leaf, add it
-                        leaves.append(neighbor)
+                curr_node = queue.popleft()
 
-        # Remaining nodes are the root(s) of MHT(s)
-        return list(leaves)
+                for neighbor in self.graph[curr_node] :
+
+                    degree_map[neighbor] -= 1 
+
+                    if degree_map[neighbor] == 1 :
+
+                        queue.append(neighbor)
+
+
+        return list(queue)
+ 
+
+
+
+
+
 
 
 
