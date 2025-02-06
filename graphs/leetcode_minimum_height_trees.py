@@ -48,7 +48,8 @@ All the pairs (ai, bi) are distinct.
 """
 
 
-from collections import defaultdict
+from collections import defaultdict ,deque
+
 
 class Solution_wrong:
 
@@ -88,7 +89,7 @@ class Solution_wrong:
 
 
 
-class Solution():
+class Solution_wrong2():
 
     def __init__(self):
 
@@ -104,7 +105,7 @@ class Solution():
         for a , b in edges :
 
             self.graph[a].append(b)
-            self.graph[b].append(a)
+            #self.graph[b].append(a)
         
 
 
@@ -132,14 +133,65 @@ class Solution():
         #make the graph 
         self.make_graph(edges)
 
+        print(self.graph)
+
         #case with only one key node 
         if len(self.graph) == 1 :
 
             #return the first element in the graph
             return [self.grap.item(0)]
 
-        
 
+
+
+class Solution:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def make_graph(self, edges):
+        """
+        Construct the graph from edge list.
+        """
+        for a, b in edges:
+            self.graph[a].append(b)
+            self.graph[b].append(a)  # Ensure bidirectional edges
+
+
+    def findMinHeightTrees(self, n, edges):
+        """
+        Find the root nodes for Minimum Height Trees (MHTs).
+        """
+        if n == 1:
+            return [0]  # Only one node, it is the root itself
+
+        # Step 1: Build the graph
+        self.make_graph(edges)
+
+        # Step 2: Find all leaf nodes (nodes with only one edge)
+        degree = {i: len(self.graph[i]) for i in range(n)}
+        
+        leaves = deque([node for node in self.graph if degree[node] == 1])
+
+
+        # Step 3: Trim leaves level by level until 1 or 2 nodes remain
+        remaining_nodes = n
+
+        while remaining_nodes > 2:
+
+            num_leaves = len(leaves)
+            remaining_nodes -= num_leaves  # Remove leaf nodes
+
+            for _ in range(num_leaves):
+
+                leaf = leaves.popleft()
+
+                for neighbor in self.graph[leaf]:
+                    degree[neighbor] -= 1  # Reduce neighbor's degree
+                    if degree[neighbor] == 1:  # If it becomes a leaf, add it
+                        leaves.append(neighbor)
+
+        # Remaining nodes are the root(s) of MHT(s)
+        return list(leaves)
 
 
 
@@ -152,3 +204,4 @@ edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
 sol = Solution()
 
 print(sol.findMinHeightTrees(n, edges))
+
