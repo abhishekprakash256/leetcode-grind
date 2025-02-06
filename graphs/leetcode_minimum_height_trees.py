@@ -36,6 +36,13 @@ number of keys ?
 do a height dfs traversal ? 
 
 
+Constraints:
+
+1 <= n <= 2 * 104
+edges.length == n - 1
+0 <= ai, bi < n
+ai != bi
+All the pairs (ai, bi) are distinct.
 
 
 """
@@ -77,6 +84,65 @@ class Solution_wrong:
 
         #return the length of the graph that will be min height
         return self.graph
+
+
+
+
+class Solution():
+
+    def __init__(self):
+
+        self.graph = defaultdict(list)
+        self.result = []
+
+    def make_graph(self,edges):
+        """
+        The function to make the graph 
+        """
+
+        #make the graph 
+        for a , b in edges :
+
+            self.graph[a].append(b)
+            self.graph[b].append(a)
+        
+
+
+    def make_tree(self):
+        """
+        The function to make the trees
+        """
+
+        pass
+
+
+
+    def findMinHeightTrees(self, n, edges) :
+        """
+        The function to find the node of the min tree
+        """
+
+        #base case
+
+        #if there is only one node 
+        if len(edges[0]) == 1 :
+
+            return [edges[0][0]]
+
+        #make the graph 
+        self.make_graph(edges)
+
+        #case with only one key node 
+        if len(self.graph) == 1 :
+
+            #return the first element in the graph
+            return [self.grap.item(0)]
+
+        
+
+
+
+
 
 
 
