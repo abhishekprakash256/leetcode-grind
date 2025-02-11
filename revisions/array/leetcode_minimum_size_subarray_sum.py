@@ -25,24 +25,16 @@ Output: 0
 
 """
 approach -- 
-sorting 
 
-1,2,2,3,3,4
 
-sorting helps 
+use a slidng window approach 
 
-edge case 
+app the elemnt and pop the array as soon as sum get's less then add more 
 
-if sum(nums) < target :
-
-	return 0 
-
-if I have two do miniumum start from back 
-
-sum += nums >= target 
- retrun r 
 
 """
+
+
 
 class Solution():
 
@@ -52,19 +44,36 @@ class Solution():
 		"""
 
 		#constarints case 
-
+		
 		#if sum is grater than all 
 		if sum(nums) < target :
 
-			return 0 
+			return 0
+
+		#vars 
+		min_len = float("inf")
+		queue = [] 
+		running_sum = 0 
+
+		for i in range(len(nums)) :
+
+			running_sum += nums[i]
+
+			while running_sum >= target :
+
+				min_len = min(len(queue), min_len)
+
+				val = queue.pop()
+
+				running_sum = running_sum - val
+
+		return min_len
 
 
-		#if all sum is equal 
-		if sum(nums) == target :
 
-			return len(nums)
 
-		
+
+
 
 
 
@@ -72,6 +81,10 @@ class Solution():
 
 
 nums2 = [12,28,83,4,25,26,25,2,25,25,25,12]
+
+
+#sorted [2, 4, 12, 12, 25, 25, 25, 25, 25, 26, 28, 83]
+
 
 target2 = 213
 
