@@ -37,6 +37,9 @@ app the elemnt and pop the array as soon as sum get's less then add more
 
 
 class Solution():
+	"""
+	passes leet code
+	"""
 
 	def minSubArrayLen(self, target ,nums ) :
 		"""
@@ -51,23 +54,24 @@ class Solution():
 			return 0
 
 		#vars 
+
 		min_len = float("inf")
+
 		queue = [] 
-		running_sum = 0 
+
+		l , running_sum = 0 , 0  
 
 		for i in range(len(nums)) :
 
 			running_sum += nums[i]
 
-			queue.append(nums[i])
+			while running_sum >= target :
 
-			while queue and running_sum >= target :
+				min_len = min(i - l + 1 , min_len)
 
-				min_len = min(len(queue), min_len)
+				running_sum -= nums[l]
 
-				val = queue.pop(0)
-
-				running_sum = running_sum - val
+				l += 1 
 
 		return min_len
 
