@@ -24,7 +24,75 @@ Output: [0,0,9,0,0]
 """
 approach -- 
 
+inp = [1,2,3,4] 
 
+[1,2,6,24] front mul
 
+[24,24,12,4] back mul 
+
+out = [24,12,8,6]
 
 """
+
+from typing import List
+
+class Solution:
+    """
+    passes leetcode
+    """
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        """
+        Make the product of the array except self 
+        """
+
+        #vars 
+        forward_mul = []
+        reverse_mul = []
+        result = []
+
+        mul = 1 
+        
+        #calc the foreard mul
+        for i in nums :
+
+            mul = i * mul
+
+            forward_mul.append(mul)
+
+        mul = 1 
+
+        #calc the backaward mul
+        for i in reversed(nums):
+
+            mul = i * mul
+
+            reverse_mul.append(mul)
+
+        reverse_mul.reverse() #reverse the list again
+       
+        #make the list
+        result.append(reverse_mul[1])
+
+        i = 1 
+
+        while i <= len(nums) - 2 :
+
+            result.append(forward_mul[i-1] * reverse_mul[i+1])
+
+            i +=1
+
+
+        result.append(forward_mul[i-1])
+
+        return result
+
+
+sol = Solution()
+
+print(sol.productExceptSelf([1,2,3,4] ))
+
+
+
+
+
+
