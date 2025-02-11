@@ -59,20 +59,17 @@ class Solution():
 
 			running_sum += nums[i]
 
-			while running_sum >= target :
+			queue.append(nums[i])
+
+			while queue and running_sum >= target :
 
 				min_len = min(len(queue), min_len)
 
-				val = queue.pop()
+				val = queue.pop(0)
 
 				running_sum = running_sum - val
 
 		return min_len
-
-
-
-
-
 
 
 
