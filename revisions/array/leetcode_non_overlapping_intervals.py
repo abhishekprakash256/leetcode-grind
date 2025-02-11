@@ -59,6 +59,9 @@ from typing import List
 
 
 class Solution:
+    """
+    passes leetcode 
+    """
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         """
         The function to remove the minimum number of overlapping intervals
