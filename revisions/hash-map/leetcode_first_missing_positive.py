@@ -58,4 +58,89 @@ class Solution_wrong():
 
                 return i
 
-        return i + 1 
+        return i + 1
+
+
+
+
+"""
+[3,4,-1,1]
+
+[-1,1,3,4]
+
+2 
+
+[100000, 3, 4000, 2, 15, 1, 99999]
+
+[1,2,3,15,4000,99999,100000]
+
+
+"""
+
+
+
+class Solution_wrong():
+
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        """
+        The function to find the first posirtive integer 
+        """
+
+        #constraint case 
+
+        if len(nums) == 1:
+
+            if nums[0] != 1 :
+
+                if nums[0] < 1:
+
+                    return 1 
+
+                else:
+                    return 1 
+            
+            else :
+
+                return 2
+
+        #sort the array 
+        nums.sort()
+
+        counter = 1 
+
+        for i in range(0, len(nums)):
+
+            if nums[i] > 0 :
+
+                if counter != nums[i] :
+
+                    return counter
+
+                counter += 1
+
+        return counter
+
+
+
+
+
+
+class Solution():
+    
+    """
+    passes leet code
+    """
+    def firstMissingPositive(self, nums: List[int]) -> int:
+
+        nums = [n for n in nums if n > 0]
+
+        for n in nums:
+            idx = abs(n) - 1
+            if idx < len(nums) and nums[idx] > 0:
+                nums[idx] *= -1
+        
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                return i + 1
+        
+        return len(nums) + 1
