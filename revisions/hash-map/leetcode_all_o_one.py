@@ -63,6 +63,9 @@ maper = {}
 """
 
 class Node:
+	"""
+	passes leetcode
+	"""
     def __init__(self, freq):
         self.freq = freq
         self.prev = None
