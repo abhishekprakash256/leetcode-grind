@@ -64,6 +64,9 @@ import random
 
 
 class RandomizedSet_slow():
+    """
+    passesd leet code slow soln
+    """
 
     def __init__(self):
 
@@ -117,8 +120,70 @@ class RandomizedSet_slow():
 
 
 
+class RandomizedSet():
+    """
+    fast soln passes leet code in O(1) time
+    """
+
+    def __init__(self):
+
+        self.mapper = {}
+        self.lst = []
+        
+
+    def insert(self, val: int) -> bool:
+        """
+        The function to insert value in the random set
+        """
+        
+        #if the value is present
+        if val in self.mapper :
+
+            return False
+
+        #append in the list
+        self.lst.append(val)
+
+        self.mapper[val] = len(self.lst) - 1 
+
+        return True 
 
 
+
+    def remove(self, val: int) -> bool:
+        """
+        The function to remove the value from the radnom set
+        """
+
+        #if not present in val
+        if val not in self.mapper :
+
+            return False
+
+        #remove the value
+
+        #get the index
+        idx = self.mapper[val]
+
+        #swap the index 
+        self.lst[-1] , self.lst[idx] = self.lst[idx] , self.lst[-1]
+
+        self.mapper[self.lst[idx]] = idx
+
+        #del the value
+        del self.mapper[val]
+
+        self.lst.pop()        
+
+        return True
+    
+
+    def getRandom(self) -> int:
+        """
+        The function to get a random value from the set 
+        """
+
+        return random.choice(self.lst)
 
 
 
