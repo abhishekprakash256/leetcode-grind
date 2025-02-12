@@ -63,7 +63,7 @@ get random give me a number in range(0,len(mapper))
 import random
 
 
-class RandomizedSet:
+class RandomizedSet_slow():
 
     def __init__(self):
 
@@ -109,9 +109,31 @@ class RandomizedSet:
 
         #get the random number 
         random_number = random.randint(0,len(self.mapper)-1)
-        
+
         return list(self.mapper.keys())[random_number]
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
