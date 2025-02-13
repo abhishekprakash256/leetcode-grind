@@ -40,7 +40,23 @@ self.mapper = self.mapper = { 2: "abc" ,3: "def" , 4:"ghi" , 5:"jkl", 6:"mno" , 
 repeation not allowed 
 so start from first all possiblity and move up 
 
+make a reulst arrray 
+
+and add all the possible letters combinations 
+
 """
+
+
+class Solution:
+
+	def _helper_dfs(self,)
+
+    def letterCombinations(self, digits: str) -> List[str]:
+        """
+		The function to make the possible combinations
+        """
+
+        pass
 
 
 
