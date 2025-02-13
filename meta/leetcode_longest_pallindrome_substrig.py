@@ -42,9 +42,12 @@ make a function for checking the pallindrome
 
 and remove elemnet taht is not 
 
+baaabbbbbc - > 
 
 
 """
+
+
 
 class Solution_brute_force():
     """
@@ -85,5 +88,42 @@ class Solution_brute_force():
 
         return result
 
+
+
+
+
+
+
+class Solution:
+    def _expand_center(self, i, j):
+        """
+        Expands around the center and returns the length of the longest palindrome.
+        """
+        while i >= 0 and j <= len(self.s) - 1 and self.s[i] == self.s[j]:  # Order of conditions fixed
+            i -= 1
+            j += 1
+        return j - i - 1  # Length of palindrome
+
+    def longestPalindrome(self, s: str) -> str:
+        """
+        Expand around center approach for longest palindromic substring.
+        """
+        if not s:
+            return ""
+        
+        self.s = s
+        start, end = 0, 0  # Stores the indexes of the longest palindrome
+
+        for i in range(len(s)):
+            odd = self._expand_center(i, i)      # Odd-length palindrome
+            even = self._expand_center(i, i+1)  # Even-length palindrome
+            
+            max_length = max(odd, even)
+
+            if max_length > (end - start):  # Update result if a longer palindrome is found
+                start = i - (max_length - 1) // 2
+                end = i + max_length // 2
+
+        return s[start:end+1]  # Return the longest palindromic substring
 
 
