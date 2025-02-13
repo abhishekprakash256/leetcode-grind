@@ -50,11 +50,11 @@ p = "a"
 
 for char in p :
 
-	if char == "*":
+    if char == "*":
 
-		return True
+        return True
 
-	if char == "." :
+    if char == "." :
 
 
 
@@ -62,9 +62,9 @@ for char in p :
 
 
 class Solution:
-	"""
-	passes leetcode
-	"""
+    """
+    passes leetcode
+    """
     def isMatch(self, s: str, p: str) -> bool:
         m, n = len(s), len(p)
         
