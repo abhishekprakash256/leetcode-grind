@@ -39,7 +39,10 @@ smaller the window as zeros more than k
 
 from typing import List
 
-class Solution_wrong():
+class Solution():
+    """
+    passes leetcode
+    """
 
     def longestOnes(self, nums: List[int], k: int) -> int:
         """
@@ -76,9 +79,8 @@ class Solution_wrong():
                 if nums[l] == 0 :
 
                     curr -= 1 
-                    l +=1 
-
-            curr = 0
+                
+                l +=1 
 
             max_length = max(max_length , i - l + 1)
 
