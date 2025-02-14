@@ -35,7 +35,7 @@ digits[i] is a digit in the range ['2', '9'].
 approach make a hash map :
 
 self.combinatons_lst = []
-self.mapper = self.mapper = { 2: "abc" ,3: "def" , 4:"ghi" , 5:"jkl", 6:"mno" , 7:"pqrs", 8:"tuv", 9:"wxyz"}
+self.mapper = { 2: "abc" ,3: "def" , 4:"ghi" , 5:"jkl", 6:"mno" , 7:"pqrs", 8:"tuv", 9:"wxyz"}
 
 repeation not allowed 
 so start from first all possiblity and move up 
@@ -46,17 +46,69 @@ and add all the possible letters combinations
 
 """
 
+from typing import List
 
 class Solution:
+    """
+    passess leetcode
+    """
+    def __init__(self):
 
-	def _helper_dfs(self,)
+        self.result = []
+        self.mapper = { "2": "abc", "3": "def" , "4":"ghi" , "5":"jkl", "6":"mno" , "7":"pqrs", "8":"tuv", "9":"wxyz"}
+
+    def _helper_dfs(self,idx,word):
+        """
+        The function to make the letter combinations
+        """
+
+        #base case 
+        if idx == len(self.digits) :
+
+            self.result.append(word)
+
+            return
+
+        #make the recursive calls
+        for char in self.mapper[self.digits[idx]] :
+
+            self._helper_dfs(idx + 1 , word + char)
+
+
 
     def letterCombinations(self, digits: str) -> List[str]:
         """
-		The function to make the possible combinations
+        The function to make the possible combinations
         """
 
-        pass
+        self.digits = digits
+
+        #constraint case 
+
+        #if no digit 
+        if not self.digits :
+
+            return self.result
+
+        #vars
+        idx = 0 
+        word = ""
+
+        #make the words
+        self._helper_dfs(idx, word)
+
+        return self.result
+
+
+
+
+
+
+digits = "23"
+
+sol = Solution()
+print(sol.letterCombinations(digits)) 
+
 
 
 
