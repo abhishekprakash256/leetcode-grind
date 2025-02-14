@@ -130,6 +130,82 @@ class Solution_wrong():
 
 
 
+from typing import List, Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    """
+    passes leet code
+    """
+    
+    def _merge_list(self, node1: Optional[ListNode], node2: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        The function to merge two sorted linked lists.
+        """
+
+        # If one of the lists is empty, return the other.
+        if not node1:
+            return node2
+        if not node2:
+            return node1
+
+        # Dummy node to simplify merging.
+        dummy = ListNode(0)
+        curr = dummy
+
+        while node1 and node2:
+            if node1.val < node2.val:
+                curr.next = node1
+                node1 = node1.next
+            else:
+                curr.next = node2
+                node2 = node2.next
+
+            curr = curr.next  # Move forward
+
+        # Append the remaining elements.
+        curr.next = node1 if node1 else node2
+
+        return dummy.next
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        """
+        Merges k sorted linked lists using a divide-and-conquer approach.
+        """
+
+        # Edge case: No lists provided
+        if not lists:
+            return None
+
+        # Edge case: Only one list
+        if len(lists) == 1:
+            return lists[0]
+
+        while len(lists) > 1:
+            
+            merged_lists = []
+
+            # Merge pairs of lists
+            for i in range(0, len(lists), 2):
+                node1 = lists[i]
+                node2 = lists[i+1] if i + 1 < len(lists) else None
+                merged_lists.append(self._merge_list(node1, node2))
+
+            lists = merged_lists  # Update lists with merged ones
+
+        return lists[0]
+
+
+
+
+
+
+
+
 
 
 
