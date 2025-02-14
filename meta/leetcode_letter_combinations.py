@@ -63,7 +63,7 @@ class Solution:
         """
 
         #base case 
-        if idx == len(self.digits) :
+        if len(word) == len(self.digits) :
 
             self.result.append(word)
 
