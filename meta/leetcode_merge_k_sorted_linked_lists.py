@@ -58,7 +58,7 @@ the other traverse
 
 """
 
-class Solution():
+class Solution_wrong():
 
     def _meger_lists(self,node1,node2) :
         """
