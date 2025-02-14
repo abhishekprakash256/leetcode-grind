@@ -74,6 +74,13 @@ class Solution():
 		"""
 		The function to merge the two sorted lists
 		"""
+
 		pass
 
+
+
+
+sol = Solution()
+
+print(sol.mergeTwoLists(root1,root2))
 
