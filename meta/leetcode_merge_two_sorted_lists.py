@@ -47,9 +47,25 @@ def print_list(node):
 		node = node.next
 
 
+def print_list2(node):
+
+	temp = node
+
+	while temp :
+
+		print(temp.val)
+
+		temp = temp.next
+
 print(print_list(root1))
 
 print(print_list(root2))
+
+print(print_list2(root1))
+
+print(print_list2(root2))
+
+
 
 
 class Solution():
