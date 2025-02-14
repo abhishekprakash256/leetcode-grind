@@ -75,12 +75,57 @@ class Solution():
 		The function to merge the two sorted lists
 		"""
 
-		pass
+		#constraint case
 
+		#no node cases
+		if not node1 and node2:
+
+			return None 
+
+		if not node1:
+
+			return node2
+
+		if not node2 :
+
+			return node1
+
+		#make the dummy node 
+		dummy = ListNode(0)
+
+		curr = dummy
+
+		while node1 and node2 :
+
+			if node1.val < node2.val :
+
+				curr.next = node1
+
+				node1 = node1.next
+
+			else :
+
+				curr.next = node2
+
+				node2 = node2.next
+
+			curr = curr.next  # Move forward
+
+		#merge the remain 
+		if node1 :
+
+			curr.next = node1
+
+		if node2 :
+
+			curr.next = node2
+
+		return dummy.next
 
 
 
 sol = Solution()
 
-print(sol.mergeTwoLists(root1,root2))
+res = sol.mergeTwoLists(root1,root2)
 
+print(print_list2(res))
