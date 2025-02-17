@@ -96,6 +96,9 @@ class Solution_wrong:
 
 
 class Solution:
+    """
+    passes leet code
+    """
     def nextPermutation(self, nums: List[int]) -> None:
         """
         Modifies nums in-place to the next lexicographical permutation.
@@ -108,7 +111,7 @@ class Solution:
         # Step 1: Find first decreasing element from the right
 
         i = n - 2
-        
+
         while i >= 0 and nums[i] >= nums[i + 1]:
             i -= 1
 
@@ -127,6 +130,12 @@ class Solution:
             nums[l], nums[r] = nums[r], nums[l]
             l += 1
             r -= 1
+
+
+
+
+
+
 
 
 
