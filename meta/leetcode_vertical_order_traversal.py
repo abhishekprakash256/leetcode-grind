@@ -71,7 +71,7 @@ class Solution:
 
     def __init__(self):
 
-        self.dfs_list = []
+        #self.dfs_list = []
         self.bfs_list = []
         self.result = []
 
@@ -92,27 +92,21 @@ class Solution:
         self.dfs_list.append([node.val,row])
 
 
-    def bfs_traversal(self,node):
+    def bfs_traversal(self, node):
         """
-        The funciton to make the bfs traversal list
+        The function to perform BFS traversal.
         """
-
-        #add the node 
         queue = deque([(node, 0)])
 
-        #make the iter 
-        while queue :
-
-            temp_node , col  = queue.popleft()
+        while queue:
+            temp_node, col = queue.popleft()
 
             self.bfs_list.append([temp_node.val, col])
 
-            if temp_node.left :
+            if temp_node.left:  # Ensures we only enqueue valid nodes
+                queue.append((temp_node.left, col - 1))
 
-                queue.append((temp_node.left, col - 1 ))
-
-            if temp_node.right :
-
+            if temp_node.right:  # Ensures we only enqueue valid nodes
                 queue.append((temp_node.right, col + 1))
 
 
