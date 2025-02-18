@@ -61,36 +61,26 @@ we can do a bfs traveal and get a col cooredinate
 
 combine both and make the last list
 
+[[9, -1], [3, 0], [15, 0], [20, 1], [7, 2]]
+
+if a,b in list :
+
+    if b in self.mapper :
+        self.mapper.appdn()
+
 
 
 """
 
-from collections import deque
+from collections import deque ,defaultdict
 
-class Solution:
+from typing import Optional, List
+
+class Solution_wrong:
 
     def __init__(self):
 
-        #self.dfs_list = []
         self.bfs_list = []
-        self.result = []
-
-
-    def dfs_traversal(self,node,row):
-        """
-        The function to find the dfs traversal
-        """
-        
-        #base case 
-        if not node :
-
-            return
-
-        left = self.dfs_traversal(node.left, row + 1)
-        right = self.dfs_traversal(node.right , row + 1 )
-
-        self.dfs_list.append([node.val,row])
-
 
     def bfs_traversal(self, node):
         """
@@ -122,34 +112,86 @@ class Solution:
 
             return[root.val]
 
-        #make the traversal
-        row = 0 
-        self.dfs_traversal(root, row ) 
-
         #make the bfs traversal
         self.bfs_traversal(root) 
 
         self.bfs_list = sorted(self.bfs_list, key=lambda x: x[1])
 
+        #make the mapper 
+        mapper = defaultdict()
 
-        for node_list in self.bfs_list :
+        for a,b in self.bfs_list :
 
-            temp_lst = []
+            self.mapper[b].append(a)
 
-            for val in node_list :
+        #make the value lists
 
-                temp_lst.append(val)
+        result = list(mapper.values())
 
-            self.result.append(temp_lst)
-
-        return self.result
-
-
+        return result
 
 
 
 
 
+
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    """
+    passes leetcode
+    """
+
+    def __init__(self):
+        self.bfs_list = []
+
+    def bfs_traversal(self, node):
+        """
+        The function to perform BFS traversal.
+        """
+        queue = deque([(node, 0, 0)])  # (node, column, row)
+
+        while queue:
+            temp_node, col, row = queue.popleft()
+
+            self.bfs_list.append([temp_node.val, col, row])
+
+            if temp_node.left:
+                queue.append((temp_node.left, col - 1, row + 1))
+
+            if temp_node.right:
+                queue.append((temp_node.right, col + 1, row + 1))
+
+    def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+        The function to make the vertical traversal possible.
+        """
+        # Base case
+        if not root.left and not root.right:
+            return [[root.val]]  # Fix: Return list of lists
+
+        # Perform BFS traversal
+        self.bfs_traversal(root) 
+
+        # Sort by (column, row, value) to ensure correct ordering
+        self.bfs_list = sorted(self.bfs_list, key=lambda x: (x[1], x[2], x[0]))
+
+        # Group nodes by column
+        mapper = defaultdict(list)
+
+        for val, col, _ in self.bfs_list:
+            mapper[col].append(val)
+
+        # Extract results sorted by column
+        result = [mapper[key] for key in sorted(mapper.keys())]
+
+        return result
 
 
 
