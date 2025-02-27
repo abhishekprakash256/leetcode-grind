@@ -45,7 +45,10 @@ use l and r pointer
 """
 
 
-class Solution_wrong():
+class Solution():
+    """
+    passes leetcode
+    """
     def sortColors(self, nums):
         """
         :type nums: List[int]
@@ -69,18 +72,16 @@ class Solution_wrong():
 
             if nums[l] == 2 :
 
-                print("in")
-
                 nums[l] , nums[r] = nums[r] , nums[l]
 
                 r -= 1 
-
-            l += 1
+            else :
+                l += 1
 
 
         #move the 0s 
 
-        l , r = 0, 1
+        l , r = 0, 0
 
         while r <= len(nums) - 1  :
 
@@ -101,7 +102,7 @@ class Solution_wrong():
 sol = Solution()
 
 
-nums = [2,0,2,1,1,0]
+nums = [2,1,2]
 
 print(sol.sortColors(nums))
 
