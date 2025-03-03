@@ -33,14 +33,56 @@ Constraints:
 """
 approach -- 
 
-when I see 2 I move to back 
+3 colors 
 
-one pass put all twos at back 
+red, white and blue 
 
-second pass put 0 at front 
+0 ,1, 2 
 
-use l and r pointer
+do in place 
 
+first step
+
+take all the zeros and pu in the same place 
+
+second step 
+
+take the 2s and put it in the last 
+
+[1,2,1,0,0]
+
+
+
+use two pinters side by side 
+
+l , r = 0 , 0 
+
+while r <= len(nums) - 1 :
+
+    if nums[r] == 0 :
+
+        nums[r] ,nums[l] = nums[l] , nums[r]
+
+        l += 1 
+
+    r += 1 
+
+
+l , r = len(nums) - 1 , len(nums) - 1 
+
+while l >= 0 :
+
+    if nums[l] == 0 :
+
+        nums[r] , nums[l] = nums[l] , nums[r]
+
+        r -= 1 
+
+    l -= 1 
+
+
+
+[2,1,2]
 
 """
 
@@ -54,49 +96,51 @@ class Solution():
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         """
-        
-        #costairnt case 
+
+        #constraint case 
+
         if len(nums) == 1 :
 
-            return None 
+            return None
 
+        #ptrs 
+        l , r = 0 ,0 
 
-        #move the 2s 
+        #swap the ones 
+        while r <= len(nums) - 1 :
 
-        #ptrs
-        l , r = 0, len(nums) - 1
+            #find the one val 
+            if nums[r] == 0:
 
-        while l <= r :
+                nums[r] , nums[l] = nums[l] , nums[r]
 
-            #find 2 and swap 
-
-            if nums[l] == 2 :
-
-                nums[l] , nums[r] = nums[r] , nums[l]
-
-                r -= 1 
-            else :
-                l += 1
-
-
-        #move the 0s 
-
-        l , r = 0, 0
-
-        while r <= len(nums) - 1  :
-
-            #find the 0s 
-
-            if nums[r] == 0 :
-
-                nums[l] , nums[r] = nums[r] , nums[l]
-
-                l += 1
+                l += 1 
 
             r += 1 
 
+        #ptrs 
+        l , r = len(nums) - 1 , len(nums) - 1
+
+        #swap the 2s 
+
+        while l >= 0 :
+
+            #find the 2 vals 
+            if nums[l] == 2 :
+
+                nums[r] , nums[l] = nums[l] , nums[r]
+
+                r -= 1 
+
+            l -= 1 
 
         return None
+
+        
+
+
+
+
 
 
 sol = Solution()
