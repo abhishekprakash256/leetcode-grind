@@ -54,7 +54,7 @@ store a route in tuple ? with key as true and false
 from typing import List
 
 
-class Solution:
+class Solution_wrong:
 
     def __init__(self):
 
@@ -106,6 +106,76 @@ class Solution:
         temp_combination = ""
 
         return self.helper_dfs(temp_combination)
+
+
+
+class Solution():
+
+    def __init__(self):
+
+        self.memo = {}
+
+    def helper_dfs(self,start):
+        """
+        The helper dfs to find the word exists 
+        """
+
+        #base case 
+
+        if start == len(self.s) :
+
+            return True
+
+        if start in self.memo :
+
+            return self.memo[start]
+
+        #do the dfs calls
+        for word in self.wordDict :
+
+            if self.s.startswith(word, start) :
+
+                if self.helper_dfs(start + len(word)) :
+
+                    self.memo[start] = True
+
+                    return True
+
+        self.memo[start] = False
+        
+        return False
+
+
+
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        """
+        The funcrtion to find the word can be made from the word dict
+        """
+
+        self.s = s
+        self.wordDict = set(wordDict) 
+
+        return self.helper_dfs(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
