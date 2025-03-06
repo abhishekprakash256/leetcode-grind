@@ -110,6 +110,9 @@ class Solution_wrong:
 
 
 class Solution():
+    """
+    passes leetcode
+    """
 
     def __init__(self):
 
@@ -156,19 +159,6 @@ class Solution():
         self.wordDict = set(wordDict) 
 
         return self.helper_dfs(0)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
