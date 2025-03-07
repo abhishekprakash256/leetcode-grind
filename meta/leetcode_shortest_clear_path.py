@@ -98,8 +98,7 @@ class Solution():
 
     					return result
 
-
-    			queue.append([new_x, new_y])
+    				queue.append([new_x, new_y])
 
     		result += 1
 
