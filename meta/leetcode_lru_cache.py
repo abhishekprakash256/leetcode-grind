@@ -28,54 +28,116 @@ class LRUCache:
 
 
 
-make a doubly linked list and use head and tail for the swap 
+mapper has the key and indx of the val in the list 
 
-head most recntly used 
+doubly linked list approach 
 
-tail least used 
+TreeNode
+prev and next 
 
-use a mapper for keeping the values
+LinkedList 
+head and tail 
 
-mapper = {2 : 0 , 1 : 1 }
+swap the head and tail 
+
+update the hash map ? 
 
 
-[2,1]
+
+
+
+
+
+
+
 
 """
+
+class Node():
+    def __init__(self,key , value, prev = None, next = None) :
+
+        self.value = value
+        self.key = key
+        self.prev = prev
+        self.next = next
+
 
 
 
 class LRUCache:
+    """
+    passes leet code
+    """
 
     def __init__(self, capacity: int):
-    	self.mapper = {}
-    	self.capacity = capacity
-    	self.lst = []
+        self.mapper = {}
+        self.capacity = capacity
+        self.head = Node(None,None)  # Dummy head (most recently used)
+        self.tail = Node(None,None)  # Dummy tail (least recently used)
+        self.head.next = self.tail
+        self.tail.prev = self.head
 
+    def _remove_node(self,node):
+        """
+        The function to remove the node
+        """
+        prev_node = node.prev
+        next_node = node.next
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+    def _set_after_head(self,node) :
+        """
+        The function to set the head 
+        """
+        temp_node = self.head.next
+        node.prev = self.head
+        node.next = temp_node
+        temp_node.prev = node
+        self.head.next = node
         
+
 
     def get(self, key: int) -> int:
-    	"""
-		The function to pass to get the key value 
-    	"""
-
-    	#check if the value in mapper :
-
-    	if key in self.mapper :
-
-    		temp_idx = self.mapper[key]
-    		temp_val = self.lst[self.mapper[key]]
-
-    		#update the head 
-    		self.lst[0] , self.lst[self.mapper[key]] = self.lst[self.mapper[key]] , self.lst[0]
-
-    		#update the dict value
-    		self.mapper[key] = 0 
-    		self.mapper[]
+        """
+        The function to pass to get the key value 
+        """
+        
+        #if the key exists in the mapper 
+        if key in self.mapper:
+           
+            node = self.mapper[key]
+            # Move the accessed node to the head (most recently used)
+            self._remove_node(node)
+            self._set_after_head(node)
+            return node.value
         
 
+        return -1
+
+
+
     def put(self, key: int, value: int) -> None:
-    	"""
-		The function to update the key value or put the key value if exists 
-    	"""
+        """
+        The function to update the key value or put the key value if exists 
+        """
+        
+        if key in self.mapper:
+            # Update the value and move node to head
+            node = self.mapper[key]
+            node.value = value
+            self._remove_node(node)
+            self._set_after_head(node)
+
+        else:
+            # Add a new node
+            if len(self.mapper) == self.capacity:
+                # Evict the least recently used node
+                lru_node = self.tail.prev
+                self._remove_node(lru_node)
+                del self.mapper[lru_node.key]
+                
+            new_node = Node(key, value)
+            self._set_after_head(new_node)
+            self.mapper[key] = new_node       
 
