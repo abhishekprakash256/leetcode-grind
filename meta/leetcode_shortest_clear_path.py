@@ -59,6 +59,12 @@ grid[i][j] is 0 or 1
 
 
 """
+
+
+
+
+
+
 from typing import List
 
 from collections import deque
@@ -77,15 +83,15 @@ class Solution():
         #constrinat case 
 
         #the grid is one length
-        n = len(grid)
+        n = len(grid) - 1
 
         # Edge cases
-        if grid[0][0] == 1 or grid[n - 1][n - 1] == 1:
+        if grid[0][0] == 1 or grid[n][n] == 1:
             return -1
 
         #the grid has (0,0) as 1
         # If it's a 1x1 grid and the only cell is 0
-        if n == 1:
+        if n == 0:
 
             return 1
 
@@ -106,14 +112,80 @@ class Solution():
 
                 new_x , new_y  = row + x_dir , col + y_dir
 
-                if 0 <= new_x < n and 0 <= new_y < n and grid[new_x][new_y] == 0 and (new_x,new_y) not in visited:
+                if 0 <= new_x <= n and 0 <= new_y <= n and grid[new_x][new_y] == 0 and (new_x,new_y) not in visited:
 
-                    if new_x == n - 1 and new_y == n - 1 :
+                    if new_x == n and new_y == n :
 
                         return result + 1 
 
                     visited.add((new_x,new_y))
 
                     queue.append((new_x, new_y, result + 1 ))
+
+        return -1  
+
+
+
+
+class Solution_two_loop():
+    """
+    passes leetcode
+    """
+
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        """
+        The function to find the shortest path in a grid 
+        """
+
+        #constrinat case 
+
+        #the grid is one length
+        n = len(grid) - 1
+
+        # Edge cases
+        if grid[0][0] == 1 or grid[n][n] == 1:
+            return -1
+
+        #the grid has (0,0) as 1
+        # If it's a 1x1 grid and the only cell is 0
+        if n == 0:
+
+            return 1
+
+        #make the queue and put first position
+        queue = deque([(0,0)])
+
+        #make the visited set
+        visited = set([(0,0)])
+
+        #result 
+        result = 1 
+
+        dirs = [(-1,0),(-1,-1),(0,-1),(1,0),(0,1),(1,1),(1,-1),(-1,1)]
+
+        #start the itertation 
+        while queue :
+
+            length_queue = len(queue)
+
+            for _ in range(length_queue) :
+
+                row , col , result = queue.popleft()
+
+                for x_dir, y_dir in dirs:
+
+                    new_x , new_y  = row + x_dir , col + y_dir
+
+                    if 0 <= new_x <= n and 0 <= new_y <= n and grid[new_x][new_y] == 0 and (new_x,new_y) not in visited:
+
+                        if new_x == n and new_y == n :
+
+                            return result + 1 
+
+                        visited.add((new_x,new_y))
+
+                        queue.append((new_x, new_y))
+
+            result += 1
 
         return -1  
