@@ -50,7 +50,7 @@ queue = deque()
 aslo the visited 
 
 if grid[row][col] == 0: #then process
-	
+    
 n == grid.length
 n == grid[i].length
 1 <= n <= 100
@@ -65,41 +65,55 @@ from collections import deque
 
 
 class Solution():
+    """
+    passes leetcode
+    """
 
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-    	"""
-		The function to find the shortest path in a grid 
-    	"""
+        """
+        The function to find the shortest path in a grid 
+        """
 
-    	#constrinat case 
-    	if len(grid) == 1 and len(grid[0]) == 1   :
+        #constrinat case 
 
-    		return 0
+        #the grid is one length
+        n = len(grid)
 
-    	#make the queue and put first position
-    	queue = deque([(0,0)])
+        # Edge cases
+        if grid[0][0] == 1 or grid[n - 1][n - 1] == 1:
+            return -1
 
-    	result = 0
+        #the grid has (0,0) as 1
+        # If it's a 1x1 grid and the only cell is 0
+        if n == 1:
 
-    	dirs = [(-1,0),(-1,-1),(0,-1),(1,0),(0,1),(1,1),(1,-1),(-1,1)]
+            return 1
 
-    	#start the itertation 
-    	while queue :
+        #make the queue and put first position
+        queue = deque([(0,0,1)])
 
-    		row , col = queue.popleft()
+        #make the visited set
+        visited = set([(0,0)])
 
-    		for x_dir, y_dir in dirs:
+        dirs = [(-1,0),(-1,-1),(0,-1),(1,0),(0,1),(1,1),(1,-1),(-1,1)]
 
-    			new_x , new_y = row + x_dir , col + y_dir
+        #start the itertation 
+        while queue :
 
-    			if 0 <= new_x <= len(grid) - 1 and 0 <= new_y <= len(grid) - 1 and grid[new_x][new_y] == 0:
+            row , col , result = queue.popleft()
 
-    				if new_x == len(grid) - 1  and new_y == len(grid) - 1 :
+            for x_dir, y_dir in dirs:
 
-    					return result
+                new_x , new_y  = row + x_dir , col + y_dir
 
-    				queue.append([new_x, new_y])
+                if 0 <= new_x < n and 0 <= new_y < n and grid[new_x][new_y] == 0 and (new_x,new_y) not in visited:
 
-    		result += 1
+                    if new_x == n - 1 and new_y == n - 1 :
 
-    	return -1  
+                        return result + 1 
+
+                    visited.add((new_x,new_y))
+
+                    queue.append((new_x, new_y, result + 1 ))
+
+        return -1  
