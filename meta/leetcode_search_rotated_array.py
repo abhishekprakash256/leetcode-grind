@@ -69,39 +69,44 @@ from typing import List
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-    	"""
-    	The fubnction to find the min value in rotated array 
-    	"""
+        """
+        The fubnction to find the min value in rotated array 
+        """
 
-    	#constraint case 
+        #constraint case 
 
-    	if len(nums) == 1 :
+        if len(nums) == 1 :
 
-    		return nums[0]
+            return nums[0]
 
-    	#make the ptrs 
-    	l , r = 0 , len(nums) - 1
+        #ptrs 
+        l , r = 0 , len(nums) - 1 
 
-    	while l < r :
+        m = ( l + r ) // 2 
 
-    		m = (l + r) // 2
+        #edge case 
+        if nums[l] <= nums[m] <= nums[r] :
 
-    		#find the pivot 
-    		if nums[l] < nums[m] :
+            return nums[0] 
 
-    			#run the search here
+        #search the array 
+        while l <= r :
 
+            if nums[l] > nums[r] and l + 1 == r :
 
+                return nums[r]
 
-    		elif nums[m] > nums[r] : 
+            m = ( l + r ) // 2
 
-    			#run the search here 
+            min_val = min(nums[l], nums[r],nums[m])
 
+            if min_val == nums[l] or min_val == nums[m] :
 
-    		elif nums[l] < nums[m] < nums[r] :
+                r = m
 
-    			#run the search here 
+            else :
 
+                l = m 
 
 
 
