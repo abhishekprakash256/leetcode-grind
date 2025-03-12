@@ -75,6 +75,7 @@ class Solution():
         
         # Every single character is a palindrome of length 1
         for i in range(n):
+            
             dp[i][i] = 1
         
         # Check substrings of increasing lengths
