@@ -53,6 +53,9 @@ the interate the list
 
 
 class BSTIterator:
+    """
+    passes leetcode
+    """
 
     def __init__(self, root: Optional[TreeNode]):
 
@@ -107,6 +110,42 @@ class BSTIterator:
 
         if self.i <= len(self.result) - 1 :
 
-            return self.result[self.i]
+            return True
 
         return False
+
+
+
+
+
+class BSTIterator_oprim:
+    """
+    Optimized BST Iterator using a stack (O(h) space).
+    """
+
+    def __init__(self, root: Optional[TreeNode]):
+        self.stack = []
+        self._leftmost_inorder(root)  # Initialize by pushing leftmost nodes
+
+    def _leftmost_inorder(self, node):
+        """
+        Push all leftmost nodes onto the stack.
+        """
+        while node:
+            self.stack.append(node)
+            node = node.left  # Move left
+
+    def next(self) -> int:
+        """
+        Return the next smallest element in the BST.
+        """
+        top_node = self.stack.pop()  # Get the smallest element
+        if top_node.right:  # If there is a right subtree, process it
+            self._leftmost_inorder(top_node.right)
+        return top_node.val
+
+    def hasNext(self) -> bool:
+        """
+        Check if the next smallest element exists.
+        """
+        return len(self.stack) > 0
