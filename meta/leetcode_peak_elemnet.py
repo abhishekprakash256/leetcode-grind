@@ -59,7 +59,7 @@ if nums[m-1] < nums[m] and nums[m] > nums[m + 1 ]:
 """
 
 
-class Solution:
+class Solution_wrong:
     def findPeakElement(self, nums: List[int]) -> int:
         """
         wrong soln
@@ -106,4 +106,123 @@ class Solution:
                 l = m + 1 
 
         return r 
+
+
+
+
+
+"""
+approch -- 
+given out the index of the array 
+
+[1,2,1] -> 1 
+
+[2,3,1,4] -> 3 
+
+[1,2,3,4] -> 4 
+
+binary search --> 
+
+if nums[m-1] < nums[m] and nums[m] > nums[m+1] : 
+
+    return m 
+
+elif l == m and nums[m] > nums[m+1] :
+
+    return l 
+
+elif r == m and nums[m-1] < nums[m] :
+
+    return r 
+
+else : 
+
+    r = m - 1 
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+from typing import List
+
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        """
+        Find a peak element using binary search.
+        """
+
+        # Base case: If there's only one element, return index 0
+        if len(nums) == 1:
+            return 0
+
+        # Binary Search Initialization
+        l, r = 0, len(nums) - 1
+
+        while l < r:
+            m = (l + r) // 2
+
+            # If nums[m] < nums[m+1], move to the right half (possible peak exists)
+            if nums[m] < nums[m + 1]:
+                l = m + 1
+            else:  # Otherwise, move to the left half
+                r = m 
+
+        return l  # l and r will converge to the peak index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
