@@ -58,11 +58,49 @@ abcb , remove 1 gets pallindrome , remove a
 
 
 
-
-
-
-
-
-
-
 """
+
+
+
+class Solution():
+    """
+    passes leetcode
+    """
+
+
+    def longest_palindromic_subsequence(self,s):
+
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        
+        # Every single character is a palindrome of length 1
+        for i in range(n):
+            dp[i][i] = 1
+        
+        # Check substrings of increasing lengths
+        for length in range(2, n + 1):  # length varies from 2 to n
+
+            for i in range(n - length + 1):
+
+                j = i + length - 1  # endpoint of the substring
+                
+                if s[i] == s[j]:  # If first and last characters match
+
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+
+                else:  # Else, we consider the best of either removing left or right character
+                    
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+        
+        return dp[0][n - 1]  # LPS of the entire string
+
+
+    def isValidPalindrome(self,s, k):
+
+        lps_length = self.longest_palindromic_subsequence(s)
+        
+        min_deletions = len(s) - lps_length
+
+        return min_deletions <= k
+
+
