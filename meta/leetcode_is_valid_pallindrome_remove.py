@@ -92,6 +92,8 @@ class Solution():
                 else:  # Else, we consider the best of either removing left or right character
                     
                     dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+
         
         return dp[0][n - 1]  # LPS of the entire string
 
@@ -105,3 +107,12 @@ class Solution():
         return min_deletions <= k
 
 
+
+
+s = "abbababa"
+k = 1
+
+sol = Solution()
+
+
+print(sol.isValidPalindrome(s,k))
