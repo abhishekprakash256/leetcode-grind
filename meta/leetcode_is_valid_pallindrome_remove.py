@@ -31,7 +31,37 @@ s consists of only lowercase English letters.
 
 
 """
+
 approach -- 
+
+how can we break the problem even ? 
+
+abcdeca
+
+
+if one element how much chnage ? 
+
+if two elemnt how much change ? 
+
+if 3 element how much change ? 
+
+till nth element how much change ? 
+
+n = len(nums) - 1 
+
+we create a n X n matrix and put the data
+
+abcb , remove 1 gets pallindrome , remove a
+
+[[a],[ab],[abc],[abcb]]
+
+
+
+
+
+
+
+
 
 
 
