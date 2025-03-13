@@ -35,7 +35,13 @@ and increase the counter for subarray
 
 """
 
-class Solution(object):
+from collections import defaultdict
+
+class Solution():
+    """
+    The function to find the sum 
+    """
+
     def subarraySum(self, nums, k):
         """
         :type nums: List[int]
@@ -53,31 +59,32 @@ class Solution(object):
 
             else :
 
-                return -1
+                return 0
 
-        #ptrs 
-        l = 0 
 
-        count = 0 #array counter 
+        #vars 
+        prefix_sum = 0 
+        mapper = defaultdict(int)
+        mapper[0] = 1  
+        count = 0 
 
-        run_sum = nums[0] #running sum
+        for num in nums :
 
-        #start the loop 
-        for i in range(1,len(nums)) :
+            prefix_sum += num
 
-            if run_sum == k :
+            if (prefix_sum - k) in mapper :
 
-                count += 1 
+                count += mapper[prefix_sum - k]
 
-            run_sum += nums[i]
+            mapper[prefix_sum] += 1 
 
-            while run_sum > k :
-
-                run_sum -= nums[l]
-
-                l += 1
 
         return count
+
+
+
+
+
 
 
 
