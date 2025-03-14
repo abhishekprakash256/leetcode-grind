@@ -182,7 +182,7 @@ class Solution:
 
             return
 
-        #recuriev calls 
+        #recursive calls 
         for i in range(idx,len(self.s)):
 
             temp_str = self.s[idx: i + 1]
@@ -190,6 +190,7 @@ class Solution:
             if self._check_pallindrome(temp_str) :
 
                 self._helper_dfs(i + 1 ,path + [temp_str])
+
 
 
     def partition(self, s: str) -> List[List[str]]:
