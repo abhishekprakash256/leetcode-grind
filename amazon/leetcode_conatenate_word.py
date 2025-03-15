@@ -166,6 +166,79 @@ class Solution:
 
 
 
+class Solution():
+
+    def __init__(self):
+
+        self.memo = {}
+
+
+    def _helper_dfs(self, word):
+        """
+        The funciton to find the words in the list by dfs
+        """
+
+        #base case 
+        if word in self.memo :
+
+            return self.memo[word]
+
+        #make the recursive calls 
+        for i in range(1,len(word)) :
+
+            prefix = word[:i]
+            suffix = word[i:]
+
+            if prefix in self.words and (suffix in self.words or self._helper_dfs(suffix)) :
+
+                self.memo[word] = True
+
+                return True
+
+        
+        self.memo[word] = False
+
+        return False     
+
+
+
+    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
+        """
+        The function to find the concatenated strings in word list
+        """
+
+        self.words = set(words)
+
+
+
+        #constraint case 
+        if len(self.words) == 1:
+
+            return []
+
+        results = [] 
+
+        #make the recursive calls
+        for word in self.words :
+
+            self.words.remove(word)
+
+            if self._helper_dfs(word) :
+
+                results.append(word)
+
+            self.words.add(word)
+
+
+        return results
+
+
+
+
+
+
+
+
 
 
 
