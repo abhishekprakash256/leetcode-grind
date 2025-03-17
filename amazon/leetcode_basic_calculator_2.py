@@ -50,6 +50,9 @@ store the result and calculate
 
 
 class Solution:
+    """
+    wrong solution 
+    """
     def calculate(self, s: str) -> int:
         """
         The function to do the calculation
@@ -72,6 +75,8 @@ class Solution:
 
 
         while r >= 0 :
+
+            print(s[r])
 
             if s[r] not in operator :
 
@@ -98,7 +103,7 @@ class Solution:
 
                 res = int(s[r-1]) + val 
 
-                stack.append(int(res))    
+                stack.append(int(res))
 
 
             elif s[r] == "-" :
@@ -112,5 +117,17 @@ class Solution:
 
             r -= 1
 
-        return stack[0] 
+        return res
+
+
+
+
+
+s = "3+2*2"
+
+
+sol = Solution()
+
+print(sol.calculate(s))
+
 
