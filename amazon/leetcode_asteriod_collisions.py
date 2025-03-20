@@ -48,11 +48,11 @@ approach --
 
 if abs(num[i]) > abs(nums[i+1]) :
 
-	res = nums[i]
+    res = nums[i]
 
 elif abs(nums[i]) == abs(nums[i]) :
 
-	res = nums[i]
+    res = nums[i]
 
 using a stack
 
@@ -64,45 +64,140 @@ negtaive value pop and do calc
 """
 
 
-class Solution:
+class Solution_wrong:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-    	"""
-		The function to find the asteriod that remains 
-    	"""
+        """
+        The function to find the asteriod that remains 
+        """
 
-    	#make the stack
-    	stack = [asteroids[0]]
+        #make the stack
+        stack = [asteroids[0]]
 
-    	#start the stack iter 
-    	for i in range(1,len(asteroids)) :
+        #start the stack iter 
+        for i in range(1,len(asteroids)) :
 
-    		if asteroids[i] > 0 :
+            if asteroids[i] > 0 :
 
-    			stack.append(asteroids[i])
-
-
-    		else :
-
-    			curr_astr = asteroids[i]
-
-    			while curr_astr < 0 :
-
-    				prev_astr = stack.pop()
-
-    				#do the calc 
-    				if abs(prev_astr) > abs(curr_astr) :
-
-    					stack.append(prev_astr)
-
-    					curr_astr = prev_astr
+                stack.append(asteroids[i])
 
 
-    	return stack[0]
+            else :
+
+                curr_astr = asteroids[i]
+
+                while curr_astr < 0 :
+
+                    prev_astr = stack.pop()
+
+                    #do the calc 
+                    if abs(prev_astr) > abs(curr_astr) :
+
+                        stack.append(prev_astr)
+
+                        curr_astr = prev_astr
+
+
+        return stack[0]
 
 
 
-    					
+                        
 
+"""
+
+
+
+Input: asteroids = [5,10,-5]
+Output: [5,10]
+Explanation: The 10 and -5 collide resulting in 10. The 5 and 10 never collide.
+
+Example 2:
+
+Input: asteroids = [8,-8]
+Output: []
+Explanation: The 8 and -8 collide exploding each other.
+
+Example 3:
+
+Input: asteroids = [10,2,-5]
+Output: [10]
+Explanation: The 2 and -5 collide resulting in -5. The 10 and -5 collide resulting in 10.
+"""
+
+
+"""
+approach -- 
+
+[10,2,-5]
+
+make a stack
+
+when see positve append 
+
+when see negative pop the element 
+
+and do the calculation 
+
+curr_asteriod = asterios[i]
+
+if curr_asteriod < 0 :
+
+    while stack or stack[-1] < 0 :
+
+        prev_asteriod = stack.pop()
+
+        #calc 
+
+        if abs(prev_asteriod) > abs(curr_asteriod) :
+
+            stack.append(prev_asteriod)
+
+        else:
+
+            stack.append(curr_asteroid)
+
+
+
+"""
+
+
+
+
+class Solution:
+    """
+    passes leetcode
+    """
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        """
+        Function to find the asteroids that remain after all collisions
+        """
+
+        # Stack to hold surviving asteroids
+        stack = []
+
+        # Loop over the list of asteroids
+        for asteroid in asteroids:
+            # Handle the case where the asteroid is moving right
+            while stack and asteroid < 0 and stack[-1] > 0:
+                # There is a collision
+                top = stack[-1]
+                
+                # If the current asteroid is larger, pop the stack and continue checking
+                if top < -asteroid:
+                    stack.pop()
+                    continue
+                # If both asteroids are of the same size, pop the stack and do not add the new asteroid
+                elif top == -asteroid:
+                    stack.pop()
+                    break
+                # If the current asteroid is smaller, break (it is destroyed)
+                else:
+                    break
+            else:
+                # If no collision or it's a right-moving asteroid, simply add to the stack
+                stack.append(asteroid)
+
+        return stack
 
 
 
