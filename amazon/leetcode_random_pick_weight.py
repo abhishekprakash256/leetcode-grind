@@ -108,21 +108,35 @@ how to do that ?
 
 """
 
+import random
+
 class Solution:
+    """
+    passes leetcode
+    """
 
     def __init__(self, w: List[int]):
         self.w = w 
-        self.mapper = {}
+        self._make_prefix()
 
-
-    def _make_mapper(self):
+        
+    def _make_prefix(self):
         """
         The function to make the mapper
         """
+        self.total = 0 
+        self.prefix_sums = []
+        running_sum = 0
 
+        #make the prefix sum 
         for i in self.w :
 
-            mapper[ i // sum(w)] =  i 
+            running_sum += i
+
+            self.prefix_sums.append(running_sum)
+
+        self.total = running_sum
+
 
         
 
@@ -130,5 +144,42 @@ class Solution:
         """
         The function to get the index from the array 
         """
-        pass
+        
+        #make the ptrs 
+        l , r = 0 , len(self.prefix_sums) - 1 
+
+        #make the random 
+        target = random.uniform(0,self.total)
+
+        #binary search 
+        while l < r :
+
+            m = ( l + r ) // 2
+
+            if self.prefix_sums[m] < target:
+
+                l = m + 1 
+
+
+            else :
+
+                r = m 
+
+        return l 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
