@@ -104,7 +104,7 @@ class Solution:
                 count += 1
 
             # Write the character
-            #chars[write] = char
+            chars[write] = char
             write += 1
 
             # If count > 1, write the count as characters
