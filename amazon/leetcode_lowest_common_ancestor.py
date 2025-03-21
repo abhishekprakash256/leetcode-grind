@@ -22,6 +22,14 @@ Example 3:
 Input: root = [1,2], p = 1, q = 2
 Output: 1
 
+Constraints:
+
+The number of nodes in the tree is in the range [2, 105].
+-109 <= Node.val <= 109
+All Node.val are unique.
+p != q
+p and q will exist in the tree.
+
 """
 
 
@@ -32,4 +40,56 @@ using dfs we get levels ?
 
 we find both and trace path ? 
 
+stack structure ?? 
+
+append the nodes and pop as we found both ? 
+
+
+
+
 """
+
+
+class Solution():
+    """
+    passes leetcode
+    """
+
+    def _helper_dfs(self,node, p , q) :
+        """
+        The function to do the dfs for the node traversal 
+        """
+
+        #base case 
+
+        if not node or node == p or node == q:
+
+            return node
+
+        #left and right calls 
+        left = self._helper_dfs(node.left , p , q )
+
+        right = self._helper_dfs(node.right , p , q )
+
+
+        if left and right:
+
+            return node
+
+
+        if left:
+            return left
+
+        else :
+            return right
+        
+
+
+    def lowestCommonAncestor(self, root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
+        """
+        The function to find the lowest common ancestor
+        """     
+
+        #call the helper function 
+        return self._helper_dfs(root, p , q )
+
