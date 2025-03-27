@@ -36,6 +36,14 @@ so same room can be used
 
 if a larger interval covers the intervals then split into more 
 
+min = 0 
+
+max = 30 
+
+
+
+
+
 
 
 """
