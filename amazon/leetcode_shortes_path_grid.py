@@ -86,6 +86,7 @@ class Solution():
         # Start BFS traversal
         while queue:
             length_queue = len(queue)
+
             for _ in range(length_queue):
 
                 x, y, remaining_k = queue.popleft()
@@ -103,7 +104,7 @@ class Solution():
                     # Boundary check
                     if 0 <= new_x <= rows and 0 <= new_y <= cols:
 
-                        new_k = remaining_k - grid[new_x][new_y]  # Reduce k if obstacle
+                        new_k = remaining_k - grid[new_x][new_y]  # Reduce k if obstacle as 1 will aleady reduce the new_k value
 
                         # Only proceed if we have enough k left and haven't visited this state
                         if new_k >= 0 and (new_x, new_y, new_k) not in visited:
