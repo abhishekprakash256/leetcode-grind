@@ -61,6 +61,26 @@ pop(0)
 pop()
 
 
+
+
+
+1->2->3->4->5
+
+1->2->3<-4<-5
+
+1->5->2->4->3
+
+
+find mid point
+
+rev the linking for the last half 
+
+keep the pointer in the last and first 
+
+then combine alernatively
+
+
+
 """
 
 
@@ -128,31 +148,106 @@ class Solution_wrong:
 
 
 
+"""
+1->2->3->4->5
+
+1->2->3<-4<-5
+
+1->5->2->4->3
+
+
+"""
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
 
 class Solution():
+    """
+    passes leetcode
+    """
 
     def reorderList(self,head) -> None :
         """
         The function to reveres the list 
         """
 
-        #constrraint case 
-        if not node or not node.next or node.next.next:
+        #constraint case of 0 node , 1 node , 2 node 
+        if not head or not head.next or not head.next.next : 
 
-            return None
-
+            return None 
 
         #make the ptrs 
-        fast , slow = head , head
+        slow , fast = head , head
 
-        while fast.next or fast :
+        #find the mid point
+        while fast and fast.next :
 
-            slow = slow.next 
+            slow = slow.next
             fast = fast.next.next
 
-
-        #from the middle rev the list
         
+        #ptrs and divide the list in half
+        curr = slow.next
+        slow.next = None
+
+
+        #rev the linking of the last half 
+        prev = None 
+        while curr :
+
+            nxt_node = curr.next
+
+            curr.next = prev
+
+            prev = curr
+
+            curr = nxt_node
+
+        #ptrs
+        temp1 = head
+        temp2 = prev
+
+        #combine two the halves
+        while temp1 and temp2:
+
+            nxt_node1 , nxt_node2 = temp1.next , temp2.next
+
+            temp1.next = temp2
+
+            if nxt_node1 :
+
+                temp2.next = nxt_node1
+
+            temp1 , temp2 =  nxt_node1, nxt_node2
+
+        return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
