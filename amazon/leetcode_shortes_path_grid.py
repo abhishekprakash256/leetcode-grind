@@ -27,12 +27,77 @@ grid[i][j] is either 0 or 1.
 grid[0][0] == grid[m - 1][n - 1] == 0
 """
 
+
+
 """
+
 shortest path , must be bfs 
 
 remove obstacle 
 
 can remove and can not 
 
+the calcluate the number of moves and keep the min moves 
+
+if found the last point then get the moves 
+
+a recursive decision tree for that ? 
+
+
 """
+from typing import List
+
+from collections import deque
+
+
+class Solution():
+
+	def __init__(self):
+
+		self.min_steps = 0
+
+
+    def shortestPath(self, grid: List[List[int]], k: int) -> int:
+    	"""
+    	Find the shortest solution in grid
+    	"""
+
+    	#constraint case 
+    	if len(grid) == 1 and len(grid[0]) == 1 :
+
+    		if grid[0] == 1 and k >= 1 :
+
+    			return 1 
+
+    		elif grid[0] == 0 :
+
+    			return 1 
+
+    		else :
+
+    			return 0
+
+    	#dims 
+    	rows = len(grid) - 1 
+    	cols = len(grid[0]) - 1
+
+    	#make the traversal dirs
+    	dirs = [[-1,0], [1,0], [0,-1],[0,1]]
+
+    	#queue for points
+    	queue = deque([0,0])
+
+    	steps = 1 
+
+    	#visted points 
+    	visted = set()
+
+    	#start the traversal 
+    	while 
+
+
+
+
+
+
 
