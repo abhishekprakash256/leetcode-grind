@@ -44,56 +44,92 @@ if found the last point then get the moves
 a recursive decision tree for that ? 
 
 
+_helper_bfs should be callable function 
+
+_helper_dfs should be 
+
+
 """
 from typing import List
-
 from collections import deque
 
 
+
+
+
 class Solution():
-
-	def __init__(self):
-
-		self.min_steps = 0
-
-
+    """
+    passes leetcode
+    """
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
-    	"""
-    	Find the shortest solution in grid
-    	"""
+        """
+        Find the shortest path from (0,0) to (m-1, n-1) with at most k obstacle eliminations.
+        """
+        # Edge case: If the grid is just one cell
+        if len(grid) == 1 and len(grid[0]) == 1:
 
-    	#constraint case 
-    	if len(grid) == 1 and len(grid[0]) == 1 :
+            return 0
 
-    		if grid[0] == 1 and k >= 1 :
+        rows, cols = len(grid) -1  , len(grid[0]) - 1
 
-    			return 1 
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Up, Down, Left, Right
 
-    		elif grid[0] == 0 :
+        # BFS Queue: (x, y, remaining k)
+        queue = deque([(0, 0, k)])
 
-    			return 1 
+        visited = set()
 
-    		else :
+        visited.add((0, 0, k))
 
-    			return 0
+        steps = 0  # Number of steps taken
 
-    	#dims 
-    	rows = len(grid) - 1 
-    	cols = len(grid[0]) - 1
+        # Start BFS traversal
+        while queue:
+            length_queue = len(queue)
+            for _ in range(length_queue):
 
-    	#make the traversal dirs
-    	dirs = [[-1,0], [1,0], [0,-1],[0,1]]
+                x, y, remaining_k = queue.popleft()
 
-    	#queue for points
-    	queue = deque([0,0])
+                # Reached the target
+                if x == rows and y == cols :
 
-    	steps = 1 
+                    return steps
 
-    	#visted points 
-    	visted = set()
+                # Explore all directions
+                for dx, dy in directions:
 
-    	#start the traversal 
-    	while 
+                    new_x, new_y = x + dx, y + dy
+
+                    # Boundary check
+                    if 0 <= new_x <= rows and 0 <= new_y <= cols:
+
+                        new_k = remaining_k - grid[new_x][new_y]  # Reduce k if obstacle
+
+                        # Only proceed if we have enough k left and haven't visited this state
+                        if new_k >= 0 and (new_x, new_y, new_k) not in visited:
+
+                            queue.append((new_x, new_y, new_k))
+
+                            visited.add((new_x, new_y, new_k))
+
+            steps += 1  # Increment step count
+
+        return -1  # If no path found
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
