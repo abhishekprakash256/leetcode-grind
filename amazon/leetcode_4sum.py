@@ -34,9 +34,23 @@ Constraints:
 
 
 """
-"""
 
+
+"""
 approach -- 
+
+use one pointer in start and travers the whole array 
+
+Then 3 other points are needed 
+
+recurison ? 
+
+memo for faster approach ? 
+
+tuple for memo 
+
+decision tree but with memo faster ? 
+
 
 
 
