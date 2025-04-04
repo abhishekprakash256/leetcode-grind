@@ -56,3 +56,67 @@ decision tree but with memo faster ?
 
 
 """
+
+
+class Solution_wrong():
+    
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        """
+        The function to find the four sum of the target sum that is given
+        """
+
+        #constraint case length is less
+        if len(nums) <= 3 : 
+
+            return -1
+
+        #constarint case when length is equal
+        if len(nums) == 4 :
+
+            if sum(nums) == target  :
+
+                return nums
+
+        #vars 
+        results = []
+
+        #sort the array
+        nums.sort()
+
+        #start the traversal in both loops 
+        for i in range(len(nums)):
+
+            for j in range(i+1,len(nums)) :
+
+                #start the binary search 
+
+                #ptrs
+                l = j + 1 
+                r = len(nums) - 1 
+
+                while l < r :
+
+                    #sum
+                    curr_sum = nums[i] + nums[j] + nums[l] + nums[r]
+
+                    #mid
+                    m = (l + r) // 2
+
+                    #find the equal elemnents 
+                    if i == j or i == r or l == r or j == r :
+
+                        continue
+
+                    elif curr_sum == target :
+
+                        results.append([nums[i],nums[j],nums[l],nums[r]])
+
+                    elif curr_sum > target :
+
+                        r = m - 1
+
+                    else :
+
+                        l = m + 1
+
+        return results
