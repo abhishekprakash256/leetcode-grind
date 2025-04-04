@@ -41,7 +41,9 @@ src != dst
 
 """
 
+
 """
+
 approach -- 
 
 using a graph problem using bfs we can solve the problem 
@@ -65,4 +67,48 @@ queue can store the k as well
 every neighbour the value will reduce as well
 
 
+
 """
+
+from collections import defaultdict, deque
+from typing import List
+import heapq
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]],
+                          src: int, dst: int, k: int) -> int:
+        # Graph: node -> [(neighbor, price)]
+        graph = defaultdict(list)
+        for u, v, price in flights:
+            graph[u].append((v, price))
+
+        # Priority Queue: (total_price_so_far, current_node, stops_left)
+        heap = [(0, src, k + 1)]
+
+        while heap:
+            cost, node, stops = heapq.heappop(heap)
+
+            if node == dst:
+                return cost
+
+            if stops > 0:
+                for neighbor, price in graph[node]:
+                    heapq.heappush(heap, (cost + price, neighbor, stops - 1))
+
+        return -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
