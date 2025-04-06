@@ -31,7 +31,6 @@ class Solution_recursion():
 			self._helper_dfs(i + 1 , temp_lst + [self.nums[i]])
 		
 
-
 	def main_fun(self,nums):
 		"""
 		The main function to make the combinations lists
@@ -52,6 +51,10 @@ class Solution_recursion():
 
 
 
+
+
+
+
 class Solution_backtracking():
 
 	def __init__(self):
@@ -66,7 +69,6 @@ class Solution_backtracking():
 		self.results.append(temp_lst[:])  #make a copy here
 
 		#base case
-
 		for i in range(idx,len(self.nums)) :
 
 			temp_lst.append(self.nums[i])
