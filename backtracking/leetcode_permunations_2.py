@@ -96,4 +96,50 @@ and pass the index i + 1
 
 """
 
+class Solution:
+
+    def __init__(self):
+
+        self.results = []
+
+    def _helper_dfs(self,idx, permutations):
+        """
+        The helper function to make the permuattaion decision
+        """
+
+        #base case 
+        if len(permutations) == len(self.nums) :
+
+            self.results.append(permutations[:])
+
+            return
+
+
+        #make the recuriosn calls
+        for i in range(idx, len(self.nums)) :
+
+            permutations.append(self.nums[i])
+
+            self._helper_dfs(i+1,permutations)
+
+            permutations.pop()
+
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        """
+        The function to make permutation calls
+        """
+
+        self.nums = nums
+
+        #constraint case 
+        if len(self.nums) == 1 :
+
+            return [self.nums]
+        
+        #make the recusion calls
+        self._helper_dfs(0,[])
+
+        return self.results
+
+
 
