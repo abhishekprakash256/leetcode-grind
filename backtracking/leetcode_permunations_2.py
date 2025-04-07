@@ -38,45 +38,53 @@ using the index to iter
 """
 
 
-class Solution:
+class Solution_wrong:
 
-	def __init__(self):
+    def __init__(self):
 
-		self.results = []
+        self.results = []
 
-	def _helper_dfs(self,idx, permutations) :
-		"""
-		The function to make helper dfs
-		"""
+    def _helper_dfs(self,idx, permutations) :
+        """
+        The function to make helper dfs
+        """
 
-		#base case 
-		if len(permutations) == len(self.nums) :
+        #base case 
+        if len(permutations) == len(self.nums) :
 
-			self.results.append(permutations[:])
+            self.results.append(permutations[:])
 
 
-		#make the permutations
-		for i in range(idx, len(self.nums)) :
+        #make the permutations
+        for i in range(idx, len(self.nums)) :
 
-			permutations.append(self.nums[i])
+            permutations.append(self.nums[i])
 
-			self._helper_dfs(i+1, permutations)
+            self._helper_dfs(i+1, permutations)
 
-			permutations.pop()
+            permutations.pop()
 
 
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-    	"""
-		The function to make the permunations 
-    	"""
+        """
+        The function to make the permunations 
+        """
 
-    	self.nums = nums
+        self.nums = nums
 
-    	#make the constraint case 
-    	if len(self.nums) == 1 :
+        #make the constraint case 
+        if len(self.nums) == 1 :
 
-    		self.results.append(nums)
+            self.results.append(nums)
 
-    		return self.results
+            return self.results
+        
+        #make the recursive funtion calls 
+        self._helper_dfs(0,[])
 
-    	
+        return self.results
+
+
+        
+
+
