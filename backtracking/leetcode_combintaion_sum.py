@@ -95,11 +95,11 @@ class Solution:
 
             self._helper_dfs(i, combinations, total)  
 
-            total -= self.candidates[i]   
+            total -= self.candidates[i]
 
             combinations.pop()
 
-            
+
 
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
 
