@@ -87,4 +87,13 @@ class Solution_wrong:
 
         
 
+"""
+pass the i value and skip that 
+
+sort 
+
+and pass the index i + 1 
+
+"""
+
 
