@@ -96,7 +96,7 @@ and pass the index i + 1
 
 """
 
-class Solution:
+class Solution_wrong2:
 
     def __init__(self):
 
@@ -145,7 +145,7 @@ class Solution:
 
 
 
-class Solution():
+class Solution_worng3():
 
     def __init__(self):
         
@@ -199,4 +199,18 @@ class Solution():
 
         #make the return
         return self.results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
