@@ -143,3 +143,60 @@ class Solution:
 
 
 
+
+
+class Solution():
+
+    def __init__(self):
+        
+        self.results = []
+
+    def _helper_dfs(self,idx,permutations):
+        """
+        The helper function to make the dfs calls with condn
+        """
+
+        #base case
+        if len(permutations) == len(self.nums):
+
+            self.results.append(permutations[:])
+
+            return
+
+        #make the recursive calls
+        for i in range(idx,len(self.nums)) :
+
+            if i > 0 and self.nums[i] == self.nums[i-1] :
+
+                continue
+
+            permutations.append(self.nums[i])
+
+            self._helper_dfs(i+1, permutations)
+
+            permutations.pop()
+
+
+
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        """
+        The function to make permutation calls
+        """
+        self.nums = nums
+
+        self.nums.sort()
+
+        #constraint case 
+        if len(self.nums) == 1 :
+
+            return [self.nums]
+
+        #vars
+        permutations = []
+
+        #make the recursion calls
+        self._helper_dfs(0,permutations)
+
+        #make the return
+        return self.results
+
