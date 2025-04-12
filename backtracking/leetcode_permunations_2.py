@@ -204,6 +204,50 @@ class Solution_worng3():
 
 
 
+from typing import List
+
+class Solution:
+    def __init__(self):
+        self.results = []
+
+    def _helper_dfs(self, used, path):
+        # base case
+        if len(path) == len(self.nums):
+            self.results.append(path[:])  # copy the current path
+            return
+
+        for i in range(len(self.nums)):
+            # Skip used elements
+            if used[i]:
+                continue
+            # Skip duplicates
+            if i > 0 and self.nums[i] == self.nums[i - 1] and not used[i - 1]:
+                continue
+
+            used[i] = True
+            path.append(self.nums[i])
+
+            self._helper_dfs(used, path)
+
+            path.pop()
+            used[i] = False
+
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        self.results = []
+        self.nums = sorted(nums)
+        used = [False] * len(nums)
+
+        self._helper_dfs(used, [])
+
+        return self.results
+
+
+
+
+
+      
+
+
 
 
 
