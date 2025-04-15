@@ -144,7 +144,7 @@ class Solution_wrong:
 
 
 
-class Solution:
+class Solution_wrong2:
 
     def _helper_dfs(self,i,j,search_lst):
         """
@@ -180,8 +180,8 @@ class Solution:
         #make the recursive calls 
         left = self._helper_dfs(i-1,j,search_lst)
         right = self._helper_dfs(i,j+1, search_lst)
-        up = self._helper_dfs(i-1,j, search_lst)
-        down = self._helper_dfs(i+1,j,search_lst)
+        up = self._helper_dfs(i,j-1, search_lst)
+        down = self._helper_dfs(i,j+1,search_lst)
 
         #check for vals
         if left or right or up or down :
@@ -224,4 +224,44 @@ class Solution:
 
         return False
 
-        
+
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        self.board = board
+        self.word = word
+        self.rows = len(board)
+        self.cols = len(board[0])
+
+        for i in range(self.rows):
+            for j in range(self.cols):
+                if self.dfs(i, j, 0):
+                    return True
+        return False
+
+    def dfs(self, i, j, index):
+        # Base cases
+        if index == len(self.word):
+            return True
+        if (i < 0 or i >= self.rows or 
+            j < 0 or j >= self.cols or 
+            self.board[i][j] != self.word[index]):
+            return False
+
+        # Save current character and mark as visited
+        temp = self.board[i][j]
+        self.board[i][j] = '#'
+
+        # Explore all directions
+        found = (
+            self.dfs(i+1, j, index+1) or
+            self.dfs(i-1, j, index+1) or
+            self.dfs(i, j+1, index+1) or
+            self.dfs(i, j-1, index+1)
+        )
+
+        # Restore the original character
+        self.board[i][j] = temp
+
+        return found
