@@ -55,7 +55,9 @@ run a dfs as per grid
 """
 
 
-class Solution:
+from typing import List
+
+class Solution_wrong:
     
     def _helper_dfs(self,i,j,search_lst):
         """
@@ -131,3 +133,95 @@ class Solution:
 
         return False
 
+
+
+
+
+
+
+
+
+
+
+
+class Solution:
+
+    def _helper_dfs(self,i,j,search_lst):
+        """
+        The helper dfs for the search of the word
+        """
+
+        #base case
+
+        #bounds error 
+        if i < 0 or i > self.row - 1 or j < 0 or j > self.col - 1 or self.board[i][j] == 0 :
+
+            return
+ 
+        #if the length is greater 
+        if len(search_lst) > len(self.word) :
+
+            return
+
+        #length is equal
+        if len(search_lst) == len(self.word) :
+
+            if search_lst == self.word :
+
+                return True
+
+        #take the board value
+        temp = self.board[i][j]
+        self.board[i][j] = 0 
+
+        #add the value in the list
+        search_lst.append(temp)
+
+        #make the recursive calls 
+        left = self._helper_dfs(i-1,j,search_lst)
+        right = self._helper_dfs(i,j+1, search_lst)
+        up = self._helper_dfs(i-1,j, search_lst)
+        down = self._helper_dfs(i+1,j,search_lst)
+
+        #check for vals
+        if left or right or up or down :
+
+            return True
+
+        #remove the value
+        search_lst.pop()
+
+        return False
+
+
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        """
+        The function to make to find the word in the board
+        """
+
+        self.board = board
+        self.word = list(word)
+
+        self.row = len(self.board)
+        self.col = len(self.board[0])
+
+        #constraint case 
+        if self.row == 1 and self.col == 1 :
+
+            if self.board[0] == self.word :
+
+                return True
+
+        #make the helper function calls
+        for i in range(self.row) :
+
+            for j in range(self.col) :
+
+                if self._helper_dfs(i,j,[]) :
+
+                    return True
+
+        return False
+
+        
