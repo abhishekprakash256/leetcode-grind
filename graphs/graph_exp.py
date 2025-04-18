@@ -87,15 +87,23 @@ class Graph_Helper():
 		function to make the graph
 		"""
 
-		for node,neighbor in adj_list :
+		nodes = {}
 
-			graph_node = Node(node)
+		for u,v in adj_list :
 
-			neighbors_node = Node(neighbor)
+			if u not in nodes :
 
-			graph_node.neighbors.append(neighbors_node)
+				nodes[u] = Node(u)
 
-		return graph_node
+			if v not in nodes :
+
+				nodes[v] = Node(v)
+
+			nodes[u].neighbors.append(nodes[v])
+
+		#return the smaller or any node 
+		return nodes[min(nodes.keys())]
+
 
 
 	def traverse_graph_dfs(self,node):
@@ -103,18 +111,10 @@ class Graph_Helper():
 		The function to traverse the graph
 		"""
 
-		#baese case 
-		if not node :
+		#base
 
-			return
+		pass
 
-		#print the value 
-		print(node.val)
-
-		#make the dfs calls
-		for neighbor in node.neighbors :
-
-			self.traverse_graph_dfs(neighbor)
 
 
 
