@@ -80,6 +80,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
+
 class Graph_Helper():
 
     def make_graph(self,adj_list):
@@ -162,6 +163,40 @@ def dfs_recursive(node, graph, visited=None, result=None):
     return result
 
 
+def dfs_stack(graph,source):
+    """
+    The function to do the dfs traversal in the graph 
+    """
+
+    #initilaize the stack with a list
+    stack = [source]
+
+    #append the source 
+    visited = set()
+
+    result = []
+
+
+    #start the confition for empty stack
+    while stack:
+        #pop the node
+        node = stack.pop()
+
+        if node not in visited :
+       
+            result.append(node)
+
+            visited.add(node)
+
+            for neighbour in graph[node]:
+
+                if neighbour not in visited:
+                    stack.append(neighbour)
+
+    return result
+
+
+
 
 
 
@@ -169,9 +204,9 @@ adj_list = [[1,2],[2,3],[3,4],[4,1]]
 
 graph_helper = Graph_Helper()
 
-graph_node = graph_helper.make_graph(adj_list)
+#graph_node = graph_helper.make_graph(adj_list)
 
-graph_helper.traverse_graph_dfs(graph_node)
+#graph_helper.traverse_graph_dfs(graph_node)
 
 graph = {
     1: [2],
@@ -184,6 +219,8 @@ graph = {
 
 
 print(dfs_recursive(1, graph))
+
+print(dfs_stack(graph, 1 ))
 
 
 
