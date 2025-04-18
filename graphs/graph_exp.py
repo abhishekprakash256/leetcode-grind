@@ -82,38 +82,85 @@ class Node:
 
 class Graph_Helper():
 
-	def make_graph(self,adj_list):
-		"""
-		function to make the graph
-		"""
+    def make_graph(self,adj_list):
+        """
+        function to make the graph
+        """
 
-		nodes = {}
+        nodes = {}
 
-		for u,v in adj_list :
+        for u,v in adj_list :
 
-			if u not in nodes :
+            if u not in nodes :
 
-				nodes[u] = Node(u)
+                nodes[u] = Node(u)
 
-			if v not in nodes :
+            if v not in nodes :
 
-				nodes[v] = Node(v)
+                nodes[v] = Node(v)
 
-			nodes[u].neighbors.append(nodes[v])
+            nodes[u].neighbors.append(nodes[v])
 
-		#return the smaller or any node 
-		return nodes[min(nodes.keys())]
+        #return the smaller or any node 
+        return nodes[min(nodes.keys())]
 
 
 
-	def traverse_graph_dfs(self,node):
-		"""
-		The function to traverse the graph
-		"""
+    def traverse_graph_dfs(self,node, visited = None):
+        """
+        The function to traverse the graph
+        """
 
-		#base
+        #base
+        if not node:
 
-		pass
+            return
+
+        if visited is None:
+
+            visited = set()
+
+        if node.val in visited :
+
+            return
+
+        visited.add(node.val)
+        print(node.val)
+
+
+        for neighbour in node.neighbors :
+
+            self.traverse_graph_dfs(neighbour , visited)
+
+
+
+
+
+
+
+
+
+
+
+
+def dfs_recursive(node, graph, visited=None, result=None):
+
+    if visited is None:
+        visited = set()
+    if result is None:
+        result = []
+
+    if node in visited:
+        return result
+
+    result.append(node)
+    visited.add(node)
+
+    for neighbor in graph.get(node, []):
+        dfs_recursive(neighbor, graph, visited, result)
+
+    return result
+
 
 
 
@@ -124,7 +171,20 @@ graph_helper = Graph_Helper()
 
 graph_node = graph_helper.make_graph(adj_list)
 
-print(graph_helper.traverse_graph_dfs(graph_node))
+graph_helper.traverse_graph_dfs(graph_node)
+
+graph = {
+    1: [2],
+    2: [3],
+    3: [4],
+    4: [1]  # forms a cycle
+}
+
+
+
+
+print(dfs_recursive(1, graph))
+
 
 
 
