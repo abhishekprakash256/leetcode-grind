@@ -97,6 +97,9 @@ root = TreeNode(5, left=node4_left, right=node8)
 
 
 class Solution():
+    """
+    passes leetcode
+    """
 
     def __init__(self):
 
@@ -106,17 +109,18 @@ class Solution():
         """
         The function to recursive node list
         """
+        #add the sum
+        curr_sum += node.val
 
         #base case 
-        if curr_sum > self.targetSum :
 
-            return
+        if not node.left and not node.right :
 
-        if curr_sum == self.targetSum :
+            if curr_sum == self.targetSum :
 
-            self.results.append(node_lst)
+                self.results.append(node_lst + [node.val])
 
-            return
+                return
 
         #make the traversal calls
         if not node:
@@ -125,15 +129,11 @@ class Solution():
 
         if node.left :
 
-            curr_sum += node.val
-
             self._helper_dfs(node.left, node_lst + [node.val] , curr_sum)
 
         if node.right :
 
-            curr_sum += node.val
-
-            self._helper_dfs(node.right, node_lst + [node.val] , curr_sum)
+            self._helper_dfs(node.right, node_lst + [node.val], curr_sum)
 
 
 
@@ -153,10 +153,9 @@ class Solution():
 
             if self.targetSum == root.val :
 
-                return[root.val]
+                return[[root.val]]
 
         #make the helper functin calls
-
         self._helper_dfs(root,[],0)
 
         return self.results
@@ -207,12 +206,23 @@ class Tree_Helper():
 
 
 
-tree_helper = Tree_Helper()
-
-res = tree_helper.dfs_tree_traversal(root)
 
 
-print(res)
+
+
+#tree_helper = Tree_Helper()
+
+#res = tree_helper.dfs_tree_traversal(root)
+
+#print(res)
+
+sol = Solution()
+
+res2 = sol.pathSum(root , 22)
+
+print(res2)
+
+
 
 
 
