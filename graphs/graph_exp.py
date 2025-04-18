@@ -156,7 +156,7 @@ def dfs_recursive(node, graph, visited=None, result=None):
     result.append(node)
     visited.add(node)
 
-    for neighbor in graph.get(node, []):
+    for neighbor in graph[node]:
         dfs_recursive(neighbor, graph, visited, result)
 
     return result
