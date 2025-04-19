@@ -123,7 +123,7 @@ class Solution():
     passes leetcode
     """
 
-    def cloneGraph(self,node):
+    def cloneGraph_dfs(self,node):
         """
         The function to make the clone graph
         """
@@ -168,6 +168,52 @@ class Solution():
                 clone_graph[temp_node].neighbors.append(clone_graph[neighbor])
 
         return clone_graph[node]
+
+
+
+
+    def cloneGraph_bfs(self,node) :
+        """
+        The function to clone the graph using bfs
+        """
+
+        #if no node
+        if not node :
+
+            return None
+
+        #if no neighbor
+        if not node.neighbors :
+
+            return Node(node.val)  
+
+        #make the dict
+        clone_graph = {}
+
+        #make the queue
+        queue = deque([node])
+
+        #add the node 
+        clone_graph[node] = Node(node.val)
+
+        #traverse the graph 
+        while queue :
+
+            temp_node = queue.popleft()
+
+            for neighbor in temp_node.neighbors :
+
+                if neighbor not in clone_graph :
+
+                    clone_graph[neighbor] = Node(neighbor.val)
+
+                    queue.append(neighbor)
+
+
+                clone_graph[temp_node].neighbors.append(clone_graph[neighbor])
+
+
+        return clone_graph[node]    
 
 
 
