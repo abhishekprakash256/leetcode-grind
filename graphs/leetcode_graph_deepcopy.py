@@ -125,8 +125,24 @@ class Solution():
         The function to make the clone graph
         """
 
+        #constraint case 
+
+        #if no node
+        if not node :
+
+            return []
+
+        #if no neighbor
+        if not node.neighbors :
+
+            return Node(node.val)
+
+
         #the clone graph
         clone_graph = {}
+
+        #make the graph node 
+        clone_graph[node] = Node(node)
 
         #visited 
         visited = set()
@@ -134,7 +150,37 @@ class Solution():
         #make the queue
         stack = [node]
 
-        
+        #iter the graph 
+        while stack :
+
+            #pop the node 
+            temp_node = stack.pop()
+
+            if temp_node not in visited :
+
+                visited.add(temp_node)
+
+                #iter the neighbors
+                for neighbor in temp_node.neighbors :
+
+                    if neighbor not in visited :
+
+                        clone_graph[neighbor] = Node(neighbor.val)
+
+                        stack.append(neighbor)
+
+                    clone_graph[temp_node].neighbors.append(clone_graph[neighbor])
+
+        return clone_graph[node]
+
+
+
+
+
+
+
+
+
 
 
 
