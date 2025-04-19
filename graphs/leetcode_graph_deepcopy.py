@@ -220,6 +220,27 @@ class Solution():
 
 
 
+class Solution:
+    def __init__(self):
+        self.mapper = {}
+
+    def _helper_dfs(self, node):
+        if node in self.mapper:
+            return self.mapper[node]
+
+        clone = Node(node.val)
+        self.mapper[node] = clone
+
+        for neighbor in node.neighbors:
+            clone.neighbors.append(self._helper_dfs(neighbor))
+
+        return clone
+
+    def cloneGraph(self, node):
+        if not node:
+            return None
+        return self._helper_dfs(node)
+
 
 
 
