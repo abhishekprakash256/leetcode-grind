@@ -213,7 +213,7 @@ class Solution():
                 clone_graph[temp_node].neighbors.append(clone_graph[neighbor])
 
 
-        return clone_graph[node]    
+        return clone_graph[node]
 
 
 
