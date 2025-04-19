@@ -58,7 +58,7 @@ make a deep copy using the graph
 
 """
 
-from collections import defaultdict
+from collections import defaultdict , deque
 
 
 # Definition for a Node.
@@ -69,7 +69,7 @@ class Node:
 
 
 
-class Solution():
+class Solution_wrong():
 
     self.mapper = defaultdict(list)
     self.copy_mapper = {}
@@ -113,6 +113,50 @@ class Solution():
         for copy_node in self.copy_mapper :
 
             self.copy_mapper[copy_node].neighbors.append()
+
+
+
+
+
+class Solution():
+
+    def cloneGraph(self,node):
+        """
+        The function to make the clone graph
+        """
+
+        #the clone graph
+        clone_graph = {}
+
+        #visited 
+        visited = set()
+
+        #make the queue
+        stack = [node]
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -72,7 +72,7 @@ class Node:
 #make graph 
 
 
-
+from collections import deque
 
 class Node:
     def __init__(self, val = 0, neighbors = None):
@@ -214,6 +214,44 @@ def dfs_stack(node,graph):
 
 
 
+def bfs_graph(node,graph) :
+    """
+    The function to traverse the graph the in bfs
+    """
+
+    visited = set()
+
+    queue = deque([node])
+
+    results = []
+
+    #iter the graph 
+
+    while queue :
+
+        temp_node = queue.popleft()
+
+        if temp_node not in visited :
+
+            results.append(temp_node)
+            visited.add(temp_node)
+
+            for neighbor in graph[temp_node] :
+
+                if neighbor not in visited :
+
+                    queue.append(neighbor)
+
+    return results
+
+
+
+
+
+
+
+
+
 
 
 
@@ -241,6 +279,8 @@ graph = {
 print(dfs_recursive(1, graph))
 
 print(dfs_stack(1,graph ))
+
+print(bfs_graph(1,graph))
 
 
 
