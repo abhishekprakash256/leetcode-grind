@@ -144,56 +144,74 @@ class Graph_Helper():
 
 
 
-def dfs_recursive(node, graph, visited=None, result=None):
+def dfs_recursive(node, graph, visited=None, results=None):
+    """
+    The function to make the recursive dfs calls for tree 
+    """
 
-    if visited is None:
+    #base case 
+    if visited is None :
+
         visited = set()
-    if result is None:
-        result = []
+
+    if results is None:
+        results = []
 
     if node in visited:
-        return result
+        return results
 
-    result.append(node)
+    #add the node
     visited.add(node)
+    results.append(node)
 
-    for neighbor in graph[node]:
-        dfs_recursive(neighbor, graph, visited, result)
+    #make the recursion
+    for neighbor in graph[node] :
 
-    return result
+        if neighbor not in visited :
+
+            dfs_recursive(neighbor, graph, visited, results)
+
+    return results
 
 
-def dfs_stack(graph,source):
+
+
+
+def dfs_stack(node,graph):
     """
     The function to do the dfs traversal in the graph 
     """
 
-    #initilaize the stack with a list
-    stack = [source]
-
-    #append the source 
+    #make the visited 
     visited = set()
 
-    result = []
+    #make the results 
+    results = []
+
+    #make the stack
+    stack = [node]
+
+    #traversal for the graph
+    while stack :
+
+        temp_node = stack.pop()
+
+        if temp_node not in visited :
+
+            results.append(temp_node)
+            visited.add(temp_node)
+
+            for neighbor in graph[temp_node] :
+
+                if neighbor not in visited :
+
+                    stack.append(neighbor)
+
+    return results
 
 
-    #start the confition for empty stack
-    while stack:
-        #pop the node
-        node = stack.pop()
 
-        if node not in visited :
-       
-            result.append(node)
 
-            visited.add(node)
-
-            for neighbour in graph[node]:
-
-                if neighbour not in visited:
-                    stack.append(neighbour)
-
-    return result
 
 
 
@@ -208,6 +226,8 @@ graph_helper = Graph_Helper()
 
 #graph_helper.traverse_graph_dfs(graph_node)
 
+
+
 graph = {
     1: [2],
     2: [3],
@@ -220,7 +240,37 @@ graph = {
 
 print(dfs_recursive(1, graph))
 
-print(dfs_stack(graph, 1 ))
+print(dfs_stack(1,graph ))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
