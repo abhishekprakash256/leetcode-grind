@@ -119,6 +119,9 @@ class Solution_wrong():
 
 
 class Solution():
+    """
+    passes leetcode
+    """
 
     def cloneGraph(self,node):
         """
@@ -130,7 +133,7 @@ class Solution():
         #if no node
         if not node :
 
-            return []
+            return None
 
         #if no neighbor
         if not node.neighbors :
@@ -142,10 +145,7 @@ class Solution():
         clone_graph = {}
 
         #make the graph node 
-        clone_graph[node] = Node(node)
-
-        #visited 
-        visited = set()
+        clone_graph[node] = Node(node.val)
 
         #make the queue
         stack = [node]
@@ -156,20 +156,16 @@ class Solution():
             #pop the node 
             temp_node = stack.pop()
 
-            if temp_node not in visited :
+            #iter the neighbors
+            for neighbor in temp_node.neighbors :
 
-                visited.add(temp_node)
+                if neighbor not in clone_graph :
 
-                #iter the neighbors
-                for neighbor in temp_node.neighbors :
+                    clone_graph[neighbor] = Node(neighbor.val)
 
-                    if neighbor not in visited :
+                    stack.append(neighbor)
 
-                        clone_graph[neighbor] = Node(neighbor.val)
-
-                        stack.append(neighbor)
-
-                    clone_graph[temp_node].neighbors.append(clone_graph[neighbor])
+                clone_graph[temp_node].neighbors.append(clone_graph[neighbor])
 
         return clone_graph[node]
 
