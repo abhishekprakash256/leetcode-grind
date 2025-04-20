@@ -158,6 +158,7 @@ def dfs_recursive(node, graph, visited=None, results=None):
         results = []
 
     if node in visited:
+        
         return 
 
     #add the node
@@ -247,46 +248,41 @@ def bfs_graph(node,graph) :
 
 
 
-def dfs_cycle(node , graph , visited=None, results=None , path = None ):
+def dfs_cycle(node, graph, visited=None, path=None):
     """
-    The function to find the cycle in graph
+    Detects cycle in a directed graph using DFS.
+    Returns True if a cycle is found.
     """
 
-    #base case 
-
-    if visited is None :
+    if visited is None:
 
         visited = set()
 
-    if results is None :
-
-        results = []
-
-    if path is None :
+    if path is None:
 
         path = set()
 
-    if not node :
-
-        return
-
-    if node in visited:
-
-        return 
-
     if node in path:
 
-        return True
+        return True  # cycle found
 
-    #iter the graph
-    if node not in visited :
+    if node in visited:
+        
+        return False  # already processed safely
 
-        for neighbor in graph[node] :
+    #add to path
+    path.add(node)
 
-            #add the node 
-            if neighbor not in visited :
+    for neighbor in graph[node]:
+        if dfs_cycle(neighbor, graph, visited, path):
+            return True
 
-                self.dfs_cycle(neighbor,graph)
+    path.remove(node)
+    visited.add(node)
+
+    return False
+
+
 
 
 
@@ -327,6 +323,15 @@ print(dfs_recursive(1, graph))
 print(dfs_stack(1,graph ))
 
 print(bfs_graph(1,graph))
+
+
+for node in graph:
+    if dfs_cycle(node, graph ):
+        print("Cycle detected")
+        break
+else:
+    print("No cycle")
+
 
 
 
