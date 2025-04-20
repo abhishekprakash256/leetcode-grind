@@ -158,7 +158,7 @@ def dfs_recursive(node, graph, visited=None, results=None):
         results = []
 
     if node in visited:
-        return results
+        return 
 
     #add the node
     visited.add(node)
@@ -243,6 +243,52 @@ def bfs_graph(node,graph) :
                     queue.append(neighbor)
 
     return results
+
+
+
+
+def dfs_cycle(node , graph , visited=None, results=None , path = None ):
+    """
+    The function to find the cycle in graph
+    """
+
+    #base case 
+
+    if visited is None :
+
+        visited = set()
+
+    if results is None :
+
+        results = []
+
+    if path is None :
+
+        path = set()
+
+    if not node :
+
+        return
+
+    if node in visited:
+
+        return 
+
+    if node in path:
+
+        return True
+
+    #iter the graph
+    if node not in visited :
+
+        for neighbor in graph[node] :
+
+            #add the node 
+            if neighbor not in visited :
+
+                self.dfs_cycle(neighbor,graph)
+
+
 
 
 
