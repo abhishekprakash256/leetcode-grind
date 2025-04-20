@@ -26,7 +26,7 @@ prerequisites2 = [[0,10],[3,18],[5,5],[6,11],[11,14],[13,1],[15,1],[17,4]]
 #not - correct solution -----
 
 from collections import defaultdict
-
+    
 class Solution():
 
     def __init__(self):
