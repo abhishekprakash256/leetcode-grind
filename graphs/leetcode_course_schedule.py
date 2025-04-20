@@ -120,11 +120,11 @@ class Solution:
 
         #check the graph for cycle
 
-        for coures in range(numCourses) :
+        for coure in range(numCourses) :
 
-            if coures not in self.visited :
+            if coure not in self.visited :
 
-                if self._check_cycle(coures) :
+                if self._check_cycle(coure) :
 
                     return False
 

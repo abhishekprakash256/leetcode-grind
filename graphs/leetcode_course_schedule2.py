@@ -257,6 +257,88 @@ class Solution():
 
 
 
+class Solution:
+    """
+    passes leet code 
+    """
+
+    def __init__(self):
+
+        self.visited = set()
+        self.graph = defaultdict(list)
+        self.path = set()
+        self.result = []
+
+    def _make_graph(self):
+        """
+        The function to make the graph
+        """
+
+        #travers the graph
+        for u,v in self.prerequisites :
+
+            self.graph[u].append(v)
+            
+
+    def _check_cycle(self,node):
+        """
+        The function to check the cycle in graph
+        """ 
+
+        #base case 
+        if node in self.visited :
+
+            return False
+
+        if node in self.path :
+
+            return True
+
+        #add the node 
+        self.path.add(node)
+
+        for neighbor in self.graph[node] :
+
+            if self._check_cycle(neighbor) :
+
+                return True
+
+        self.path.remove(node)
+
+        self.visited.add(node)
+
+        self.result.append(node)
+
+        return False
+
+
+
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        """
+        The function to check the course can be done
+        """
+
+        self.prerequisites = prerequisites
+
+        #make graph 
+        self._make_graph()
+
+        #check the graph for cycle
+
+        for course in range(numCourses) :
+
+            if course not in self.visited :
+
+                if self._check_cycle(course) :
+
+                    return []
+
+        return self.result
+
+
+
+
+
 
 
 
