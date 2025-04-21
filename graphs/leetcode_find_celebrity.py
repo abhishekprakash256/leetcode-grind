@@ -230,3 +230,88 @@ class Solution:
         return candidate
 
 
+
+
+
+class Solution:
+    def findCelebrity(self, n: int) -> int:
+        """
+        The function to make find the celebrity 
+        """
+
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
