@@ -61,7 +61,7 @@ form collections import defaultdict
 
 from collections import defaultdict
 
-class Solution:
+class Solution_Wong:
 
     def __init__(self):
 
