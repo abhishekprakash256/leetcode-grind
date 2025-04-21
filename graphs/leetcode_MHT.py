@@ -59,44 +59,83 @@ sort and give out the least values
 form collections import defaultdict
 
 
+from collections import defaultdict
+
 class Solution:
 
-	def __init__(self):
+    def __init__(self):
 
-		self.visited = set()
-		self.graph = defaultdict(list)
+        self.graph = defaultdict(list)
+        self.height_mapper = defaultdict(list)
 
-	def _make_graph(self,edges) :
-		"""
-		The function to make the graph
-		"""
+    def _make_graph(self,edges) :
+        """
+        The function to make the graph
+        """
 
-		#traverse the edge list
-		for u,v in edges :
+        #traverse the edge list
+        for u,v in edges :
 
-			self.graph[u].append(v)
-			self.graph[v].append(u)
-
-
-	def _helper_dfs(self,node,height):
-		"""
-		The function to traverse the tree in dfs and get the height 
-		"""
-
-		#base case 
-		if node in self.visited :
-
-			return
-
-		if 
+            self.graph[u].append(v)
+            self.graph[v].append(u)
 
 
+    def _helper_dfs(self,node):
+        """
+        The function to traverse the tree in dfs and get the height 
+        """
 
+        #visited 
+        visited = set()
+
+        #make the stack 
+        stack = [node]
+
+        height = 0 
+
+        #traverse the tree
+        while stack :
+
+            temp_node = stack.pop()
+
+            if temp_node not in visited :
+
+                visited.add(temp_node)
+
+                for neighbor in self.graph[temp_node] :
+
+                    if neighbor not in visited :
+
+                        stack.append(neighbor)
+
+                height += 1
+
+        return (height , node) 
 
 
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
-    	"""
-		The function to find the min height of the trees 
-    	"""
+        """
+        The function to find the min height of the trees 
+        """
+
+        #constraint case 
+        if n == 1 :
+
+            return 1 
+
+        #make the graph 
+        self._make_graph(edges)
+
+        #traverse the graph
+        for node in self.graph :
+
+            height , node = self._helper_dfs(node)
+
+            self.height_mapper[height].append(node)
+
+        #sort the mapper
+        sorted_mapper = sorted(self.height_mapper)
+
+        return sorted_mapper  #get the first values
 
 
