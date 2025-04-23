@@ -61,7 +61,7 @@ form collections import defaultdict
 
 from collections import defaultdict
 
-class Solution_Wong:
+class Solution_Wrong:
 
     def __init__(self):
 
@@ -137,5 +137,65 @@ class Solution_Wong:
         sorted_mapper = sorted(self.height_mapper)
 
         return sorted_mapper  #get the first values
+
+
+
+
+class Solution():
+
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        """
+        The function to find the min height node of the tree
+        """
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
