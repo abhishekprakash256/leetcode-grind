@@ -55,9 +55,9 @@ for the base case we can keep the bounds and marking
 
 
 """
+from typing import List
 
-
-class Solution:
+class Solution_Worng:
 
     def __init__(self):
 
@@ -131,9 +131,9 @@ class Solution:
 
 
 
-from typing import List
 
-class Solution:
+
+class Solution_gpt:
 
     def __init__(self):
         self.max_count = 0
@@ -170,6 +170,92 @@ class Solution:
                 self.max_count = max(self.max_count, self._helper_dfs(i, j, dp))
 
         return self.max_count
+
+
+
+class Solution():
+
+    def __init__(self):
+
+        self.max_count = 0
+        self.directions = [[-1,0], [1,0],[0,-1],[0,1]]
+
+
+    def _helper_dfs(self,i,j,count):
+        """
+        The function to traverse the matrix in dfs
+        """
+
+        #base case 
+
+        if i < 0 or i > self.row - 1 or j < 0 or j > self.col - 1 or self.matrix[i][j] == "#" :
+
+            return
+
+        #mark the matrix
+        temp = self.matrix[i][j]
+
+        self.matrix[i][j] = "#"
+
+        for dx, dy in self.directions :
+
+            new_x , new_y = i + dx , j + dy
+
+            #check the condn 
+
+            if 0 <= new_x <= self.row - 1 and 0 <= new_y <= self.col - 1 and self.matrix[i][j] < self.matrix[new_x][new_y] :
+
+                count += 1
+
+                self.matrix[i][j] = temp
+
+                self._helper_dfs(new_x , new_y , count)
+                        
+                self.max_count = max(self.max_count , count)
+
+
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        """
+        The function to find the longest increasing sequence in the matrix
+        """
+
+        self.matrix = matrix
+        self.row = len(self.matrix)
+        self.col = len(self.matrix[0])
+
+
+        #constraint case 
+        if not self.matrix or len(self.matrix) == 1:
+
+            return 0 
+
+        #traverese the matrix
+        for i in range(self.row) :
+
+            for j in range(self.col) :
+
+                count = 0
+
+                self._helper_dfs(i, j , count)
+
+        return self.max_count 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
