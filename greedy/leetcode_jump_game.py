@@ -46,19 +46,18 @@ if jump < 0 :
     return False
 
 
-jump = 0 
-max_jump = 0 
 
+max_jump = 0 
 
 for i in nums :
 
-    if jump < 0 :
+    if max_jump < 0 :
 
         return False
 
     max_jump = max(max_jump , i)
 
-    jump = max_jump - 1
+    max_jump -= 1
 
 
 return True
