@@ -173,7 +173,7 @@ class Solution_gpt:
 
 
 
-class Solution():
+class Solution_wrong2():
 
     def __init__(self):
 
@@ -242,6 +242,69 @@ class Solution():
 
 
 
+
+class Solution():
+    """
+    passes leetcode
+    """
+
+    def __init__(self):
+
+        self.max_count = 0
+        self.directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+    def _helper_dfs(self,i , j) :
+        """
+        The function to traverse the matrix in using dfs
+        """
+
+        #base case 
+        if self.memo[i][j] != -1:
+
+            return self.memo[i][j]
+
+        max_length = 1 
+
+        #travesre the matrix 
+        for dx , dy in self.directions :
+
+            new_x , new_y = i + dx , j + dy
+
+            if 0 <= new_x < self.row and 0 <= new_y < self.col and self.matrix[new_x][new_y] > self.matrix[i][j] :
+
+                length = 1 + self._helper_dfs(new_x, new_y)
+
+                max_length = max(max_length, length)
+
+        self.memo[i][j] = max_length
+
+        return max_length
+
+
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        """
+        The function to find the longest increasing sequence in the matrix
+        """
+
+        if not matrix and len(matrix) == 1:
+
+            return 0
+
+        self.matrix = matrix
+        self.row = len(self.matrix)
+        self.col = len(self.matrix[0])
+
+        self.memo = [[-1 for _ in range(self.col)] for _ in range(self.row)]
+
+
+        for i in range(self.row) :
+
+            for j in range(self.col) :
+
+                self.max_count = max(self.max_count , self._helper_dfs(i,j))
+
+
+        return self.max_count
 
 
 
