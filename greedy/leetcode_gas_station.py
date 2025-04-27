@@ -50,7 +50,6 @@ n == gas.length == cost.length
 
 
 """
-
 approch --
 
 
