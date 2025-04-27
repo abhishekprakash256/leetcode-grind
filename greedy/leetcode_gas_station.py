@@ -89,7 +89,7 @@ if equal any one the first one
 from typing import List
 
 
-class Solution:
+class Solution_wrong:
 
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
         """
@@ -134,8 +134,38 @@ class Solution:
 
 
 
+class Solution():
+    """
+    The solution passes leetcode
+    """
 
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        """
+        The function to check the gas station can be completed or not
+        """
 
+        #constrinat case
+        if sum(gas) - sum(cost) < 0 :
+
+            return -1
+
+        #vars 
+        curr_gas = 0
+
+        start = 0
+
+        for i in range(len(gas)) :
+
+            curr_gas += gas[i] - cost[i]
+
+            if curr_gas < 0 :
+
+                curr_gas = 0 
+                start = i + 1
+
+        return start
+
+        
 
 
         
