@@ -52,8 +52,135 @@ n == gas.length == cost.length
 """
 approch --
 
+gas = [1,2,3,4,5]
+
+cost = [3,4,5,1,2]
 
 
+1-3 = -2
+2-4 = -2
 
+3-5 = -2
+
+4-1 = 3
+5-2 = 3
+
+sum is 0 
+
+2-3 = -1
+3-4 = -1
+4-3 = 1
+
+sum = -1
+
+
+if sum is -ve no full round
+
+we have to alwsy start from +ve
+
+but which ? 
+
+greedy the max one ? 
+
+if equal any one the first one 
 
 """
+
+from typing import List
+
+
+class Solution:
+
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        """
+        The function to find the start index of the car for move
+        """
+
+        #constraint case 
+        if len(gas) == 1 and len(cost) == 1 :
+
+            return 0
+
+        #check the traversal is possile 
+        cost_val = 0
+
+        #dict for storing the cost
+        mapper = {}
+
+        #cal the cost
+        for i in range(len(cost)) :
+
+            cost_val += gas[i] - cost[i]
+   
+            mapper[i] = gas[i] - cost[i]
+
+        #check the cost if -ve or pos 
+        if cost_val < 0 :
+
+            return -1
+
+        #sort the mapper 
+        sorted_mapper = sorted(mapper.items(), key=lambda item: item[1] , reverse=True)
+
+        # Now get first key
+        first_key = sorted_mapper[0][0]
+
+        #return the first key
+        return first_key
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
