@@ -84,5 +84,109 @@ class Solution_Wrong:
 
 
 
+class Solution_Wrong():
+    """
+    Wrong Solution
+    """
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        """
+        The function to find the meeting rooms needed
+        """
+
+        #constarint case 
+        if len(intervals) == 1 :
+
+            return 
+
+
+        #the list
+        start_lst = []
+        end_lst = []
+
+        #vars
+        count = 0 
+        res = 0
+        i = 0
+
+
+        #iter the list and append the values
+        for start, end in intervals :
+
+            start_lst.append(start)
+            end_lst.append(end)
+
+        #sort the list
+        start_lst.sort()
+        end_lst.sort()
+
+        #compare the time 
+        while i < len(intervals) :
+
+            if start_lst[i] < end_lst[i] :
+
+                count += 1
+
+            else :
+
+                count -= 1
+
+
+            res = max(count, res)
+            i += 1
+
+        return res
 
         
+
+
+
+class Solution():
+    """
+    passes leetcode
+    """
+
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        """
+        The function to find the meeting roorm rquired
+        """
+
+        #constraint case
+        if len(intervals) == 1 :
+
+            return 1
+
+        #make the list 
+        start_lst = []
+        end_lst = []
+
+        #apend in the list
+        for start, end in intervals :
+
+            start_lst.append(start)
+            end_lst.append(end)
+
+        #sort the array
+        start_lst.sort()
+        end_lst.sort()
+
+        #make the ptrs
+        s , e = 0 , 0 
+        count , res = 0 , 0  
+
+        #iter the values
+        while s < len(intervals) :
+
+            if start_lst[s] < end_lst[e] :
+
+                s += 1
+                count += 1 
+
+            else :
+
+                e += 1
+                count -= 1
+
+            res = max(res, count)
+
+        return res
+                
