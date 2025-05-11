@@ -87,7 +87,7 @@ class Solution_wrong:
 
 
 
-class Solution_wrong():
+class Solution_wrong2():
     """
     The function works for removal of duplicate but lexical order is not preserved
         
