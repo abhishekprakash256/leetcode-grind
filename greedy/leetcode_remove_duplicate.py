@@ -81,3 +81,100 @@ class Solution_wrong:
             length = len(s_list)
 
         return ' '.join(s_list)
+
+
+
+
+
+
+class Solution_wrong():
+    """
+    The function works for removal of duplicate but lexical order is not preserved
+        
+    """
+
+    def removeDuplicateLetters(self, s: str) -> str:
+        """
+        The function to remove the duplicate letters
+        """
+
+        #constraint case 
+        #if length is 1 
+
+        if len(s) == 1 :
+
+            return s
+
+        #make the list
+        s_list = list(s)
+
+        #dict for values
+        mapper = {}
+
+        #ptrs
+        i = 0
+
+        #get the length of the string
+        length = len(s) -1 
+
+        #start the loop
+        while i <= length :
+
+            print(i)
+
+            #check if equal
+            if s_list[i] not in mapper :
+
+                mapper[s[i]] = True
+
+                i += 1 
+
+            else :
+
+                del s_list[i]
+            
+            length = len(s_list) - 1 
+
+        return "".join(s_list)
+
+
+
+s = "cbacdcbc"
+
+sol = Solution()
+
+res = sol.removeDuplicateLetters(s)
+
+print(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
