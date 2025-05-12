@@ -72,8 +72,9 @@ while val > limit :
 
 """
 
+from typing import List
 
-class Solution:
+class Solution_slow:
 
     def longestSubarray(self, nums: List[int], limit: int) -> int:
         """
@@ -101,20 +102,22 @@ class Solution:
         #start the iter 
         while r <= length :
 
+            #print(max_value)
+            #print(nums[r])
+
             max_value = max(max_value , nums[r])
             min_value = min(min_value , nums[r])
 
             diff = abs(max_value - min_value)
 
             #if the value if greater
-            while diff > limit :
-
-                l += 1 
-
-                max_value = max_value (max_value , nums[l])
-                min_value = min_value(max_value , nums[l])
-
+            while diff > limit and l < r:
+                l += 1
+                window = nums[l:r+1]
+                max_value = max(window)
+                min_value = min(window)
                 diff = abs(max_value - min_value)
+
 
 
             #chek if the diff get the condn
@@ -128,7 +131,15 @@ class Solution:
         return max_length
 
 
+
             
+
+nums = [8,2,4,7]
+limit = 4
+
+sol = Solution()
+
+print(sol.longestSubarray(nums, limit))
 
 
         
