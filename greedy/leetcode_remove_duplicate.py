@@ -139,6 +139,60 @@ class Solution_wrong2():
 
 
 
+
+
+
+
+class Solution():
+
+    def removeDuplicateLetters(self, s: str) -> str:
+        """
+        The function to remove the letters and keep the string in lexiacl order
+        """
+
+        #constraint case 
+        if len(s) == 1 :
+
+            return s
+
+
+        #make the dict
+        mapper = {}
+
+        #get the last occurance
+        for i,c in enumerate(s) :
+
+            mapper[c] = i
+
+        #make the stack and set
+        stack = []
+        seen = set()
+
+        #loop over the string 
+        for i,c in enumerate(s) :
+
+            if c not in seen :
+
+                while stack and c < stack[-1] and i < mapper[stack[-1]] :
+
+                    removed = stack.pop()
+                    seen.remove(removed)
+
+                stack.append(c)
+                seen.add(c)
+
+        return "".join(stack) 
+
+
+
+
+
+
+
+
+
+
+
 s = "cbacdcbc"
 
 sol = Solution()
