@@ -46,7 +46,7 @@ from typing import List
 
 
 class Solution:
-	def sortedSquares(self, nums: List[int]) -> List[int]:
+	def sortedSquares_brute(self, nums: List[int]) -> List[int]:
 		"""
 		The function to get the sorted array of the sqaures of the orginial 
 		"""	
@@ -65,6 +65,15 @@ class Solution:
 		#return the res
 		return res
 
+
+
+	def sortedSquares(self,nums):
+		"""
+		The function to get the sorted array of the squares of the original
+		"""
+
+		#get the results 
+		
 
 
 
