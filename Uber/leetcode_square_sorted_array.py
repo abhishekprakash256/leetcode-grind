@@ -41,6 +41,40 @@ could you find an O(n) solution using a different approach?
 
 """
 
+
+"""
+
+[-7,-3,2,3,11]
+
+49,9,4,6,121 
+
+
+
+- compare the abs value -- 
+- move the pointer to left to right 
+- greater value swap and move the right poniter 
+
+if abs(left) greater than abs(right) , swap move the right poniter  
+
+else move right , euqal move the right 
+
+
+
+3,-3,2,7,11
+
+2,-3,3,7,11
+
+
+
+
+
+
+
+
+"""
+
+
+
 from typing import List
 
 
@@ -72,8 +106,50 @@ class Solution:
 		The function to get the sorted array of the squares of the original
 		"""
 
-		#get the results 
-		
+		#ptrs
+		l , r = 0 ,len(nums) - 1
+
+		#sawp tthe array
+		while l <= r :
+
+			if abs(nums[l]) > abs(nums[r]) :
+
+				nums[l] , nums[r] = nums[r] , nums[l]
+
+				l += 1
+
+			else :
+
+				r -= 1
+
+		#square the elments 
+		for i in range(0,len(nums)) :
+
+			nums[i] = nums[i]*nums[i]
+
+		return nums
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	nums = [-7,-3,2,3,11]
+
+	res = sol.sortedSquares(nums)
+
+
+	#print
+	print(res)
 
 
 
