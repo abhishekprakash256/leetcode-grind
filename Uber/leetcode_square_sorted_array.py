@@ -48,25 +48,21 @@ could you find an O(n) solution using a different approach?
 
 49,9,4,6,121 
 
+[4,9,9,49,121]
+
+compare the values --> 
+
+left and right compare the abs value
+
+where ever is less we move that pointer 
 
 
-- compare the abs value -- 
-- move the pointer to left to right 
-- greater value swap and move the right poniter 
-
-if abs(left) greater than abs(right) , swap move the right poniter  
-
-else move right , euqal move the right 
-
-
-
-3,-3,2,7,11
-
-2,-3,3,7,11
+untill mid clashse 
 
 
 
 
+[-4,-1,0,3,10]
 
 
 
@@ -101,34 +97,25 @@ class Solution:
 
 
 
-	def sortedSquares(self,nums):
-		"""
-		The function to get the sorted array of the squares of the original
-		"""
+    def sortedSquares(self, nums):
+        """
+        Returns a sorted array of the squares of the elements from the input array.
+        """
+        n = len(nums)
+        result = [0] * n
+        left, right = 0, n - 1
+        pos = n - 1  # Fill from the end
 
-		#ptrs
-		l , r = 0 ,len(nums) - 1
+        while left <= right:
+            if abs(nums[left]) > abs(nums[right]):
+                result[pos] = nums[left] ** 2
+                left += 1
+            else:
+                result[pos] = nums[right] ** 2
+                right -= 1
+            pos -= 1
 
-		#sawp tthe array
-		while l <= r :
-
-			if abs(nums[l]) > abs(nums[r]) :
-
-				nums[l] , nums[r] = nums[r] , nums[l]
-
-				l += 1
-
-			else :
-
-				r -= 1
-
-		#square the elments 
-		for i in range(0,len(nums)) :
-
-			nums[i] = nums[i]*nums[i]
-
-		return nums
-
+        return result
 
 
 
