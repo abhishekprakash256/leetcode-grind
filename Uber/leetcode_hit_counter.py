@@ -5,9 +5,9 @@ Your system should accept a timestamp parameter (in seconds granularity), and yo
 
 Implement the HitCounter class:
 
-    HitCounter() Initializes the object of the hit counter system.
-    void hit(int timestamp) Records a hit that happened at timestamp (in seconds). Several hits may happen at the same timestamp.
-    int getHits(int timestamp) Returns the number of hits in the past 5 minutes from timestamp (i.e., the past 300 seconds).
+	HitCounter() Initializes the object of the hit counter system.
+	void hit(int timestamp) Records a hit that happened at timestamp (in seconds). Several hits may happen at the same timestamp.
+	int getHits(int timestamp) Returns the number of hits in the past 5 minutes from timestamp (i.e., the past 300 seconds).
 
 
 """
@@ -49,38 +49,38 @@ and give the top -300s results total counter number
 
 """
 
+
+from collections import deque
+
 class HitCounter:
 
-    def __init__(self):
+	def __init__(self):
 
-    	self.hit_mapper = {}
-        
+		self.queue = deque()
+		
 
-    def hit(self, timestamp: int) -> None:
-    	"""
+	def hit(self, timestamp: int) -> None:
+		"""
 		the function to store the hits
-    	"""
+		"""
 
-    	#if the value is not in the hit mapper 
-    	if timestamp not in self.hit_mapper:
+		self.queue.append(timestamp)
 
-    		self.hit_mapper[timestamp] = 1
+	def getHits(self, timestamp: int) -> int:
+		"""
+		function to get the number of hits
+		"""
 
-    	#if the value in the hit mapper
-    	self.hit_mapper[timestamp] = self.hit_mapper[timestamp] + 1
+		counter = 0 
 
-    	#sort the hit_mapper
-        
+		while self.queue and timestamp - self.queue[0] >= 300 :
 
-    def getHits(self, timestamp: int) -> int:
-    	"""
-		function to get the hits
-    	"""
+			self.queue.popleft()
 
-    	last_timestamp = timestamp - 300
+			counter += 1 
 
-    	#find all the last till 300
-    	
+		return len(self.queue)
+
 
 
 
