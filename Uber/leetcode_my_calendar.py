@@ -95,14 +95,13 @@ class MyCalendar:
 	The optim soln
 	"""
     def __init__(self):
+
         self.start_events = SortedList()
         self.end_events = SortedList()
 
     def book(self, start: int, end: int) -> bool:
 
-
         left = bisect_right(self.end_events, start)
-
 
         right = bisect_left(self.start_events, end)
 
@@ -111,8 +110,9 @@ class MyCalendar:
             # add book
             self.start_events.add(start)
             self.end_events.add(end)
-            
+
             return True
+            
         else: return False
 
 
