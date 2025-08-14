@@ -71,19 +71,24 @@ class Solution:
 		nums.sort()
 
 		#iter to change the -ve values
-		for i in range(k) :
+		i = 0
 
-			#print(nums[i])
+		while i < len(nums) and k > 0 and nums[i] < 0 :
 
-			if nums[i] == 0 :
+			nums[i] = -nums[i]
 
-				continue
+			i += 1 
+			k -= 1 
 
-			else:
+		if k % 2 == 1 :
 
-				nums[i] = -nums[i]
+			nums.sort()
 
-		return sum(nums)
+			nums[0] = -nums[0]
+
+		return sum(nums) 
+
+
 
 
 
