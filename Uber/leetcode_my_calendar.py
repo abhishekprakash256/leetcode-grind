@@ -60,6 +60,8 @@ sort and store
 
 
 """
+from sortedcontainers import SortedList
+
 
 
 class MyCalendar:
@@ -86,7 +88,7 @@ class MyCalendar:
 
 		
 
-from sortedcontainers import SortedList
+
 
 class MyCalendar:
 	"""
@@ -97,12 +99,19 @@ class MyCalendar:
         self.end_events = SortedList()
 
     def book(self, start: int, end: int) -> bool:
+
+
         left = bisect_right(self.end_events, start)
+
+
         right = bisect_left(self.start_events, end)
+
         if left == right:
+
             # add book
             self.start_events.add(start)
             self.end_events.add(end)
+            
             return True
         else: return False
 
