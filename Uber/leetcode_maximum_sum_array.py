@@ -77,9 +77,7 @@ class Solution:
 
 			if nums[i] == 0 :
 
-				print(i)
-
-				pass
+				continue
 
 			else:
 
