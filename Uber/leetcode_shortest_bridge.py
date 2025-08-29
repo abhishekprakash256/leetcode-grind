@@ -42,6 +42,56 @@ Constraints:
 
 The grid is the connection of the 1's that connect to each other vertically or horniontally 
 
+1 Find the islands 
+2. Find the bridge 
+
+1. Find the island  - 
+
+- find the 1 and make bfs search on the traversal to identify the islnd 
+move the up and down and can make an island we can keep the count of the 1's 
+
+
+first find the one of the island then go to the last -- 
+
+when the chnage of the number comes look for another 1 and explore to find the shgortest path using bfs 
+
+we can find the island and exhaust the last points all end coordiantes 
+
+find the other island and store the cooreduinates 
+
+start the search from the end to other end using BFS 
+
+
+sudo code 
+
+first_islnad_edge = []
+second_island_edge = [] 
+
+
+def dfs(i,j,edge_lst):
+
+    all edge cond 
+    
+    if 
+
+
+
+
+
+
+count = 0 
+
+for i in range row:
+
+    for j in range col :
+
+        if matix[i][j] == 1 :
+
+            first_island_edges.append([i,j])
+            self.dfs(i,j , first_island_edges)
+
+            count += 1 
+
 
 
 
