@@ -54,6 +54,7 @@ class Solution():
             return None 
         
         grid[i][j] = "0"
+        
         self.dfs(grid,i-1,j)
         self.dfs(grid,i+1,j)
         self.dfs(grid,i,j-1)
@@ -65,6 +66,7 @@ class Solution():
         """
         #base case 
         if len(grid) == 0 or len(grid[0]) == 0 : 
+
             return None
 
         
@@ -74,8 +76,11 @@ class Solution():
         count = 0
 
         for i in range(rows):
+
             for j in range(columns):
+
                 if grid[i][j] == "1":
+
                     count +=1
                 
                 self.dfs(grid,i,j)
@@ -85,6 +90,7 @@ class Solution():
 
 
 if __name__ == "__main__":
+
     sol = Solution()
 
     res = sol.numIslands(grid)
