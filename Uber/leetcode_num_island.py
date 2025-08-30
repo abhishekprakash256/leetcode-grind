@@ -64,7 +64,6 @@ class Solution:
 		self.dfs(i , j + 1 )
 
 
-	
 
 	def numIslands(self, grid: List[List[str]]) -> int:
 		"""
@@ -73,7 +72,7 @@ class Solution:
 
 		#get the dims of the grid
 		self.row = len(grid) 
-		self.col = len(grid[0]) 
+		self.col = len(grid[0])
 
 		#the grid
 		self.grid = grid
