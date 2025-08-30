@@ -102,7 +102,7 @@ from collections import deque
 
 
 
-class Solution:
+class Solution_wrong:
 
 	def dfs(self,i,j):
 		"""
@@ -188,6 +188,17 @@ class Solution:
 					if self.grid[nx][ny] == 1 :
 
 						return dist
+
+
+
+
+
+
+
+
+
+
+
 
 
 
