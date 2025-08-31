@@ -223,6 +223,7 @@ class Solution():
 	def shortestBridge(self, grid: List[List[int]]) -> int:
 		"""
 		The function to find the shortest bridge
+		wrong debug the code
 		"""
 
 		self.grid = grid
