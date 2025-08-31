@@ -191,6 +191,112 @@ class Solution_wrong:
 
 
 
+class Solution():
+
+
+	def dfs(self,i,j):
+		"""
+		The method to do the dfs for the grid
+		"""
+
+		#the constraint case 
+		if i < 0 or i >= self.row or j < 0 or j >= self.col or self.grid[i][j] == 0 :
+
+			return
+
+		#mark the grid as 2
+		self.grid[i][j] == 2
+
+		#add in the queue 
+		self.queue.append([i,j])
+
+		#iter the grid
+		self.dfs(i-1,j)
+		self.dfs(i+1,j)
+		self.dfs(i,j-1)
+		self.dfs(i,j+1)
+
+
+
+
+
+	def shortestBridge(self, grid: List[List[int]]) -> int:
+		"""
+		The function to find the shortest bridge
+		"""
+
+		self.grid = grid
+
+		#get the dims 
+		self.row = len(self.grid)
+		self.col = len(self.grid[0])
+
+		self.queue = deque()
+
+		visited = {}
+
+		found = False
+
+		dirs = [[0,1],[0,-1],[-1,0],[1,0]]
+
+		dist = 0 
+
+
+		#find the 1 in the grid
+		for i in range(self.row) :
+
+				for j in range(self.col) :
+
+					if self.grid[i][j] == 1 :
+
+						self.dfs(i,j)
+
+						found = True
+
+						break
+
+				if found :
+
+					break
+
+
+		#start the bfs for the traversal
+		while self.queue :
+
+
+			for _ in range(len(self.queue)) :
+
+				x , y = self.queue.popleft()
+
+				for dir_x , dir_y in dirs :
+
+					_x , _y = x + dir_x , y + dir_y
+
+					if (_x,_y) not in visited or 0 <= _x < self.row or 0 <= _y < self.col or self.grid[_x][_y] != 2 :
+						
+						dist += 1
+
+						self.queue.append([_x,_y])
+
+						visited[(_x,_y)] = True
+
+
+						if self.grid[_x][_y] == 1 :
+
+							return dist
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
