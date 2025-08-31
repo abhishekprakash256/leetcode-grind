@@ -200,12 +200,12 @@ class Solution():
 		"""
 
 		#the constraint case 
-		if i < 0 or i >= self.row or j < 0 or j >= self.col or self.grid[i][j] == 0 :
+		if i < 0 or i >= self.row or j < 0 or j >= self.col or self.grid[i][j] != 1 :
 
 			return
 
 		#mark the grid as 2
-		self.grid[i][j] == 2
+		self.grid[i][j] = 2
 
 		#add in the queue 
 		self.queue.append([i,j])
@@ -239,8 +239,7 @@ class Solution():
 
 		dirs = [[0,1],[0,-1],[-1,0],[1,0]]
 
-		dist = 0 
-
+		dist = 0
 
 		#find the 1 in the grid
 		for i in range(self.row) :
@@ -272,18 +271,19 @@ class Solution():
 
 					_x , _y = x + dir_x , y + dir_y
 
-					if (_x,_y) not in visited or 0 <= _x < self.row or 0 <= _y < self.col or self.grid[_x][_y] != 2 :
-						
-						dist += 1
+					if 0 <= _x < self.row and 0 <= _y < self.col and (_x,_y) not in visited:
 
-						self.queue.append([_x,_y])
+						if self.grid[_x][_y] == 0:
 
-						visited[(_x,_y)] = True
+							self.queue.append([_x,_y])
 
+							visited[(_x,_y)] = True
 
-						if self.grid[_x][_y] == 1 :
+						elif self.grid[_x][_y] == 1:
 
 							return dist
+
+				dist += 1 
 
 
 
@@ -315,7 +315,7 @@ if __name__ == "__main__":
 
 	sol = Solution()
 
-	grid = [[0,1,0],[0,0,0],[0,0,1]]
+	grid = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]
 
 	res = sol.shortestBridge(grid)
 
