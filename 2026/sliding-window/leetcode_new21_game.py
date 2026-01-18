@@ -48,6 +48,25 @@ Constraints:
 
 
 """
+game understanding --> 
+
+Alice starts with - 0 points 
+she draws until less than k points , 
+each draw is independent and open 
+
+stops when she get k or more point 
+
+Return the probability that Alice has n or fewer points.
+
+max = 4
+
+[1,2,3,4,5]
+
+start = 0 
+
+n = 4
+
+k = 2
 
 
 
