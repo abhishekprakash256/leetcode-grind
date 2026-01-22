@@ -60,6 +60,43 @@ Explanation: The word "apple" cannot be abbreviated as "a2e".
 
 approach ---> 
 
+two pointer and check for the digit 
+and skip if the value is 0 
+
+word = apple 
+abbr = a2e 
+
+
+two pointer at word and abbr 
+
+start at 0
+
+l, r = 0,0
+
+check for is digit and make a Tens 
+
+if abbr[r].isdigit() :
+
+	if abbr[r+1].isdigit() :
+
+		traverse = abbr[r] * 10 + abbr[r+1]
+
+		r += 1 
+
+	else :
+
+		traverse = abbr[r]
+
+	l += traverse 
+
+
+
+if abbr[r] != word[l] :
+
+	return false 
+
+
+return True 
 
 
 
@@ -85,4 +122,66 @@ class Solution:
 		The function to find the abbr and word match
 		"""
 
-		
+		#make the ptrs 
+		l, r = 0, 0
+
+
+		while l < len(abbr) :
+
+
+			if abbr[l].isdigit():
+
+				if int(abbr[l]) == 0:
+
+					return False
+
+				elif abbr[l+1].isdigit() :
+
+					travserse = int(abbr[l]) * 10 + int(abbr[l])
+
+					l += 2 
+
+					r = travserse
+
+				else :
+
+					travserse = int(abbr[l])
+
+					l += 1 
+
+					r = travserse
+
+
+			print(abbr[l] , l)
+
+			print(word[r] , r)
+
+			if abbr[l] != word[r] :
+
+				return False
+
+			l += 1
+			r += 1
+
+			travserse = 0 
+
+
+		return True
+
+
+
+
+
+
+word = "internationalization"
+
+abbr = "i12iz4n"
+
+
+sol = Solution()
+
+
+res = sol.validWordAbbreviation(word , abbr)
+
+
+print(res)
