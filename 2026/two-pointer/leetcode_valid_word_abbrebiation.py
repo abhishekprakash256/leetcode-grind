@@ -120,6 +120,7 @@ class Solution:
 	def validWordAbbreviation(self, word: str, abbr: str) -> bool:
 		"""
 		The function to find the abbr and word match
+		!!! NOT WORKING !!!
 		"""
 
 		#make the ptrs 
