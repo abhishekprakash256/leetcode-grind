@@ -26,9 +26,9 @@ Output: 9
 
 Constraints:
 
-    n == height.length
-    1 <= n <= 2 * 104
-    0 <= height[i] <= 105
+	n == height.length
+	1 <= n <= 2 * 104
+	0 <= height[i] <= 105
 
 """
 
@@ -67,3 +67,36 @@ how about we move them from start to end ?
 not gonna work
 
 """
+
+from typing import List
+
+
+
+class Solution:
+	def trap(self, height: List[int]) -> int:
+		"""
+		The function to find the trap water between the array 
+		"""
+
+		#edge case
+		if len(height) == 1:
+
+			return 0
+
+		#make the ptrs 
+		l , r = 0 , 0
+
+		trap = 0
+
+		#start the loop 
+		while r < len(height) :
+
+			if height[l] < height[r] :
+
+				r += 1
+
+			else :
+
+				while height[r] 
+
+
