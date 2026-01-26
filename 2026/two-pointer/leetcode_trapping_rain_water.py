@@ -66,6 +66,8 @@ how about we move them from start to end ?
 
 not gonna work
 
+https://www.hellointerview.com/learn/code/two-pointers/trapping-rain-water
+
 """
 
 from typing import List
