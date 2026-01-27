@@ -35,10 +35,15 @@ min = 0
 
 max = 30
 
-look for left < 
+
+The intution works as that we sort the array in the term of start and the end time of the meetingh
+
+when start time is less end time we need a room 
+
+when start time is greater than end time we don't need to increase the room 
 
 
-
+we increase the room and keep a max counter for the room 
 
 
 
