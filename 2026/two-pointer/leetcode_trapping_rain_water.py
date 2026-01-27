@@ -68,37 +68,128 @@ not gonna work
 
 https://www.hellointerview.com/learn/code/two-pointers/trapping-rain-water
 
+
+
+
 """
+
+"""
+approach ---> 
+
+
+max_left = height[0]
+
+max_right = height[len(height) - 1]
+
+height[left] <= max_left 
+
+trap+= 1 
+
+height[right] >= max_right 
+
+trap += 1 
+
+if max_left > max_right :
+
+
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
 
 from typing import List
 
 
 
 class Solution:
-	def trap(self, height: List[int]) -> int:
-		"""
-		The function to find the trap water between the array 
-		"""
 
-		#edge case
-		if len(height) == 1:
+    def trap(self, height: List[int]) -> int:
 
-			return 0
+        if len(height) < 3:
+            return 0
 
-		#make the ptrs 
-		l , r = 0 , 0
+        l, r = 0, len(height) - 1
 
-		trap = 0
+        max_left, max_right = 0, 0
 
-		#start the loop 
-		while r < len(height) :
+        trap_water = 0
 
-			if height[l] < height[r] :
+        while l < r:
 
-				r += 1
+            if height[l] < height[r]:
 
-			else :
+                if height[l] >= max_left:
 
-				while height[r] 
+                    max_left = height[l]
+
+                else:
+                    trap_water += max_left - height[l]
+
+                l += 1
+
+            else:
+
+                if height[r] >= max_right:
+
+                    max_right = height[r]
+
+                else:
+
+                    trap_water += max_right - height[r]
+
+                r -= 1
+
+        return trap_water
+
+
+
+
+height = [0,1,0,2,1,0,1,3,2,1,2,1]
+
+
+sol = Solution()
+
+
+print(sol.trap(height))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
