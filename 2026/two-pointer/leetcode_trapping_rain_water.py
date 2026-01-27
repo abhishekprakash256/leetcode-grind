@@ -134,6 +134,7 @@ class Solution:
                     max_left = height[l]
 
                 else:
+                	
                     trap_water += max_left - height[l]
 
                 l += 1
