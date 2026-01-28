@@ -112,64 +112,75 @@ from typing import List
 
 
 
-class Solution:
 
-    def trap(self, height: List[int]) -> int:
 
+class Solution():
+
+    def trap(self,height : List):
+        """
+        The function to find the trapped water
+        """
+
+        #conatraint case
         if len(height) < 3:
+
             return 0
 
-        l, r = 0, len(height) - 1
+        #make the ptrs
+        l , r = 0 , len(height) - 1 
 
-        max_left, max_right = 0, 0
+        max_left , max_right = height[l] , height[r]
 
         trap_water = 0
 
-        while l < r:
+        #strat the loop 
+        while l < r :
 
-            if height[l] < height[r]:
+            print(l,r)
 
-                if height[l] >= max_left:
+            if height[l] < height[r] :
+
+
+                if height[l] <= max_left :
+
+                    trap_water += max_left - height[l]
+
+                else:
 
                     max_left = height[l]
 
-                else:
-                	
-                    trap_water += max_left - height[l]
 
                 l += 1
 
+
             else:
 
-                if height[r] >= max_right:
-
-                    max_right = height[r]
-
-                else:
+                if height[r] <= max_right :
 
                     trap_water += max_right - height[r]
 
-                r -= 1
+                else:
+
+                    max_right = height[r]
+
+                r -= 1 
+
+
+
+
 
         return trap_water
 
 
 
 
-height = [0,1,0,2,1,0,1,3,2,1,2,1]
 
+height = [0,1,0,2,1,0,1,3,2,1,2,1]
 
 sol = Solution()
 
 
 print(sol.trap(height))
-
-
-
-
-
-
-
 
 
 
