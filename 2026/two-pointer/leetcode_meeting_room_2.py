@@ -73,10 +73,10 @@ class Solution:
 
         end_time = []
 
-        rooms = 0
+        max_rooms , rooms = 0 , 0
 
         #loop and add in the list
-        for start, end in zip(intervals) :
+        for start, end in intervals :
 
             start_time.append(start)
 
@@ -92,24 +92,37 @@ class Solution:
 
         #start the loop
 
-        while (l + r) < 2*len(start) - 1 :
+        while l < len(intervals) :
 
             if start_time[l] < end_time[r] :
 
-                rooms += 1
+                count += 1
 
                 l += 1
 
-            
             else :
 
-                l += 1 
+                count -= 1 
 
                 r += 1
 
+            max_rooms = max(max_rooms , count)
 
-        return rooms
+        return max_rooms
 
+
+
+
+
+
+
+intervals = [[0,30],[5,10],[15,20]]
+
+
+sol = Solution()
+
+
+print(sol.minMeetingRooms(intervals))
 
 
 
