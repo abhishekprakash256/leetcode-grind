@@ -82,7 +82,60 @@ class Solution:
 		The function to remove the nth node from the start
 		"""
 
-		#constaint case 
+		#length of list
+		length = 0
+
+		#ptrs
+		temp = head
+
+		#get the length list
+		while temp :
+
+			temp = temp.next
+
+			length += 1	
+
+		#constraint case
+		if length == 1 and n == 1 :
+
+			return None
+
+		if length == 1 and n == 0:
+
+			return head
+
+		#ptrs
+		prev = 0
+
+		temp = head
+
+		#case if n == 1 
+		if n == 1:
+
+			while prev <= ( length - 1 ) :
+
+				 temp = temp.next
+
+				 prev += 1
+
+			#remove the node
+
+			temp.next = None
+
+			return head
+
+		#not n == 1 
+
+		while prev < ( length - n ):
+
+			temp = temp.next
+
+			prev += 1
+
+		#remove the node
 		
+
+
+
 
 
