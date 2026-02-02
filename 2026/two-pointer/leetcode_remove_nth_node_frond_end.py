@@ -63,6 +63,9 @@ if last node just make before node next to node
 removing will require temp 
 
 
+
+
+
 """
 
 from typing import List , Optional
@@ -77,7 +80,7 @@ class ListNode:
 
 
 class Solution:
-	def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+	def removeNthFromEndWrong(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 		"""
 		The function to remove the nth node from the start
 		"""
@@ -132,8 +135,86 @@ class Solution:
 
 			prev += 1
 
+		pass
+
 		#remove the node
-		
+
+
+
+
+
+
+
+class Solution:
+	def removeNthFromEndWrong2(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+		"""
+		The function to remove the nth node from the start
+		"""
+
+		#length var
+		length = 0
+
+		#ptrs
+		temp = head
+
+		#get the length
+		while temp :
+
+			length += 1 
+
+			temp = temp.next
+
+
+		#case by length 
+
+		if length == 1 :
+
+			return None
+
+		if length == 2 :
+
+			#remove the last node 
+
+			if n == 1 :
+
+				temp = head
+
+				temp.next = None
+
+				return head
+
+			else :
+
+				temp = head
+
+				temp_head = temp.next
+
+				temp.next = None 
+
+				return temp_head
+
+
+		#make ptrs 
+		temp = head
+		prev = 0
+
+		#case for length 3 or greater 
+
+		while prev < ( length - n ) :
+
+			temp = temp.next
+
+			prev += 1 
+
+
+		#remove the node 
+		temp_1 = temp.next
+
+		pass
+
+
+
+
 
 
 
