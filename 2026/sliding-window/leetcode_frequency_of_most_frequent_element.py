@@ -45,3 +45,35 @@ Constraints:
 
 
 """
+
+
+
+"""
+
+approach --> 
+
+nums = [1,2,4]
+k = 5
+
+
+increase by 5 anyone ? 
+
+how to approach 
+
+sliding window ?
+
+max_val = 4 
+
+take the sub -> 4-1 = 3
+
+4-2 = 2 
+
+
+
+
+
+
+
+
+
+"""
