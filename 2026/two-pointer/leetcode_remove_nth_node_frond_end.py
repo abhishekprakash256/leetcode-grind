@@ -79,7 +79,7 @@ class ListNode:
 
 
 
-class Solution:
+class SolutionWrong:
 	def removeNthFromEndWrong(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 		"""
 		The function to remove the nth node from the start
@@ -145,7 +145,7 @@ class Solution:
 
 
 
-class Solution:
+class SolutionWrong2:
 	def removeNthFromEndWrong2(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 		"""
 		The function to remove the nth node from the start
@@ -212,6 +212,47 @@ class Solution:
 
 		pass
 
+
+
+
+
+class Solution:
+	def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+		"""
+		The function to remove the nth node from the list
+		"""
+
+		#make the dummy node 
+		dummy = ListNode() 
+
+		#make the head
+		dummy.next = head
+
+		#make the ptrs
+		slow , fast = dummy , dummy
+
+		#move the fast pointer
+		for _ in range(n+1) :
+
+			fast = fast.next
+
+		#move the slow pointer
+		while fast :
+
+			fast = fast.next
+
+			slow = slow.next
+
+		#remove the node
+		slow.next = slow.next.next
+
+		return dummy.next
+
+
+
+
+
+		
 
 
 
