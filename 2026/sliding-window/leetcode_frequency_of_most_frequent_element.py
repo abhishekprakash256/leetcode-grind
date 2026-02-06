@@ -63,6 +63,7 @@ from typing import List
 
 
 class Solution:
+	
 	def maxFrequency(self, nums: List[int], k: int) -> int:
 		"""
 		The function to find the frequency of frequent elemnts
@@ -77,8 +78,6 @@ class Solution:
 		#sort the array
 		nums.sort()
 
-		print(nums)
-
 		#running sum
 		running_sum = 0
 
@@ -89,23 +88,15 @@ class Solution:
 			running_sum += nums[r]
 
 			#get the cost 
-			cost = nums[r] * (r-l) - running_sum
-
-			print(cost)
-
-			while cost > k :
-
+			while nums[r] * (r - l + 1 ) - running_sum > k :
 
 				running_sum -= nums[l]
 
 				l += 1
 
-			if cost == k :
-
-				max_window = max(max_window , r - l )
+			max_window = max(max_window , ( r - l + 1) )
 
 			r += 1
-
 
 		return max_window
 
