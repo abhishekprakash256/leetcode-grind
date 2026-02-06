@@ -37,9 +37,9 @@ Output: 1
 
 Constraints:
 
-    1 <= nums.length <= 105
-    1 <= nums[i] <= 105
-    1 <= k <= 105
+	1 <= nums.length <= 105
+	1 <= nums[i] <= 105
+	1 <= k <= 105
 
 
 
@@ -52,28 +52,76 @@ Constraints:
 
 approach --> 
 
+make the cost function 
+
+track the window and the cost function 
+
+then move the pointer of the sliding window based on reqs
+
+"""
+from typing import List
+
+
+class Solution:
+	def maxFrequency(self, nums: List[int], k: int) -> int:
+		"""
+		The function to find the frequency of frequent elemnts
+		"""
+
+		#vars
+		max_window = 0
+
+		#ptrs 
+		l , r = 0 , 0
+
+		#sort the array
+		nums.sort()
+
+		print(nums)
+
+		#running sum
+		running_sum = 0
+
+		#start the loop
+		while r <= len(nums) - 1  :
+
+			#get the runnning sum
+			running_sum += nums[r]
+
+			#get the cost 
+			cost = nums[r] * (r-l) - running_sum
+
+			print(cost)
+
+			while cost > k :
+
+
+				running_sum -= nums[l]
+
+				l += 1
+
+			if cost == k :
+
+				max_window = max(max_window , r - l )
+
+			r += 1
+
+
+		return max_window
+
+
+
+
 nums = [1,2,4]
 k = 5
 
 
-increase by 5 anyone ? 
+if __name__ == "__main__" :
 
-how to approach 
+	sol = Solution()
 
-sliding window ?
+	res = sol.maxFrequency(nums, k)
 
-max_val = 4 
+	print(res)
+		
 
-take the sub -> 4-1 = 3
-
-4-2 = 2 
-
-
-
-
-
-
-
-
-
-"""
