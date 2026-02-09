@@ -51,7 +51,7 @@ Constraints:
 from typing import List
 
 
-class Solution:
+class Solution_w:
 	def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
 		"""
 		Do not return anything, modify nums1 in-place instead.
@@ -94,18 +94,54 @@ class Solution:
 		return res
 
 
-nums1 = [1,2,3,0,0,0]
-m = 3
-nums2 = [2,5,6] 
-n = 3
+
+
+
+
+
+"""
+Approach --> 
+
+as the back side of the array is filled with 0s so it's easy to add 
+
+we can start the comparision from the back end and move the pointer to start
+
+l , r = m -1 , n - 1 
+
+tail = m + n - 1
+
+movement of the ptrs
+
+while l >= 0 and r >= 0 :
+
+	if nums1[r] > nums2[l] :
+
+		nums1[] 
+
+
+
+
+"""
+
+
+
+
+
+class Solution:
+	def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+		"""
+		Do not return anything, modify nums1 in-place instead.
+		"""
+
+
 
 
 if __name__== "__main__" :
 
-	sol = Solution()
 
-	res = sol.merge(nums1 , m , nums2 , n)
+	nums1 = [1,2,3,0,0,0]
+	m = 3
+	nums2 = [2,5,6] 
+	n = 3
 
-	print(res)
-
-
+	pass
