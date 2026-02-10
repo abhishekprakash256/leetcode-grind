@@ -19,9 +19,54 @@ The replacement must be in place and use only constant extra memory.
 
 """
 
+
+"""
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [1,3,2]
+
+Example 2:
+
+Input: nums = [3,2,1]
+Output: [1,2,3]
+
+Example 3:
+
+Input: nums = [1,1,5]
+Output: [1,5,1]
+
+
+"""
+
+"""
+
+Approach -- 
+
+
+array is not linear ?
+
+how we know ? 
+
+[1,2,3] -> [1,3,2]
+
+[1,1,5] -> [1,5,1]
+
+decision tree ? 
+
+
+
+
+
 """
 
 
 
 
-"""
+class Solution:
+	def nextPermutation(self, nums: List[int]) -> None:
+		"""
+		Do not return anything, modify nums in-place instead.
+		"""
+
+		pass
