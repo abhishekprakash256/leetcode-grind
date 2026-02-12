@@ -59,14 +59,67 @@ decision tree ?
 
 
 """
+from typing import List
 
 
 
-
-class Solution:
+class Solution_w:
 	def nextPermutation(self, nums: List[int]) -> None:
 		"""
 		Do not return anything, modify nums in-place instead.
 		"""
 
-		pass
+		#constraint case 
+		if len(nums) == 1 :
+
+			return nums
+
+
+		#ptrs 
+		r = len(nums) - 2
+
+		#set the pivot
+		pivot = False
+
+		while r >= 0 :
+
+			#find the pivot 
+			if nums[r] < nums[r+1] :
+
+				pivot = True
+				break
+
+			r -= 1
+
+
+		if pivot :
+
+			nums[r] , nums[r+1] = nums[r+1] , nums[r]
+
+			return None
+
+
+		#ptrs
+		l, r = 0, len(nums) - 1
+
+		#reverse the array
+		while l <= r :
+
+			nums[l] ,nums[r] = nums[r] , nums[l]
+
+			l += 1 
+			r -= 1
+
+		return None
+
+
+
+if __name__ == "__main__" :
+
+	nums = [1,2,3]
+
+	sol = Solution_w()
+
+	sol.nextPermutation(nums)
+
+	print(nums)
