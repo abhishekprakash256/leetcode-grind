@@ -10,12 +10,14 @@ class Solution():
 		"""
 
 		#ptrs 
-		l , r = 0 . len(nums) - 1
+		l , r = 0 , len(nums) - 1
 
 		#start the loop
 		while l <= r :
 
 			m = (l + r) // 2
+
+			print(nums[m])
 
 			if nums[m] == target :
 
@@ -24,14 +26,26 @@ class Solution():
 
 			if nums[m] < target :
 
-				r = m - 1
+				l = m + 1
 
 			else :
 
-				l = m + 1
+				r = m - 1
 
 
 		return False 
 
 
 
+
+if __name__ == "__main__":
+
+	sol = Solution()
+
+	target = 5 
+	
+	nums = [1,1,1,3,3,3,4,5,5,5,6,7]
+
+	res = print(sol.binary_search(nums , target))
+
+	print(res)
