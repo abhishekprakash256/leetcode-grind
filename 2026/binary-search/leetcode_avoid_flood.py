@@ -63,22 +63,19 @@ Constraints:
 """
 approach -- 
 
-rain is number of the day of the lake 
+using a lazy greedy 
 
-if rain[i] == 0 
+if see a dry day store the value and dry that later the lake if occurs again 
 
-choose to dry 
+unless the lake is not repeating no drying is happening. 
 
-find the lake which is filled and dry that ? greey approach 
 
-maintain a set to dry the lake ?
 
-then add in set back 
-
-flood will only come if one lake is twice ? 
 
 
 
 """
+
+
 
 
