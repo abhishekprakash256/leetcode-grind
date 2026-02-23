@@ -163,7 +163,7 @@ class Solution():
 			#if a dry day 
 			if rains[i] == 0 :
 
-				res[i] = 1     # placeholder
+				res[i] = 1  # placeholder
 				dry_days.append(i)
 
 				continue 
