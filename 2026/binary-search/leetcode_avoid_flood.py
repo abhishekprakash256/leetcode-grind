@@ -92,7 +92,7 @@ using the binay search algo
 
 """
 
-
+from typing import List
 import bisect
 
 
@@ -132,9 +132,25 @@ class Solution:
 
                     res[dry_day_num] = rains[i]
 
+                #remove from the dict
+                del rain_days[rains[i]]
+
 
             #add in the rain days dict
             rain_days[rains[i]] = True
 
 
         return res
+
+
+if __name__ == "__main__":
+
+    sol = Solution()
+
+    rains = [1,2,3,4]
+
+    rains = [1,2,0,0,2,1]
+
+    res = sol.avoidFlood(rains)
+
+    print(res)
