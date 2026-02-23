@@ -69,6 +69,22 @@ if see a dry day store the value and dry that later the lake if occurs again
 
 unless the lake is not repeating no drying is happening. 
 
+list_lake = []
+
+res = [-1]*len(rains)
+
+#if first found a dry day
+if rains[i] == 0 :
+
+    list_lake.append(i)
+
+if days are repeating then find the next dry day
+
+using the binay search algo 
+
+
+
+
 
 
 
@@ -77,5 +93,48 @@ unless the lake is not repeating no drying is happening.
 """
 
 
+import bisect
 
 
+class Solution:
+    def avoidFlood(self, rains: List[int]) -> List[int]:
+        """
+        The function to find the avoid flood for the city
+        """
+
+        #storage
+        dry_days = []
+        rain_days = {}
+        res = [-1] * len(rains)
+
+        #loop the rain days
+        for i in range(len(rains)) :
+
+            #if a dry day
+            if rains[i] == 0 :
+
+                dry_days.append(i)
+
+            #if the same rain day found
+            while rains[i] in rain_days :
+
+                #if we have dry days
+                if len(dry_days) > 0:
+
+                    dry_day_num = dry_days.pop(0)
+
+                    res[dry_day_num] = rains[i] 
+
+                #if we don't have dry day yet
+                else :
+                    
+                    dry_day_num = bisect.bisect_right(rains, 0 )
+
+                    res[dry_day_num] = rains[i]
+
+
+            #add in the rain days dict
+            rain_days[rains[i]] = True
+
+
+        return res
