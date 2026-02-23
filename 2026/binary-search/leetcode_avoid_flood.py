@@ -4,14 +4,14 @@ If it rains over a lake that is full of water, there will be a flood. Your goal 
 
 Given an integer array rains where:
 
-    rains[i] > 0 means there will be rains over the rains[i] lake.
-    rains[i] == 0 means there are no rains this day and you must choose one lake this day and dry it.
+	rains[i] > 0 means there will be rains over the rains[i] lake.
+	rains[i] == 0 means there are no rains this day and you must choose one lake this day and dry it.
 
 Return an array ans where:
 
-    ans.length == rains.length
-    ans[i] == -1 if rains[i] > 0.
-    ans[i] is the lake you choose to dry in the ith day if rains[i] == 0.
+	ans.length == rains.length
+	ans[i] == -1 if rains[i] > 0.
+	ans[i] is the lake you choose to dry in the ith day if rains[i] == 0.
 
 If there are multiple valid answers return any of them. If it is impossible to avoid flood return an empty array.
 
@@ -53,8 +53,8 @@ After that, it will rain over lakes [1,2]. It's easy to prove that no matter whi
 
 Constraints:
 
-    1 <= rains.length <= 105
-    0 <= rains[i] <= 109
+	1 <= rains.length <= 105
+	0 <= rains[i] <= 109
 
 
 """
@@ -76,7 +76,7 @@ res = [-1]*len(rains)
 #if first found a dry day
 if rains[i] == 0 :
 
-    list_lake.append(i)
+	list_lake.append(i)
 
 if days are repeating then find the next dry day
 
@@ -96,61 +96,141 @@ from typing import List
 import bisect
 
 
-class Solution:
-    def avoidFlood(self, rains: List[int]) -> List[int]:
-        """
-        The function to find the avoid flood for the city
-        """
+class Solution_w:
+	def avoidFlood(self, rains: List[int]) -> List[int]:
+		"""
+		The function to find the avoid flood for the city
+		"""
 
-        #storage
-        dry_days = []
-        rain_days = {}
-        res = [-1] * len(rains)
+		#storage
+		dry_days = []
+		rain_days = {}
+		res = [-1] * len(rains)
 
-        #loop the rain days
-        for i in range(len(rains)) :
+		#loop the rain days
+		for i in range(len(rains)) :
 
-            #if a dry day
-            if rains[i] == 0 :
+			#if a dry day
+			if rains[i] == 0 :
 
-                dry_days.append(i)
-
-            #if the same rain day found
-            while rains[i] in rain_days :
-
-                #if we have dry days
-                if len(dry_days) > 0:
-
-                    dry_day_num = dry_days.pop(0)
-
-                    res[dry_day_num] = rains[i] 
-
-                #if we don't have dry day yet
-                else :
-                    
-                    dry_day_num = bisect.bisect_right(rains, 0 )
-
-                    res[dry_day_num] = rains[i]
-
-                #remove from the dict
-                del rain_days[rains[i]]
+				dry_days.append(i)
 
 
-            #add in the rain days dict
-            rain_days[rains[i]] = True
+			#if the same rain day found
+			while rains[i] in rain_days :
+
+				#if we have dry days
+				if len(dry_days) > 0:
+
+					dry_day_num = dry_days.pop(0)
+
+					res[dry_day_num] = rains[i] 
+
+				#if we don't have dry day yet
+				else :
+					
+					dry_day_num = bisect.bisect_right(rains, 0 )
+
+					res[dry_day_num] = rains[i]
+
+				#remove from the dict
+				del rain_days[rains[i]]
 
 
-        return res
+			#add in the rain days dict
+			rain_days[rains[i]] = True
+
+
+		return res
+
+
+
+class Solution():
+	
+	def avoidFlood(self, rains: List[int]) -> List[int]:
+		"""
+		The function to avoid flood for the city
+		"""
+
+		#vars 
+		dry_days = []
+		rain_days = {}
+		res = [-1] * len(rains)
+
+		#loop over the rain days 
+		for i in range(len(rains)) :
+
+			#if a dry day 
+			if rains[i] == 0 :
+
+				res[i] = 1     # placeholder
+				dry_days.append(i)
+
+				continue 
+
+			lake = rains[i]
+
+			#if not a dry day
+			if lake in rain_days :
+
+				last_rain_day = rain_days[lake] 
+
+				#find the next rain day to dry 
+				idx = bisect.bisect_right(dry_days, last_rain_day)
+
+				#if no dry day available 
+				if idx == len(dry_days) :
+
+					return []
+
+				dry_day_index = dry_days[idx]
+
+				#assign the data in res
+				res[dry_day_index] = lake
+
+				#remove from the pool 
+				dry_days.pop(idx)
+
+
+			#mark as full day
+			rain_days[lake] = i 
+
+			res[i] = -1
+
+		return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
 
-    sol = Solution()
+	sol = Solution()
 
-    rains = [1,2,3,4]
+	rains = [1,2,3,4]
 
-    rains = [1,2,0,0,2,1]
+	rains = [1,2,0,0,2,1]
 
-    res = sol.avoidFlood(rains)
+	res = sol.avoidFlood(rains)
 
-    print(res)
+	print(res)
