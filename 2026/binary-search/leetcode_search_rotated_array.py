@@ -44,14 +44,120 @@ nums is an ascending array that is possibly rotated.
 
 """
 
+
+
 """
 
 approach -- 
 
+find the pivot is the main point --> 
+so three pointers , left , mid and right 
+
+rules 
+
+if left <= mid <= right 
+
+use the simple binary search in the bound to find the target
+
+[1,2,3,4,6,0,-1,-3]
+
+how to find the bounddary to search the point ? --> 
+
+if not left < mid -> pivot here 
+
+if not mid < right -> poivot here 
+
+when found the pivot start search on that end 
 
 
-
+[1,2,3,4,5,0]
 
 
 
 """
+
+from typing import List
+
+
+class Solution:
+
+	def binary_search(self, l : int , r : int , nums: List[int], target: int ) :
+		"""
+		The simple binary search 
+		"""
+
+		while l <= r :
+
+			m = (l + r) // 2
+
+			if nums[m] == target :
+				
+				return m
+
+
+			if nums[m] < target :
+
+				l = m + 1
+
+			else :
+
+				r = m - 1 
+
+		return -1
+
+
+
+	def search(self, nums: List[int], target: int) -> int:
+		"""
+		The function to find the target in the rotated array
+		"""
+
+		#ptrs 
+		l = 0 
+		r = len(nums) - 1
+
+		#check if the array if not rotated
+		m = (l + r) // 2
+
+		if nums[l] <= nums[m] <= nums[r] :
+
+			return self.binary_search(l , r , nums , target)
+
+
+		#find the pivot case
+		while l <= r :
+
+			m = (l + r) // 2
+
+			if nums[l] > nums[m] :
+
+				#pivot here
+				r = m - 1 
+
+			if nums[m] > nums[r] :
+
+				#pivot here
+				l = m + 1
+
+
+			if nums[l] <= nums[m] <= nums[r] :
+
+				return self.binary_search(l , r , nums , target)
+
+
+
+
+
+
+
+if __name__ == '__main__':
+
+
+	nums = [4,5,6,7,0,1,2]
+	target = 0	
+
+	sol = Solution()
+
+	res = sol.search(nums , target)
+
+	print(res)
