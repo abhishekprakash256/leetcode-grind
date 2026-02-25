@@ -79,7 +79,7 @@ when found the pivot start search on that end
 from typing import List
 
 
-class Solution:
+class Solution_w:
 
 	def binary_search(self, l : int , r : int , nums: List[int], target: int ) :
 		"""
@@ -146,6 +146,51 @@ class Solution:
 
 
 
+
+
+
+class Solution():
+
+	def search(self, nums : List , target) :
+		"""
+		The function to find the value in rotated array
+		"""
+
+		#ptrs 
+		l , r = 0 , len(nums) - 1 
+
+		#start the loop
+		while l <= r :
+
+			m = (l + r) // 2
+
+			if nums[m] == target :
+
+				return m
+
+			#find the side
+			if nums[l] <= nums[m] :
+
+				if nums[l] <= target <= nums[m]:
+
+					r = m - 1
+
+				else :
+
+					l = m + 1  
+
+			else :
+
+				if nums[m] <= target <= nums[r] :
+
+					l = m + 1
+
+				else :
+
+					r = m - 1
+
+
+		return -1
 
 
 
