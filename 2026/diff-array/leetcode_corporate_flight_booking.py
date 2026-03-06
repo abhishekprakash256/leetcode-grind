@@ -56,13 +56,12 @@ class Solution:
 		#make the limits ptrs
 		for l ,r , val in bookings:
 			
-			print(diff[l])
 
-			diff[l] += val
+			diff[l-1] += val
 
-			if r + 1 < n :
+			if r < n :
 
-				diff[r+1] -= val
+				diff[r] -= val
 
 		#make the res array
 		res = [0] * n
