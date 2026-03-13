@@ -8,6 +8,10 @@ You must write an algorithm that runs in O(n) time and without using the divisio
 
 """
 
+25feb2025
+
+25Feb2025!
+
 Example 1:
 
 Input: nums = [1,2,3,4]
@@ -61,30 +65,33 @@ if idx + 1 > len(arr) -1 :
 """
 from typing import List
 
-class Solution:
+
+
+class Solution_W:
 	def productExceptSelf(self, nums: List[int]) -> List[int]:
 		"""
 		The function to find the prefix multiplication array
 		"""
 
 		#arry list
-		left_prefix = [1] * (len(nums)) 
+		n = len(nums)
 
-		right_prefix = [1] * (len(nums))
-
-		ans = [1] * len(nums)
-
-		#make the prefix array
-		for i in range(len(nums)) :
-
-			left_prefix[i] = left_prefix[i-1] * nums[i]
+		left_prefix = [1] * n
+		right_prefix = [1] * n
+		ans = [1] *n
 
 
-		for i in range(len(nums) , 0) :
+		# left prefix
+		for i in range(1, n):
+			left_prefix[i] = left_prefix[i-1] * nums[i-1]
 
-			right_prefix[i] = right_prefix[i + 1] * nums[i]
 
+		# right prefix
+		for i in range(n-2, -1, -1):
+			right_prefix[i] = right_prefix[i+1] * nums[i+1]
 
+		print(left_prefix)
+		print(right_prefix)
 		for i in range(len(nums)) :
 
 			if i - 1 < 0 :
@@ -104,11 +111,58 @@ class Solution:
 
 
 
+
+class Solution():
+
+	def productExceptSelf(self, nums: List[int]) -> List[int]:
+		"""
+		The function to find the product of the array except self 
+		"""
+
+		#get length
+		n = len(nums)
+
+		#make the res array
+		res = [1] * n
+
+		#make prefix array 
+		left_prefix = [1] * n 
+
+		right_prefix = [1] * n
+
+		#make the left prefix
+		for i in range(1,n) :
+
+			left_prefix[i] = left_prefix[i-1] * nums[i-1]
+
+		for i in range(n-2 , -1 ,-1):
+
+			right_prefix[i] = right_prefix[i+1] * nums[i+1]
+
+		print(left_prefix)
+
+		print(right_prefix)
+
+		#make the res array
+		for i in range(n) :
+
+			res[i] = left_prefix[i] * right_prefix[i]
+
+		return res
+
+
+
 if __name__ == "__main__" :
 
 	sol = Solution()
 
-	nums = [1,2,3,4]
+	nums = [1,2,3,4] 
+
+	#[1,2,6,24] left
+
+	#[24,24,12,4] right
+
+	#out = [24,12,8,6]
 
 	res = sol.productExceptSelf(nums)
 
