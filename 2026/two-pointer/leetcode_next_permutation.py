@@ -86,7 +86,7 @@ class Solution_w:
 			#find the pivot 
 			if nums[r] < nums[r+1] :
 
-				pivot = True
+				pivot = True	
 				break
 
 			r -= 1
@@ -111,6 +111,83 @@ class Solution_w:
 			r -= 1
 
 		return None
+
+
+
+
+
+
+class Solution:
+	def nextPermutation(self, nums: List[int]) -> None:
+		"""
+		Do not return anything, modify nums in-place instead.
+		"""
+
+		#constraint case 
+		if len(nums) == 1:
+
+			return nums
+
+		#set the pivot 
+		pivot = False
+
+		#ptrs 
+		r = len(nums) - 2
+
+		#find the pivot
+		while r >= 0 :
+
+			if nums[r] < nums[r + 1] :
+
+				pivot = True
+				break
+
+			r -= 1
+
+
+		#case of not pivot
+		if pivot :
+
+			# find next greater element from right
+			j = len(nums) - 1
+			while j > r:
+				if nums[j] > nums[r]:
+					nums[j], nums[r] = nums[r], nums[j]
+					break
+				j -= 1
+
+			# reverse right part
+			l, k = r + 1, len(nums) - 1
+			while l < k:
+				nums[l], nums[k] = nums[k], nums[l]
+				l += 1
+				k -= 1
+
+
+			return None
+			
+		#not the pivot case 
+		l , r = 0 , len(nums) - 1
+
+		while l <= r :
+
+			nums[l] , nums[r] = nums[r] , nums[l]
+
+			l += 1
+			r -= 1
+
+		return None
+
+
+
+
+
+
+
+
+
+
+
 
 
 
