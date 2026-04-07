@@ -58,6 +58,8 @@ return max_mul
 
 """
 
+from typing import List
+
 class Solution_W:
 	def maxProduct(self, nums: List[int]) -> int:
 		"""
@@ -79,22 +81,42 @@ class Solution_W:
 		return max_mul
 
 
-
 class Solution:
 	def maxProduct(self, nums: List[int]) -> int:
+		"""
+		Find the max sub array sum
+		"""
 
-		max_so_far = nums[0]
-		min_so_far = nums[0]
-		result = nums[0]
+		#constarint case 
+		if len(nums) == 1 :
 
-		for i in range(1, len(nums)):
+			return nums[0]
 
-			# Important: store temp
-			temp_max = max(nums[i], nums[i] * max_so_far, nums[i] * min_so_far)
-			min_so_far = min(nums[i], nums[i] * max_so_far, nums[i] * min_so_far)
+		#vars
+		cur_min = nums[0]
+		cur_max = nums[0]
+		max_val = nums[0]
 
-			max_so_far = temp_max
 
-			result = max(result, max_so_far)
+		for i in range(1 , len(nums)) :
 
-		return result
+			cur_max = max( nums[i] , nums[i] * cur_max , cur_max * cur_min )
+
+			cur_min = min( nums[i] , nums[i] * cur_min , cur_max * cur_min )
+
+			max_val = max(max_val , cur_max)
+
+
+		return max_val
+
+
+
+if __name__ == '__main__':
+
+	nums = [-2,1,-3,4,-1,2,1,-5,4]
+
+	sol = Solution()
+
+	res = sol.maxSubArray(nums)
+
+	print(res)
