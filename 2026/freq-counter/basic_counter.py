@@ -3,6 +3,7 @@ basic freuq counter
 """
 
 
+from collections import Counter
 
 def freq_counter(nums) :
 
@@ -23,8 +24,21 @@ def freq_counter(nums) :
 
 
 
+
+def freq_counter_2(nums):
+
+	freq = Counter(nums)
+
+	return freq
+
+
+
 nums = [1,1,2,3,2,1]
 
 res = freq_counter(nums)
 
+res2 = freq_counter_2(nums)
+
 print(res)
+
+print(res2)
