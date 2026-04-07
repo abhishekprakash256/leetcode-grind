@@ -81,31 +81,25 @@ class Solution_W:
 		return max_mul
 
 
+
+
+
 class Solution:
 	def maxProduct(self, nums: List[int]) -> int:
-		"""
-		Find the max sub array sum
-		"""
 
-		#constarint case 
-		if len(nums) == 1 :
-
-			return nums[0]
-
-		#vars
 		cur_min = nums[0]
 		cur_max = nums[0]
 		max_val = nums[0]
 
+		for i in range(1, len(nums)):
 
-		for i in range(1 , len(nums)) :
+			prev_max = cur_max
+			prev_min = cur_min
 
-			cur_max = max( nums[i] , nums[i] * cur_max , cur_max * cur_min )
+			cur_max = max(nums[i], nums[i] * prev_max, nums[i] * prev_min)
+			cur_min = min(nums[i], nums[i] * prev_max, nums[i] * prev_min)
 
-			cur_min = min( nums[i] , nums[i] * cur_min , cur_max * cur_min )
-
-			max_val = max(max_val , cur_max)
-
+			max_val = max(max_val, cur_max)
 
 		return max_val
 
