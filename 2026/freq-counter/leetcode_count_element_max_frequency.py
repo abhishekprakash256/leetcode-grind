@@ -47,9 +47,6 @@ first_key = next(iter(freq))
 
 """
 
-from collections import Counter
-
-
 
 
 
@@ -59,19 +56,28 @@ from collections import Counter
 from typing import List
 
 class Solution:
-    def maxFrequencyElements(self, nums: List[int]) -> int:
-        
-        freq = Counter(nums)
+	def maxFrequencyElements(self, nums: List[int]) -> int:
+		
+		freq = Counter(nums)
 
-        max_freq = max(freq.values())
+		max_freq = max(freq.values())
 
-        result = 0
-        
-        for val in freq.values():
-            if val == max_freq:
-                result += val
+		result = 0
 
-        return result
+		for val in freq.values():
+			if val == max_freq:
+				result += val
+
+		return result
 
 
 
+if __name__ == "__main__" :
+
+	sol = Solution()
+
+	nums = [1,2,2,3,1,4]
+
+	res = sol.maxFrequencyElements(nums)
+
+	print(res)
