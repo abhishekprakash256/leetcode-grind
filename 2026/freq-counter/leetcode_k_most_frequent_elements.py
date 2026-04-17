@@ -64,8 +64,42 @@ return final_lst[0:k]
 
 how do I optimize  ?
 
+using the bucket sort it can be optimized 
 
-
+put the elemnts in the bucket and sort out 
 
 
 """
+
+from typing import List
+from collections import Counter
+
+
+
+
+
+class Solution:
+	def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+		"""
+		The function to find the top k sorted elements
+		"""
+
+		#make the freq dict
+		freq_mapper = Counter(nums)
+
+		print(freq_mapper)
+
+
+
+if __name__ == "__main__":
+
+	nums = [1,1,1,2,2,3]
+
+	k = 2
+
+	sol = Solution()
+
+	res = sol.topKFrequent(nums , k )
+
+	print(res)
+
