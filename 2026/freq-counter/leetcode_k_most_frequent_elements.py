@@ -87,7 +87,15 @@ class Solution:
 		#make the freq dict
 		freq_mapper = Counter(nums)
 
+		#make the bucket
+		bucket = []
+
+		for i in range(len(nums)):
+
+			bucket.append([i])
+
 		print(freq_mapper)
+		print(bucket)
 
 
 
