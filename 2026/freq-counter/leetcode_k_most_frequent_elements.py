@@ -90,18 +90,72 @@ class Solution:
 		#make the bucket
 		bucket = []
 
-		for i in range(len(nums)):
+		#result list
+		res = []
 
-			bucket.append([i])
+		for i in range(len(nums)+1):
 
-		print(freq_mapper)
+			bucket.append([])
+
+		#print(freq_mapper)
+		#print(bucket)
+
+		#append the freq into the bucket
+		for i in freq_mapper.items():
+
+			bucket[i[1]] = [i[0]]
+
+
+		#print(bucket)
+
+		#return the k elemnts
+		# traverse from high freq → low
+		for i in range(len(bucket) - 1, 0, -1):
+			for num in bucket[i]:
+				res.append(num)
+				if len(res) == k:
+					return res
+
+
+
+
+
+
+class Solution_w:
+	def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+		
+		freq = Counter(nums)
+
+		# bucket index = frequency
+		bucket = [[] for _ in range(len(nums) + 1)]
+
 		print(bucket)
+
+		# fill buckets
+		for num, f in freq.items():
+			bucket[f].append(num)
+
+		print(bucket)
+
+		res = []
+
+		# traverse from high freq → low
+		for i in range(len(bucket) - 1, 0, -1):
+			for num in bucket[i]:
+				res.append(num)
+				if len(res) == k:
+					return res
+
+
+
 
 
 
 if __name__ == "__main__":
 
 	nums = [1,1,1,2,2,3]
+
+	nums = [1,2,1,2,1,2,3,1,3,2]
 
 	k = 2
 
