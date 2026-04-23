@@ -107,14 +107,14 @@ class LinkedListHelper():
 
 		if l1.val < l2.val :
 
-			l1.next = merge_two_list(l1.next , l2)
+			l1.next = self.merge_two_list(l1.next , l2)
 
 			return l1
 
 
 		else:
 
-			l2.next = merge_two_list(l1, l2.next)
+			l2.next = self.merge_two_list(l1, l2.next)
 
 			return l2
 
@@ -145,9 +145,13 @@ if __name__ == "__main__" :
 	print(linkedlisthelper.print_link_list(head_2))
 
 
-	res = linkedlisthelper.merge_node(head, head_2)
+	#res = linkedlisthelper.merge_node(head, head_2)
 
-	print(linkedlisthelper.print_link_list(res))
+	#print(linkedlisthelper.print_link_list(res))
+
+	res2 = linkedlisthelper.merge_two_list(head , head_2)
+
+	print(linkedlisthelper.print_link_list(res2))
 
 
 
