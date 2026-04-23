@@ -52,5 +52,87 @@ node_6.next = node_7
 class LinkedListHelper():
 
 	def merge_node(self, l1, l2) :
+		"""
+		The functtion to merge the linked list
+		"""
+
+		dummy = Node(None)
+
+		curr = dummy
+
+		#merge the node 
+		while l1 and l2 :
+
+			if l1.val < l2.val :
+
+				curr.next = l1
+
+				l1 = l1.next
+
+			else :
+
+				curr.next = l2
+
+				l2 = l2.next
+
+			curr = curr.next
+
+
+		#attach the remainig 
+		if l1 :
+
+			curr.next = l1
+
+		if l2 :
+
+			curr.next = l2
+
+		return dummy.next
+
+
+
+	def print_link_list(self,head):
+
+		curr = head
+
+		while curr :
+
+			print(curr.val)
+
+			curr = curr.next
+
+
+
+
+
+if __name__ == "__main__" :
+
+
+	linkedlisthelper = LinkedListHelper()
+
+	print(linkedlisthelper.print_link_list(head))
+
+
+	print(linkedlisthelper.print_link_list(head_2))
+
+
+	res = linkedlisthelper.merge_node(head, head_2)
+
+	print(linkedlisthelper.print_link_list(res))
+
+
+
+
+
+
+
+
+
+
+				
+
+
+
+
 
 		
