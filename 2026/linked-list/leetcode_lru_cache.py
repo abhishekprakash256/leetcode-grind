@@ -57,7 +57,35 @@ when we get put at top
 
 mapper {3, node}
 
+when get operation
 
+check in the mapper
+
+if presernt in mapper 
+
+get the node 
+
+set the node to head 
+
+and put the head to tail
+
+rerturn the node val
+
+
+
+put function 
+
+check the capacity 
+
+if curr_capacity < capacity :
+
+	the add in list 
+
+	first add in the bead
+
+	set the head to tail
+
+	upodate the key in mapper as well 
 
 
 
@@ -80,6 +108,7 @@ class LRUCache:
 
 		self.capacity = capacity
 		self.mapper = {}
+		self. cur_capacity = 0
 
 
 	def set_head(self, node : Node):
@@ -100,7 +129,7 @@ class LRUCache:
 
 			self.tail = node
 
-		
+
 
 
 
@@ -115,6 +144,7 @@ class LRUCache:
 			return -1
 
 		#when founn in mapper
+
 
 
 
