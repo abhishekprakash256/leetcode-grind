@@ -93,11 +93,15 @@ if curr_capacity < capacity :
 
 class Node:
 
-	def __init__(self, val , prev , next):
+	def __init__(self, val , key ):
 
 		self.val = val
-		self.prev = prev
-		self.next = next
+
+		self.key = key
+
+		self.prev = None
+
+		self.next = None
 
 
 
@@ -107,28 +111,46 @@ class LRUCache:
 	def __init__(self, capacity: int):
 
 		self.capacity = capacity
+
 		self.mapper = {}
-		self. cur_capacity = 0
+
+		self.head = Node(0,0)
+
+		self.tail = Node(0,0)
+
+		self.head.next = self.tail
+
+		self.tail.prev = self.head
 
 
-	def set_head(self, node : Node):
+
+
+	def remove_node(self,node):
 		"""
-		The function to set the head
-		""" 
-
-		if not self.head:
-
-			self.head = node
-
-	def set_tail(self, node : Node) :
-		"""
-		The function to set the tail
+		The function to remove the node
 		"""
 
-		if not self.tail :
+		prev_node = node.prev
 
-			self.tail = node
+		next_node = node.next
 
+		prev_node.next = next_node
+
+		next_node.prev = prev_node
+
+
+	def insert(self,node):
+		"""
+		The function to insert node in linked list
+		"""
+
+		node.next = self.head.next
+
+		node.prev = self.head
+
+		self.head.next.prev = node
+
+		self.head.next = node	
 
 
 
@@ -138,16 +160,21 @@ class LRUCache:
 		The get method of LRU
 		"""
 
-		#case when not found in mapper
+		#case when key is not found
 		if key not in self.mapper :
 
 			return -1
 
-		#when founn in mapper
+		#get the node 
+		node = self.mapper[key]
 
+		#remove the node from last
+		self.remove(node)
 
+		#insert the node in front
+		self.insert(node)
 
-
+		return node.val
 
 
 
@@ -158,6 +185,25 @@ class LRUCache:
 		"""
 		The put method on the LRU
 		"""
+
+		if key in self.mapper :
+
+			self.remove(self.mapper[key])
+
+		node = Node(key,value)
+
+		self.mapper[key] = node
+
+		self.insert(node)
+
+		if len(self.mapper) > self.capacity :
+
+			lru = self.tail.prev
+
+			self.remove(lru)
+
+			del self.mapper[lru.key]
+
 
 
 
