@@ -93,7 +93,7 @@ if curr_capacity < capacity :
 
 class Node:
 
-	def __init__(self, val , key ):
+	def __init__(self, key , val ):
 
 		self.val = val
 
@@ -125,7 +125,7 @@ class LRUCache:
 
 
 
-	def remove_node(self,node):
+	def remove(self,node):
 		"""
 		The function to remove the node
 		"""
@@ -181,22 +181,28 @@ class LRUCache:
 
 		
 
+
 	def put(self, key: int, value: int) -> None:
-		"""
-		The put method on the LRU
-		"""
 
-		if key in self.mapper :
+		if key in self.mapper:
 
-			self.remove(self.mapper[key])
+			node = self.mapper[key]
 
-		node = Node(key,value)
+			node.val = value
+
+			self.remove(node)
+
+			self.insert(node)
+
+			return
+
+		node = Node(key, value)
 
 		self.mapper[key] = node
 
 		self.insert(node)
 
-		if len(self.mapper) > self.capacity :
+		if len(self.mapper) > self.capacity:
 
 			lru = self.tail.prev
 
