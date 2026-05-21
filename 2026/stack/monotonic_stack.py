@@ -24,3 +24,21 @@ for i in range(len(nums)):
 
 
 print(stack)
+
+
+
+stack = []
+
+for i in range(len(nums)):
+
+	while stack and stack[-1] > nums[i]:
+
+		prev = stack.pop()
+
+		# nums[i] is next greater for prev
+
+	stack.append(nums[i])
+
+
+
+print(stack)
