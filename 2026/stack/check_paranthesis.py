@@ -3,17 +3,17 @@ check the paranthesis order in the stack
 """
 
 
-class Solution()
+class Solution():
 
-	def check_paranthesis(self, para) :
+	def isValid(self, para) :
 		"""
 		The function to check the paranthesis if that form the order
 		"""
 
 		mapper = {
-		"(" : ")",
-		"{": "}",
-		"[" : "]"
+		")" : "(",
+		"}": "{",
+		"]": "["
 		}
 
 		stack = []
@@ -21,8 +21,8 @@ class Solution()
 		#iterate over the paranthesis
 		for i in para :
 
-			if i in mapper :
-
+			if i in "([{":
+				
 				stack.append(i)
 
 
@@ -32,7 +32,8 @@ class Solution()
 
 					return False
 
-				if stack[-1] != mapper[stack[-1]]
+				
+				if stack[-1] != mapper[i] :
 
 					return False
 
