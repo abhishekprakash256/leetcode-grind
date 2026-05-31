@@ -11,7 +11,7 @@ answer = [1,1,4,2,1,1,0,0]
 
 class Solution():
 
-	def dailTemperatures(self, temps) :
+	def dailyTemperatures(self, temps) :
 
 		#make the stack 
 		stack = []
@@ -19,21 +19,17 @@ class Solution():
 		#results
 		res = [0] * len(temps)
 
-		current = temps[0]
+		for i , temp in enumerate(temps):
 
-		for i , temp in enumerate(temps) :
+			while stack and temps[stack[-1]] < temp :
 
-			#put in the stack
-			while stack and stack[-1] < current :
+				index = stack.pop()
 
-				current = stack.pop()
+				res[index] = i - index
 
-			print(stack)
-			
-			stack.append(temp)
+			stack.append(i)
 
-
-
+		return res
 
 
 sol = Solution()
