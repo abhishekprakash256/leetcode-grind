@@ -33,12 +33,17 @@ store max and curr area
 from typing import List
 
 
-class Solution_Wrong:
+
+class Solution():
 	def largestRectangleArea(self, heights: List[int]) -> int:
 		"""
 		The function to find the max area of rect
 		This is not possible as the rectangle has to be vertical not horizontal
 		"""
+
+		if len(heights) == 0 and heights[0] == 1 :
+
+			return 1
 
 		#result
 		res = 0 
@@ -47,14 +52,16 @@ class Solution_Wrong:
 		curr_area = 0 
 
 		#ptrs 
-		l , r = 0 , len(heights) - 1   
+		l , r = 0 , len(heights) - 1  
 
 		#start the loop
 		while l < r :
 
-			curr_area = min(heights[l] , heights[r] ) * (r - l + 1)
+			if ( (r - l) + 1) <= min(heights[l] , heights[r] ) :
 
-			res = max(curr_area , res)
+				curr_area = min(heights[l] , heights[r] ) * (r - l + 1)
+
+				res = max(curr_area , res)
 
 			if heights[l] > heights[r] :
 
@@ -65,11 +72,10 @@ class Solution_Wrong:
 
 				l += 1
 
-			print(curr_area)
+			#print(curr_area)
 
 
 		return res
-
 
 
 sol = Solution()
