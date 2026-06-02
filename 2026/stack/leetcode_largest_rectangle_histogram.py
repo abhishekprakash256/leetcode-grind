@@ -47,7 +47,7 @@ class Solution_Wrong:
 		curr_area = 0 
 
 		#ptrs 
-		l , r = 0 , len(heights) - 1 
+		l , r = 0 , len(heights) - 1   
 
 		#start the loop
 		while l < r :
