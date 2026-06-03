@@ -41,15 +41,15 @@ class Solution():
 		This is not possible as the rectangle has to be vertical not horizontal
 		"""
 
-		if len(heights) == 0 and heights[0] == 1 :
+		if len(heights) == 1 :
 
-			return 1
+			return heights[0]
 
 		#result
 		res = 0 
 
 		#currrent area 
-		curr_area = 0 
+		curr_area = 0
 
 		#ptrs 
 		l , r = 0 , len(heights) - 1  
