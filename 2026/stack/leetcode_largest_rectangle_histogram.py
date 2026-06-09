@@ -86,3 +86,96 @@ heights = [1,1]
 
 res = sol.largestRectangleArea(heights)
 
+
+
+
+
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+
+        stack = []  # stores indices of bars
+        max_area = 0
+
+        # Add a dummy 0 height bar at the end
+        # so all remaining bars get processed
+        heights.append(0)
+
+        for i in range(len(heights)):
+
+            # Current bar is smaller than stack top
+            # => we've found the right boundary
+            while stack and heights[i] < heights[stack[-1]]:
+
+                # Height of rectangle
+                height = heights[stack.pop()]
+
+                # Find width
+                if stack:
+                    width = i - stack[-1] - 1
+                else:
+                    width = i
+
+                max_area = max(max_area, height * width)
+
+            stack.append(i)
+
+        return max_area
+
+
+
+
+
+
+
+
+
+
+
+sol = Solution()
+
+heights = [1,1]
+
+res = sol.largestRectangleArea(heights)
+
+
+print(res)
+
+
+
+
+
+
+
+
+"""
+approach -- 
+
+stack , but how ? 
+
+
+
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
