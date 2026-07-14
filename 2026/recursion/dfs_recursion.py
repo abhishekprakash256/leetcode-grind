@@ -44,9 +44,9 @@ class TreeHelper():
 
 			return 
 
-		if node :
+		print(node.val)
 
-			print(node.val)
+		if node.val :
 
 			self.dfs(node.left)
 
