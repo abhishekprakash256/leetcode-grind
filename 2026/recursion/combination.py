@@ -6,7 +6,7 @@ basic template for the combinations
 res = []
 path = []
 
-nums = [4]
+nums = [1,2]
 
 def dfs(i):
 
@@ -25,6 +25,6 @@ def dfs(i):
     dfs(i + 1)
 
 
-dfs(1)
+dfs(0)
 
 print(res)
