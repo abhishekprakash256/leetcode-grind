@@ -1,5 +1,5 @@
 """
-basic template for the combinations
+basic template for the combinations ,where order don't matter
 """
 
 
