@@ -35,29 +35,36 @@ print(res)
 class Solution():
 
     def __init__(self):
+        self.res_lst = []
 
-        self.path = []
-        self.res  = []
 
-    def dfs(self,i, nums):
+    def helper(self, start_lst, start):
         """
-        The function to find the combinations
+        The helper function
         """
 
-        if i == len(nums): 
-
-            self.res.append(self.path[:])
+        # base case
+        if len(start_lst) == self.k:
+            self.res_lst.append(start_lst)
             return
 
-        #take
-        self.path.append(nums[i])
-        self.dfs(i+1 , nums)
 
-        # undo 
-        self.path.pop()
+        for i in range(start, len(self.nums)):
 
-        #skip
-        self.dfs(i+1 , nums)
+            self.helper(start_lst + [self.nums[i]], i + 1)
+
+
+    def combine(self, nums, k):
+        """
+        The main function
+        """
+
+        self.nums = nums
+        self.res_lst = []
+
+        self.helper([], 0)
+
+        return self.res_lst
 
 
 
