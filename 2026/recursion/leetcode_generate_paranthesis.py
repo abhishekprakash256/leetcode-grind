@@ -107,7 +107,7 @@ class Solution:
 		self.para_lst = ["(",")"]
 
 
-	def _helper(self,i, left , right , para_str):
+	def _helper(self, left , right , para_str):
 		"""
 		The function to make the dfs
 		"""
@@ -119,24 +119,20 @@ class Solution:
 		#make the base case
 		if self.n*2 == len(para_str) :
 
-			if left != right :
-
-				return
-
-			#discard case
-			if para_str[( 2*self.n ) - 1 ] == "(" :
-
-				return
-
 			self.res.append(para_str)
 
 			return
 
 
 		#make the stack
-		self._helper(i + 1 , left + 1 , right + 0,  para_str + "(")
+		if left < self.n :
 
-		self._helper(i + 1 , left + 0 , right + 1 ,para_str + ")")
+			self._helper( left + 1 , right + 0,  para_str + "(")
+
+
+		if right < left : 
+
+			self._helper( left + 0 , right + 1 ,para_str + ")")
 
 
 
@@ -151,10 +147,10 @@ class Solution:
 		self.n = n
 
 		#make the str
-		para_str = "("
+		para_str = ""
 
 		#call the helper
-		self._helper(0, 1, 0, para_str )
+		self._helper(0 , 0, para_str )
 
 		return self.res
 
