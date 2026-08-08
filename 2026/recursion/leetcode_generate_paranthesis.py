@@ -33,6 +33,8 @@ if right is open then discard, if left is open then discard
 """
 
 
+from typing import List
+
 
 
 class Solution:
@@ -47,16 +49,19 @@ class Solution:
 		The function to make the dfs
 		"""
 
-		#discard case
-		if para_str[2*self.n -1 ] == "(" :
-
-			return
+		#testing the para
+		print(para_str)
 
 
 		#make the base case
-		if i*2 == len(para_str) :
+		if self.n*2 == len(para_str) :
 
-			self.res.append(para_str)
+			#discard case
+			if para_str[( 2*self.n ) - 1 ] == "(" :
+
+				return
+
+			self.res.append( para_str )
 
 			return
 
