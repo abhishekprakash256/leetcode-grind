@@ -98,7 +98,7 @@ class SolutionWrong:
 
 
 
-#testing the other solutions --- 
+#testing the other solutions --------------------
 
 class Solution:
 	def __init__(self):
