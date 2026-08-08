@@ -37,7 +37,7 @@ from typing import List
 
 
 
-class Solution:
+class SolutionWrong:
 	def __init__(self):
 
 		self.res = []
@@ -50,7 +50,7 @@ class Solution:
 		"""
 
 		#testing the para
-		print(para_str)
+		#print(para_str)
 
 
 		#make the base case
@@ -61,7 +61,7 @@ class Solution:
 
 				return
 
-			self.res.append( para_str )
+			self.res.append(para_str)
 
 			return
 
@@ -69,7 +69,8 @@ class Solution:
 		#make the stack
 		for para in self.para_lst:
 
-			self._helper(i+1, para_str + para)
+			#call the helper function
+			self._helper(i + 1, para_str + para)
 
 
 
@@ -92,6 +93,75 @@ class Solution:
 
 
 
+
+
+
+
+
+#testing the other solutions --- 
+
+class Solution:
+	def __init__(self):
+
+		self.res = []
+		self.para_lst = ["(",")"]
+
+
+	def _helper(self,i, left , right , para_str):
+		"""
+		The function to make the dfs
+		"""
+
+		#testing the para
+		#print(para_str)
+
+
+		#make the base case
+		if self.n*2 == len(para_str) :
+
+			if left != right :
+
+				return
+
+			#discard case
+			if para_str[( 2*self.n ) - 1 ] == "(" :
+
+				return
+
+			self.res.append(para_str)
+
+			return
+
+
+		#make the stack
+		self._helper(i + 1 , left + 1 , right + 0,  para_str + "(")
+
+		self._helper(i + 1 , left + 0 , right + 1 ,para_str + ")")
+
+
+
+
+
+
+	def generateParenthesis(self, n: int) -> List[str]:
+		"""
+		The function to make the paranthessis
+		"""
+
+		self.n = n
+
+		#make the str
+		para_str = "("
+
+		#call the helper
+		self._helper(0, 1, 0, para_str )
+
+		return self.res
+
+
+
+
+
 #testing the solution 
 
 
@@ -103,6 +173,9 @@ if __name__ == '__main__':
 	res = sol.generateParenthesis(3)
 
 	print(res)
+
+
+
 
 
 
