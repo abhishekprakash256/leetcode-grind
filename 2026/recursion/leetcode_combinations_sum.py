@@ -76,8 +76,8 @@ class Solution:
 		self.res = []
 
 
-	def _helper(self,curr_sum , sum_lst):
-		"""
+	def _helper(self,curr_sum , sum_lst , start):
+		""" 
 		The funciton to find the sum by backtrack
 		"""
 
@@ -95,9 +95,9 @@ class Solution:
 			return
 
 		#make the recursions all
-		for i in self.candidates : 
+		for i in range(start, len(self.candidates)): 
 
-			self._helper(curr_sum + i , sum_lst + [i])
+			self._helper(curr_sum + self.candidates[i] , sum_lst + [self.candidates[i]] , i )
 
 
 
@@ -113,7 +113,7 @@ class Solution:
 		self.candidates = candidates
 
 		#call the backtrack function
-		self._helper(curr_sum = 0 , sum_lst = [])
+		self._helper(curr_sum = 0 , sum_lst = [] , start = 0 ) 
 
 		#return the results
 		return self.res
