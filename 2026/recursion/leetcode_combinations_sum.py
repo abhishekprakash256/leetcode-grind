@@ -65,5 +65,99 @@ for i in candidates :
 
 """
 
+from typing import List
 
 
+
+
+class Solution:
+	def __init__(self):
+
+		self.res = []
+
+
+	def _helper(self,curr_sum , sum_lst):
+		"""
+		The funciton to find the sum by backtrack
+		"""
+
+		#base case
+		if curr_sum > self.target :
+
+			return
+
+
+		#base case 
+		if curr_sum == self.target :
+
+			self.res.append(sum_lst)
+
+			return
+
+		#make the recursions all
+		for i in self.candidates : 
+
+			self._helper(curr_sum + i , sum_lst + [i])
+
+
+
+	def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+		"""
+		The function to find the combination sum for target 
+		"""
+
+		#target sum
+		self.target = target
+
+		#the canidates list
+		self.candidates = candidates
+
+		#call the backtrack function
+		self._helper(curr_sum = 0 , sum_lst = [])
+
+		#return the results
+		return self.res
+
+
+
+
+#testing the solution 
+
+
+
+if __name__ == '__main__':
+
+	sol = Solution()
+
+	res = sol.combinationSum(candidates = [2,3,6,7], target = 7)
+
+	print(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
