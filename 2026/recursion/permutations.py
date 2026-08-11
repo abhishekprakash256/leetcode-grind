@@ -126,7 +126,7 @@ sol = Solution()
 
 path = [1,2,3]
 
-sol.dfs(path)
+res = sol.permute(path)
 
 
-print(sol.res)
+print(res)
