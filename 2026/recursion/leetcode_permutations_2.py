@@ -39,7 +39,7 @@ class Solution():
 		self.res = []
 
 
-	def _helper(self, idx , res_lst):
+	def _helper(self,  res_lst , used):
 		"""
 		The function for dfs tree
 		"""
@@ -51,15 +51,28 @@ class Solution():
 
 			return
 
+		for i in range(len(self.nums)) :
 
-		#make the stack
-		for i in range( len(self.nums) ):
 
-			if i == idx :
+			#don't use if in the used
+			if used[i] :
 
 				continue
 
-			self._helper( i , res_lst + [self.nums[i]])
+			#the backtrack condition
+			if i > 0 and self.nums[i] == self.nums[i - 1] and not used[i - 1]:
+
+				continue
+
+			#when the value is choose
+			used[i] = True
+
+			#make the stack
+			self._helper(res_lst + [self.nums[i]] , used )
+
+			#undo the use
+			used[i] = False
+
 
 
 	def permuteUnique(self, nums):
@@ -67,10 +80,12 @@ class Solution():
 		The function to find the unique permutations
 		"""
 
-		self.nums = nums
+		self.nums = sorted(nums)
+
+		used = [False] * len(nums)
 
 		#call the helper function
-		self._helper(0 , [] )
+		self._helper( [] , used)
 
 		#return the result
 		return self.res
