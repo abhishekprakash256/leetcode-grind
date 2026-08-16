@@ -64,12 +64,21 @@ class Solution:
 			or j >= len(self.board[0])
 		):
 			return
-		
 
+		#if in the 
+		if (i,j) in visited :
+
+			return
+		
 		#find the word
 		if len(word_str) > len(self.word) :
 
 			return
+
+
+		# Add current cell
+		word_str += self.board[i][j]
+
 
 		#match the word
 		if word_str == self.word :
@@ -82,8 +91,6 @@ class Solution:
 		#mark the visisted
 		visited.add((i,j))
 
-		# Add current cell
-		word_str += self.board[i][j]
 
 		#call the helper function for search
 		self._helper( word_str  , i , j + 1 , visited )
@@ -94,7 +101,7 @@ class Solution:
 
 		self._helper( word_str , i - 1 , j , visited )
 
-		visited.remove(( i , j))
+		visited.remove( ( i , j ) )
 
 		
 
@@ -139,9 +146,11 @@ class Solution:
 #testing the solution 
 if __name__ == '__main__':
 
-	board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+	#board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
 
-	word = "ABCCED"
+	board = [["a"]]
+
+	word = "a"
 
 	sol = Solution()
 
