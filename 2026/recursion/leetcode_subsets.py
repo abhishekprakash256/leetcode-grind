@@ -73,11 +73,6 @@ class Solution:
 		for i in range( start , len(self.nums) ) :
 
 
-			#skip the duplicate
-			if self.nums[i] in res_lst :
-
-				continue
-
 			self._helper(i + 1 , res_lst + [self.nums[i]] )
 
 
