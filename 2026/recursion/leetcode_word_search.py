@@ -40,6 +40,7 @@ make a temp list to match
 from typing import List
 
 
+
 class Solution:
 
 	def __init__(self) :
@@ -47,12 +48,12 @@ class Solution:
 		self.res = False
 
 
-	def _helper(self , word_str  , i , j ):
+	def _helper(self , word_str  , i , j , visited ):
 		"""
 		The function to find the word in the board
 		"""
 
-		print(word_str)
+		#print( i , j )
 
 		#base case
 		# Boundary check
@@ -63,34 +64,39 @@ class Solution:
 			or j >= len(self.board[0])
 		):
 			return
+		
 
-		if len(self.word) > len(word_str) :
+		#find the word
+		if len(word_str) > len(self.word) :
 
 			return
 
 		#match the word
-		if word_str == word :
+		if word_str == self.word :
 
 			self.res = True
 
 			return
 
 
+		#mark the visisted
+		visited.add((i,j))
+
 		# Add current cell
 		word_str += self.board[i][j]
 
 		#call the helper function for search
-		self._helper( word_str   , i , j + 1 )
+		self._helper( word_str  , i , j + 1 , visited )
 
-		self._helper( word_str  , i + 1 , j)
+		self._helper( word_str  , i + 1 , j , visited )
 
-		self._helper( word_str , i, j - 1 )
+		self._helper( word_str , i, j - 1 , visited )
 
-		self._helper( word_str , i - 1 , j )
+		self._helper( word_str , i - 1 , j , visited )
+
+		visited.remove(( i , j))
 
 		
-
-
 
 
 
@@ -107,13 +113,16 @@ class Solution:
 		#vars
 		word_str = ""
 
+		#make a visited set
+		visited = set()
+
 		#iter over the function 
 		for i in range(len(self.board)) :
 
 			for j in range(len(self.board[0])): 
 
 				#call the helper function 
-				self._helper( word_str , i , j )
+				self._helper( word_str , i , j , visited )
 
 				if self.res :
 
