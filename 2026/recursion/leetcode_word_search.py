@@ -41,7 +41,7 @@ from typing import List
 
 
 
-class Solution:
+class SolutionWrong:
 
 	def __init__(self) :
 
@@ -64,7 +64,11 @@ class Solution:
 			or j >= len(self.board[0])
 		):
 			return
-		
+
+
+		if (i ,j) in visited :
+
+			return
 
 		#find the word
 		if len(word_str) > len(self.word) :
@@ -130,6 +134,85 @@ class Solution:
 
 
 		return self.res
+
+
+
+
+
+
+
+
+class Solution:
+
+    def _helper(self, i, j, word_str):
+
+        # Boundary check
+        if (
+            i < 0
+            or i >= len(self.board)
+            or j < 0
+            or j >= len(self.board[0])
+        ):
+            return False
+
+        # Already visited
+        if self.board[i][j] == "#":
+            return False
+
+        # Add current character
+        temp = self.board[i][j]
+        word_str += temp
+
+        # Current character doesn't match
+        if word_str[-1] != self.word[len(word_str) - 1]:
+            return False
+
+        # Found the word
+        if word_str == self.word:
+            return True
+
+        # Mark visited
+        self.board[i][j] = "#"
+
+        # Explore 4 directions
+        found = (
+            self._helper(i, j + 1, word_str)
+            or self._helper(i, j - 1, word_str)
+            or self._helper(i - 1, j, word_str)
+            or self._helper(i + 1, j, word_str)
+        )
+
+        # Restore
+        self.board[i][j] = temp
+
+        return found
+
+    def exist(self, board, word):
+
+        self.board = board
+        self.word = word
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+
+                if board[i][j] == word[0]:
+
+                    if self._helper(i, j, ""):
+                        return True
+
+        return False
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
