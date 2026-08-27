@@ -79,7 +79,7 @@ class Solution:
 
 
 
-	def _helper(self , x , y ):
+	def _helper(self , x , y , dir ):
 		"""
 		The helper function for the traversal
 		"""
@@ -100,6 +100,20 @@ class Solution:
 
 		self.board[x][y] = "#"
 
+		if dir == "up" :
+
+			self._helper(x , y -1 , "up")
+
+		if dir == "dowm" :
+
+			self._helper(x , y + 1 , "dowm")
+
+		if dir == "left" :
+
+			self._helper(x , y + 1 , "left" )
+
+
+
 
 		#traverse the board 
 		self._helper(x -1 , y - 1 )
@@ -112,7 +126,7 @@ class Solution:
 
 		self._helper(x -1 , y )
 
-		self._helper(x , y -1 )
+		
 
 		self._helper(x + 1, y )
 
