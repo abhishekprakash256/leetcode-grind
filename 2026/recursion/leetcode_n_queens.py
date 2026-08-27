@@ -29,6 +29,28 @@ queen can move, up , down , diagonally , till edge
 
 put the queen ?? 
 
+traveral is -1,-1 
++1 , + 1
+-1, +1 
++1 , -1 
+-1 ,0 
+0 , -1
++1 , 0 
+0 , +1 
+
+
+make a grid 
+
+run one queen , mark all the postions can traverse 
+
+find the vacant position and then put the other quen 
+
+
+I have to also track the dir , if moving in one direction then can only move in that direction not anywhere else ?? 
+
+pass the dir var and make the movement ??
+
+
 
 
 """
@@ -57,12 +79,47 @@ class Solution:
 
 
 
-	def _helper(self):
+	def _helper(self , x , y ):
 		"""
 		The helper function for the traversal
 		"""
 
+		#boundary case
+		if x < 0 or y < 0 or x > self.n - 1 or y > self.n - 1 :
 
+			return
+
+		#bound case
+		if self.board[x][y] == "#" :
+
+			return
+
+
+		#mark the board 
+		#temp = self.board[x][y]
+
+		self.board[x][y] = "#"
+
+
+		#traverse the board 
+		self._helper(x -1 , y - 1 )
+
+		self._helper(x + 1 , y + 1 )
+
+		self._helper(x - 1 , y + 1 )
+		
+		self._helper(x + 1 , y - 1 )
+
+		self._helper(x -1 , y )
+
+		self._helper(x , y -1 )
+
+		self._helper(x + 1, y )
+
+		self._helper(x , y + 1)	
+
+		#unmark the board
+		#self.board[x][y] = temp
 
 
 
@@ -73,10 +130,19 @@ class Solution:
 		The function to find the N queens soln
 		"""
 
+		self.n = n
+
 		#make the board
 		self._make_board(n)
 
 		#put the queen
+		self._helper(0 , 0)
+
+
+
+
+
+
 		
 		
 
