@@ -59,7 +59,7 @@ pass the dir var and make the movement ??
 
 from typing import List
 
-class Solution:
+class SolutionWrong:
 
 	def __init__(self):
 
