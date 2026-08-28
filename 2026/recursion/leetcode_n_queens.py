@@ -65,24 +65,29 @@ class Solution:
 
 		self.res = []
 		self.board = []
+		self.found = False
+
 
 	def _make_board(self,n ):
 
 		#make the row and col
-		row = ["."]*n
+		
 		self.board = []
 
 		for i in range(n):
-
-			self.board.append(row)
-
-
+			
+			self.board.append(["."] * n)
 
 
-	def _helper(self , x , y , dir ):
+
+
+	def _helper(self , x , y , dir  ):
 		"""
 		The helper function for the traversal
 		"""
+
+
+		
 
 		#boundary case
 		if x < 0 or y < 0 or x > self.n - 1 or y > self.n - 1 :
@@ -100,40 +105,73 @@ class Solution:
 
 		self.board[x][y] = "#"
 
+		#travserse if the dir is not given
+		if dir == "" :
+
+			self._helper(x , y - 1 , "up")
+
+
+			self._helper(x , y + 1 , "dowm")
+
+
+			self._helper(x - 1, y  , "left" )
+
+
+			self._helper(x + 1, y , "right" )
+		
+
+			self._helper(x -1 , y - 1, "up_left" )
+
+
+			self._helper(x + 1 , y - 1, "up_right" )
+
+
+			self._helper(x - 1 , y + 1, "down_left" )
+
+
+			self._helper(x + 1 , y + 1, "down_right" )
+
+
+
+		#travserse if the dir is given
 		if dir == "up" :
 
-			self._helper(x , y -1 , "up")
+			self._helper(x , y - 1 , "up")
+
 
 		if dir == "dowm" :
 
 			self._helper(x , y + 1 , "dowm")
 
+
 		if dir == "left" :
 
-			self._helper(x , y + 1 , "left" )
+			self._helper(x - 1, y  , "left" )
 
 
+		if dir == "right" :
+
+			self._helper(x + 1, y , "right" )
 
 
-		#traverse the board 
-		self._helper(x -1 , y - 1 )
+		if dir == "up_left" :
 
-		self._helper(x + 1 , y + 1 )
+			self._helper(x -1 , y - 1, "up_left" )
 
-		self._helper(x - 1 , y + 1 )
-		
-		self._helper(x + 1 , y - 1 )
 
-		self._helper(x -1 , y )
+		if dir == "up_right" :
 
-		
+			self._helper(x + 1 , y - 1, "up_right" )
 
-		self._helper(x + 1, y )
 
-		self._helper(x , y + 1)	
+		if dir == "down_left" :
 
-		#unmark the board
-		#self.board[x][y] = temp
+			self._helper(x - 1 , y + 1, "down_left" )
+
+
+		if dir == "down_right" :
+
+			self._helper(x + 1 , y + 1, "down_right" )
 
 
 
@@ -149,8 +187,15 @@ class Solution:
 		#make the board
 		self._make_board(n)
 
-		#put the queen
-		self._helper(0 , 0)
+		#traverse the matrix
+		
+		for i in range(n):
+
+			for j in range(n) :
+
+				self._helper(i , j , "")
+
+
 
 
 
