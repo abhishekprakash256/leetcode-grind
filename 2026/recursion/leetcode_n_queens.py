@@ -235,7 +235,7 @@ class Solution():
 
 		#check the upper left diagonal 
 		x = row - 1 
-		y = col - 1
+		y = col - 1 
 
 		#loop over the rows
 		while x >= 0 and y >= 0 :
@@ -247,6 +247,10 @@ class Solution():
 			x -= 1 
 			y -= 1 
 
+		#check the upper right 
+		x = row - 1 
+		y = col + 1
+
 		#loop over the rows
 		while x >= 0 and y < self.n :
 
@@ -254,7 +258,7 @@ class Solution():
 
 				return False
 
-			x += 1 
+			x -= 1 
 			y += 1
 
 		return True
@@ -281,7 +285,22 @@ class Solution():
 			return
 
 
-		#
+		#to check the col
+		for col in range(self.n):
+
+			#check whether we can put in quuen in pos
+			if not self._is_safe(row,col) :
+
+				continue
+
+			#choose 
+			self.board[row][col] = "Q"
+
+			#recurse to next row
+			self._helper(row + 1)
+
+			#undo the row
+			self.board[row][col] = "."
 
 
 
@@ -316,9 +335,9 @@ if __name__ == '__main__':
 
 	sol = Solution()
 
-	sol.solveNQueens(4)
+	res = sol.solveNQueens(4)
 
-	print(sol.board)
+	print(res)
 
 
 
