@@ -200,6 +200,111 @@ class SolutionWrong:
 
 
 
+class Solution():
+
+	def __init__(self):
+
+		self.board = []
+		self.res = []
+
+
+
+	def _make_board(self,n ):
+
+		#make the row and col
+		
+		self.board = []
+
+		for i in range(n):
+			
+			self.board.append(["."] * n)
+
+
+
+	def _is_safe(self, row , col) :
+		"""
+		The function to check the row and col is safe
+		"""
+
+		#check the col
+		for x in range(row):
+
+			if self.board[x][col] == "Q" :
+
+				return False
+
+		#check the upper left diagonal 
+		x = row - 1 
+		y = col - 1
+
+		#loop over the rows
+		while x >= 0 and y >= 0 :
+
+			if self.board[x][y] == "Q" :
+
+				return False
+
+			x -= 1 
+			y -= 1 
+
+		#loop over the rows
+		while x >= 0 and y < self.n :
+
+			if self.board[x][y] == "Q" :
+
+				return False
+
+			x += 1 
+			y += 1
+
+		return True
+
+
+
+
+	def _helper(self , row ):
+		"""
+		The function to find the row and iter over the cols with queen postion
+		"""
+
+		#traverse the board
+		if row == self.n :
+
+			solution = []
+
+			for r in self.board :
+
+				solution.append("".join(r))
+
+			self.res.append(solution)
+
+			return
+
+
+		#
+
+
+
+
+	def solveNQueens(self, n: int) -> List[List[str]]:
+		"""
+		The main function to find the N queen postion in the board
+		"""
+
+		self.n = n 
+
+		#make the board
+		self._make_board(self.n)
+
+		#call the helper function
+		self._helper(0)
+
+		#return the result
+		return self.res
+
+
+
+
 
 
 		
