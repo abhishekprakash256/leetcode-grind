@@ -3,6 +3,9 @@ The file is to traverse the graph using the DFS and BFS , all kinds of graph
 """
 
 
+from collections import deque
+
+
 ## make the tree 
 class Node():
 
@@ -85,6 +88,58 @@ class TreeHelper():
 
 
 
+
+"""
+using the adjaceny list graph 
+"""
+
+
+class AdjacenyListGraph():
+
+	def __init__(self):
+
+		self.graph = [[1, 2], [0, 2], [0, 1, 3, 4], [2], [2]]
+
+		self.visited = set()
+
+
+
+	def dfs_traversal(self):
+		"""
+		The function to traverse the graph using the adjaceny list
+		"""
+		node = 0 
+
+		self.dfs_helper(node)
+
+	
+
+	#make the helper traversal
+	def dfs_helper(self, node) :
+		"""
+		The helper function to start the traversal
+		"""
+
+		if node in self.visited:
+
+			return
+
+		#add the visited node 
+		self.visited.add(node)
+
+		#print the node
+		print(node)
+
+		#traverse the node
+		for neighbor in self.graph[node] :
+
+			self.dfs_helper(neighbor)
+
+
+
+
+
+
 #call the main function 
 
 if __name__ == "__main__" :
@@ -99,18 +154,12 @@ if __name__ == "__main__" :
 
 	print(bfs_res)
 
+	adjacenylistgraph = AdjacenyListGraph()
+
+	dfs_traversal_adjacency_list = adjacenylistgraph.dfs_traversal()
 
 
-
-
-
-
-
-
-
-
-
-
+	print(dfs_traversal_adjacency_list)
 
 
 
