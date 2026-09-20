@@ -146,16 +146,16 @@ class AdjacenyListGraph():
 		queue = deque()
 
 		#visisted set
-		visited = set()
+		visited = set(node)
 
 		#add the node to queue
-		queue.append(0)
+		queue.append(node)
 
 		#start the traversal 
 		while queue :
 
 			#pop the node 
-			curr_node = queue.pop()
+			curr_node = queue.popleft()
 
 			#print the node
 			print(curr_node)
