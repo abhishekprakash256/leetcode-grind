@@ -137,6 +137,49 @@ class AdjacenyListGraph():
 
 
 
+	def bfs_traversal(self, node) :
+		"""
+		The function to start the bfs traversal
+		"""
+
+		#make the queue
+		queue = deque()
+
+		#visisted set
+		visited = set()
+
+		#add the node to queue
+		queue.append(0)
+
+		#start the traversal 
+		while queue :
+
+			#pop the node 
+			curr_node = queue.pop()
+
+			#print the node
+			print(curr_node)
+
+			#traverse the nodes
+			for neighbor in self.graph[curr_node] :
+
+				#check the neighbor in visited
+				if neighbor in visited :
+
+					continue 
+
+				#put the neigbor in visited
+				visited.add(neighbor)
+
+				#add to the queue
+				queue.append(neighbor)
+
+
+
+
+
+
+
 
 
 
@@ -158,8 +201,15 @@ if __name__ == "__main__" :
 
 	dfs_traversal_adjacency_list = adjacenylistgraph.dfs_traversal()
 
-
 	print(dfs_traversal_adjacency_list)
+
+	bfs_traversal_adjacency_list = adjacenylistgraph.bfs_traversal(0)
+
+	print(bfs_traversal_adjacency_list)
+
+
+
+
 
 
 
