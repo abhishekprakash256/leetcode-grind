@@ -103,7 +103,6 @@ class AdjacenyListGraph():
 		self.visited = set()
 
 
-
 	def dfs_traversal(self):
 		"""
 		The function to traverse the graph using the adjaceny list
@@ -179,6 +178,76 @@ class AdjacenyListGraph():
 
 
 
+class GridHelper():
+
+	def __init__(self):
+
+		self.grid = [
+		["1","1","1","1","0"],
+		["1","1","0","1","0"],
+		["1","1","0","0","0"],
+		["0","0","0","0","0"]
+		]
+
+		self.visited = set()
+
+
+	def dfs_helper(self,  x , y) :
+
+
+		directions = [
+		(1, 0),
+		(-1, 0),
+		(0, 1),
+		(0, -1)
+		]
+
+		#condition limits
+		if x < 0 or x >= self.rows or y < 0 or y >= self.cols:
+			
+			return
+
+		#if visited
+		if self.grid[x][y] == "#":
+
+			return
+
+
+		# Already visited
+		if (x, y) in self.visited:
+			
+			return
+
+		#print the val
+		print(self.grid[x][y])
+		
+		# Mark visited
+		self.visited.add((x, y))
+
+
+		#traverse the dirs
+		for dir_x , dir_y in directions :
+
+			self.dfs_helper( dir_x + x , dir_y + y )
+
+
+
+	def dfs_traversal(self) :
+		"""
+		the dfs traversal for the grid graph
+		"""
+		#make the row and col length
+		self.rows = len(self.grid)
+		self.cols = len(self.grid[0])
+
+		for x in range(self.rows) :
+
+			for y in range(self.cols) :
+
+				self.dfs_helper(x , y )
+
+
+
 
 
 
@@ -203,9 +272,13 @@ if __name__ == "__main__" :
 
 	print(dfs_traversal_adjacency_list)
 
-	bfs_traversal_adjacency_list = adjacenylistgraph.bfs_traversal(0)
+	gridhelper = GridHelper()
 
-	print(bfs_traversal_adjacency_list)
+	dfs_traversal_grid = gridhelper.dfs_traversal()
+
+	print(dfs_traversal_grid)
+
+
 
 
 
