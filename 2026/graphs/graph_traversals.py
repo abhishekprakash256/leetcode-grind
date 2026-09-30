@@ -249,6 +249,58 @@ class GridHelper():
 
 
 
+	def bfs_traversal(self):
+
+		# Queue
+		queue = deque([(0, 0)])
+
+		# Visited coordinates
+		visited = set()
+
+		# Directions
+		dirs = [
+			(1, 0),
+			(-1, 0),
+			(0, 1),
+			(0, -1)
+		]
+
+		# Start BFS
+		while queue:
+
+			# Remove from FRONT
+			node = queue.popleft()
+
+			x, y = node
+
+			# Print current cell
+			print(self.grid[x][y])
+
+			# Mark visited
+			visited.add(node)
+
+			# Explore neighbors
+			for dir_x, dir_y in dirs:
+
+				new_x = x + dir_x
+				new_y = y + dir_y
+
+				# Boundary check
+				if new_x < 0 or new_x >= len(self.grid):
+					continue
+
+				if new_y < 0 or new_y >= len(self.grid[0]):
+					continue
+
+				# Already visited
+				if (new_x, new_y) in visited:
+					continue
+
+				# Add to queue
+				queue.append((new_x, new_y))
+
+
+
 
 
 
@@ -276,7 +328,10 @@ if __name__ == "__main__" :
 
 	dfs_traversal_grid = gridhelper.dfs_traversal()
 
-	print(dfs_traversal_grid)
+	#print(dfs_traversal_grid)
+
+	bfs_traversal_grid = gridhelper.bfs_traversal()
+
 
 
 
