@@ -30,9 +30,60 @@ one cycle is one proivince
 
 when the connection disconnects , how to find the island ?? 
 
+so this question can be solved like island problem , traves the one and then mark that then other make and increse the count
 
-
-
-
-
+whenever we traverse the graph, mark 
 """
+
+from typing import List
+
+class Solution():
+
+	def __init__(self):
+
+		#self.graph = [[1, 2], [0, 2], [0, 1, 3, 4], [2], [2]]
+
+		self.visited = set()
+
+
+	def findCircleNum(self , isConnected ):
+		"""
+		The function to traverse the graph using the adjaceny list
+		"""
+
+		node = isConnected[0][0]
+
+		self.dfs_helper(node , isConnected )
+
+	
+
+	#make the helper traversal
+	def dfs_helper(self, node , isConnected : List[List[int]]) :
+		"""
+		The helper function to start the traversal
+		"""
+
+		if node in self.visited:
+
+			return
+
+		#add the visited node 
+		self.visited.add(node)
+
+		#print the node
+		print(node)
+
+		#traverse the node
+		for neighbor in isConnected[node] :
+
+			self.dfs_helper(neighbor , isConnected)
+
+
+
+if __name__ == "__main__" :
+
+	sol = Solution()
+
+	isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+
+	res = sol.findCircleNum( isConnected )
