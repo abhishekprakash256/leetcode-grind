@@ -23,6 +23,8 @@ Output: 3
 
 
 """
+do I need to make a graph first ??? 
+
 
 traverse the graph and find cycle connections ??
 
@@ -41,42 +43,74 @@ class Solution():
 
 	def __init__(self):
 
-		#self.graph = [[1, 2], [0, 2], [0, 1, 3, 4], [2], [2]]
-
+		self.adj_list = {}
+		self.count = 0 
 		self.visited = set()
 
-
-	def findCircleNum(self , isConnected ):
+	def _make_graph(self , isConnected : List[List[int]] ) :
 		"""
-		The function to traverse the graph using the adjaceny list
-		"""
-
-		node = isConnected[0][0]
-
-		self.dfs_helper(node , isConnected )
-
-	
-
-	#make the helper traversal
-	def dfs_helper(self, node , isConnected : List[List[int]]) :
-		"""
-		The helper function to start the traversal
+		The function to make the graph
 		"""
 
-		if node in self.visited:
+		for i in range(len(isConnected) ) :
 
-			return
+			self.adj_list[i] = []
 
-		#add the visited node 
+			for j in range(len(isConnected[i])) :
+
+				if isConnected[i][j] == 1 :
+
+					self.adj_list[i].append(j)
+
+
+		return self.adj_list
+
+
+	def findCircleNum(self, isConnected: List[List[int]]) :
+		"""
+		The function to find the number of the provinces
+		""" 
+
+		#make the graph
+		self._make_graph(isConnected)
+
+		#make dfs search
+		for node in range(len(isConnected)):
+
+			if node not in self.visited:
+
+				self.count += 1
+
+				self._dfs_helper(node)
+
+		return self.count
+
+
+
+
+
+	def _dfs_helper(self, node) :
+		"""
+		The function to traverse the graph
+		"""
+		#print(node)
+
 		self.visited.add(node)
 
-		#print the node
-		print(node)
+		#print(node)
 
-		#traverse the node
-		for neighbor in isConnected[node] :
+		for neighbor in self.adj_list[node] :
 
-			self.dfs_helper(neighbor , isConnected)
+			if neighbor in self.visited :
+
+				continue
+
+			self._dfs_helper(neighbor)
+
+
+
+
+
 
 
 
@@ -84,6 +118,24 @@ if __name__ == "__main__" :
 
 	sol = Solution()
 
-	isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+	isConnectedTwo = [[1,0,0],[0,1,0],[0,0,1]]  # 3 
+
+	isConnected = [[1,1,0],[1,1,0],[0,0,1]]   #2
 
 	res = sol.findCircleNum( isConnected )
+
+	#print(sol.adj_list)
+
+	print(res)
+
+
+
+
+
+
+
+
+
+
+
+
