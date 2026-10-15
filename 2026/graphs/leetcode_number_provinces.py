@@ -77,11 +77,13 @@ class Solution():
 		#make dfs search
 		for node in range(len(isConnected)):
 
-			if node not in self.visited:
+			if node in self.visited:
 
-				self.count += 1
+				continue
 
-				self._dfs_helper(node)
+			self.count += 1
+
+			self._dfs_helper(node)
 
 		return self.count
 
