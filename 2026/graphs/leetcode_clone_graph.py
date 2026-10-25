@@ -15,7 +15,66 @@ You must return the copy of the given node as a reference to the cloned graph.
 
 """
 
-make a dummy node , then traverse the gradph and make the graph 
+make a dummy node , then traverse the graph using the dfs or bfs and then add the node 
+return the node.next ?? 
+
 
 
 """
+
+
+# Definition for a Node.
+class Node:
+	def __init__(self, val = 0, neighbors = None):
+		self.val = val
+		self.neighbors = neighbors if neighbors is not None else []
+
+
+from typing import Optional
+class Solution:
+
+	def __init__(self) :
+
+		self.mapper = {}
+
+
+	def _dfs_helper(self, node ):
+		"""
+		The function to traverse the graph
+		"""
+
+		#if the node is found
+		if node in self.mapper :
+
+			return self.mapper[node]
+
+		#make the clone node
+		clone = Node(node.val)
+		self.mapper[node] = clone
+
+		#maek the neighbors 
+		for neighbor in node.neighbors :
+
+			clone.neighbors.append(self._dfs_helper(neighbor))
+
+		return clone
+
+
+
+	def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+		"""
+		The function to clone the graph
+		"""
+
+		#if the node is empty
+		if not node:
+
+			return None
+
+		return self._dfs_helper(node)
+
+
+
+
+
+
