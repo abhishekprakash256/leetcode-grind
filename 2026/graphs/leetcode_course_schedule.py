@@ -54,16 +54,17 @@ mapper = {0 : [1,0] , 1 : [1,0] }
 
 
 from typing import List
+from collections import defaultdict
 
 
 
 
-class Solution:
+class SolutionWrong:
 	def __init__(self):
 
 		self.graph = {}
 		self.visited = set()
-		self.
+		
 
 
 	def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
@@ -123,10 +124,204 @@ class Solution:
 
 if __name__ == "__main__" :
 
-	sol = Solution()
+	sol = SolutionWrong()
 
 	prerequisites = [[1,0],[0,1]]
 
 	numCourses = 2 
 
 	sol.canFinish( numCourses , prerequisites )
+
+
+
+
+
+
+
+
+
+
+
+class Solution():
+
+
+	def __init__(self):
+
+		self.visited = set()
+		self.graph = defaultdict(list)
+		self.path = set()
+
+
+	def _make_graph(self,prerequisites) :
+		"""
+		The function to make the graph
+		"""
+
+		for u,v in prerequisites :
+
+
+			self.graph[u].append(v)
+
+
+
+	def _check_cycle(self, node) :
+		"""
+		The functtion to traverse the graph in dfs
+		"""
+
+		#check the node 
+		if node in self.visited :
+
+			return False
+
+		#if node found in path
+		if node in self.path :
+
+			return True
+
+
+		#add the node in the path
+		self.path.add(node)
+
+		#travese the graph
+
+		for neighbor in self.graph[node] :
+
+			if self._check_cycle(neighbor) :
+
+				return True
+
+		#remove the node
+		self.path.remove(node)
+
+		#mark the visited node
+		self.visited.add(node)
+
+		return False
+
+
+
+
+
+	def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+		"""
+		The function to find the course can be done
+		"""
+
+		#base case 
+		if len(prerequisites) == 1 :
+
+			return True
+
+
+		#make the graph 
+		self._make_graph(prerequisites)
+
+		#travserse the graph
+		for course in range(numCourses) :
+
+			if course not in self.visited :
+
+				if self._check_cycle(course) :
+
+					return False
+
+
+		return True
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__" :
+
+	sol = Solution()
+
+	numCourses = 2 
+
+	prerequisites = [[1,0],[0,1]]
+
+	res = sol.canFinish( numCourses , prerequisites)
+
+	print(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
