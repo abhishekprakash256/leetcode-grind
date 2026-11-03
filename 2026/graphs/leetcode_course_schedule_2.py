@@ -52,6 +52,113 @@ make the graph , then traverse the graph using the dfs and find how we can make 
 
 how can I get the order ?? 
 
-
+we can add into a list and get the values into it 
 
 """
+
+
+from typing import List
+from collections import defaultdict
+
+
+class Solution:
+
+	def __init__(self):
+
+		self.visited = set()
+		self.graph = defaultdict(list)
+		self.path = set()
+		self.course_path = []
+
+
+	def _make_graph(self , prerequisites: list[list[int]]):
+		"""
+		The function to make the graph
+		"""
+
+		for u,v in prerequisites :
+
+
+			self.graph[u].append(v)
+
+
+	def _check_cycle(self, node):
+		"""
+		The function to traverse the graph
+		"""
+
+		#check the node is viisted 
+		if node in self.visited :
+
+			return False
+
+		#if node found in path
+		if node in self.path :
+
+			return True
+
+
+		#add the node in the path
+		self.path.add(node)
+
+
+		#travers the node 
+		for neighbor in self.graph[node] :
+
+			if self._check_cycle(neighbor) :
+
+				self.course_path.append(neighbor)
+
+				return True
+
+		#remove from the path 
+		self.path.remove(node)
+
+		#add to the path
+		self.visited.add(node)
+
+		return False
+
+
+
+
+	def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
+		"""
+		The function to find the course that can be taken
+		"""
+		
+		#make the graph 
+		self._make_graph(prerequisites) 
+
+
+		#travsese the graph 
+		for course in range(numCourses) :
+
+			if course not in self.visited :
+
+				if self._check_cycle(course) :
+
+					return False
+
+		return self.course_path
+
+
+
+
+
+if __name__ == "__main__" :
+
+	sol = Solution()
+
+	numCourses = 2 
+
+	prerequisites = [[1,0],[0,1]]
+
+	res = sol.findOrder( numCourses , prerequisites)
+
+	print(res)
+
+
+			
+		
+
