@@ -107,8 +107,6 @@ class Solution:
 
 			if self._check_cycle(neighbor) :
 
-				self.course_path.append(neighbor)
-
 				return True
 
 		#remove from the path 
@@ -116,6 +114,8 @@ class Solution:
 
 		#add to the path
 		self.visited.add(node)
+
+		self.course_path.append(node)
 
 		return False
 
@@ -138,7 +138,7 @@ class Solution:
 
 				if self._check_cycle(course) :
 
-					return False
+					return []
 
 		return self.course_path
 
@@ -157,8 +157,4 @@ if __name__ == "__main__" :
 	res = sol.findOrder( numCourses , prerequisites)
 
 	print(res)
-
-
-			
-		
 
