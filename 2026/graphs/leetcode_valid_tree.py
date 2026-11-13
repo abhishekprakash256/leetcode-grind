@@ -36,7 +36,8 @@ There are no self-loops or repeated edges.
 approach -- 
 
 - use the cycle detection , to find the tree 
-- make the graph , find the cycle , 
+- make the graph , find the cycle , if cycle found return false 
+- if cycle not found return False
 
 
 
@@ -54,72 +55,97 @@ class Solution:
 		self.path = set()
 		self.visited = set()
 
-
-	def _make_graph(self , edges : list[list[int]] ):
+	def _make_graph(self, edges: list[list[int]]) :
 		"""
 		The function to make the graph
 		"""
 
-		#mark the loop
-		for u , v in edges :
+		#iter the list
+		for u,v in edges :
 
-			self.graph[u].append(v) 
+			self.graph[u].append(v)
 
 
-	def _check_cycle(self , node):
+	def _check_cycle(self, node ) :
 		"""
-		The function to check for the cycle
+		The function to traverse the dfs graph 
 		"""
 
-		#check in the visited
+		#check the node 
 		if node in self.visited :
 
-			return True
+			return False
 
-		#check the path
+		#if node found in path
 		if node in self.path :
 
-			return False
+			return True
 
 		#add the node in the path
 		self.path.add(node)
 
 
-		#traverse in the node
+		#traserse the node
 		for neighbor in self.graph[node] :
 
 			if self._check_cycle(neighbor) :
 
 				return True
 
-		#make the path
+		#remove the node
 		self.path.remove(node)
 
-		#mark the visited
+		#mark the visited node
 		self.visited.add(node)
 
 		return False
 
 
 
+
+
+
 	def validTree(self, n: int, edges: list[list[int]]) -> bool:
 		"""
-		The function to find the valid tree
+		Find the valid tree
 		"""
 
-		#make the graph
+		#base case 
+		if n == 1 :
+
+			return True
+
+
+		#make the graph 
 		self._make_graph(edges)
 
-		#traverse the graph
-		for node in range(n) :
+		#travserse the graph
+		for course in range(n) :
 
-			if node not in self.visited :
+			if course not in self.visited :
 
-				if self._check_cycle(node) :
+				if self._check_cycle(course) :
 
 					return False
+
 
 		return True
 
 
 
+
+
+
+
+#the main block
+if __name__ == '__main__':
+
+	sol = Solution()
+
+	edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]
+
+	n = 5
+
+	res = sol.validTree( n , edges)
+
+	print(res)
