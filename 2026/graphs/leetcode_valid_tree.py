@@ -42,99 +42,54 @@ approach --
 
 
 """
-
 from typing import List
 from collections import defaultdict
 
 
-
 class Solution:
-	def __init__(self):
 
-		self.graph = defaultdict(list)
-		self.visited = set()
+    def __init__(self):
 
-
-	def _make_graph(self, edges: list[list[int]]) :
-		"""
-		The function to make the graph
-		"""
-
-		#iter the list
-		for u,v in edges :
-
-			self.graph[u].append(v)
-			self.graph[v].append(u)
+        self.graph = defaultdict(list)
+        self.visited = set()
 
 
-	def _check_cycle(self, node , parent) :
-		"""
-		The function to traverse the dfs graph 
-		"""
-		
-		#if the node in visited
-		if node in self.visited :
+    def _make_graph(self, edges):
 
-			return False
+        for u, v in edges:
+
+            self.graph[u].append(v)
+            self.graph[v].append(u)
 
 
-		#do the traversal 
-		for neighbor in self.graph[node] :
+    def _check_cycle(self, node, parent):
 
-			if neighbor != parent :
+        self.visited.add(node)
 
-				return False
+        for neighbor in self.graph[node]:
 
-			self._check_cycle(neighbor , node)
+            if neighbor == parent:
+                continue
 
-		#add the node 
-		self.visited.add(node)
+            if neighbor in self.visited:
+                return False
 
-		return False
+            if not self._check_cycle(neighbor, node):
+                return False
 
-
-
-
-
-	def validTree(self, n: int, edges: list[list[int]]) -> bool:
-		"""
-		Find the valid tree
-		"""
-	
-		#base case 
-		if n == 1 :
-
-			return True
+        return True
 
 
-		#make the graph 
-		self._make_graph(edges)
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
 
-		#travserse the graph
-		for node in range(n) :
+        # A tree must have exactly n-1 edges
+        if len(edges) != n - 1:
+            return False
 
-			if node not in self.visited :
+        self._make_graph(edges)
 
-				if self._check_cycle(node , ) :
+        # Check cycles and connectivity
+        if not self._check_cycle(0, -1):
+            return False
 
-					return False
-
-
-		return True
-
-
-
-
-
-#the main block
-if __name__ == '__main__':
-
-	sol = Solution()
-
-	edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]
-
-	n = 5
-
-	res = sol.validTree( n , edges)
-
-	print(res)
+        return len(self.visited) == n
