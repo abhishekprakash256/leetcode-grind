@@ -35,9 +35,9 @@ There are no self-loops or repeated edges.
 """
 approach -- 
 
-- use the cycle detection , to find the tree 
-- make the graph , find the cycle , if cycle found return false 
-- if cycle not found return False
+- this is an undirected graph
+- graph will be made using u and v 
+- we need to track the parent and key idea is node != parent, duing the dfs traversal
 
 
 
@@ -52,8 +52,8 @@ class Solution:
 	def __init__(self):
 
 		self.graph = defaultdict(list)
-		self.path = set()
 		self.visited = set()
+
 
 	def _make_graph(self, edges: list[list[int]]) :
 		"""
@@ -64,42 +64,33 @@ class Solution:
 		for u,v in edges :
 
 			self.graph[u].append(v)
+			self.graph[v].append(u)
 
 
-	def _check_cycle(self, node ) :
+	def _check_cycle(self, node , parent) :
 		"""
 		The function to traverse the dfs graph 
 		"""
-
-		#check the node 
+		
+		#if the node in visited
 		if node in self.visited :
 
 			return False
 
-		#if node found in path
-		if node in self.path :
 
-			return True
-
-		#add the node in the path
-		self.path.add(node)
-
-
-		#traserse the node
+		#do the traversal 
 		for neighbor in self.graph[node] :
 
-			if self._check_cycle(neighbor) :
+			if neighbor != parent :
 
-				return True
+				return False
 
-		#remove the node
-		self.path.remove(node)
+			self._check_cycle(neighbor , node)
 
-		#mark the visited node
+		#add the node 
 		self.visited.add(node)
 
 		return False
-
 
 
 
@@ -109,7 +100,7 @@ class Solution:
 		"""
 		Find the valid tree
 		"""
-
+	
 		#base case 
 		if n == 1 :
 
@@ -120,18 +111,16 @@ class Solution:
 		self._make_graph(edges)
 
 		#travserse the graph
-		for course in range(n) :
+		for node in range(n) :
 
-			if course not in self.visited :
+			if node not in self.visited :
 
-				if self._check_cycle(course) :
+				if self._check_cycle(node , ) :
 
 					return False
 
 
 		return True
-
-
 
 
 
